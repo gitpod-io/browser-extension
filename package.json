@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "name": "gitpod-web-extension",
+  "version": "0.0.1",
+  "license": "UNLICENSED",
+  "description": "Browser extension (Chrome/Firefox) for Enhancing Github and Gitlab with Gitpod links",
+  "main": "src/gitpodify.js",
+  "scripts": {
+    "build": "yarn clean && npx tsc && yarn webpack",
+    "clean": "rimraf dist",
+    "webpack": "webpack",
+    "watch": "webpack -w"
+  },
+  "dependencies": {
+    "@types/events": "^3.0.0",
+    "dom-loaded": "^1.0.1",
+    "github-injection": "^1.0.1",
+    "select-dom": "^4.1.1",
+    "webextension-polyfill": "^0.2.1"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.5.0",
+    "css-loader": "^0.28.1",
+    "rimraf": "^2.6.1",
+    "source-map-loader": "^0.2.3",
+    "style-loader": "^0.23.1",
+    "webextension-polyfill-ts": "^0.10.0",
+    "webpack": "^2.2.1"
+  }
+}

@@ -1,0 +1,14 @@
+
+
+/* GitHub */
+/* CSS selects by ID to override default style (loaded earlier: higher priority) */
+.repository-content > div #gitpod-btn-container.gitpod-file-btn,
+.file-navigation #gitpod-btn-container {
+    margin-left: 6px;
+}
+
+.no-container {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
