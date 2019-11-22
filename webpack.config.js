@@ -2,6 +2,7 @@
 const path = require('path');
 
 module.exports = {
+    mode: 'production',
     entry: {
         gitpodify: './dist/gitpodify.js',
         options: './dist/options/options.js',
@@ -18,6 +19,7 @@ module.exports = {
             },
             {
                 test: /\.js$/,
+                exclude: /node_modules/,
                 enforce: 'pre',
                 loader: 'source-map-loader'
             }
