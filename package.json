@@ -13,18 +13,19 @@
   },
   "dependencies": {
     "@types/events": "^3.0.0",
-    "dom-loaded": "^1.0.1",
+    "dom-loaded": "^2.0.0",
     "github-injection": "^1.0.1",
-    "select-dom": "^4.1.1",
-    "webextension-polyfill": "^0.2.1"
+    "select-dom": "^5.1.0",
+    "webextension-polyfill": "^0.5.0"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^4.5.0",
-    "css-loader": "^0.28.1",
-    "rimraf": "^2.6.1",
-    "source-map-loader": "^0.2.3",
-    "style-loader": "^0.23.1",
-    "webextension-polyfill-ts": "^0.10.0",
-    "webpack": "^2.2.1"
+    "copy-webpack-plugin": "^5.0.5",
+    "css-loader": "^3.2.0",
+    "rimraf": "^3.0.0",
+    "source-map-loader": "^0.2.4",
+    "style-loader": "^1.0.0",
+    "webextension-polyfill-ts": "^0.11.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   }
 }
