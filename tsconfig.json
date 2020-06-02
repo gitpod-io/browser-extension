@@ -17,9 +17,9 @@
             "es6",
             "dom"
         ],
-        "sourceMap": true,
-        "declaration": true,
-        "declarationMap": true,
+        "sourceMap": false,
+        "declaration": false,
+        "declarationMap": false,
         "skipLibCheck": true
     },
     "include": [
