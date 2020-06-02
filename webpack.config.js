@@ -21,10 +21,7 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 enforce: 'pre',
-                loader: 'source-map-loader'
             }
         ]
     }
 };
-
-module.exports.devtool = 'source-map';
