@@ -17,7 +17,8 @@ div#content > div.row {
   align-items: center;
 }
 
-.row > label {
+.row {
+    margin-bottom: .5em;
 }
 
 .row > input {
