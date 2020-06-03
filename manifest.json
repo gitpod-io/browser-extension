@@ -3,7 +3,7 @@
   "name": "Gitpod Online IDE",
   "short_name": "Gitpod",
   "version": "1.2",
-  "description": "Gitpod - One-Click Online IDE for GitHub, GitLab and Bitbucket",
+  "description": "Gitpod – One-Click Online IDE for GitHub, GitLab and Bitbucket",
   "icons": {
     "16": "icons/gitpod-logo-16.png",
     "48": "icons/gitpod-logo-48.png",
@@ -12,7 +12,10 @@
   "content_scripts": [
     {
       "matches": [
-        "<all_urls>"
+        "*://*.github.com/*",
+        "*://*.gitlab.com/*",
+        "*://*.bitbucket.org/*",
+        "*://*.gitpod.io/*"
       ],
       "js": [
         "dist/bundles/gitpodify.bundle.js"
@@ -25,13 +28,16 @@
       "48": "icons/gitpod-logo-48.png",
       "128": "icons/gitpod-logo.png"
     },
-    "default_title": "Gitpod",
-    "default_popup": "src/options/options.html"
+    "default_title": "Gitpod Online IDE"
+  },
+  "background": {
+    "scripts": ["dist/bundles/background.bundle.js"]
   },
   "options_ui": {
     "page": "src/options/options.html"
   },
   "permissions": [
+    "activeTab",
     "storage"
   ]
 }

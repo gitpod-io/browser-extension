@@ -6,6 +6,7 @@ module.exports = {
     entry: {
         gitpodify: './dist/gitpodify.js',
         options: './dist/options/options.js',
+        background: './dist/background.js'
     },
     output: {
         filename: 'bundles/[name].bundle.js',

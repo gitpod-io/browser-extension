@@ -3,12 +3,10 @@ import { EventEmitter } from "events";
 
 export interface Config {
     gitpodURL: string;
-    injectIntoDomains: string[];
 }
 
 export const DEFAULT_CONFIG: Config = {
-    gitpodURL: "https://gitpod.io",
-    injectIntoDomains: ["github.com","gitlab.com"]
+    gitpodURL: "https://gitpod.io"
 };
 
 export interface ConfigListener {

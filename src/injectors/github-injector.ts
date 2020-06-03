@@ -2,6 +2,7 @@ import * as select from 'select-dom';
 import * as ghInjection from 'github-injection';
 import { ConfigProvider } from '../config';
 import { ButtonInjector, InjectorBase, checkIsBtnUpToDate } from './injector';
+import { renderGitpodUrl } from '../utils';
 
 namespace Gitpodify {
 	export const NAV_BTN_ID = "gitpod-btn-nav";
@@ -41,7 +42,7 @@ export class GitHubInjector extends InjectorBase {
 
     checkIsInjected(): boolean {
         const button = document.getElementById(`${Gitpodify.NAV_BTN_ID}`);
-        const currentUrl = this.renderGitpodUrl();
+        const currentUrl = renderGitpodUrl(this.config.gitpodURL);
         return checkIsBtnUpToDate(button, currentUrl);
     }
 

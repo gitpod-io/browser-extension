@@ -1,4 +1,5 @@
 import { ConfigProvider } from "../config";
+import { renderGitpodUrl } from "../utils";
 
 export interface Injector {
 
@@ -50,7 +51,7 @@ export abstract class InjectorBase implements Injector {
     abstract update(): Promise<void>;
 
     injectButtons(singleInjector: boolean = false) {
-        const currentUrl = this.renderGitpodUrl();
+        const currentUrl = renderGitpodUrl(this.config.gitpodURL);
         for (const injector of this.buttonInjectors) {
             if (injector.isApplicableToCurrentPage()) {
                 injector.inject(currentUrl);
@@ -60,12 +61,6 @@ export abstract class InjectorBase implements Injector {
             }
         }
     };
-
-    // Helpers
-    protected renderGitpodUrl(): string {
-        const baseURL = `${window.location.protocol}//${window.location.host}`;
-        return `${this.config.gitpodURL}#${baseURL}` + window.location.pathname;
-    }
 
     protected get config() {
         return this.configProvider.getConfig();
