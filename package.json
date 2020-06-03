@@ -2,7 +2,7 @@
   "private": true,
   "name": "gitpod-web-extension",
   "version": "0.0.1",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "description": "Browser extension (Chrome/Firefox) for Enhancing Github and Gitlab with Gitpod links",
   "main": "src/gitpodify.js",
   "scripts": {
