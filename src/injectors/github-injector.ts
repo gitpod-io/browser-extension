@@ -49,7 +49,9 @@ export class GitHubInjector extends InjectorBase {
     async inject(): Promise<void> {
         // ghInjection triggers an event whenever only parts of the GitHub page have been reloaded
 	    ghInjection(() => {
-            this.injectButtons()
+            if (!this.checkIsInjected()) {
+                this.injectButtons();
+            }
         });
     }
 
@@ -75,9 +77,12 @@ abstract class ButtonInjectorBase implements ButtonInjector {
         }
 
         const oldBtn = document.getElementById(Gitpodify.NAV_BTN_ID);
-        if (oldBtn && !checkIsBtnUpToDate(oldBtn, currentUrl)) {
-            // Only add once
-            (oldBtn as HTMLAnchorElement).href = currentUrl;
+        if (oldBtn) {
+            if (!checkIsBtnUpToDate(oldBtn, currentUrl)) {
+                // update button
+                (oldBtn as HTMLAnchorElement).href = currentUrl;
+            }
+            // button is there and up-to-date
             return;
         }
 
