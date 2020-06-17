@@ -65,6 +65,7 @@ abstract class ButtonInjectorBase implements ButtonInjector {
     constructor(
         protected readonly parentSelector: string,
         protected readonly btnClasses: string,
+        protected readonly float: boolean = true,
         protected readonly asFirstChild: boolean = false
     ) {}
 
@@ -98,9 +99,9 @@ abstract class ButtonInjectorBase implements ButtonInjector {
         }
     }
 
-    protected renderButton(url: string, float: boolean = true): HTMLElement {
+    protected renderButton(url: string): HTMLElement {
         let classes = this.btnClasses + ` ${Gitpodify.NAV_BTN_CLASS}`;
-        if (float) {
+        if (this.float) {
             classes = classes + ` float-right`;
         }
 
@@ -163,10 +164,10 @@ class NavigationInjector extends ButtonInjectorBase {
 
 class EmptyRepositoryInjector extends ButtonInjectorBase {
     constructor() {
-        super(".repository-content", Gitpodify.CSS_REF_NO_CONTAINER, true);
+        super(".repository-content", Gitpodify.CSS_REF_NO_CONTAINER, false, true);
     }
 
     isApplicableToCurrentPage(): boolean {
-        return !!select.exists(".js-git-clone-help-container");
+        return !!select.exists("git-clone-help-controller");
     }
 }
