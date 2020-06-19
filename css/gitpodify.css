@@ -28,7 +28,7 @@
     border-radius: 3.01px;
     cursor: pointer;
     display: inline-block;
-    margin: 0 2px;
+    margin: 0 4px;
     padding: 4px 10px;
     vertical-align: baseline;
     white-space: nowrap;
@@ -45,4 +45,8 @@
     font-size: 14px;
     font-variant: normal;
     font-weight: 500;
+}
+
+.bitbucket-button a:focus {
+    outline: none;
 }
