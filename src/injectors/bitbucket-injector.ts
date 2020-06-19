@@ -18,6 +18,7 @@ export class BitbucketInjector extends InjectorBase {
         super(configProvider, [
             new BranchInjector(),
             new PullRequestInjector(),
+            new NewPullRequestInjector(),
             new CommitInjector(),
             new RepositoryInjector()
         ]);
@@ -133,7 +134,19 @@ class PullRequestInjector extends ButtonInjectorBase {
     }
 
     isApplicableToCurrentPage(): boolean {
-        return window.location.pathname.includes("/pull-requests/");
+        return select(this.parent) && window.location.pathname.includes("/pull-requests/");
+    }
+
+}
+
+class NewPullRequestInjector extends ButtonInjectorBase {
+
+    constructor() {
+        super('[data-qa="pr-header-actions-drop-down-menu-styles"]', 'bitbucket-button', 2);
+    }
+
+    isApplicableToCurrentPage(): boolean {
+        return select(this.parent) && window.location.pathname.includes("/pull-requests/");
     }
 
 }
