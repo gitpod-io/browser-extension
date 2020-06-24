@@ -117,8 +117,13 @@ abstract class ButtonInjectorBase implements ButtonInjector {
         a.target = "_blank";
         a.className = "btn btn-sm btn-primary";
 
+        this.adjustButton(a);
+
         container.appendChild(a);
         return container;
+    }
+    protected adjustButton(a: HTMLAnchorElement) {
+        // do nothing
     }
 }
 
@@ -147,6 +152,10 @@ class FileInjector extends ButtonInjectorBase {
         super(".repository-content > div", "gitpod-file-btn");
     }
 
+    protected adjustButton(a: HTMLAnchorElement): void {
+        a.className = "btn btn-primary";
+    }
+
     isApplicableToCurrentPage(): boolean {
         return window.location.pathname.includes("/blob/");
     }
@@ -157,6 +166,10 @@ class NavigationInjector extends ButtonInjectorBase {
         super(".file-navigation", "empty-icon position-relative");
     }
 
+    protected adjustButton(a: HTMLAnchorElement): void {
+        a.className = "btn btn-primary";
+    }
+
     isApplicableToCurrentPage(): boolean {
         return !!select.exists(".file-navigation");
     }
@@ -165,6 +178,10 @@ class NavigationInjector extends ButtonInjectorBase {
 class EmptyRepositoryInjector extends ButtonInjectorBase {
     constructor() {
         super(".repository-content", Gitpodify.CSS_REF_NO_CONTAINER, false, true);
+    }
+
+    protected adjustButton(a: HTMLAnchorElement): void {
+        a.className = "btn btn-primary";
     }
 
     isApplicableToCurrentPage(): boolean {
