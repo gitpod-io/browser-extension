@@ -135,6 +135,10 @@ class PullInjector extends ButtonInjectorBase {
     isApplicableToCurrentPage(): boolean {
 		return window.location.pathname.includes("/pull/");
     }
+
+    protected adjustButton(a: HTMLAnchorElement): void {
+        a.className = "btn btn-sm btn-primary";
+    }
 }
 
 class IssueInjector extends ButtonInjectorBase {
@@ -152,10 +156,6 @@ class FileInjector extends ButtonInjectorBase {
         super(".repository-content > div", "gitpod-file-btn");
     }
 
-    protected adjustButton(a: HTMLAnchorElement): void {
-        a.className = "btn btn-primary";
-    }
-
     isApplicableToCurrentPage(): boolean {
         return window.location.pathname.includes("/blob/");
     }
@@ -166,10 +166,6 @@ class NavigationInjector extends ButtonInjectorBase {
         super(".file-navigation", "empty-icon position-relative");
     }
 
-    protected adjustButton(a: HTMLAnchorElement): void {
-        a.className = "btn btn-primary";
-    }
-
     isApplicableToCurrentPage(): boolean {
         return !!select.exists(".file-navigation");
     }
@@ -178,10 +174,6 @@ class NavigationInjector extends ButtonInjectorBase {
 class EmptyRepositoryInjector extends ButtonInjectorBase {
     constructor() {
         super(".repository-content", Gitpodify.CSS_REF_NO_CONTAINER, false, true);
-    }
-
-    protected adjustButton(a: HTMLAnchorElement): void {
-        a.className = "btn btn-primary";
     }
 
     isApplicableToCurrentPage(): boolean {
