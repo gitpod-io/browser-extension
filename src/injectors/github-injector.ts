@@ -115,7 +115,7 @@ abstract class ButtonInjectorBase implements ButtonInjector {
         a.text = "Gitpod"
         a.href = url;
         a.target = "_blank";
-        a.className = "btn btn-sm btn-primary";
+        a.className = "btn btn-primary";
 
         this.adjustButton(a);
 
