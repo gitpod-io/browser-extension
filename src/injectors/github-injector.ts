@@ -2,7 +2,7 @@ import * as select from 'select-dom';
 import * as ghInjection from 'github-injection';
 import { ConfigProvider } from '../config';
 import { ButtonInjector, InjectorBase, checkIsBtnUpToDate } from './injector';
-import { renderGitpodUrl } from '../utils';
+import { renderGitpodUrl, makeOpenInPopup } from '../utils';
 
 namespace Gitpodify {
 	export const NAV_BTN_ID = "gitpod-btn-nav";
@@ -71,7 +71,7 @@ abstract class ButtonInjectorBase implements ButtonInjector {
 
     abstract isApplicableToCurrentPage(): boolean;
 
-    inject(currentUrl: string) {
+    inject(currentUrl: string, openAsPopup: boolean) {
         const actionbar = select(this.parentSelector);
         if (!actionbar) {
             return;
@@ -87,7 +87,7 @@ abstract class ButtonInjectorBase implements ButtonInjector {
             return;
         }
 
-        const btn = this.renderButton(currentUrl);
+        const btn = this.renderButton(currentUrl, openAsPopup);
 
         const btnGroup = actionbar.getElementsByClassName("BtnGroup");
         if (btnGroup && btnGroup.length > 0 && btnGroup[0].classList.contains('float-right')){
@@ -99,7 +99,7 @@ abstract class ButtonInjectorBase implements ButtonInjector {
         }
     }
 
-    protected renderButton(url: string): HTMLElement {
+    protected renderButton(url: string, openAsPopup: boolean): HTMLElement {
         let classes = this.btnClasses + ` ${Gitpodify.NAV_BTN_CLASS}`;
         if (this.float) {
             classes = classes + ` float-right`;
@@ -115,6 +115,9 @@ abstract class ButtonInjectorBase implements ButtonInjector {
         a.text = "Gitpod"
         a.href = url;
         a.target = "_blank";
+        if (openAsPopup) {
+            makeOpenInPopup(a);
+        }
         a.className = "btn btn-sm btn-primary";
 
         this.adjustButton(a);

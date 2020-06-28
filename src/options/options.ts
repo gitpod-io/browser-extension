@@ -1,6 +1,7 @@
 import { ConfigProvider } from "../config";
 
 const gitpodUrlInput = document.getElementById("gitpod-url-input")! as HTMLInputElement;
+const gitpodPopupInput = document.getElementById("gitpod-open-as-popup")! as HTMLInputElement;
 const messageElement = document.getElementById("message")! as HTMLDivElement;
 
 
@@ -10,18 +11,16 @@ const init = async () => {
     // Initialize UI
     const initialConfig = configProvider.getConfig();
     gitpodUrlInput.value = initialConfig.gitpodURL;
+    gitpodPopupInput.checked = initialConfig.openAsPopup;
 
     let timeout: number | undefined = undefined;
 
     // Save config before close
-    const saveOnType = (event: KeyboardEvent) => {
-        if (event.isComposing || event.keyCode === 229) {
-            return;
-        }
-
+    const save = () => {
         // Update config (propagated internally)
         configProvider.setConfig({
             gitpodURL: gitpodUrlInput.value || undefined,
+            openAsPopup: gitpodPopupInput.checked
         });
         if (timeout) {
             window.clearTimeout(timeout);
@@ -30,7 +29,13 @@ const init = async () => {
         messageElement.innerText = "Saved.";
         timeout = window.setTimeout(() => { messageElement.innerText = ""; timeout = undefined }, 3000);
     };
-    gitpodUrlInput.addEventListener("keyup", saveOnType);
+    gitpodUrlInput.addEventListener("keyup", (event: KeyboardEvent) => {
+        if (event.isComposing || event.keyCode === 229) {
+            return;
+        }
+        save() 
+    });
+    gitpodPopupInput.addEventListener('change', save);
 };
 
 init().catch(err => console.error(err));
