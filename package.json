@@ -3,7 +3,7 @@
   "name": "gitpod-web-extension",
   "version": "0.0.1",
   "license": "MIT",
-  "description": "Browser extension (Chrome/Firefox) for enhancing GitHub, GitLab and Bitbucket with Gitpod links",
+  "description": "Browser extension (Chrome/Edge/Firefox) for enhancing GitHub, GitLab and Bitbucket with Gitpod links",
   "main": "src/gitpodify.js",
   "scripts": {
     "build": "yarn clean && npx tsc && yarn webpack",
