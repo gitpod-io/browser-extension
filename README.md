@@ -1,7 +1,7 @@
 # Gitpod Browser extension
 [![Setup Automated](https://img.shields.io/badge/setup-automated-blue?logo=gitpod)](https://gitpod.io/#https://github.com/gitpod-io/browser-extension)
 
-This is the browser extension for Gitpod, supporting Chrome ([Chrome Web Store](https://chrome.google.com/webstore/detail/dodmmooeoklaejobgleioelladacbeki/)), Edge (since it supports Chrome extensions, [see how](https://support.microsoft.com/help/4538971/microsoft-edge-add-or-remove-extensions)) and Firefox ([Firefox Add-ons](https://addons.mozilla.org/firefox/addon/gitpod/)). It adds a **Gitpod** button to the configured GitHub and GitLab installations (defaults to domains containing `github.com` or `gitlab.com`) which directly creates a workspace for that context:
+This is the browser extension for Gitpod, supporting Chrome ([Chrome Web Store](https://chrome.google.com/webstore/detail/dodmmooeoklaejobgleioelladacbeki/)), Edge (since it supports Chrome extensions, [see how](https://support.microsoft.com/help/4538971/microsoft-edge-add-or-remove-extensions)) and Firefox ([Firefox Add-ons](https://addons.mozilla.org/firefox/addon/gitpod/)). It adds a **Gitpod** button to the configured GitHub, GitLab and BitBucket installations (defaults to domains containing `github.com`, `gitlab.com` or `bitbucket.org`) which directly creates a workspace for that context:
 
  ![Gitpodify](./docs/github-injected.png "Gitpodify")
 
