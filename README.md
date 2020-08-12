@@ -21,6 +21,12 @@ yarn install && yarn build && yarn package
 npm run build:safari
 ```
 
+![Confirm Safari](./docs/safari-confirm.png "Confirm Safari")
+
+Hit `enter` when presented with this screen.
+
+`Xcode` will open the `Gitpod.xcodeproj` automatically if it's installed.
+
 ## Test
 
 [Build](#build) the extension and
