@@ -26,6 +26,6 @@ npm run build:safari
 [Build](#build) the extension and
 * unzip `gitpod.xpi` and load it as [“unpackaged extension” (Chrome)](https://developer.chrome.com/extensions/getstarted) or
 * load `gitpod.xpi` as [“temporary add-on” (Firefox)](https://blog.mozilla.org/addons/2015/12/23/loading-temporary-add-ons/) or
-* open `Gitpod/Gitpod.xcodeproj` and run the project with `cmd` + `r`. _Safari must [**Allow Unsigned Extensions**](https://developer.apple.com/documentation/safariservices/safari_app_extensions/building_a_safari_app_extension)._
+* open `Gitpod/Gitpod.xcodeproj` and run the project with `cmd` + `r`. ⚠️ _Safari must have [**Allow Unsigned Extensions**](https://developer.apple.com/documentation/safariservices/safari_app_extensions/building_a_safari_app_extension) enabled._
 
 The extension is active until the next restart of your browser.
