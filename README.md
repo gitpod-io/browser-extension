@@ -7,14 +7,25 @@ This is the browser extension for Gitpod, supporting Chrome ([Chrome Web Store](
 
 ## Build
 
+### Chrome & Firefox
+
 ```
 yarn install && yarn build && yarn package
+```
+
+### Safari
+
+#### ⚠️ A machine running macOS and [Xcode](https://developer.apple.com/xcode/) installed is required!
+
+```
+npm run build:safari
 ```
 
 ## Test
 
 [Build](#build) the extension and
 * unzip `gitpod.xpi` and load it as [“unpackaged extension” (Chrome)](https://developer.chrome.com/extensions/getstarted) or
-* load `gitpod.xpi` as [“temporary add-on” (Firefox)](https://blog.mozilla.org/addons/2015/12/23/loading-temporary-add-ons/).
+* load `gitpod.xpi` as [“temporary add-on” (Firefox)](https://blog.mozilla.org/addons/2015/12/23/loading-temporary-add-ons/) or
+* open `Gitpod/Gitpod.xcodeproj` and run the project with `cmd` + `r`. _Safari must [**Allow Unsigned Extensions**](https://developer.apple.com/documentation/safariservices/safari_app_extensions/building_a_safari_app_extension)._
 
 The extension is active until the next restart of your browser.
