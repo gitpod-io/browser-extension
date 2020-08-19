@@ -15,7 +15,15 @@ yarn install && yarn build && yarn package
 
 ### Safari
 
-#### ⚠️ A machine running macOS and [Xcode](https://developer.apple.com/xcode/) installed is required!
+#### ⚠️ A machine running macOS and [Xcode 12+](https://developer.apple.com/xcode/) installed is required!
+
+First, run the following to install dependencies and build the web extension:
+
+```
+yarn install && yarn build && yarn package
+```
+
+Then run the `build:safari` command to build the Safari extension around the web extension:
 
 ```
 npm run build:safari
