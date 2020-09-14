@@ -188,6 +188,6 @@ class EmptyRepositoryInjector extends ButtonInjectorBase {
     }
 
     isApplicableToCurrentPage(): boolean {
-        return !!select.exists("git-clone-help-controller");
+        return !!select.exists("#empty-setup-clone-url");
     }
 }
