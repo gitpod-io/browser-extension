@@ -26,7 +26,7 @@ yarn install && yarn build && yarn package
 Then run the `build:safari` command to build the Safari extension around the web extension:
 
 ```
-npm run build:safari
+yarn build:safari
 ```
 
 ![Confirm Safari](./docs/safari-confirm.png "Confirm Safari")
