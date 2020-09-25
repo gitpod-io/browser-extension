@@ -105,6 +105,13 @@ abstract class ButtonInjectorBase implements ButtonInjector {
         } else {
             actionbar.appendChild(btn);
         }
+
+        const primaryButtons = actionbar.getElementsByClassName("btn-primary");
+        if (primaryButtons && primaryButtons.length > 1) {
+            Array.from(primaryButtons)
+                .slice(0, primaryButtons.length - 1)
+                .forEach(primaryButton => primaryButton.classList.replace("btn-primary", "btn-secondary"));
+        }
     }
 
     protected renderButton(url: string, openAsPopup: boolean): HTMLElement {
