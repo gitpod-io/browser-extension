@@ -50,7 +50,8 @@ class RepositoryInjector implements ButtonInjector {
 
     isApplicableToCurrentPage(): boolean {
         const result = !!select.exists(RepositoryInjector.PARENT_SELECTOR)
-            && !!select.exists(".project-clone-holder");
+            && !!select.exists(".project-clone-holder")
+            && !select.exists('[data-qa-selector="gitpod_button"]');
         return result;
     }
 
