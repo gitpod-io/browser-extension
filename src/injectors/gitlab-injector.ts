@@ -69,6 +69,16 @@ class RepositoryInjector implements ButtonInjector {
 
         const btn = this.renderButton(currentUrl, openAsPopup);
         parent.firstElementChild.appendChild(btn);
+
+        const primaryButtons = parent.firstElementChild.getElementsByClassName("btn-primary");
+        if (primaryButtons && primaryButtons.length > 1) {
+            Array.from(primaryButtons)
+                .slice(0, primaryButtons.length - 1)
+                .forEach(primaryButton => {
+                    primaryButton.classList.remove("btn-primary");
+                    Array.from(primaryButton.getElementsByTagName("svg")).forEach(svg => svg.style.fill = "currentColor")
+                });
+        }
     }
 
     protected renderButton(url: string, openAsPopup: boolean): HTMLElement {
