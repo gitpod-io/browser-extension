@@ -90,8 +90,16 @@ abstract class ButtonInjectorBase implements ButtonInjector {
         const btn = this.renderButton(currentUrl, openAsPopup);
 
         const btnGroup = actionbar.getElementsByClassName("BtnGroup");
-        if (btnGroup && btnGroup.length > 0 && btnGroup[0].classList.contains('float-right')){
+        const detailsBtn = Array.from(actionbar.children)
+            .filter(child => child.tagName.toLowerCase() === "details" && child.id.endsWith("more-options-details"));
+        if (btnGroup && btnGroup.length > 0 && btnGroup[0].classList.contains('float-right')) {
             actionbar.insertBefore(btn, btnGroup[0]);
+        } else if (detailsBtn && detailsBtn.length > 0) {
+            if (detailsBtn[0].previousElementSibling) {
+                detailsBtn[0].previousElementSibling.classList.remove("mr-2");
+            }
+            btn.classList.add("mr-2");
+            actionbar.insertBefore(btn, detailsBtn[0]);
         } else if (this.asFirstChild && actionbar) {
             actionbar.insertBefore(btn, actionbar.firstChild);
         } else {
