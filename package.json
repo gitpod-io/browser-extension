@@ -19,6 +19,8 @@
     "dom-loaded": "^2.0.0",
     "github-injection": "^1.0.1",
     "select-dom": "^5.1.0",
+    "serialize-javascript": "^3.1.0",
+    "terser-webpack-plugin": "^4.2.2",
     "webextension-polyfill": "^0.5.0"
   },
   "devDependencies": {
