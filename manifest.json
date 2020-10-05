@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Gitpod - Dev Environments in a Browser Tab",
   "short_name": "Gitpod",
-  "version": "1.6",
+  "version": "1.7",
   "description": "Describe your dev environment as code and get fully prebuilt dev environments for any GitLab, GitHub and Bitbucket project.",
   "icons": {
     "16": "icons/gitpod-logo-16.png",
