@@ -43,3 +43,9 @@ Hit `enter` when presented with this screen.
 * open `Gitpod/Gitpod.xcodeproj` and run the project with `cmd` + `r`. ⚠️ _Safari must have [**Allow Unsigned Extensions**](https://developer.apple.com/documentation/safariservices/safari_app_extensions/building_a_safari_app_extension) enabled._
 
 The extension is active until the next restart of your browser.
+
+## Publishing
+
+- **Chrome:** Users that are member of the Google group [`gitpod-browser-extension`](https://groups.google.com/g/gitpod-browser-extension) are allowed to update new versions in the [Chrome Webstore Developer Dashboard](https://chrome.google.com/webstore/devconsole/11ad35cc-5b54-416a-a789-f091e1007648).
+- **Firefox:** Login at https://addons.mozilla.org/ with user `info@typefox.io`.
+
