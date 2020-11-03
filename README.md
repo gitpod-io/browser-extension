@@ -49,3 +49,7 @@ The extension is active until the next restart of your browser.
 - **Chrome:** Users that are member of the Google group [`gitpod-browser-extension`](https://groups.google.com/g/gitpod-browser-extension) are allowed to update new versions in the [Chrome Webstore Developer Dashboard](https://chrome.google.com/webstore/devconsole/11ad35cc-5b54-416a-a789-f091e1007648).
 - **Firefox:** Login at https://addons.mozilla.org/ with user `info@typefox.io`.
 
+## Issues
+
+We are currently tracking all issues related to the browser extension in the [`gitpod-io/gitpod`](https://github.com/gitpod-io/gitpod) repository.
+You can use the [`browser-extension`](https://github.com/gitpod-io/gitpod/issues?q=is%3Aopen+is%3Aissue+label%3Abrowser-extension) label to search for relevant issues including feature proposals and bug reports.
