@@ -95,7 +95,7 @@ class RepositoryInjector implements ButtonInjector {
         a.text = "Gitpod"
         a.href = url;
         a.target = "_blank";
-        a.className = "btn btn-primary";
+        a.className = "gl-button btn btn-info";
         
         if (openAsPopup) {
             makeOpenInPopup(a);
