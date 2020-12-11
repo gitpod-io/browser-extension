@@ -52,4 +52,4 @@ The extension is active until the next restart of your browser.
 ## Issues
 
 We are currently tracking all issues related to the browser extension in the [`gitpod-io/gitpod`](https://github.com/gitpod-io/gitpod) repository.
-You can use the [`browser-extension`](https://github.com/gitpod-io/gitpod/issues?q=is%3Aopen+is%3Aissue+label%3Abrowser-extension) label to search for relevant issues including feature proposals and bug reports.
+You can use the [`component: browser-extension`](https://github.com/gitpod-io/gitpod/issues?q=is%3Aissue+is%3Aopen+extension+label%3A%22component%3A+browser-extension%22) label to search for relevant issues including feature proposals and bug reports.
