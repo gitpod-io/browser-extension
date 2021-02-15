@@ -16,12 +16,11 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader'
+                use: ['style-loader', 'css-loader'],
             },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                enforce: 'pre',
             }
         ]
     }
