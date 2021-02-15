@@ -18,3 +18,10 @@ async function gitpodifyCurrentTab() {
 }
 
 browser.browserAction.onClicked.addListener(gitpodifyCurrentTab)
+
+browser.runtime.onInstalled.addListener(details => {
+    if (details.reason == "install") {
+        window.open("https://www.gitpod.io/extension-activation/");
+    }
+});
+browser.runtime.setUninstallURL("https://www.gitpod.io/extension-uninstall/");
