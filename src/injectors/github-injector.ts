@@ -167,7 +167,7 @@ class IssueInjector extends ButtonInjectorBase {
 
 class FileInjector extends ButtonInjectorBase {
     constructor() {
-        super(".repository-content > div", "gitpod-file-btn");
+        super(".repository-content > div > div", "gitpod-file-btn");
     }
 
     protected adjustButton(a: HTMLAnchorElement): void {
