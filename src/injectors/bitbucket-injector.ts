@@ -1,7 +1,6 @@
 import { InjectorBase, ButtonInjector, checkIsBtnUpToDate } from "./injector";
 import { ConfigProvider } from "../config";
-import { renderGitpodUrl, makeOpenInPopup } from "../utils";
-import select = require("select-dom");
+import { renderGitpodUrl } from "../utils";
 
 namespace Gitpodify {
 	export const NAV_BTN_ID = "gitpod-btn-nav";
@@ -18,7 +17,6 @@ export class BitbucketInjector extends InjectorBase {
         super(configProvider, [
             new BranchInjector(),
             new PullRequestInjector(),
-            new IssuesInjector(),
             new NewPullRequestInjector(),
             new CommitInjector(),
             new RepositoryInjector()
@@ -60,7 +58,8 @@ abstract class ButtonInjectorBase implements ButtonInjector {
 
     abstract isApplicableToCurrentPage(): boolean;
 
-    inject(currentUrl: string, openAsPopup: boolean) {
+    inject(currentUrl: string) {
+
         let actionbar = select(this.parent);
         if(actionbar && this.up) {
             for(let i = 0; i < this.up; i++) {
@@ -85,7 +84,7 @@ abstract class ButtonInjectorBase implements ButtonInjector {
             return;
         }
 
-        const btn = this.renderButton(currentUrl, openAsPopup);
+        const btn = this.renderButton(currentUrl);
 
         const btnGroup = actionbar.children;
         if (btnGroup && btnGroup.length > 0){
@@ -93,11 +92,11 @@ abstract class ButtonInjectorBase implements ButtonInjector {
         } 
     }
 
-    protected renderButton(url: string, openAsPopup: boolean, float: boolean = true): HTMLElement {
+    protected renderButton(url: string, float: boolean = true): HTMLElement {
         let classes = Gitpodify.NAV_BTN_CLASS;
         if (float) {
             classes = `${classes} ${this.btnClasses} aui-button`;
-        }   
+        }
 
         const container = document.createElement('div');
         container.id = Gitpodify.CSS_REF_BTN_CONTAINER;
@@ -109,9 +108,7 @@ abstract class ButtonInjectorBase implements ButtonInjector {
         a.text = "Gitpod"
         a.href = url;
         a.target = "_blank";
-        if (openAsPopup) {
-            makeOpenInPopup(a);
-        }
+
         a.className = "btn btn-sm btn-primary";
 
         container.appendChild(a);
