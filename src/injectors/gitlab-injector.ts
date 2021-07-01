@@ -2,7 +2,7 @@ import * as domloaded from 'dom-loaded';
 import * as select from 'select-dom';
 import { ConfigProvider } from '../config';
 import { ButtonInjector, InjectorBase, checkIsBtnUpToDate } from './injector';
-import { renderGitpodUrl } from '../utils';
+import { renderGitpodUrl, makeOpenInPopup } from '../utils';
 
 namespace Gitpodify {
 	export const BTN_ID = "gitpod-btn-nav";
@@ -50,11 +50,12 @@ class RepositoryInjector implements ButtonInjector {
 
     isApplicableToCurrentPage(): boolean {
         const result = !!select.exists(RepositoryInjector.PARENT_SELECTOR)
-            && !!select.exists(".project-clone-holder");
+            && !!select.exists(".project-clone-holder")
+            && !select.exists('[data-qa-selector="gitpod_button"]');
         return result;
     }
 
-    inject(currentUrl: string) {
+    inject(currentUrl: string, openAsPopup: boolean) {
         const parent = select(RepositoryInjector.PARENT_SELECTOR);
         if (!parent || !parent.firstElementChild) {
             return;
@@ -67,12 +68,21 @@ class RepositoryInjector implements ButtonInjector {
             return;
         }
 
-        const btn = this.renderButton(currentUrl);
-        console.log(parent.innerHTML);
+        const btn = this.renderButton(currentUrl, openAsPopup);
         parent.firstElementChild.appendChild(btn);
+
+        const primaryButtons = parent.firstElementChild.getElementsByClassName("btn-primary");
+        if (primaryButtons && primaryButtons.length > 1) {
+            Array.from(primaryButtons)
+                .slice(0, primaryButtons.length - 1)
+                .forEach(primaryButton => {
+                    primaryButton.classList.remove("btn-primary");
+                    Array.from(primaryButton.getElementsByTagName("svg")).forEach(svg => svg.style.fill = "currentColor")
+                });
+        }
     }
 
-    protected renderButton(url: string): HTMLElement {
+    protected renderButton(url: string, openAsPopup: boolean): HTMLElement {
         const container = document.createElement('div');
         container.className = "project-clone-holder d-none d-md-inline-block";
 
@@ -85,7 +95,11 @@ class RepositoryInjector implements ButtonInjector {
         a.text = "Gitpod"
         a.href = url;
         a.target = "_blank";
-        a.className = "btn btn-primary";
+        a.className = "gl-button btn btn-info";
+        
+        if (openAsPopup) {
+            makeOpenInPopup(a);
+        }
 
         container2ndLevel.appendChild(a);
         container.appendChild(container2ndLevel);

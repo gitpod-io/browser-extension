@@ -36,7 +36,7 @@ export interface ButtonInjector {
      * Injects the actual button
      * @param currentUrl The currently configured Gitpod URL
      */
-    inject(currentUrl: string): void;
+    inject(currentUrl: string, openAsPopup: boolean): void;
 }
 
 export abstract class InjectorBase implements Injector {
@@ -54,7 +54,7 @@ export abstract class InjectorBase implements Injector {
         const currentUrl = renderGitpodUrl(this.config.gitpodURL);
         for (const injector of this.buttonInjectors) {
             if (injector.isApplicableToCurrentPage()) {
-                injector.inject(currentUrl);
+                injector.inject(currentUrl, this.config.openAsPopup);
                 if (singleInjector) {
                     break;
                 }

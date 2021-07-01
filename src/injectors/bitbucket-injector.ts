@@ -1,7 +1,6 @@
 import { InjectorBase, ButtonInjector, checkIsBtnUpToDate } from "./injector";
 import { ConfigProvider } from "../config";
 import { renderGitpodUrl } from "../utils";
-import select = require("select-dom");
 
 namespace Gitpodify {
 	export const NAV_BTN_ID = "gitpod-btn-nav";
@@ -60,6 +59,7 @@ abstract class ButtonInjectorBase implements ButtonInjector {
     abstract isApplicableToCurrentPage(): boolean;
 
     inject(currentUrl: string) {
+
         let actionbar = select(this.parent);
         if(actionbar && this.up) {
             for(let i = 0; i < this.up; i++) {
@@ -108,6 +108,7 @@ abstract class ButtonInjectorBase implements ButtonInjector {
         a.text = "Gitpod"
         a.href = url;
         a.target = "_blank";
+
         a.className = "btn btn-sm btn-primary";
 
         container.appendChild(a);
@@ -147,6 +148,18 @@ class NewPullRequestInjector extends ButtonInjectorBase {
 
     isApplicableToCurrentPage(): boolean {
         return select(this.parent) && window.location.pathname.includes("/pull-requests/");
+    }
+
+}
+
+class IssuesInjector extends ButtonInjectorBase {
+
+    constructor() {
+        super('#issue-header .aui-buttons:last-child', '');
+    }
+
+    isApplicableToCurrentPage(): boolean {
+        return select(this.parent) && window.location.pathname.includes("/issues/");
     }
 
 }

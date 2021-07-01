@@ -2,7 +2,7 @@ import * as select from 'select-dom';
 import * as ghInjection from 'github-injection';
 import { ConfigProvider } from '../config';
 import { ButtonInjector, InjectorBase, checkIsBtnUpToDate } from './injector';
-import { renderGitpodUrl } from '../utils';
+import { renderGitpodUrl, makeOpenInPopup } from '../utils';
 
 namespace Gitpodify {
 	export const NAV_BTN_ID = "gitpod-btn-nav";
@@ -65,12 +65,13 @@ abstract class ButtonInjectorBase implements ButtonInjector {
     constructor(
         protected readonly parentSelector: string,
         protected readonly btnClasses: string,
+        protected readonly float: boolean = true,
         protected readonly asFirstChild: boolean = false
     ) {}
 
     abstract isApplicableToCurrentPage(): boolean;
 
-    inject(currentUrl: string) {
+    inject(currentUrl: string, openAsPopup: boolean) {
         const actionbar = select(this.parentSelector);
         if (!actionbar) {
             return;
@@ -86,21 +87,36 @@ abstract class ButtonInjectorBase implements ButtonInjector {
             return;
         }
 
-        const btn = this.renderButton(currentUrl);
+        const btn = this.renderButton(currentUrl, openAsPopup);
 
         const btnGroup = actionbar.getElementsByClassName("BtnGroup");
-        if (btnGroup && btnGroup.length > 0 && btnGroup[0].classList.contains('float-right')){
+        const detailsBtn = Array.from(actionbar.children)
+            .filter(child => child.tagName.toLowerCase() === "details" && child.id.endsWith("more-options-details"));
+        if (btnGroup && btnGroup.length > 0 && btnGroup[0].classList.contains('float-right')) {
             actionbar.insertBefore(btn, btnGroup[0]);
+        } else if (detailsBtn && detailsBtn.length > 0) {
+            if (detailsBtn[0].previousElementSibling) {
+                detailsBtn[0].previousElementSibling.classList.remove("mr-2");
+            }
+            btn.classList.add("mr-2");
+            actionbar.insertBefore(btn, detailsBtn[0]);
         } else if (this.asFirstChild && actionbar) {
             actionbar.insertBefore(btn, actionbar.firstChild);
         } else {
             actionbar.appendChild(btn);
         }
+
+        const primaryButtons = actionbar.getElementsByClassName("btn-primary");
+        if (primaryButtons && primaryButtons.length > 1) {
+            Array.from(primaryButtons)
+                .slice(0, primaryButtons.length - 1)
+                .forEach(primaryButton => primaryButton.classList.replace("btn-primary", "btn-secondary"));
+        }
     }
 
-    protected renderButton(url: string, float: boolean = true): HTMLElement {
+    protected renderButton(url: string, openAsPopup: boolean): HTMLElement {
         let classes = this.btnClasses + ` ${Gitpodify.NAV_BTN_CLASS}`;
-        if (float) {
+        if (this.float) {
             classes = classes + ` float-right`;
         }
 
@@ -114,10 +130,18 @@ abstract class ButtonInjectorBase implements ButtonInjector {
         a.text = "Gitpod"
         a.href = url;
         a.target = "_blank";
+        if (openAsPopup) {
+            makeOpenInPopup(a);
+        }
         a.className = "btn btn-sm btn-primary";
+
+        this.adjustButton(a);
 
         container.appendChild(a);
         return container;
+    }
+    protected adjustButton(a: HTMLAnchorElement) {
+        // do nothing
     }
 }
 
@@ -143,7 +167,11 @@ class IssueInjector extends ButtonInjectorBase {
 
 class FileInjector extends ButtonInjectorBase {
     constructor() {
-        super(".repository-content > div", "gitpod-file-btn");
+        super(".repository-content > div > div", "gitpod-file-btn");
+    }
+
+    protected adjustButton(a: HTMLAnchorElement): void {
+        a.className = "btn btn-primary";
     }
 
     isApplicableToCurrentPage(): boolean {
@@ -156,6 +184,10 @@ class NavigationInjector extends ButtonInjectorBase {
         super(".file-navigation", "empty-icon position-relative");
     }
 
+    protected adjustButton(a: HTMLAnchorElement): void {
+        a.className = "btn btn-primary";
+    }
+
     isApplicableToCurrentPage(): boolean {
         return !!select.exists(".file-navigation");
     }
@@ -163,10 +195,14 @@ class NavigationInjector extends ButtonInjectorBase {
 
 class EmptyRepositoryInjector extends ButtonInjectorBase {
     constructor() {
-        super(".repository-content", Gitpodify.CSS_REF_NO_CONTAINER, true);
+        super(".repository-content", Gitpodify.CSS_REF_NO_CONTAINER, false, true);
+    }
+
+    protected adjustButton(a: HTMLAnchorElement): void {
+        a.className = "btn btn-primary";
     }
 
     isApplicableToCurrentPage(): boolean {
-        return !!select.exists(".js-git-clone-help-container");
+        return !!select.exists("#empty-setup-clone-url");
     }
 }

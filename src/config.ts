@@ -3,10 +3,12 @@ import { EventEmitter } from "events";
 
 export interface Config {
     gitpodURL: string;
+    openAsPopup: boolean;
 }
 
 export const DEFAULT_CONFIG: Config = {
-    gitpodURL: "https://gitpod.io"
+    gitpodURL: "https://gitpod.io",
+    openAsPopup: false
 };
 
 export interface ConfigListener {

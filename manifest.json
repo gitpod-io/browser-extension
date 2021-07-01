@@ -1,9 +1,11 @@
 {
   "manifest_version": 2,
-  "name": "Gitpod Online IDE",
+  "name": "Gitpod - Dev Environments in a Browser Tab",
   "short_name": "Gitpod",
+
   "version": "1.3",
   "description": "Gitpod – One-Click Online IDE for GitHub, GitLab and Bitbucket",
+  
   "icons": {
     "16": "icons/gitpod-logo-16.png",
     "48": "icons/gitpod-logo-48.png",

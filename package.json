@@ -3,10 +3,11 @@
   "name": "gitpod-web-extension",
   "version": "0.0.1",
   "license": "MIT",
-  "description": "Browser extension (Chrome/Firefox) for enhancing GitHub, GitLab and Bitbucket with Gitpod links",
+  "description": "Browser extension (Chrome/Firefox/Edge) for enhancing GitLab, GitHub and Bitbucket with Gitpod buttons",
   "main": "src/gitpodify.js",
   "scripts": {
     "build": "yarn clean && npx tsc && yarn webpack",
+    "build:safari": " xcrun safari-web-extension-converter . --app-name Gitpod --bundle-identifier io.gitpod.Gitpod",
     "package": "yarn clean:package && zip -rD --exclude='src/*.ts' gitpod.xpi dist/bundles icons src manifest.json",
     "clean": "rimraf dist && yarn clean:package",
     "clean:package": "rimraf gitpod.xpi",
@@ -18,16 +19,16 @@
     "dom-loaded": "^2.0.0",
     "github-injection": "^1.0.1",
     "select-dom": "^5.1.0",
-    "webextension-polyfill": "^0.5.0"
+    "webextension-polyfill": "^0.7.0"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^5.0.5",
-    "css-loader": "^3.2.0",
+    "copy-webpack-plugin": "^7.0.0",
+    "css-loader": "^5.0.2",
     "rimraf": "^3.0.0",
-    "source-map-loader": "^0.2.4",
-    "style-loader": "^1.0.0",
-    "webextension-polyfill-ts": "^0.11.0",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "source-map-loader": "^2.0.1",
+    "style-loader": "^2.0.0",
+    "webextension-polyfill-ts": "^0.25.0",
+    "webpack": "^5.22.0",
+    "webpack-cli": "^4.5.0"
   }
 }
