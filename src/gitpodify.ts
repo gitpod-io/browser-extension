@@ -70,13 +70,13 @@ const injectedByUserClick = (): boolean => {
 }
 
 const updateOnDOMChanges = (injector: Injector) => {
-    observer = new MutationObserver(function (mutations) {
-        if (!injector.checkIsInjected() && !isInstalling) {
-            isInstalling = true;
-            injector.update()
-                .then(() => isInstalling = false);
-        }
-    });
+    observer = new MutationObserver(() => {
+            if (!injector.checkIsInjected() && !isInstalling) {
+                isInstalling = true;
+                injector.update()
+                    .then(() => isInstalling = false);
+            }
+        });
     observer.observe(
         document,
         {
