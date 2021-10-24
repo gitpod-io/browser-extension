@@ -5,7 +5,7 @@ export function renderGitpodUrl(gitpodURL: string): string {
 
 export function makeOpenInPopup(a: HTMLAnchorElement): void {
     a.onclick = () => {
-        var w = window.open(a.href, a.target, 'menubar=no,toolbar=no,location=no,dependent');
+        const w = window.open(a.href, a.target, 'menubar=no,toolbar=no,location=no,dependent');
         return !w;
     }
 }
