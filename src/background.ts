@@ -25,6 +25,9 @@ interface InstallationDetails {
     reason: "install" | "update" | "browser_update" | "shared_module_update";
     temporary: boolean;
 }
+
+browser.runtime.onInstalled.addListener((details: InstallationDetails) => {
+    if (details.reason === "install") {
         window.open("https://www.gitpod.io/extension-activation/");
     }
 });
