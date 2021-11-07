@@ -71,12 +71,12 @@ const injectedByUserClick = (): boolean => {
 
 const updateOnDOMChanges = (injector: Injector) => {
     observer = new MutationObserver(() => {
-            if (!injector.checkIsInjected() && !isInstalling) {
-                isInstalling = true;
-                injector.update()
-                    .then(() => isInstalling = false);
-            }
-        });
+        if (!injector.checkIsInjected() && !isInstalling) {
+            isInstalling = true;
+            injector.update()
+                .then(() => isInstalling = false);
+        }
+    });
     observer.observe(
         document,
         {
