@@ -19,14 +19,7 @@ async function gitpodifyCurrentTab() {
 
 browser.browserAction.onClicked.addListener(gitpodifyCurrentTab)
 
-interface InstallationDetails {
-    id?: string;
-    previousVersion?: string;
-    reason: "install" | "update" | "browser_update" | "shared_module_update";
-    temporary: boolean;
-}
-
-browser.runtime.onInstalled.addListener((details: InstallationDetails) => {
+browser.runtime.onInstalled.addListener((details) => {
     if (details.reason === "install") {
         window.open("https://www.gitpod.io/extension-activation/");
     }
