@@ -55,7 +55,7 @@ class RepositoryInjector implements ButtonInjector {
         return result;
     }
 
-    inject(currentUrl: string, openAsPopup: boolean) {
+    inject(currentUrl: string, openAsPopup: boolean, isEnabledPrebuildButton: boolean) {
         const parent = select(RepositoryInjector.PARENT_SELECTOR);
         if (!parent || !parent.firstElementChild) {
             return;
@@ -68,7 +68,7 @@ class RepositoryInjector implements ButtonInjector {
             return;
         }
 
-        const btn = this.renderButton(currentUrl, openAsPopup);
+        const btn = this.renderButton(currentUrl, openAsPopup, isEnabledPrebuildButton);
         parent.firstElementChild.appendChild(btn);
 
         const primaryButtons = parent.firstElementChild.getElementsByClassName("btn-primary");
@@ -82,7 +82,7 @@ class RepositoryInjector implements ButtonInjector {
         }
     }
 
-    protected renderButton(url: string, openAsPopup: boolean): HTMLElement {
+    protected renderButton(url: string, openAsPopup: boolean, isEnabledPrebuildButton: boolean): HTMLElement {
         const container = document.createElement('div');
         container.className = "project-clone-holder d-none d-md-inline-block";
 
@@ -96,12 +96,24 @@ class RepositoryInjector implements ButtonInjector {
         a.href = url;
         a.target = "_blank";
         a.className = "gl-button btn btn-info";
-        
+
         if (openAsPopup) {
             makeOpenInPopup(a);
         }
 
         container2ndLevel.appendChild(a);
+
+        if(isEnabledPrebuildButton){
+            const pb = document.createElement('a');
+            pb.id = Gitpodify.BTN_ID;
+            pb.title = "PreBuild";
+            pb.text = "PreBuild"
+            pb.href = url.replace("#","#prebuild/");
+            pb.target = "_blank";
+            pb.className = "gl-button btn btn-info";
+            container2ndLevel.appendChild(pb)
+        }
+        
         container.appendChild(container2ndLevel);
         return container;
     }

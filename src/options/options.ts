@@ -1,6 +1,7 @@
 import { ConfigProvider } from "../config";
 
 const gitpodUrlInput = document.getElementById("gitpod-url-input")! as HTMLInputElement;
+const gitpodPrebuildButtonEnabled = document.getElementById("gitpod-is-enabled-prebuild-button") as HTMLInputElement;
 const gitpodPopupInput = document.getElementById("gitpod-open-as-popup")! as HTMLInputElement;
 const messageElement = document.getElementById("message")! as HTMLDivElement;
 
@@ -12,6 +13,7 @@ const init = async () => {
     const initialConfig = configProvider.getConfig();
     gitpodUrlInput.value = initialConfig.gitpodURL;
     gitpodPopupInput.checked = initialConfig.openAsPopup;
+    gitpodPrebuildButtonEnabled.checked =  initialConfig.isEnabledPrebuildButton;
 
     let timeout: number | undefined = undefined;
 
@@ -20,7 +22,8 @@ const init = async () => {
         // Update config (propagated internally)
         configProvider.setConfig({
             gitpodURL: gitpodUrlInput.value || undefined,
-            openAsPopup: gitpodPopupInput.checked
+            openAsPopup: gitpodPopupInput.checked,
+            isEnabledPrebuildButton: gitpodPrebuildButtonEnabled.checked
         });
         if (timeout) {
             window.clearTimeout(timeout);
@@ -36,6 +39,7 @@ const init = async () => {
         save() 
     });
     gitpodPopupInput.addEventListener('change', save);
+    gitpodPrebuildButtonEnabled.addEventListener('change', save);
 };
 
 init().catch(err => console.error(err));
