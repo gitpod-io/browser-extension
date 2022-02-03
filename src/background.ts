@@ -21,7 +21,7 @@ browser.browserAction.onClicked.addListener(gitpodifyCurrentTab)
 
 browser.runtime.onInstalled.addListener((details) => {
     if (details.reason === "install") {
-        window.open("https://www.gitpod.io/extension-activation/");
+        window.open("https://www.gitpod.io/extension-activation?track=true");
     }
 });
-browser.runtime.setUninstallURL("https://www.gitpod.io/extension-uninstall/");
+browser.runtime.setUninstallURL("https://www.gitpod.io/extension-uninstall?track=true");
