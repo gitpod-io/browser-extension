@@ -1,6 +1,6 @@
 export function renderGitpodUrl(gitpodURL: string): string {
     const baseURL = `${window.location.protocol}//${window.location.host}`;
-    return `${gitpodURL}/#${baseURL}` + window.location.pathname;
+    return `${gitpodURL}/#${baseURL}` + window.location.pathname + window.location.search;
 }
 
 export function makeOpenInPopup(a: HTMLAnchorElement): void {
