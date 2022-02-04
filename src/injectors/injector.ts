@@ -1,5 +1,6 @@
 import { ConfigProvider } from "../config";
 import { renderGitpodUrl } from "../utils";
+import { isVisible } from "../utils";
 
 export interface Injector {
 
@@ -64,6 +65,29 @@ export abstract class InjectorBase implements Injector {
 
     protected get config() {
         return this.configProvider.getConfig();
+    }
+}
+
+export async function rewritePeriodKeybind() {
+    const configProvider = await ConfigProvider.create();
+    const config = configProvider.getConfig();
+
+    if (config.rewritePeriodKeybind) {
+        document.querySelectorAll('.js-github-dev-shortcut, .js-github-dev-new-tab-shortcut').forEach((elem) => {
+            const new_element = elem.cloneNode(true);
+            //@ts-ignore
+            elem.parentNode.replaceChild(new_element, elem);
+            new_element.addEventListener('click', (e) => {
+                //@ts-ignore
+                if (new_element && isVisible(new_element) && !confirm('Are you sure you want to open github.dev?')) {
+                    return;
+                }
+                const currentUrl = window.location.href;
+                window.open(`https://gitpod.io/#${currentUrl}`, elem.classList.contains('js-github-dev-new-tab-shortcut') ? '_blank' : '_self');
+                e.preventDefault();
+                e.stopPropagation();
+            });
+        });
     }
 }
 
