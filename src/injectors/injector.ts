@@ -74,11 +74,9 @@ export async function rewritePeriodKeybind() {
 
     if (config.rewritePeriodKeybind) {
         document.querySelectorAll('.js-github-dev-shortcut, .js-github-dev-new-tab-shortcut').forEach((elem) => {
-            const new_element = elem.cloneNode(true);
-            //@ts-ignore
-            elem.parentNode.replaceChild(new_element, elem);
+            const new_element = elem.cloneNode(true) as HTMLElement;
+            elem.parentNode?.replaceChild(new_element, elem);
             new_element.addEventListener('click', (e) => {
-                //@ts-ignore
                 if (new_element && isVisible(new_element) && !confirm('Are you sure you want to open github.dev?')) {
                     return;
                 }
