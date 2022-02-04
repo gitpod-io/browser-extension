@@ -2,7 +2,7 @@ import * as select from 'select-dom';
 import * as ghInjection from 'github-injection';
 import { ConfigProvider } from '../config';
 import { ButtonInjector, InjectorBase, checkIsBtnUpToDate } from './injector';
-import { renderGitpodUrl, makeOpenInPopup } from '../utils';
+import { renderGitpodUrl, makeOpenInPopup, isVisible } from '../utils';
 
 namespace Gitpodify {
 	export const NAV_BTN_ID = "gitpod-btn-nav";
@@ -52,6 +52,23 @@ export class GitHubInjector extends InjectorBase {
             if (!this.checkIsInjected()) {
                 this.injectButtons();
             }
+                
+            document.querySelectorAll('.js-github-dev-shortcut, .js-github-dev-new-tab-shortcut').forEach((elem) => {
+                const new_element = elem.cloneNode(true);
+                //@ts-ignore
+                elem.parentNode.replaceChild(new_element, elem);
+                new_element.addEventListener('click', (e) => {
+                    //@ts-ignore
+                    if (new_element && isVisible(new_element) && !confirm('Are you sure you want to open github.dev?')) {
+                        return;
+                    }
+                    const currentUrl = window.location.href;
+                    window.open(`https://gitpod.io/#${currentUrl}`, elem.classList.contains('js-github-dev-new-tab-shortcut') ? '_blank' : '_self');
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+                console.debug('Injected rewrite');
+            });
         });
     }
 
