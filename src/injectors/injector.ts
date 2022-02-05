@@ -1,6 +1,7 @@
 import { ConfigProvider } from "../config";
 import { renderGitpodUrl } from "../utils";
 import { isVisible } from "../utils";
+import Mousetrap = require("mousetrap");
 
 export interface Injector {
 
@@ -94,7 +95,7 @@ export async function rewritePeriodKeybindGitHub() {
 }
 
 export function rewritePeriodKeybindGitLab() {
-    (window as any).Mousetrap.bind('.', (e: KeyboardEvent) => {
+    Mousetrap.bind('.', (e) => {
         openInGitpod(e, false);
     });
 }
