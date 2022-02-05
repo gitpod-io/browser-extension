@@ -22,7 +22,6 @@
     "webextension-polyfill": "^0.7.0"
   },
   "devDependencies": {
-    "@types/mousetrap": "^1.6.9",
     "copy-webpack-plugin": "^7.0.0",
     "css-loader": "^5.0.2",
     "rimraf": "^3.0.0",

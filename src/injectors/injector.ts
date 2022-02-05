@@ -1,7 +1,6 @@
 import { ConfigProvider } from "../config";
 import { renderGitpodUrl } from "../utils";
 import { isVisible } from "../utils";
-import Mousetrap = require("mousetrap");
 
 export interface Injector {
 
@@ -88,16 +87,27 @@ export async function rewritePeriodKeybindGitHub() {
                 if (new_element && isVisible(new_element) && !confirm('Are you sure you want to open github.dev?')) {
                     return;
                 }
-                openInGitpod(e, elem.classList.contains('js-github-dev-new-tab-shortcut'));
+                openInGitpod(e, elem.classList.contains('js-github-dev-new-tab-shortcut') || config.openAsPopup);
             });
         });
     }
 }
 
-export function rewritePeriodKeybindGitLab() {
-    Mousetrap.bind('.', (e) => {
-        openInGitpod(e, false);
-    });
+export async function rewritePeriodKeybindGitLab() {
+    const configProvider = await ConfigProvider.create();
+    const config = configProvider.getConfig();
+
+    if (config.rewritePeriodKeybind) {
+        const unbindMousetrapScript = document.createElement('script');
+        unbindMousetrapScript.innerHTML='window.Mousetrap.unbind(".");';
+        document.head.appendChild(unbindMousetrapScript);
+
+        document.onkeydown = (e: KeyboardEvent) => {
+            if (e.key === '.') {
+                openInGitpod(e, config.openAsPopup);
+            }
+        };
+    }
 }
 
 export const checkIsBtnUpToDate = (button: HTMLElement | null, currentUrl: string): boolean => {
