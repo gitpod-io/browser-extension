@@ -84,7 +84,7 @@ export async function rewritePeriodKeybindGitHub() {
             const new_element = elem.cloneNode(true) as HTMLElement;
             elem.parentNode?.replaceChild(new_element, elem);
             new_element.addEventListener('click', (e) => {
-                if (new_element && isVisible(new_element) && !confirm('Are you sure you want to open github.dev?')) {
+                if (new_element && isVisible(new_element) && !confirm('Are you sure you want to open gitpod.io?')) {
                     return;
                 }
                 openInGitpod(e, elem.classList.contains('js-github-dev-new-tab-shortcut') || config.openAsPopup);
