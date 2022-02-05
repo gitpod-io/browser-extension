@@ -68,7 +68,14 @@ export abstract class InjectorBase implements Injector {
     }
 }
 
-export async function rewritePeriodKeybind() {
+function openInGitpod(e: MouseEvent | KeyboardEvent, inNewTab: boolean) {
+    const currentUrl = window.location.href;
+    window.open(`https://gitpod.io/#${currentUrl}`, inNewTab ? '_blank' : '_self');
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+export async function rewritePeriodKeybindGitHub() {
     const configProvider = await ConfigProvider.create();
     const config = configProvider.getConfig();
 
@@ -80,13 +87,16 @@ export async function rewritePeriodKeybind() {
                 if (new_element && isVisible(new_element) && !confirm('Are you sure you want to open github.dev?')) {
                     return;
                 }
-                const currentUrl = window.location.href;
-                window.open(`https://gitpod.io/#${currentUrl}`, elem.classList.contains('js-github-dev-new-tab-shortcut') ? '_blank' : '_self');
-                e.preventDefault();
-                e.stopPropagation();
+                openInGitpod(e, elem.classList.contains('js-github-dev-new-tab-shortcut'));
             });
         });
     }
+}
+
+export function rewritePeriodKeybindGitLab() {
+    (window as any).Mousetrap.bind('.', (e: KeyboardEvent) => {
+        openInGitpod(e, false);
+    });
 }
 
 export const checkIsBtnUpToDate = (button: HTMLElement | null, currentUrl: string): boolean => {
