@@ -103,8 +103,8 @@ export async function rewritePeriodKeybindGitLab() {
         document.head.appendChild(unbindMousetrapScript);
 
         document.onkeydown = (e: KeyboardEvent) => {
-            if (e.key === '.') {
-                openInGitpod(e, config.openAsPopup);
+            if (e.code === 'Period') {
+                openInGitpod(e, e.shiftKey || config.openAsPopup);
             }
         };
     }
