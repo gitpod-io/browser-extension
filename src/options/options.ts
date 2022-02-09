@@ -38,7 +38,7 @@ const init = async () => {
         }
         save() 
     });
-    [gitpodPopupInput, gitpodPopupInput, gitpodRewriteKeybind].forEach((el) => el.addEventListener('change', save))
+    [gitpodPopupInput, gitpodRewriteKeybind].forEach((el) => el.addEventListener('change', save))
 };
 
 init().catch(err => console.error(err));
