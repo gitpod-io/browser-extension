@@ -4,11 +4,13 @@ import { EventEmitter } from "events";
 export interface Config {
     gitpodURL: string;
     openAsPopup: boolean;
+    rewritePeriodKeybind: boolean;
 }
 
 export const DEFAULT_CONFIG: Config = {
     gitpodURL: "https://gitpod.io",
-    openAsPopup: false
+    openAsPopup: false,
+    rewritePeriodKeybind: false
 };
 
 export interface ConfigListener {

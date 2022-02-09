@@ -1,7 +1,7 @@
 import * as select from 'select-dom';
 import * as ghInjection from 'github-injection';
 import { ConfigProvider } from '../config';
-import { ButtonInjector, InjectorBase, checkIsBtnUpToDate } from './injector';
+import { ButtonInjector, InjectorBase, checkIsBtnUpToDate, rewritePeriodKeybindGitHub } from './injector';
 import { renderGitpodUrl, makeOpenInPopup } from '../utils';
 
 namespace Gitpodify {
@@ -52,6 +52,10 @@ export class GitHubInjector extends InjectorBase {
             if (!this.checkIsInjected()) {
                 this.injectButtons();
             }
+            
+            (async () => {
+               await rewritePeriodKeybindGitHub();
+            })();
         });
     }
 

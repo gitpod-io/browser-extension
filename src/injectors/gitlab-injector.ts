@@ -1,7 +1,7 @@
 import * as domloaded from 'dom-loaded';
 import * as select from 'select-dom';
 import { ConfigProvider } from '../config';
-import { ButtonInjector, InjectorBase, checkIsBtnUpToDate } from './injector';
+import { ButtonInjector, InjectorBase, checkIsBtnUpToDate, rewritePeriodKeybindGitLab } from './injector';
 import { renderGitpodUrl, makeOpenInPopup } from '../utils';
 
 namespace Gitpodify {
@@ -36,8 +36,10 @@ export class GitlabInjector extends InjectorBase {
 
     async inject(): Promise<void> {
         await domloaded;    // TODO(geropl) This is dead slow, improve.
-
         this.injectButtons(false);
+        if (this.canHandleCurrentPage() && this.checkIsInjected()) {
+            await rewritePeriodKeybindGitLab();
+        }
     }
 
     async update(): Promise<void> {
