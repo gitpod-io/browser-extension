@@ -1,5 +1,5 @@
 import { ConfigProvider } from "../config";
-import { renderGitpodUrl } from "../utils";
+import { renderGitpodUrl, UrlInfo } from "../utils";
 import { isVisible } from "../utils";
 
 export interface Injector {
@@ -37,14 +37,14 @@ export interface ButtonInjector {
      * Injects the actual button
      * @param currentUrl The currently configured Gitpod URL
      */
-    inject(currentUrl: string, openAsPopup: boolean): void;
+    inject(urlInfo: UrlInfo, openAsPopup: boolean, useLatest: boolean): void;
 }
 
 export abstract class InjectorBase implements Injector {
     constructor(
         protected readonly configProvider: ConfigProvider,
         protected readonly buttonInjectors: ButtonInjector[]
-    ) {}
+    ) { }
 
     abstract canHandleCurrentPage(): boolean;
     abstract checkIsInjected(): boolean;
@@ -52,10 +52,10 @@ export abstract class InjectorBase implements Injector {
     abstract update(): Promise<void>;
 
     injectButtons(singleInjector: boolean = false) {
-        const currentUrl = renderGitpodUrl(this.config.gitpodURL);
+        const urlInfo = renderGitpodUrl(this.config.gitpodURL);
         for (const injector of this.buttonInjectors) {
             if (injector.isApplicableToCurrentPage()) {
-                injector.inject(currentUrl, this.config.openAsPopup);
+                injector.inject(urlInfo, this.config.openAsPopup, this.config.useLatest);
                 if (singleInjector) {
                     break;
                 }
@@ -99,7 +99,7 @@ export async function rewritePeriodKeybindGitLab() {
 
     if (config.rewritePeriodKeybind) {
         const unbindMousetrapScript = document.createElement('script');
-        unbindMousetrapScript.innerHTML='window.Mousetrap.unbind(".");';
+        unbindMousetrapScript.innerHTML = 'window.Mousetrap.unbind(".");';
         document.head.appendChild(unbindMousetrapScript);
 
         document.onkeydown = (e: KeyboardEvent) => {

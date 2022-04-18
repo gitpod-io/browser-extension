@@ -6,7 +6,7 @@ tasks:
       gp sync-await start &&
       gp await-port 6080 &&
       for i in `seq 10 -1 1` ; do echo -ne "\rStarting Chrome in $i " && sleep 1 && echo -ne "\r" ; done &&
-      google-chrome --no-first-run --disable-dev-shm-usage --start-maximized --load-extension=/workspace/browser-extension https://github.com/gitpod-io/template-sveltekit
+      google-chrome --no-first-run --disable-dev-shm-usage --start-maximized --load-extension=/workspace/browser-extension https://github.com/gitpod-io/template-sveltekit https://github.com/gitpod-io/gitpod/pull/9378 https://github.com/gitpod-io/gitpod/issues/6707 https://github.com/gitpod-io/gitpod/blob/main/components/supervisor-api/notification.proto
   - name: Webpack Dev Server
     init: yarn install && yarn build && yarn package
     command: >

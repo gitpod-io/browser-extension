@@ -5,12 +5,14 @@ export interface Config {
     gitpodURL: string;
     openAsPopup: boolean;
     rewritePeriodKeybind: boolean;
+    useLatest: boolean;
 }
 
 export const DEFAULT_CONFIG: Config = {
     gitpodURL: "https://gitpod.io",
     openAsPopup: false,
-    rewritePeriodKeybind: false
+    rewritePeriodKeybind: false,
+    useLatest: false,
 };
 
 export interface ConfigListener {

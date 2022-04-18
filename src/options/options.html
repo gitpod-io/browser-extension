@@ -2,13 +2,20 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="options.css"/>
+        <link rel="stylesheet" href="./options.css"/>
     </head>
     <body>
         <div id="content">
             <div class="row">
                 <label>Gitpod installation URL:</label>
                 <input id="gitpod-url-input" type="url" value=""/>
+            </div>
+            <div class="row">
+                <label for="use-latest">
+                    Latest Release (Unstable)
+                    <div class="label-desc">Use the latest version for each editor. <a class="gp-link" target="_blank" href="https://code.visualstudio.com/blogs/2016/02/01/introducing_insiders_build">Insiders</a> for VS Code, <a class="gp-link" target="_blank" href="https://www.jetbrains.com/resources/eap/">EAP</a> for JetBrains IDEs.</div>
+                </label>
+                <input id="use-latest" type="checkbox"/>
             </div>
             <div class="row">
                 <label>Open as popup:</label>

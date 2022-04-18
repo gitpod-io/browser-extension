@@ -1,13 +1,13 @@
 import { InjectorBase, ButtonInjector, checkIsBtnUpToDate } from "./injector";
 import { ConfigProvider } from "../config";
-import { renderGitpodUrl, makeOpenInPopup } from "../utils";
+import { renderGitpodUrl, makeOpenInPopup, UrlInfo } from "../utils";
 import select = require("select-dom");
 
 namespace Gitpodify {
-	export const NAV_BTN_ID = "gitpod-btn-nav";
-	export const NAV_BTN_CLASS = "gitpod-nav-btn";
+    export const NAV_BTN_ID = "gitpod-btn-nav";
+    export const NAV_BTN_CLASS = "gitpod-nav-btn";
     export const NAV_BTN_CLASS_SELECTOR = "." + NAV_BTN_CLASS;
-    
+
     export const CSS_REF_BTN_CONTAINER = "gitpod-btn-container";
     export const CSS_REF_NO_CONTAINER = "no-container";
 }
@@ -38,8 +38,8 @@ export class BitbucketInjector extends InjectorBase {
 
     checkIsInjected(): boolean {
         const button = document.getElementById(`${Gitpodify.NAV_BTN_ID}`);
-        const currentUrl = renderGitpodUrl(this.config.gitpodURL);
-        return checkIsBtnUpToDate(button, currentUrl);
+        const urlInfo = renderGitpodUrl(this.config.gitpodURL);
+        return checkIsBtnUpToDate(button, urlInfo.gitpodUrl);
     }
 
     async inject(): Promise<void> {
@@ -54,17 +54,17 @@ export class BitbucketInjector extends InjectorBase {
 
 abstract class ButtonInjectorBase implements ButtonInjector {
 
-    constructor(protected readonly parent: string, protected btnClasses: string, protected readonly up?: number) {
+    constructor(protected readonly parent: string, protected btnClasses: string, protected readonly up?: number, protected readonly test?: boolean) {
 
     }
 
     abstract isApplicableToCurrentPage(): boolean;
 
-    inject(currentUrl: string, openAsPopup: boolean) {
+    inject(urlInfo: UrlInfo, openAsPopup: boolean, useLatest: boolean) {
         let actionbar = select(this.parent);
-        if(actionbar && this.up) {
-            for(let i = 0; i < this.up; i++) {
-                if(actionbar.parentElement) {
+        if (actionbar && this.up) {
+            for (let i = 0; i < this.up; i++) {
+                if (actionbar.parentElement) {
                     actionbar = actionbar.parentElement;
                 } else {
                     return;
@@ -75,6 +75,7 @@ abstract class ButtonInjectorBase implements ButtonInjector {
             return;
         }
 
+        const currentUrl = urlInfo.gitpodUrl;
         const oldBtn = document.getElementById(Gitpodify.NAV_BTN_ID);
         if (oldBtn) {
             if (!checkIsBtnUpToDate(oldBtn, currentUrl)) {
@@ -88,16 +89,16 @@ abstract class ButtonInjectorBase implements ButtonInjector {
         const btn = this.renderButton(currentUrl, openAsPopup);
 
         const btnGroup = actionbar.children;
-        if (btnGroup && btnGroup.length > 0){
+        if (btnGroup && btnGroup.length > 0) {
             actionbar.insertBefore(btn, btnGroup[0]);
-        } 
+        }
     }
 
     protected renderButton(url: string, openAsPopup: boolean, float: boolean = true): HTMLElement {
         let classes = Gitpodify.NAV_BTN_CLASS;
         if (float) {
             classes = `${classes} ${this.btnClasses} aui-button`;
-        }   
+        }
 
         const container = document.createElement('div');
         container.id = Gitpodify.CSS_REF_BTN_CONTAINER;

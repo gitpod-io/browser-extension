@@ -3,6 +3,7 @@ import { ConfigProvider } from "../config";
 const gitpodUrlInput = document.getElementById("gitpod-url-input")! as HTMLInputElement;
 const gitpodRewriteKeybind = document.getElementById("gitpod-replace-keybind")! as HTMLInputElement;
 const gitpodPopupInput = document.getElementById("gitpod-open-as-popup")! as HTMLInputElement;
+const useLatestCheckbox = document.getElementById("use-latest")! as HTMLInputElement;
 const messageElement = document.getElementById("message")! as HTMLDivElement;
 
 
@@ -12,6 +13,7 @@ const init = async () => {
     // Initialize UI
     const initialConfig = configProvider.getConfig();
     gitpodUrlInput.value = initialConfig.gitpodURL;
+    useLatestCheckbox.checked = initialConfig.useLatest;
     gitpodPopupInput.checked = initialConfig.openAsPopup;
     gitpodRewriteKeybind.checked = initialConfig.rewritePeriodKeybind;
 
@@ -22,6 +24,7 @@ const init = async () => {
         // Update config (propagated internally)
         configProvider.setConfig({
             gitpodURL: gitpodUrlInput.value || undefined,
+            useLatest: useLatestCheckbox.checked,
             openAsPopup: gitpodPopupInput.checked,
             rewritePeriodKeybind: gitpodRewriteKeybind.checked
         });
@@ -38,7 +41,7 @@ const init = async () => {
         }
         save() 
     });
-    [gitpodPopupInput, gitpodRewriteKeybind].forEach((el) => el.addEventListener('change', save))
+    [useLatestCheckbox, gitpodPopupInput, gitpodRewriteKeybind].forEach((el) => el.addEventListener('change', save))
 };
 
 init().catch(err => console.error(err));

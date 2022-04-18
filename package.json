@@ -19,7 +19,8 @@
     "dom-loaded": "^2.0.0",
     "github-injection": "^1.0.1",
     "select-dom": "^5.1.0",
-    "webextension-polyfill": "^0.7.0"
+    "webextension-polyfill": "^0.7.0",
+    "@gitpod/gitpod-protocol": "main"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^7.0.0",

@@ -42,7 +42,7 @@ const init = async (injectedByUserClick: boolean = false) => {
 
     if (injectedByUserClick) {
         // User clicked on the Gitpod extension icon. We open the Gitpod with this page as context.
-        window.open(renderGitpodUrl(config.gitpodURL));
+        window.open(renderGitpodUrl(config.gitpodURL).gitpodUrl);
     }
 
     // Perform the actual, initial injection
