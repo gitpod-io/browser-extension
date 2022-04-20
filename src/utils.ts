@@ -8,6 +8,9 @@ export declare interface UrlInfo {
 }
 
 export function renderGitpodUrl(gitpodURL: string): UrlInfo {
+    // TODO: make sure we are not using gitpod.io
+    // since referer will been tracked and broke our tracking data
+    gitpodURL = "https://hw-9434-open-via-url.staging.gitpod-dev.com"
     const baseURL = `${window.location.protocol}//${window.location.host}`;
     const originUrl = baseURL + window.location.pathname + window.location.search
     return {
