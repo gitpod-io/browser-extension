@@ -77,7 +77,6 @@ abstract class ButtonInjectorBase implements ButtonInjector {
 
     inject(currentUrl: string, openAsPopup: boolean) {
         const actionbar = select(this.parentSelector);
-        console.log(this.parentSelector, 'acionbar github-injectorl, 80')
         if (!actionbar) {
             return;
         }
