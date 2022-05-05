@@ -77,6 +77,7 @@ abstract class ButtonInjectorBase implements ButtonInjector {
 
     inject(currentUrl: string, openAsPopup: boolean) {
         const actionbar = select(this.parentSelector);
+        console.log(this.parentSelector, 'acionbar github-injectorl, 80')
         if (!actionbar) {
             return;
         }
@@ -171,7 +172,7 @@ class IssueInjector extends ButtonInjectorBase {
 
 class FileInjector extends ButtonInjectorBase {
     constructor() {
-        super(".repository-content > div > div", "gitpod-file-btn");
+        super(".repository-content > div > div > div", "gitpod-file-btn");
     }
 
     protected adjustButton(a: HTMLAnchorElement): void {
@@ -199,7 +200,7 @@ class NavigationInjector extends ButtonInjectorBase {
 
 class EmptyRepositoryInjector extends ButtonInjectorBase {
     constructor() {
-        super(".repository-content", Gitpodify.CSS_REF_NO_CONTAINER, false, true);
+        super(".repository-content > div > git-clone-help > div > div ", "gitpod-file-btn", false, true);
     }
 
     protected adjustButton(a: HTMLAnchorElement): void {
