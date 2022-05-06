@@ -6,6 +6,12 @@
 .file-navigation #gitpod-btn-container {
     margin-left: 6px;
 }
+/* Handle New Repository */
+.repository-content > div #gitpod-btn-container.gitpod-file-btn,
+.TableObject #gitpod-btn-container {
+    margin-left: 0px;
+    margin-right: 8px;
+}
 
 .no-container {
     margin-bottom: 10px;
