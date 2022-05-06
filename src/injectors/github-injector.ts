@@ -203,7 +203,7 @@ class EmptyRepositoryInjector extends ButtonInjectorBase {
     }
 
     protected adjustButton(a: HTMLAnchorElement): void {
-        a.className = "btn btn-primary";
+        a.className = "btn btn-sm btn-primary";
     }
 
     isApplicableToCurrentPage(): boolean {
