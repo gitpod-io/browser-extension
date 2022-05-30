@@ -100,9 +100,9 @@ abstract class ButtonInjectorBase implements ButtonInjector {
             actionbar.insertBefore(btn, btnGroup[0]);
         } else if (detailsBtn && detailsBtn.length > 0) {
             if (detailsBtn[0].previousElementSibling) {
-                detailsBtn[0].previousElementSibling.classList.remove("mr-2");
+                detailsBtn[0].previousElementSibling.classList.remove("mr-2","ml-2");
             }
-            btn.classList.add("mr-2");
+            btn.classList.add("mr-2","ml-2");
             actionbar.insertBefore(btn, detailsBtn[0]);
         } else if (this.asFirstChild && actionbar) {
             actionbar.insertBefore(btn, actionbar.firstChild);
