@@ -8,7 +8,9 @@ namespace Gitpodify {
 	export const NAV_BTN_ID = "gitpod-btn-nav";
 	export const NAV_BTN_CLASS = "gitpod-nav-btn";
     export const NAV_BTN_CLASS_SELECTOR = "." + NAV_BTN_CLASS;
-    
+
+    export const EDIT_BTN_ID = "gitpod-edit-btn";
+
     export const CSS_REF_BTN_CONTAINER = "gitpod-btn-container";
     export const CSS_REF_NO_CONTAINER = "no-container";
 }
@@ -23,6 +25,7 @@ export class GitHubInjector extends InjectorBase {
             new PullInjector(),
             new IssueInjector(),
             new FileInjector(),
+            new EditFileButtonInjector(),
             new NavigationInjector(),
             new EmptyRepositoryInjector(),
         ]);
@@ -110,6 +113,20 @@ abstract class ButtonInjectorBase implements ButtonInjector {
             actionbar.appendChild(btn);
         }
 
+        // TODO: Render this button at correct place: In Dropdown menu of Edit Pencil Icon
+
+        const editBtn = this.renderEditButton(currentUrl, openAsPopup);
+        // const actionEditFile = document.getElementsByClassName("details-reset details-overlay select-menu BtnGroup-parent d-inline-block position-relative");
+        // const actionEditFileGroup = select(this.parentSelector);
+
+        // const editDropdown = Array.from(actionEditFileGroup.children)
+        //     .filter(child => child.className === "SelectMenu-list SelectMenu-list--borderless py-2");
+        
+        // actionEditFileGroup.insertBefore(editBtn, editDropdown[0]);
+        // actionEditFileGroup.insertBefore(editBtn, actionEditFile[0]);
+        // actionEditFileGroup.append(editBtn);
+        actionbar.appendChild(editBtn);
+
         const primaryButtons = actionbar.getElementsByClassName("btn-primary");
         if (primaryButtons && primaryButtons.length > 1) {
             Array.from(primaryButtons)
@@ -147,6 +164,21 @@ abstract class ButtonInjectorBase implements ButtonInjector {
     protected adjustButton(a: HTMLAnchorElement) {
         // do nothing
     }
+
+    protected renderEditButton(url: string, openAsPopup: boolean): HTMLElement {
+
+        const a = document.createElement('a');
+        a.id = Gitpodify.EDIT_BTN_ID;
+        a.title = "Edit this file in Gitpod";
+        a.text = "Open in Gitpod";
+        a.href = url;
+        a.target = "_blank";
+        if (openAsPopup) {
+            makeOpenInPopup(a);
+        }
+        a.className = "SelectMenu-item js-blob-dropdown-click width-full d-flex flex-justify-between color-fg-default f5 text-normal";
+        return a;
+    }
 }
 
 class PullInjector extends ButtonInjectorBase {
@@ -166,6 +198,15 @@ class IssueInjector extends ButtonInjectorBase {
 
     isApplicableToCurrentPage(): boolean {
 		return window.location.pathname.includes("/issues/");
+    }
+}
+
+class EditFileButtonInjector extends ButtonInjectorBase {
+    isApplicableToCurrentPage(): boolean {
+        return window.location.pathname.includes("/blob/");
+    }
+    constructor() {
+        super(".repository-content > div > div > readme-toc > div > div.Box-header.js-blob-header.blob-header.js-sticky.js-position-sticky.top-0.p-2.d-flex.flex-shrink-0.flex-md-row.flex-items-center > div.d-flex.py-1.py-md-0.flex-auto.flex-order-1.flex-md-order-2.flex-sm-grow-0.flex-justify-between.hide-sm.hide-md > div.d-flex > div.ml-1 > details > div > div > div", "gitpod-file-btn");
     }
 }
 
