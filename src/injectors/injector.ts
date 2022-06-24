@@ -63,18 +63,6 @@ export abstract class InjectorBase implements Injector {
         }
     };
 
-    editFileButton(singleInjector: boolean = false){
-        const currentUrl = renderGitpodUrl(this.config.gitpodURL);
-        for (const injector of this.buttonInjectors) {
-            if (injector.isApplicableToCurrentPage()) {
-                injector.inject(currentUrl, this.config.openAsPopup);
-                if (singleInjector) {
-                    break;
-                }
-            }
-        }
-    };
-
     protected get config() {
         return this.configProvider.getConfig();
     }
