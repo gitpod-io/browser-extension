@@ -54,7 +54,6 @@ export class GitHubInjector extends InjectorBase {
 	    ghInjection(() => {
             if (!this.checkIsInjected()) {
                 this.injectButtons();
-                // this.editFileButton();
             }
             
             (async () => {
@@ -65,7 +64,6 @@ export class GitHubInjector extends InjectorBase {
 
     async update(): Promise<void> {
         this.injectButtons();
-        // this.editFileButton();
     }
 }
 
