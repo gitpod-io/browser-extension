@@ -8,7 +8,9 @@ namespace Gitpodify {
 	export const NAV_BTN_ID = "gitpod-btn-nav";
 	export const NAV_BTN_CLASS = "gitpod-nav-btn";
     export const NAV_BTN_CLASS_SELECTOR = "." + NAV_BTN_CLASS;
-    
+
+    export const EDIT_BTN_ID = "gitpod-btn-file";
+
     export const CSS_REF_BTN_CONTAINER = "gitpod-btn-container";
     export const CSS_REF_NO_CONTAINER = "no-container";
 }
@@ -23,6 +25,7 @@ export class GitHubInjector extends InjectorBase {
             new PullInjector(),
             new IssueInjector(),
             new FileInjector(),
+            new EditFileButtonInjector(),
             new NavigationInjector(),
             new EmptyRepositoryInjector(),
         ]);
@@ -113,9 +116,13 @@ abstract class ButtonInjectorBase implements ButtonInjector {
         const primaryButtons = actionbar.getElementsByClassName("btn-primary");
         if (primaryButtons && primaryButtons.length > 1) {
             Array.from(primaryButtons)
-                .slice(0, primaryButtons.length - 1)
-                .forEach(primaryButton => primaryButton.classList.replace("btn-primary", "btn-secondary"));
+            .slice(0, primaryButtons.length - 1)
+            .forEach(primaryButton => primaryButton.classList.replace("btn-primary", "btn-secondary"));
         }
+
+        // Edit File Menu Options - Open in Gitpod
+        const editFileButton = document.querySelector('.Box-header .select-menu .SelectMenu-list') as ParentNode;
+        editFileButton.prepend(this.renderEditButton(currentUrl, openAsPopup));
     }
 
     protected renderButton(url: string, openAsPopup: boolean): HTMLElement {
@@ -147,6 +154,20 @@ abstract class ButtonInjectorBase implements ButtonInjector {
     protected adjustButton(a: HTMLAnchorElement) {
         // do nothing
     }
+
+    protected renderEditButton(url: string, openAsPopup: boolean): HTMLElement {
+        const a = document.createElement('a');
+        a.id = Gitpodify.EDIT_BTN_ID;
+        a.title = "Edit this file in Gitpod";
+        a.text = "Open in Gitpod";
+        a.href = url;
+        a.target = "_blank";
+        if (openAsPopup) {
+            makeOpenInPopup(a);
+        }
+        a.className = "SelectMenu-item js-blob-dropdown-click width-full d-flex flex-justify-between color-fg-default f5 text-normal";
+        return a;
+    }
 }
 
 class PullInjector extends ButtonInjectorBase {
@@ -166,6 +187,16 @@ class IssueInjector extends ButtonInjectorBase {
 
     isApplicableToCurrentPage(): boolean {
 		return window.location.pathname.includes("/issues/");
+    }
+}
+
+class EditFileButtonInjector extends ButtonInjectorBase {
+    constructor() {
+        super("", "gitpod-file-edit-btn");
+    }
+
+    isApplicableToCurrentPage(): boolean {
+        return window.location.pathname.includes("/blob/");
     }
 }
 
