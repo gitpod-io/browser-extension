@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Gitpod - Always ready to code",
   "short_name": "Gitpod",
   "version": "1.15",
@@ -23,7 +23,7 @@
       ]
     }
   ],
-  "browser_action": {
+  "action": {
     "default_icon": {
       "16": "icons/gitpod-logo-16.png",
       "48": "icons/gitpod-logo-48.png",
@@ -32,7 +32,7 @@
     "default_title": "Gitpod Online IDE"
   },
   "background": {
-    "scripts": ["dist/bundles/background.bundle.js"]
+    "service_worker": "dist/bundles/background.bundle.js"
   },
   "options_ui": {
     "page": "src/options/options.html"
