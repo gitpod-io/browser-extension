@@ -122,7 +122,9 @@ abstract class ButtonInjectorBase implements ButtonInjector {
 
         // Edit File Menu Options - Open in Gitpod
         const editFileButton = document.querySelector('.Box-header .select-menu .SelectMenu-list') as ParentNode;
-        editFileButton.prepend(this.renderEditButton(currentUrl, openAsPopup));
+        if (editFileButton) {
+            editFileButton.prepend(this.renderEditButton(currentUrl, openAsPopup));
+        }
     }
 
     protected renderButton(url: string, openAsPopup: boolean): HTMLElement {
