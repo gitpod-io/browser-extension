@@ -10,7 +10,7 @@ export interface Config {
 
 export const DEFAULT_CONFIG: Config = {
   gitpodURL: "https://gitpod.io",
-  openAsPopup: false,
+  openAsPopup: true,
   rewritePeriodKeybind: false,
 };
 
