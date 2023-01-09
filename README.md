@@ -46,8 +46,8 @@ For Chrome:
 For Firefox
 
 1. Open Firefox
-1. Click Preferences -> Extensions & Themes 
-1. Click on the cog icon -> Install Add-on From File -> Select the `gitpod.xpi` file
+1. Go to `about:debugging#/runtime/this-firefox`
+1. Click Load Temporary Add-on -> Select the `gitpod.xpi` file
 
 For Safari (Experimental 🧪)
 
