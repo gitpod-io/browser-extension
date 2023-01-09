@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Gitpod - Always ready to code",
   "short_name": "Gitpod",
-  "version": "1.17",
+  "version": "1.18",
   "description": "Spin up fresh, automated dev environments for each task, in the cloud, in seconds.",
   "icons": {
     "16": "icons/gitpod-logo-16.png",
@@ -18,9 +18,7 @@
         "*://*.gitlab.cn/*",
         "*://*.gitpod.io/*"
       ],
-      "js": [
-        "dist/bundles/gitpodify.bundle.js"
-      ]
+      "js": ["dist/bundles/gitpodify.bundle.js"]
     }
   ],
   "action": {
@@ -29,7 +27,7 @@
       "48": "icons/gitpod-logo-48.png",
       "128": "icons/gitpod-logo.png"
     },
-    "default_title": "Gitpod Online IDE"
+    "default_title": "Gitpod Cloud Dev Environment"
   },
   "background": {
     "service_worker": "dist/bundles/background.bundle.js"
@@ -37,8 +35,5 @@
   "options_ui": {
     "page": "src/options/options.html"
   },
-  "permissions": [
-    "activeTab",
-    "storage"
-  ]
+  "permissions": ["activeTab", "storage", "scripting"]
 }

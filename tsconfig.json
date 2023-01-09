@@ -20,7 +20,8 @@
         "sourceMap": false,
         "declaration": false,
         "declarationMap": false,
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "noImplicitAny": false
     },
     "include": [
         "src"
