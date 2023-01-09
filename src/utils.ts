@@ -1,3 +1,6 @@
+import { ConfigProvider } from "./config";
+const browser = require("webextension-polyfill");
+
 export function renderGitpodUrl(gitpodURL: string): string {
   const baseURL = `${window.location.protocol}//${window.location.host}`;
   return (
@@ -27,4 +30,14 @@ export function makeOpenInPopup(a: HTMLAnchorElement): void {
       a.target,
       "menubar=no,toolbar=no,location=no,dependent"
     );
+}
+
+export async function openLink (url: string) {
+  const configProvider = await ConfigProvider.create();
+  const config = configProvider.getConfig();
+  if (config.openAsPopup) {
+    browser.tabs.create({ url });
+  } else {
+    browser.tabs.update({ url });
+  }
 }

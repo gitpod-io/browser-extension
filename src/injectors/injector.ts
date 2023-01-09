@@ -1,6 +1,6 @@
 var browser = require("webextension-polyfill");
-import { ConfigProvider } from "../config";
-import { renderGitpodUrl } from "../utils";
+import { ConfigProvider, DEFAULT_CONFIG } from "../config";
+import { openLink, renderGitpodUrl } from "../utils";
 import { isVisible } from "../utils";
 
 export interface Injector {
@@ -68,10 +68,9 @@ export abstract class InjectorBase implements Injector {
   }
 }
 
-function openInGitpod(e: MouseEvent | KeyboardEvent, inNewTab: boolean) {
-  const currentUrl = window.location.href;
-  //   !BREAKING: Popup options would not work from now on
-  browser.tabs.create({ url: `https://gitpod.io/#${currentUrl}` });
+async function openInGitpod(e: MouseEvent | KeyboardEvent) {
+  const currentUrl = await browser.tabs.getCurrent();
+  openLink(`${DEFAULT_CONFIG.gitpodURL}/#${currentUrl}`);
   e.preventDefault();
   e.stopPropagation();
 }
@@ -117,9 +116,9 @@ export async function rewritePeriodKeybindGitLab() {
     unbindMousetrapScript.innerHTML = 'window.Mousetrap.unbind(".");';
     document.head.appendChild(unbindMousetrapScript);
 
-    document.onkeydown = (e: KeyboardEvent) => {
+    document.onkeydown = async (e: KeyboardEvent) => {
       if (e.code === "Period") {
-        openInGitpod(e, e.shiftKey || config.openAsPopup);
+        await openInGitpod(e);
       }
     };
   }

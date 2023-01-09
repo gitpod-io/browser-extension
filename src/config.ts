@@ -1,4 +1,4 @@
-var browser = require("webextension-polyfill");
+const browser = require("webextension-polyfill");
 import { Storage } from "webextension-polyfill";
 import { EventEmitter } from "events";
 
