@@ -26,7 +26,7 @@ const init = async (injectedByUserClick: boolean = false) => {
   if (gitpodExtensionCheckElement) {
     gitpodExtensionCheckElement.innerHTML = "installed";
     if (injectedByUserClick) {
-      browser.tabs.create(config.gitpodURL);
+      openLink(config.gitpodURL);
     }
     // This page is a Gitpod page. We are done.
     return;
@@ -38,7 +38,7 @@ const init = async (injectedByUserClick: boolean = false) => {
   if (!injector) {
     // We do not have an injector for this page. We just open Gitpod.
     if (injectedByUserClick) {
-      browser.tabs.create(config.gitpodURL);
+      openLink(config.gitpodURL);
     }
     return;
   }
@@ -51,7 +51,7 @@ const init = async (injectedByUserClick: boolean = false) => {
       openLink(`${config.gitpodURL}/#${currentTab.url}`);
     } catch (e) {
       console.error(e)
-      browser.tabs.create(config.gitpodURL);
+      openLink(config.gitpodURL);
     }
   }
 
