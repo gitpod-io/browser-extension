@@ -18,6 +18,7 @@
         "*://*.gitlab.cn/*",
         "*://*.gitpod.io/*"
       ],
+      "run_at": "document-end",
       "js": ["dist/bundles/gitpodify.bundle.js"]
     }
   ],

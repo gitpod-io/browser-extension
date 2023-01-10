@@ -1,6 +1,6 @@
 var browser = require("webextension-polyfill");
 import { ConfigProvider, DEFAULT_CONFIG } from "../config";
-import { openLink, renderGitpodUrl } from "../utils";
+import { openInGitpod, openLink, renderGitpodUrl } from "../utils";
 import { isVisible } from "../utils";
 
 export interface Injector {
@@ -67,15 +67,6 @@ export abstract class InjectorBase implements Injector {
     return this.configProvider.getConfig();
   }
 }
-
-async function openInGitpod(e: MouseEvent | KeyboardEvent) {
-  const currentUrl = await browser.tabs.getCurrent();
-  openLink(`${DEFAULT_CONFIG.gitpodURL}/#${currentUrl}`);
-  e.preventDefault();
-  e.stopPropagation();
-}
-
-
 
 // export async function rewritePeriodKeybindGitHub() {
 //   const configProvider = await ConfigProvider.create();

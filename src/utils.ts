@@ -1,4 +1,4 @@
-import { ConfigProvider } from "./config";
+import { ConfigProvider, DEFAULT_CONFIG } from "./config";
 const browser = require("webextension-polyfill");
 
 export function renderGitpodUrl(gitpodURL: string): string {
@@ -39,5 +39,15 @@ export async function openLink (url: string) {
     browser.tabs.create({ url });
   } else {
     browser.tabs.update({ url });
+  }
+}
+
+export async function openInGitpod(e: MouseEvent | KeyboardEvent | undefined) {
+  const currentTab = await browser.tabs.getCurrent();
+  openLink(`${DEFAULT_CONFIG.gitpodURL}/#${currentTab.url}`);
+
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
   }
 }
