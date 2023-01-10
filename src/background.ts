@@ -1,5 +1,5 @@
 const browser = require("webextension-polyfill");
-import { ConfigProvider } from "./config";
+import { ConfigProvider, DEFAULT_CONFIG } from "./config";
 import { openLink } from "./utils";
 
 async function gitpodifyCurrentTab() {
@@ -17,7 +17,7 @@ async function gitpodifyCurrentTab() {
       const config = configProvider.getConfig();
       openLink(config.gitpodURL);
     } catch {
-      openLink("https://gitpod.io");
+      openLink(DEFAULT_CONFIG.gitpodURL);
     }
   }
 }

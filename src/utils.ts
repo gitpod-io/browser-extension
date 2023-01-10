@@ -35,7 +35,7 @@ export function makeOpenInPopup(a: HTMLAnchorElement): void {
 export async function openLink (url: string) {
   const configProvider = await ConfigProvider.create();
   const config = configProvider.getConfig();
-  if (config.openAsPopup) {
+  if (config.inNewTab) {
     browser.tabs.create({ url });
   } else {
     browser.tabs.update({ url });

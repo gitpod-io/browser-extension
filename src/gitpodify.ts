@@ -5,7 +5,7 @@ import "../css/gitpodify.css";
 import { ConfigProvider } from "./config";
 import { Injector } from "./injectors/injector";
 import { InjectorProvider } from "./injectors/injector-provider";
-import { renderGitpodUrl } from "./utils";
+import { openLink } from "./utils";
 
 let initChain: Promise<void> = Promise.resolve();
 let isInstalling: boolean = false;
@@ -46,7 +46,13 @@ const init = async (injectedByUserClick: boolean = false) => {
   //   BREAKING, TODO: Fix this
   if (injectedByUserClick) {
     // User clicked on the Gitpod extension icon. We open the Gitpod with this page as context.
-    browser.tabs.create(renderGitpodUrl(config.gitpodURL));
+    try {
+      const currentTab = await browser.tabs.getCurrent();
+      openLink(`${config.gitpodURL}/#${currentTab.url}`);
+    } catch (e) {
+      console.error(e)
+      browser.tabs.create(config.gitpodURL);
+    }
   }
 
   // Perform the actual, initial injection
@@ -89,7 +95,7 @@ const updateOnDOMChanges = (injector: Injector) => {
 };
 
 /**
- * This method is called on config changes. It resets the state to inital and re-runs init
+ * This method is called on config changes. It resets the state to initial and re-runs init
  */
 const reinit = () => {
   initChain

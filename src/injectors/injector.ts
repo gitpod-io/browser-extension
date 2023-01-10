@@ -1,7 +1,7 @@
-var browser = require("webextension-polyfill");
-import { ConfigProvider, DEFAULT_CONFIG } from "../config";
-import { openInGitpod, openLink, renderGitpodUrl } from "../utils";
-import { isVisible } from "../utils";
+//var browser = require("webextension-polyfill");
+import { ConfigProvider } from "../config";
+import { openInGitpod, renderGitpodUrl } from "../utils";
+//import { isVisible } from "../utils";
 
 export interface Injector {
   /**
@@ -37,7 +37,7 @@ export interface ButtonInjector {
    * Injects the actual button
    * @param currentUrl The currently configured Gitpod URL
    */
-  inject(currentUrl: string, openAsPopup: boolean): void;
+  inject(currentUrl: string, openAsPopup: boolean): void | Promise<void>;
 }
 
 export abstract class InjectorBase implements Injector {
@@ -55,7 +55,7 @@ export abstract class InjectorBase implements Injector {
     const currentUrl = renderGitpodUrl(this.config.gitpodURL);
     for (const injector of this.buttonInjectors) {
       if (injector.isApplicableToCurrentPage()) {
-        injector.inject(currentUrl, this.config.openAsPopup);
+        injector.inject(currentUrl, this.config.inNewTab);
         if (singleInjector) {
           break;
         }

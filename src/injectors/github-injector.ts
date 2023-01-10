@@ -78,7 +78,7 @@ abstract class ButtonInjectorBase implements ButtonInjector {
 
     abstract isApplicableToCurrentPage(): boolean;
 
-    inject(currentUrl: string, openAsPopup: boolean) {
+    async inject(currentUrl: string, openAsPopup: boolean) {
         const actionbar = select(this.parentSelector);
         if (!actionbar) {
             return;
@@ -94,7 +94,7 @@ abstract class ButtonInjectorBase implements ButtonInjector {
             return;
         }
 
-        const btn = this.renderButton(currentUrl, openAsPopup);
+        const btn = await this.renderButton(currentUrl);
 
         const btnGroup = actionbar.getElementsByClassName("BtnGroup");
         const detailsBtn = Array.from(actionbar.children)
@@ -127,7 +127,11 @@ abstract class ButtonInjectorBase implements ButtonInjector {
         }
     }
 
-    protected renderButton(url: string, openAsPopup: boolean): HTMLElement {
+    protected async renderButton(url: string): Promise<HTMLElement> {
+    
+        const configProvider = await ConfigProvider.create();
+        const config = configProvider.getConfig();
+
         let classes = this.btnClasses + ` ${Gitpodify.NAV_BTN_CLASS}`;
         if (this.float) {
             classes = classes + ` float-right`;
@@ -142,10 +146,7 @@ abstract class ButtonInjectorBase implements ButtonInjector {
         a.title = "Gitpod";
         a.text = "Gitpod"
         a.href = url;
-        a.target = "_blank";
-        if (openAsPopup) {
-            makeOpenInPopup(a);
-        }
+        a.target = config.inNewTab ? "_blank" : "";
         a.className = "btn btn-sm btn-primary";
 
         this.adjustButton(a);
