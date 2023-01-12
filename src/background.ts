@@ -5,10 +5,10 @@ import { openLink } from "./utils";
 async function gitpodifyCurrentTab() {
   try {
     // add a dummy div element to indicate that gitpodify.bundle.js was injected by a user click on the gitpod icon
-    browser.scripting.insertCSS({
+    await browser.scripting.insertCSS({
       css: `document.body.innerHTML += '<div style=\"display: none;\" id=\"gitpod-extension-icon-clicked\"></div>'`,
     });
-    browser.scripting.executeScript({
+    await browser.scripting.executeScript({
       files: ["dist/bundles/gitpodify.bundle.js"],
     });
   } catch {
