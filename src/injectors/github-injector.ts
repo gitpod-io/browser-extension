@@ -130,7 +130,7 @@ abstract class ButtonInjectorBase implements ButtonInjector {
     protected renderButton(url: string, openAsPopup: boolean): HTMLElement {
         let classes = this.btnClasses + ` ${Gitpodify.NAV_BTN_CLASS}`;
         if (this.float) {
-            classes = classes + ` float-right`;
+            classes = classes + ` float-right pr-1`;
         }
 
         const container = document.createElement('div');
