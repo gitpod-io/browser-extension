@@ -1,6 +1,7 @@
 export function renderGitpodUrl(gitpodURL: string): string {
     const baseURL = `${window.location.protocol}//${window.location.host}`;
-    return `${gitpodURL}/#${baseURL}` + window.location.pathname + window.location.search;
+    const trimmedUrl = gitpodURL.replace(/[\/]+$/g, '');
+    return `${trimmedUrl}/#${baseURL}` + window.location.pathname + window.location.search;
 }
 
 export function isVisible(el: HTMLElement) {
