@@ -19,7 +19,7 @@ You can use the [`component: browser-extension`](https://github.com/gitpod-io/gi
 
 To make changes and test them, the easiest way is using Gitpod itself. The `.gitpod.yml` configuration for this project installs Google Chrome and runs a VNC server to allow users to see the Desktop of the Docker container. When a workspace starts, Google Chrome is started with the Gitpod extension automatically built from source and pre-installed, therefore you can preview your changes in the ephemeral Chrome browser. 🤯
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](gitpod.io/#https://github.com/gitpod-io/browser-extension)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/gitpod-io/browser-extension)
 
 #### Build
 
