@@ -15,6 +15,10 @@ namespace Gitpodify {
     export const CSS_REF_NO_CONTAINER = "no-container";
 }
 
+function isNewNavigation(): boolean {
+    return !!select.exists(".pagehead-actions");
+}
+
 /**
  * This implementation currently assumes that there is only ever one button per page
  */
@@ -129,11 +133,11 @@ abstract class ButtonInjectorBase implements ButtonInjector {
 
     protected renderButton(url: string, openAsPopup: boolean): HTMLElement {
         let classes = this.btnClasses + ` ${Gitpodify.NAV_BTN_CLASS}`;
-        if (this.float) {
+        if (this.float && !isNewNavigation()) {
             classes = classes + ` float-right pr-1`;
         }
 
-        const container = document.createElement('div');
+        const container = document.createElement(isNewNavigation() ? "li" : "div");
         container.id = Gitpodify.CSS_REF_BTN_CONTAINER;
         container.className = classes;
 
@@ -218,15 +222,31 @@ class FileInjector extends ButtonInjectorBase {
 
 class NavigationInjector extends ButtonInjectorBase {
     constructor() {
-        super(".file-navigation", "empty-icon position-relative");
+        const nav = select.exists(".file-navigation");
+        if (nav) {
+            console.debug("Trying to inject into .file-navigation");
+            super(".file-navigation", "empty-icon position-relative");
+        } else {
+            const nav = isNewNavigation();
+            if (nav) {
+                console.debug(".file-navigation not found, trying to inject into .pagehead-actions");
+                super(".pagehead-actions", "empty-icon position-relative");
+            } else {
+                console.debug("Neither .file-navigation nor .pagehead-actions found, aborting injection");
+            }
+        }
     }
 
     protected adjustButton(a: HTMLAnchorElement): void {
-        a.className = "btn btn-primary";
+        if (!isNewNavigation()) {
+            a.className = "btn btn-sm btn-primary";
+        } else {
+            a.className = "Button--primary Button--small Button flex-1 d-inline-flex";
+        }
     }
 
     isApplicableToCurrentPage(): boolean {
-        return !!select.exists(".file-navigation");
+        return !!select.exists(".file-navigation") || isNewNavigation();
     }
 }
 
