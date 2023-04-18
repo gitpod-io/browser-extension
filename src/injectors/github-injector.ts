@@ -16,7 +16,15 @@ namespace Gitpodify {
 }
 
 function isNewNavigation(): boolean {
-    return !!select.exists(".pagehead-actions");
+    if (select.exists(".file-navigation")) {
+        return false;
+    }
+    const newNavigationFileHelperElement = 'button[data-hotkey="t,T"][hidden]';
+    if (select.exists(newNavigationFileHelperElement)) {
+        return true;
+    }
+
+    return false;
 }
 
 /**
