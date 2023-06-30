@@ -29,7 +29,7 @@
       "48": "icons/gitpod-logo-48.png",
       "128": "icons/gitpod-logo.png"
     },
-    "default_title": "Gitpod Online IDE"
+    "default_title": "Gitpod CDEs"
   },
   "background": {
     "scripts": ["dist/bundles/background.bundle.js"]
