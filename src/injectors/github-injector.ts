@@ -25,9 +25,9 @@ export class GitHubInjector extends InjectorBase {
             new PullInjector(),
             new IssueInjector(),
             new FileInjector(),
-            new EditFileButtonInjector(),
             new NavigationInjector(),
             new EmptyRepositoryInjector(),
+            new NewRepositoryOverviewInjector(),
         ]);
     }
 
@@ -146,7 +146,7 @@ abstract class ButtonInjectorBase implements ButtonInjector {
         if (openAsPopup) {
             makeOpenInPopup(a);
         }
-        a.className = "btn btn-sm btn-primary";
+        a.className = "btn btn-sm";
 
         this.adjustButton(a);
 
@@ -174,7 +174,11 @@ abstract class ButtonInjectorBase implements ButtonInjector {
 
 class PullInjector extends ButtonInjectorBase {
     constructor() {
-        super(".gh-header-actions", "");
+        super(".gh-header-actions", "flex-md-order-2");
+    }
+
+    protected adjustButton(a: HTMLAnchorElement): void {
+        a.className = "btn btn-sm btn-primary";
     }
 
     isApplicableToCurrentPage(): boolean {
@@ -192,22 +196,13 @@ class IssueInjector extends ButtonInjectorBase {
     }
 }
 
-class EditFileButtonInjector extends ButtonInjectorBase {
-    constructor() {
-        super("", "gitpod-file-edit-btn");
-    }
-
-    isApplicableToCurrentPage(): boolean {
-        return window.location.pathname.includes("/blob/");
-    }
-}
-
 class FileInjector extends ButtonInjectorBase {
     constructor() {
-        super(".repository-content > div > div > div", "gitpod-file-btn");
+        super("#StickyHeader > div > div > div:nth-child(2)", "gitpod-file-btn");
     }
 
     protected adjustButton(a: HTMLAnchorElement): void {
+        a.style.marginLeft = "8px";
         a.className = "btn btn-primary";
     }
 
@@ -227,6 +222,27 @@ class NavigationInjector extends ButtonInjectorBase {
 
     isApplicableToCurrentPage(): boolean {
         return !!select.exists(".file-navigation");
+    }
+}
+
+class NewRepositoryOverviewInjector extends ButtonInjectorBase {
+    constructor() {
+        super(".pagehead-actions", "empty-icon position-relative");
+    }
+
+    protected adjustButton(a: HTMLAnchorElement): void {
+        a.className = "btn btn-sm btn-primary";
+    }
+
+    isApplicableToCurrentPage(): boolean {
+        return !!select.exists(".pagehead-actions");
+    }
+
+    protected renderButton(url: string, openAsPopup: boolean): HTMLElement {
+        const button = super.renderButton(url, openAsPopup);
+        const container = document.createElement('li');
+        container.appendChild(button);
+        return container;
     }
 }
 

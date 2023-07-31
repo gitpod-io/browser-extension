@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "Gitpod - Always ready to code",
+  "name": "Gitpod - Always ready-to-code",
   "short_name": "Gitpod",
-  "version": "1.18",
-  "description": "Spin up fresh, automated dev environments for each task, in the cloud, in seconds.",
+  "version": "1.19",
+  "description": "The developer platform for on-demand cloud development environments. Create software faster and more securely.",
   "icons": {
     "16": "icons/gitpod-logo-16.png",
     "48": "icons/gitpod-logo-48.png",
