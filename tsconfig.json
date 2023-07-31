@@ -11,15 +11,15 @@
         "downlevelIteration": true,
         "module": "commonjs",
         "moduleResolution": "node",
-        "target": "es5",
+        "target": "es6",
         "jsx": "react",
         "lib": [
             "es6",
             "dom"
         ],
-        "sourceMap": false,
-        "declaration": false,
-        "declarationMap": false,
+        "sourceMap": true,
+        "declaration": true,
+        "declarationMap": true,
         "skipLibCheck": true
     },
     "include": [
