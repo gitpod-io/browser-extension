@@ -5,11 +5,6 @@ This is the browser extension for Gitpod. It supports Chrome (see [Chrome Web St
 
  ![Gitpodify](./docs/github-injected.png "Gitpodify")
 
-
-## Contributing
-
-Contributions to this project are welcome!
-
 ### Issues
 
 We are currently tracking all issues related to the browser extension in the [`gitpod-io/gitpod`](https://github.com/gitpod-io/gitpod) repository.
@@ -17,18 +12,27 @@ You can use the [`component: browser-extension`](https://github.com/gitpod-io/gi
 
 ### Development
 
-To make changes and test them, the easiest way is using Gitpod itself. The `.gitpod.yml` configuration for this project installs Google Chrome and runs a VNC server to allow users to see the Desktop of the Docker container. When a workspace starts, Google Chrome is started with the Gitpod extension automatically built from source and pre-installed, therefore you can preview your changes in the ephemeral Chrome browser. 🤯
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/gitpod-io/browser-extension)
+To make changes and test them using Gitpod itself: 
+ 
+ - add test cases to the [unit test](https://github.com/gitpod-io/browser-extension/blob/se/plasmo/test/src/button-contributions.spec.ts#L39)
+ - try out changes like this:
+    1. run `pnpm build` 
+    1. run `pnpm watch-prod` and download the built binary for your system (local machine)
+    1. run the binary aywhere on your local machine tosync the extension folder locally.
+    1. open Chrome and go to `chrome://extensions/`
+    1. enable `Developer mode` (top right)
+    1. click `Load unpacked` (top left) and select the folder you just downloaded
+    1. now you can test your changes
+    1. repeat step 1 and 2 and [reload the extension](chrome://extensions/) whenever you want to test new changes
 
 #### Build
 
 The build happens automatically when you start a workspace but if you want to build explicitly, use these commands:
 
 ```
-yarn install
-yarn build
-yarn package
+pnpm install
+pnpm build
+pnpm package
 ```
 
 ### Testing

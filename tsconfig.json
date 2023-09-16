@@ -1,28 +1,19 @@
 {
-    "compilerOptions": {
-        "rootDir": "src",
-        "outDir": "dist",
-        "strict": true,
-        "noEmitOnError": false,
-        "noUnusedLocals": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "strictPropertyInitialization": false,
-        "downlevelIteration": true,
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "target": "es6",
-        "jsx": "react",
-        "lib": [
-            "es6",
-            "dom"
-        ],
-        "sourceMap": true,
-        "declaration": true,
-        "declarationMap": true,
-        "skipLibCheck": true
+  "extends": "plasmo/templates/tsconfig.base",
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    ".plasmo/index.d.ts",
+    "./**/*.ts",
+    "./**/*.tsx"
+  ],
+  "compilerOptions": {
+    "paths": {
+      "~*": [
+        "./src/*"
+      ]
     },
-    "include": [
-        "src"
-    ]
+    "baseUrl": ".",
+  }
 }

@@ -1,0 +1,23 @@
+{
+    "name": "gitpod-test",
+    "displayName": "Gitpod Tests",
+    "type": "module",
+    "version": "2.0.0",
+    "scripts": {
+        "test": "cp ../src/button/button-contributions.ts ./src/button-contributions-copy.ts && tsc && mocha dist/**/*.spec.js"
+    },
+    "devDependencies": {
+        "@types/chai": "^4.3.6",
+        "@types/chrome": "0.0.243",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "20.5.0",
+        "chai": "^4.3.8",
+        "htmlnano": "^2.0.4",
+        "mocha": "^10.2.0",
+        "prettier": "^3.0.3",
+        "puppeteer": "^21.1.1",
+        "ts-node": "^10.9.1",
+        "source-map-support": "^0.5.21",
+        "typescript": "^5.2.2"
+    }
+}
