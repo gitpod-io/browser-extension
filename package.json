@@ -1,36 +1,57 @@
 {
-  "private": true,
-  "name": "gitpod-web-extension",
-  "version": "0.0.1",
-  "license": "MIT",
-  "description": "Browser extension (Chrome/Firefox/Edge) for enhancing GitLab, GitHub and Bitbucket with Gitpod buttons",
-  "main": "src/gitpodify.js",
+  "name": "gitpod",
+  "displayName": "Gitpod",
+  "version": "2.0.0",
+  "description": "The developer platform for on-demand cloud development environments. Create software faster and more securely.",
+  "author": "Gitpod <info@gitpod.io>",
+  "homepage": "https://www.gitpod.io",
   "scripts": {
-    "build": "yarn clean && yarn webpack",
-    "build:safari": " xcrun safari-web-extension-converter . --app-name Gitpod --bundle-identifier io.gitpod.Gitpod",
-    "package": "yarn build && yarn clean:package && zip -rD gitpod.xpi dist icons src manifest.json",
-    "clean": "rimraf dist && yarn clean:package",
-    "clean:package": "rimraf gitpod.xpi",
-    "webpack": "webpack",
-    "watch": "webpack -w"
+    "dev": "plasmo dev --source-maps --no-minify",
+    "watch-dev": "pnpm build-dev-tools && .bin/watch-sync serve ./build/chrome-mv3-dev",
+    "watch-prod": "pnpm build-dev-tools && .bin/watch-sync serve ./build/chrome-mv3-prod",
+    "build": "plasmo build --source-maps --no-minify",
+    "test": "cd test && pnpm test",
+    "package": "plasmo package",
+    "build-dev-tools": "sh dev/build.sh"
   },
   "dependencies": {
-    "@types/events": "^3.0.0",
-    "dom-loaded": "^2.0.0",
-    "github-injection": "^1.1.0",
-    "select-dom": "^5.1.0",
-    "webextension-polyfill": "^0.10.0"
+    "@plasmohq/storage": "^1.8.0",
+    "chrome-extension-hot-reload": "^0.2.2",
+    "classnames": "^2.3.2",
+    "crx-hotreload": "^1.0.6",
+    "plasmo": "^0.83.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^11.0.0",
-    "css-loader": "^6.8.1",
-    "rimraf": "^5.0.1",
-    "source-map-loader": "^4.0.1",
-    "style-loader": "^3.3.3",
-    "ts-loader": "^9.4.4",
-    "typescript": "^5.1.6",
-    "webextension-polyfill-ts": "^0.26.0",
-    "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4"
+    "@ianvs/prettier-plugin-sort-imports": "4.1.0",
+    "@types/chai": "^4.3.6",
+    "@types/chrome": "0.0.243",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "20.5.0",
+    "@types/react": "18.2.20",
+    "@types/react-dom": "18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "chai": "^4.3.8",
+    "eslint": "^8.49.0",
+    "eslint-plugin-react": "^7.33.2",
+    "htmlnano": "2.0.3",
+    "mocha": "^10.2.0",
+    "prettier": "3.0.2",
+    "puppeteer": "^21.1.1",
+    "source-map-support": "^0.5.21",
+    "ts-node": "^10.9.1",
+    "typescript": "5.1.6"
+  },
+  "manifest": {
+    "host_permissions": [
+      "https://*/*"
+    ],
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "$FIREFOX_EXT_ID"
+      }
+    }
   }
 }

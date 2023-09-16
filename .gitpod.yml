@@ -1,21 +1,16 @@
 image:
   file: .gitpod.Dockerfile
+
 tasks:
-  - name: Google Chrome
-    command: >
-      gp sync-await start &&
-      gp await-port 6080 &&
-      for i in `seq 10 -1 1` ; do echo -ne "\rStarting Chrome in $i " && sleep 1 && echo -ne "\r" ; done &&
-      google-chrome --no-first-run --disable-dev-shm-usage --start-maximized --load-extension=/workspace/browser-extension https://github.com/gitpod-io/template-sveltekit
-  - name: Webpack Dev Server
-    init: yarn install && yarn build && yarn package
-    command: >
-      gp sync-done start &&
-      yarn watch
+  - init: |
+      pnpm install
+      pnpm build 
+      pnpm build-dev-tools 
+      pnpm test
+    command: |
+      pnpm build
+      
 ports:
-  - name: NoVNC
-    port: 6080
-    onOpen: open-preview
-  - name: Webpack Dev Server
-    port: 5900
+  - name: sync
+    port: 8080
     onOpen: ignore
