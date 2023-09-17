@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import Logo from "react:./logo-mark.svg"
 import type { SupportedApplication } from "./button-contributions";
 import classNames from "classnames";
-import { storage_key } from "~storage";
+import { STORAGE_KEY_ADDRESS, STORAGE_KEY_NEW_TAB } from "~storage";
 import { useStorage } from "@plasmohq/storage/hook";
 import React from "react";
 
@@ -12,7 +12,9 @@ export interface GitpodButtonProps {
 }
 
 export const GitpodButton = ({ application, additionalClassNames }: GitpodButtonProps) => {
-  const [address] = useStorage<string>(storage_key, "https://gitpod.io");
+  const [address] = useStorage<string>(STORAGE_KEY_ADDRESS, "https://gitpod.io");
+  const [openInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, false);
+
   const [showDropdown, setShowDropdown] = useState(false);
   const actions = [
     {
@@ -53,7 +55,12 @@ export const GitpodButton = ({ application, additionalClassNames }: GitpodButton
   return (
     <div id="gitpod-btn-nav" title="Gitpod" className={classNames("gitpod-button", application, ...(additionalClassNames || []))}>
       <div className={classNames("button")}>
-        <a className={classNames("button-part", "action")} href={actions[0].href}>
+        <a 
+          className={classNames("button-part", "action")}
+          href={actions[0].href}
+          target={openInNewTab ? "_blank" : "_self"}
+          rel="noreferrer"
+        >
           <span className={classNames("action-label")}>
             <Logo className={classNames("action-logo")} width={14} height={14} />
             {actions[0].label}
