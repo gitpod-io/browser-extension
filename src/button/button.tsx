@@ -25,6 +25,7 @@ export const GitpodButton = ({ application, additionalClassNames }: GitpodButton
     },
   ]
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const firstActionRef = useRef<HTMLAnchorElement | null>(null);
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -43,30 +44,41 @@ export const GitpodButton = ({ application, additionalClassNames }: GitpodButton
     };
   }, []);
 
+  useEffect(() => {
+    if (showDropdown && firstActionRef.current) {
+      firstActionRef.current.focus();
+    }
+  }, [showDropdown]);
+
   return (
     <div id="gitpod-btn-nav" title="Gitpod" className={classNames("gitpod-button", application, ...(additionalClassNames || []))}>
       <div className={classNames("button")}>
         <a className={classNames("button-part", "action")} href={actions[0].href}>
           <span className={classNames("action-label")}>
-            <Logo className={classNames("action-logo")} width={14} height={14}/>
+            <Logo className={classNames("action-logo")} width={14} height={14} />
             {actions[0].label}
           </span>
         </a>
-        <div className={classNames("button-part", "action-chevron")} onClick={(e) => {
+        <button className={classNames("button-part", "action-chevron")} onClick={(e) => {
           e.stopPropagation();
           toggleDropdown();
         }}>
           <svg width="18" viewBox="0 0 24 24" className={classNames("chevron-icon")}>
             <path d="M7 10L12 15L17 10H7Z"></path>
           </svg>
-        </div>
+        </button>
       </div>
 
       {showDropdown && (
-        <div ref={dropdownRef} className={classNames("drop-down")}>
+        <div ref={dropdownRef} className={classNames("drop-down")} onKeyDown={(e) => {
+          if (e.key === "Escape") {
+            setShowDropdown(false);
+          }
+        }}>
           {actions.slice(1).map(action => (
             <a
               key={action.label}
+              ref={action === actions[1] ? firstActionRef : null}
               className={classNames("drop-down-action", "button-part")}
               href={action.href}
             >
