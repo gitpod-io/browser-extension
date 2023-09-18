@@ -18,6 +18,14 @@ describe("Query Selector Tests", function() {
     await browser.close();
   });
 
+  async function resolveSelector(page: Page, selector: string) {
+    if (selector.startsWith("xpath:")) {
+      return (await page.$x(selector.slice(6)))[0] || null;
+    } else {
+      return page.$(selector);
+    }
+  }
+
   async function testContribution(url: string, id: string) {
     await page.goto(url);
     let foundMatch = false;
@@ -25,7 +33,7 @@ describe("Query Selector Tests", function() {
       if (contr.match && !contr.match.test(url)) {
         continue;
       }
-      const element = await page.$(contr.selector);
+      const element = await resolveSelector(page, contr.selector);
       if (contr.id === id) {
         expect(element, `Expected '${id}' to match on ${url}`).to.not.be.null;
         foundMatch = true;
