@@ -55,7 +55,7 @@ export const GitpodButton = ({ application, additionalClassNames }: GitpodButton
   return (
     <div id="gitpod-btn-nav" title="Gitpod" className={classNames("gitpod-button", application, ...(additionalClassNames || []))}>
       <div className={classNames("button")}>
-        <a 
+        <a
           className={classNames("button-part", "action")}
           href={actions[0].href}
           target={openInNewTab ? "_blank" : "_self"}
@@ -88,6 +88,8 @@ export const GitpodButton = ({ application, additionalClassNames }: GitpodButton
               ref={action === actions[1] ? firstActionRef : null}
               className={classNames("drop-down-action", "button-part")}
               href={action.href}
+              target={openInNewTab ? "_blank" : "_self"}
+              rel="noreferrer"
             >
               <span className={classNames("drop-down-label")}>
                 {action.label}
