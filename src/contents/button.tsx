@@ -40,7 +40,6 @@ class ButtonContributionManager {
     if (this.active && this.active.contribution.id !== active?.contribution.id) {
       const element = document.getElementById(this.active.contribution.id);
       if (element) {
-        console.log("uninstalling ", element);
         element.remove();
       }
     }
@@ -56,7 +55,6 @@ class ButtonContributionManager {
           // do nothing
           return null;
         } else {
-          console.log("installing " + contribution.id);
           // update
           const anchor = this.installAnchor(contribution);
           if (anchor) {
@@ -69,7 +67,6 @@ class ButtonContributionManager {
         }
       }
     }
-    console.log("nothing active");
     this.updateActive(undefined);
     return null;
   }
@@ -89,7 +86,6 @@ class ButtonContributionManager {
     if (parent === null) {
       return false;
     }
-    console.log("active " + contrib.id);
     return true;
   }
 
@@ -107,7 +103,6 @@ class ButtonContributionManager {
   }
 
   private installAnchor(contrib: ButtonContributionParams) {
-    console.log("installing " + contrib.id);
     const parent = this.lookupElement(contrib.selector);
     if (parent === null) {
       return null;
