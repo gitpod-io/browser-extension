@@ -46,6 +46,7 @@ function IndexPopup() {
       }}>
         <label>
           Gitpod installation address
+          <br />
           <input style={{
             borderRadius: "4px",
             padding: "14px 14px",
@@ -53,6 +54,8 @@ function IndexPopup() {
             borderColor: "#555",
             borderStyle: "solid",
             borderWidth: "1px",
+            width: "100%",
+            boxSizing: "border-box",
           }} onChange={(e) => updateAddress(e.target.value)} value={address} />
         </label>
         <label>
