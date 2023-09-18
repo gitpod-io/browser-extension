@@ -60,7 +60,7 @@ export interface ButtonContributionParams {
   /**
    * Additional class names that should be added to the elements.
    */
-  additionalClassNames?: string[],
+  additionalClassNames?: ("secondary"|"medium"|"left-align-menu")[],
 
   /**
    * A selector that is used to insert the button before a specific element.
@@ -167,7 +167,7 @@ export const buttonContributions: ButtonContributionParams[] = [
     // GitHub
     {
       id: "new-repo",
-      match: /^https?:\/\/([^\/]+)\/([^\/]+)\/([^\/]+)(\/(tree\/.*)?)?$/,
+      match: /^https?:\/\/([^/]+)\/([^/]+)\/([^/]+)(\/(tree\/.*)?)?$/,
       exampleUrls: [
         // disabled testing, becuase the new layout doesn't show as an anonymous user
         // "https://github.com/svenefftinge/browser-extension-test",
@@ -271,9 +271,23 @@ export const buttonContributions: ButtonContributionParams[] = [
       exampleUrls: [
         //TODO fixme "https://github.com/svenefftinge/empty-repo",
       ],
-      selector: "#repo-content-pjax-container > div > git-clone-help > div.Box-header.Box-header--blue > div",
-      containerElement: createElement("li", {}),
+      selector: "#repo-content-pjax-container > div > div.d-md-flex.flex-items-stretch.gutter-md.mb-4 > div.col-md-6.mb-4.mb-md-0 > div,#repo-content-turbo-frame > div > div.d-md-flex.flex-items-stretch.gutter-md.mb-4 > div.col-md-6.mb-4.mb-md-0 > div",
+      containerElement: createElement("div", {}),
       application: "github",
+      manipulations: [
+        {
+          element: "#repo-content-pjax-container > div > div.d-md-flex.flex-items-stretch.gutter-md.mb-4 > div.col-md-6.mb-4.mb-md-0 > div > a, #repo-content-turbo-frame > div > div.d-md-flex.flex-items-stretch.gutter-md.mb-4 > div.col-md-6.mb-4.mb-md-0 > div > a",
+          style: {
+            display: "none",
+          }
+        },
+        {
+          element: "#repo-content-pjax-container > div > div.d-md-flex.flex-items-stretch.gutter-md.mb-4 > div.col-md-6.mb-4.mb-md-0 > div > h3, #repo-content-turbo-frame > div > div.d-md-flex.flex-items-stretch.gutter-md.mb-4 > div.col-md-6.mb-4.mb-md-0 > div > h3",
+          style: {
+            display: "none",
+          }
+        }
+      ]
       
     },
     // BitBucket Server
@@ -308,13 +322,14 @@ export const buttonContributions: ButtonContributionParams[] = [
     },
     
     // bitbucket.org
+    // we use xpath epressions, because the CSS selectors are not stable enough
     // tests are disabled because the URLs are not rechable without a session
     {
       id: "bb-repo",
       exampleUrls: [
         // "https://bitbucket.org/svenefftinge/browser-extension-test/src/master/"
       ],
-      selector: "#root > div.css-kyhvoj > div.css-e48442 > div > div > div.css-8ypwyz.efo6slf1 > div > header > div > div > div > div.sc-kAzzGY.hKOvhL > div",
+      selector: 'xpath://*[@id="root"]/div[2]/div[3]/div/div/div[1]/div/header/div/div/div/div[2]/div',
       insertBefore: "#root > div.css-kyhvoj > div.css-e48442 > div > div > div.css-8ypwyz.efo6slf1 > div > header > div > div > div > div.sc-kAzzGY.hKOvhL > div > div:nth-child(3)",
       containerElement: createElement("div", {
         marginLeft: "2px",
@@ -326,7 +341,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       exampleUrls: [
         // "https://bitbucket.org/efftinge/browser-extension-test/pull-requests/1"
       ],
-      selector: "#pull-request-details > header > div > div > div.sc-chPdSV.hHBNpa > div > div.css-1yuhvjn.e1q0qh516 > div > div > div",
+      selector: 'xpath://*[@id="pull-request-details"]/header/div/div/div[2]/div/div[2]/div/div/div',
       containerElement: createElement("div", {
         marginLeft: "2px",
       }),
@@ -334,29 +349,14 @@ export const buttonContributions: ButtonContributionParams[] = [
     },
     {
       id: "bb-branch",
+      match: /\/branch\/(.+)/,
       exampleUrls: [
         // "https://bitbucket.org/efftinge/browser-extension-test/branch/my-branch"
       ],
-      selector: "#root > div.css-kyhvoj > div.css-e48442 > div > div > div.css-8ypwyz.efo6slf1 > div > div > div.css-178yklu.es1vbw1",
+      selector: 'xpath://*[@id="root"]/div[2]/div[3]/div/div/div[1]/div/div/div[2]/div/div',
       containerElement: createElement("div", {
         marginLeft: "2px",
       }),
       application: "bitbucket",
-      manipulations: [
-        {
-          element: "#root > div.css-kyhvoj > div.css-e48442 > div > div > div.css-8ypwyz.efo6slf1 > div > div > div.css-178yklu.es1vbw1 > a",
-          style: {
-            // backgroundColor: "var(--background-subtleNeutral-resting,rgba(9,30,66,0.04))",
-            // color: "var(--text-highEmphasis,#42526E)",
-            display: "none",
-          }
-        },
-        {
-          element: "#root > div.css-kyhvoj > div.css-e48442 > div > div > div.css-8ypwyz.efo6slf1 > div > div > div.css-178yklu.es1vbw1",
-          style: {
-            display: "flex",
-          }
-        }
-      ],
     }
   ];
