@@ -163,10 +163,12 @@
     border: none !important;
     color: var(--dropdown-color) !important;
     background-color: var(--dropdown-bg-color) !important;
+    min-width: 160px;
 }
 
 .drop-down-action {
     cursor: pointer;
+    font-weight: 400;
 }
 
 .drop-down-action:hover {
