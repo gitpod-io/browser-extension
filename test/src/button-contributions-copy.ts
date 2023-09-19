@@ -52,6 +52,11 @@ export interface ButtonContributionParams {
    */
   match?: RegExp,
 
+  /** 
+   * A function that is called to determine if the button insertion should be stopped.
+  */
+  earlyExit?: () => boolean,
+
   /**
    * The application that is supported by this button contribution.
    */
@@ -169,22 +174,25 @@ export const buttonContributions: ButtonContributionParams[] = [
       id: "new-repo",
       match: /^https?:\/\/([^/]+)\/([^/]+)\/([^/]+)(\/(tree\/.*)?)?$/,
       exampleUrls: [
-        // disabled testing, becuase the new layout doesn't show as an anonymous user
+        // disabled testing, because the new layout doesn't show as an anonymous user
         // "https://github.com/svenefftinge/browser-extension-test",
         // "https://github.com/svenefftinge/browser-extension-test/tree/my-branch",
       ],
-      selector: "#repository-details-container > ul > li:nth-child(6)",
-      containerElement: createElement("div", {
+      selector: "#repository-details-container > ul",
+      containerElement: createElement("li", {
       }),
       application: "github",
       manipulations: [
         {
           // make the code button secondary 
-          element: "#repository-details-container > ul > li:nth-child(5) > get-repo > details > summary",
+          element: "#repository-details-container > ul > li > get-repo > details > summary",
           remove: "Button--primary",
           add: "Button--secondary"
         }
       ],
+      earlyExit: () => {
+        return document.querySelector("div.file-navigation") !== null;
+      }
     },
     {
       id: "commit",
