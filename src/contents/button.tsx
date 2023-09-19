@@ -23,13 +23,41 @@ class ButtonContributionManager {
     anchor: HTMLElement,
   }
 
+  _disabled = false;
+
   constructor(private contributions: ButtonContributionParams[]) {
+    if (!this.isSiteSuitable()) {
+      return;
+    }
+
     for (const contribution of this.contributions) {
       const containerId = this.getContainerId(contribution);
       if (!this.buttons.has(containerId)) {
         this.buttons.set(containerId, <GitpodButton key={containerId} application={contribution.application} additionalClassNames={contribution.additionalClassNames} />);
       }
     }
+  }
+
+  /**
+   * Provides a fast check to see if the current URL is on a supported site.
+   */
+  private isSiteSuitable() {
+    const metaApplication = document.querySelector("meta[name=application-name]");
+    const ogApplication = document.querySelector("meta[property='og:site_name']");
+
+    if (ogApplication && ["GitHub", "GitLab"].includes(ogApplication.getAttribute("content"))) {
+      console.debug(`Found ${ogApplication.getAttribute("content")} in og:site_name`)
+      return true;
+    }
+
+    if (metaApplication && metaApplication.getAttribute("content") === "Bitbucket") {
+      console.debug(`Found Bitbucket in meta[name=application-name]`)
+      return true;
+    }
+
+    console.debug("Disabling extension because site is not supported.");
+    this._disabled = true;
+    return false;
   }
 
   private getContainerId(contribution: ButtonContributionParams) {
@@ -47,11 +75,15 @@ class ButtonContributionManager {
   }
 
   public getInlineAnchor(): HTMLElement | null {
+    if (this._disabled) {
+      return null;
+    }
+
     for (const contribution of this.contributions) {
       const isActive = this.isActive(contribution);
       if (isActive) {
         if (this.active?.contribution.id === contribution.id &&
-            this.active?.anchor?.isConnected) {
+          this.active?.anchor?.isConnected) {
           // do nothing
           return null;
         } else {
