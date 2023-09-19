@@ -82,6 +82,9 @@ class ButtonContributionManager {
     if (contrib.match && !contrib.match.test(window.location.href)) {
       return false;
     }
+    if (contrib.earlyExit && contrib.earlyExit()) {
+      return false;
+    }
     const parent = this.lookupElement(contrib.selector);
     if (parent === null) {
       return false;

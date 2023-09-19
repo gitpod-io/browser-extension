@@ -52,6 +52,11 @@ export interface ButtonContributionParams {
    */
   match?: RegExp,
 
+  /** 
+   * A function that is called to determine if the button insertion should be stopped.
+  */
+  earlyExit?: () => boolean,
+
   /**
    * The application that is supported by this button contribution.
    */
@@ -185,6 +190,9 @@ export const buttonContributions: ButtonContributionParams[] = [
           add: "Button--secondary"
         }
       ],
+      earlyExit: () => {
+        return document.querySelector("div.file-navigation") !== null;
+      }
     },
     {
       id: "commit",
