@@ -180,7 +180,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       manipulations: [
         {
           // make the code button secondary 
-          element: "#repository-details-container > ul > li:nth-child(5) > get-repo > details > summary",
+          element: "#repository-details-container > ul > li > get-repo > details > summary",
           remove: "Button--primary",
           add: "Button--secondary"
         }
