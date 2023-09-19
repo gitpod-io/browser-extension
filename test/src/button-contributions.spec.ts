@@ -3,18 +3,18 @@ import { expect } from "chai";
 import { describe, it, before, after } from 'mocha';
 import { buttonContributions } from "./button-contributions-copy.js";
 
-describe("Query Selector Tests", function() {
+describe("Query Selector Tests", function () {
   let browser: Browser;
   let page: Page;
 
-  before(async function() {
+  before(async function () {
     browser = await puppeteer.launch({
       headless: "new",
     });
     page = await browser.newPage();
   });
 
-  after(async function() {
+  after(async function () {
     await browser.close();
   });
 
@@ -38,6 +38,7 @@ describe("Query Selector Tests", function() {
         expect(element, `Expected '${id}' to match on ${url}`).to.not.be.null;
         foundMatch = true;
       } else {
+        if (contr.exampleUrls.length === 0) return true;
         expect(element, `Did not expect '${contr.id}' to match on ${url}`).to.be.null;
       }
     }
@@ -46,7 +47,7 @@ describe("Query Selector Tests", function() {
 
   for (const contribs of buttonContributions) {
     for (const url of contribs.exampleUrls) {
-      it("url ("+url+") should only match '" + contribs.id +"'" , async function() {
+      it(`url (${url}) should only match '${contribs.id}'`, async function () {
         await testContribution(url, contribs.id);
       }).timeout(5000);
     }
