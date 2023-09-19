@@ -169,12 +169,12 @@ export const buttonContributions: ButtonContributionParams[] = [
       id: "new-repo",
       match: /^https?:\/\/([^/]+)\/([^/]+)\/([^/]+)(\/(tree\/.*)?)?$/,
       exampleUrls: [
-        // disabled testing, becuase the new layout doesn't show as an anonymous user
+        // disabled testing, because the new layout doesn't show as an anonymous user
         // "https://github.com/svenefftinge/browser-extension-test",
         // "https://github.com/svenefftinge/browser-extension-test/tree/my-branch",
       ],
-      selector: "#repository-details-container > ul > li:nth-child(6)",
-      containerElement: createElement("div", {
+      selector: "#repository-details-container > ul",
+      containerElement: createElement("li", {
       }),
       application: "github",
       manipulations: [
