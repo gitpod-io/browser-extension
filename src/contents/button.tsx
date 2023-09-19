@@ -42,8 +42,9 @@ class ButtonContributionManager {
    * Provides a fast check to see if the current URL is on a supported site.
    */
   private isSiteSuitable() {
-    const metaApplication = document.querySelector("meta[name=application-name]");
-    const ogApplication = document.querySelector("meta[property='og:site_name']");
+    const head = document.head;
+    const metaApplication = head.querySelector("meta[name=application-name]");
+    const ogApplication = head.querySelector("meta[property='og:site_name']");
 
     if (ogApplication && ["GitHub", "GitLab"].includes(ogApplication.getAttribute("content"))) {
       console.debug(`Found ${ogApplication.getAttribute("content")} in og:site_name`)
