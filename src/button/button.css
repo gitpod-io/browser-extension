@@ -201,6 +201,10 @@
     --dropdown-box-shadow: var(--shadow-floating-large, var(--color-shadow-large));
 }
 
+.github .chevron-icon {
+    padding: 3px;
+}
+
 .github.medium {
     --line-height: 1.5;
     --primary-height: var(--control-medium-size, 2rem);
