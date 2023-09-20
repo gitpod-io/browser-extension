@@ -23,7 +23,7 @@ export const GitpodButton = ({ application, additionalClassNames }: GitpodButton
     },
     {
       href: address + "/?autostart=false#" + window.location.toString(),
-      label: "Open with Options ...",
+      label: "Open with options...",
     },
   ]
   const dropdownRef = useRef<HTMLDivElement | null>(null);
