@@ -30,7 +30,7 @@ describe("Query Selector Tests", function () {
     await page.goto(url);
     let foundMatch = false;
     for (const contr of buttonContributions) {
-      if (contr.match && !contr.match.test(url)) {
+      if (typeof contr.match === "object" && !contr.match.test(url)) {
         continue;
       }
       const element = await resolveSelector(page, contr.selector);

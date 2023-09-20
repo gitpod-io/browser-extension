@@ -48,14 +48,9 @@ export interface ButtonContributionParams {
   },
 
   /**
-   * A regular expression that is used to match the current URL. This is making the selection faster and also can help to disambiguate.
+   * Either a regular expression that is used to match the current URL or a function expected to return a boolean. This is making the selection faster and also can help to disambiguate.
    */
-  match?: RegExp,
-
-  /** 
-   * A function that is called to determine if the button insertion should be stopped.
-  */
-  earlyExit?: () => boolean,
+  match?: RegExp | (() => boolean),
 
   /**
    * The application that is supported by this button contribution.
@@ -172,7 +167,6 @@ export const buttonContributions: ButtonContributionParams[] = [
     // GitHub
     {
       id: "new-repo",
-      match: /^https?:\/\/([^/]+)\/([^/]+)\/([^/]+)(\/(tree\/.*)?)?$/,
       exampleUrls: [
         // disabled testing, because the new layout doesn't show as an anonymous user
         // "https://github.com/svenefftinge/browser-extension-test",
@@ -190,8 +184,9 @@ export const buttonContributions: ButtonContributionParams[] = [
           add: "Button--secondary"
         }
       ],
-      earlyExit: () => {
-        return document.querySelector("div.file-navigation") !== null;
+      match: () => {
+        const regex = /^https?:\/\/([^/]+)\/([^/]+)\/([^/]+)(\/(tree\/.*)?)?$/;
+        return document.querySelector("div.file-navigation") === null && regex.test(window.location.href);
       }
     },
     {
