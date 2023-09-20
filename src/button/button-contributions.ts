@@ -48,9 +48,9 @@ export interface ButtonContributionParams {
   },
 
   /**
-   * A regular expression that is used to match the current URL. This is making the selection faster and also can help to disambiguate.
+   * Either a regular expression that is used to match the current URL or a function expected to return a boolean. This is making the selection faster and also can help to disambiguate.
    */
-  match?: RegExp,
+  match?: RegExp | (() => boolean),
 
   /**
    * The application that is supported by this button contribution.
@@ -167,24 +167,27 @@ export const buttonContributions: ButtonContributionParams[] = [
     // GitHub
     {
       id: "new-repo",
-      match: /^https?:\/\/([^/]+)\/([^/]+)\/([^/]+)(\/(tree\/.*)?)?$/,
       exampleUrls: [
-        // disabled testing, becuase the new layout doesn't show as an anonymous user
+        // disabled testing, because the new layout doesn't show as an anonymous user
         // "https://github.com/svenefftinge/browser-extension-test",
         // "https://github.com/svenefftinge/browser-extension-test/tree/my-branch",
       ],
-      selector: "#repository-details-container > ul > li:nth-child(6)",
-      containerElement: createElement("div", {
+      selector: "#repository-details-container > ul",
+      containerElement: createElement("li", {
       }),
       application: "github",
       manipulations: [
         {
           // make the code button secondary 
-          element: "#repository-details-container > ul > li:nth-child(5) > get-repo > details > summary",
+          element: "#repository-details-container > ul > li > get-repo > details > summary",
           remove: "Button--primary",
           add: "Button--secondary"
         }
       ],
+      match: () => {
+        const regex = /^https?:\/\/([^/]+)\/([^/]+)\/([^/]+)(\/(tree\/.*)?)?$/;
+        return document.querySelector("div.file-navigation") === null && regex.test(window.location.href);
+      }
     },
     {
       id: "commit",

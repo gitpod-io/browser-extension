@@ -51,7 +51,7 @@ class ButtonContributionManager {
       const isActive = this.isActive(contribution);
       if (isActive) {
         if (this.active?.contribution.id === contribution.id &&
-            this.active?.anchor?.isConnected) {
+          this.active?.anchor?.isConnected) {
           // do nothing
           return null;
         } else {
@@ -79,9 +79,12 @@ class ButtonContributionManager {
   }
 
   private isActive(contrib: ButtonContributionParams) {
-    if (contrib.match && !contrib.match.test(window.location.href)) {
+    if (typeof contrib.match === "function" && !contrib.match()) {
+      return false;
+    } else if (typeof contrib.match === "object" && !contrib.match.test(window.location.href)) {
       return false;
     }
+
     const parent = this.lookupElement(contrib.selector);
     if (parent === null) {
       return false;
