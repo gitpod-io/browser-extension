@@ -1,7 +1,7 @@
 import puppeteer, { Browser, Page } from "puppeteer";
 import { expect } from "chai";
 import { describe, it, before, after } from 'mocha';
-import { buttonContributions, isSiteSuitable } from "./button-contributions-copy.js";
+import { buttonContributions } from "./button-contributions-copy.js";
 
 describe("Platform Detection Tests", function () {
   let browser: Browser;
@@ -21,17 +21,41 @@ describe("Platform Detection Tests", function () {
   async function testHost() {
     const all = buttonContributions.flatMap((x) => x.exampleUrls);
     for (const url of all) {
-      console.debug(`Testing ${url}`);
-      await page.goto(url);
+      it(`should detect the platform for ${url}`, async function () {
+        await page.goto(url);
 
-      const foundMatch = await page.evaluate(() => isSiteSuitable());
-      expect(foundMatch, `Expected to find a match for '${url}'`).to.be.true;
+        const foundMatch = await page.evaluate(() => {
+          const resolveMetaAppName = (head: HTMLHeadElement): string | undefined => {
+            const metaApplication = head.querySelector("meta[name=application-name]");
+            const ogApplication = head.querySelector("meta[property='og:site_name']");
+
+            if (metaApplication) {
+              return metaApplication.getAttribute("content") || undefined;
+            } else if (ogApplication) {
+              return ogApplication.getAttribute("content") || undefined;
+            }
+
+            return undefined;
+          }
+
+          const isSiteSuitable = (): boolean => {
+            const appName = resolveMetaAppName(document.head);
+            if (!appName) {
+              return false;
+            }
+            const allowedApps = ["GitHub", "GitLab", "Bitbucket"];
+            return allowedApps.includes(appName);
+          }
+
+          return isSiteSuitable();
+        });
+        expect(foundMatch, `Expected to find a match for '${url}'`).to.be.true;
+      }).timeout(30_000);
+
     }
   }
 
-  it("should detect the platform", async function () {
-    await testHost();
-  }).timeout(30_000);
+  testHost();
 });
 
 describe("Query Selector Tests", function () {
@@ -78,7 +102,7 @@ describe("Query Selector Tests", function () {
 
   for (const contribs of buttonContributions) {
     for (const url of contribs.exampleUrls) {
-      it.skip(`url (${url}) should only match '${contribs.id}'`, async function () {
+      it(`url (${url}) should only match '${contribs.id}'`, async function () {
         await testContribution(url, contribs.id);
       }).timeout(5000);
     }
