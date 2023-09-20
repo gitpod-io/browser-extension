@@ -1,6 +1,6 @@
 import type { PlasmoCSConfig, PlasmoGetInlineAnchor } from "plasmo";
 import cssText from "data-text:../button/button.css"
-import { buttonContributions, type ButtonContributionParams } from "../button/button-contributions";
+import { buttonContributions, type ButtonContributionParams, isSiteSuitable } from "../button/button-contributions";
 import { GitpodButton } from "../button/button";
 import { type ReactElement } from "react";
 import React from "react";
@@ -26,8 +26,11 @@ class ButtonContributionManager {
   _disabled = false;
 
   constructor(private contributions: ButtonContributionParams[]) {
-    if (!this.isSiteSuitable()) {
-      return;
+    if (!this._disabled) {
+      const isSuitable = isSiteSuitable();
+      if (!isSuitable) {
+        this._disabled = true;
+      }
     }
 
     for (const contribution of this.contributions) {
@@ -36,29 +39,6 @@ class ButtonContributionManager {
         this.buttons.set(containerId, <GitpodButton key={containerId} application={contribution.application} additionalClassNames={contribution.additionalClassNames} />);
       }
     }
-  }
-
-  /**
-   * Provides a fast check to see if the current URL is on a supported site.
-   */
-  private isSiteSuitable() {
-    const head = document.head;
-    const metaApplication = head.querySelector("meta[name=application-name]");
-    const ogApplication = head.querySelector("meta[property='og:site_name']");
-
-    if (ogApplication && ["GitHub", "GitLab"].includes(ogApplication.getAttribute("content"))) {
-      console.debug(`Found ${ogApplication.getAttribute("content")} in og:site_name`)
-      return true;
-    }
-
-    if (metaApplication && metaApplication.getAttribute("content") === "Bitbucket") {
-      console.debug(`Found Bitbucket in meta[name=application-name]`)
-      return true;
-    }
-
-    console.debug("Disabling extension because site is not supported.");
-    this._disabled = true;
-    return false;
   }
 
   private getContainerId(contribution: ButtonContributionParams) {

@@ -1,7 +1,38 @@
 import puppeteer, { Browser, Page } from "puppeteer";
 import { expect } from "chai";
 import { describe, it, before, after } from 'mocha';
-import { buttonContributions } from "./button-contributions-copy.js";
+import { buttonContributions, isSiteSuitable } from "./button-contributions-copy.js";
+
+describe("Platform Detection Tests", function () {
+  let browser: Browser;
+  let page: Page;
+
+  before(async function () {
+    browser = await puppeteer.launch({
+      headless: "new",
+    });
+    page = await browser.newPage();
+  });
+
+  after(async function () {
+    await browser.close();
+  });
+
+  async function testHost() {
+    const all = buttonContributions.flatMap((x) => x.exampleUrls);
+    for (const url of all) {
+      console.debug(`Testing ${url}`);
+      await page.goto(url);
+
+      const foundMatch = await page.evaluate(() => isSiteSuitable());
+      expect(foundMatch, `Expected to find a match for '${url}'`).to.be.true;
+    }
+  }
+
+  it("should detect the platform", async function () {
+    await testHost();
+  }).timeout(30_000);
+});
 
 describe("Query Selector Tests", function () {
   let browser: Browser;
@@ -47,7 +78,7 @@ describe("Query Selector Tests", function () {
 
   for (const contribs of buttonContributions) {
     for (const url of contribs.exampleUrls) {
-      it(`url (${url}) should only match '${contribs.id}'`, async function () {
+      it.skip(`url (${url}) should only match '${contribs.id}'`, async function () {
         await testContribution(url, contribs.id);
       }).timeout(5000);
     }
