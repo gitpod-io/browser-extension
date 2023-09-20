@@ -3,7 +3,7 @@ import { expect } from "chai";
 import { describe, it, before, after } from 'mocha';
 import { buttonContributions } from "./button-contributions-copy.js";
 
-describe("Platform Detection Tests", function () {
+describe("Query Selector Tests", function () {
   let browser: Browser;
   let page: Page;
 
@@ -85,7 +85,7 @@ describe("Query Selector Tests", function () {
     await page.goto(url);
     let foundMatch = false;
     for (const contr of buttonContributions) {
-      if (contr.match && !contr.match.test(url)) {
+      if (typeof contr.match === "object" && !contr.match.test(url)) {
         continue;
       }
       const element = await resolveSelector(page, contr.selector);

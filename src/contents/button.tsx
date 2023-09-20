@@ -92,10 +92,9 @@ class ButtonContributionManager {
   }
 
   private isActive(contrib: ButtonContributionParams) {
-    if (contrib.match && !contrib.match.test(window.location.href)) {
+    if (typeof contrib.match === "function" && !contrib.match()) {
       return false;
-    }
-    if (contrib.earlyExit && contrib.earlyExit()) {
+    } else if (typeof contrib.match === "object" && !contrib.match.test(window.location.href)) {
       return false;
     }
     const parent = this.lookupElement(contrib.selector);
