@@ -77,11 +77,6 @@ export interface ButtonContributionParams {
    */
   match?: RegExp | (() => boolean),
 
-  /** 
-   * A function that is called to determine if the button insertion should be stopped.
-  */
-  earlyExit?: () => boolean,
-
   /**
    * The application that is supported by this button contribution.
    */
