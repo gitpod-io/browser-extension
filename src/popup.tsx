@@ -4,6 +4,11 @@ import { STORAGE_KEY_ADDRESS, STORAGE_KEY_NEW_TAB } from "~storage";
 import { parseEndpoint } from "~utils/parse-endpoint";
 import React from "react";
 
+import "./popup.css"
+import { InputField } from "~components/forms/InputField";
+import { TextInput } from "~components/forms/TextInputField";
+import { CheckboxInputField } from "~components/forms/CheckboxInputField";
+
 function IndexPopup() {
   const [error, setError] = useState<string>();
 
@@ -32,49 +37,45 @@ function IndexPopup() {
       style={{
         display: "flex",
         flexDirection: "column",
-        color: "#555",
-        minWidth: "400px",
+        minWidth: "360px",
         padding: "16px",
-      }}>
-      <h1>
-        Settings
-      </h1>
+      }}
+    >
 
-      <form style={{
-        display: "flex",
-        flexDirection: "column",
-      }}>
-        <label>
-          Gitpod installation address
-          <br />
-          <input style={{
-            borderRadius: "4px",
-            padding: "14px 14px",
-            color: "#555",
-            borderColor: "#555",
-            borderStyle: "solid",
-            borderWidth: "1px",
-            width: "100%",
-            boxSizing: "border-box",
-          }} onChange={(e) => updateAddress(e.target.value)} value={address} />
-        </label>
-        <label>
-          <span>Open Workspaces in a new tab</span>
-          <input type="checkbox" checked={openInNewTab} onChange={(e) => setOpenInNewTab(e.target.checked)} />
-        </label>
-        {/* show error if set  */}
-        <div style={
-          error ? {
-            color: "red",
-            marginTop: "8px",
-            display: "inline"
-          } : {
-            display: "none"
-          }
-        }
-        >{error}
-        </div>
+      <form className="w-full">
+        <InputField
+          label="Gitpod URL"
+          hint="Gitpod instance URL, e.g. https://gitpod.io."
+          topMargin={false}
+        >
+          <div className="flex space-x-2">
+            <div className="flex-grow">
+              <TextInput
+                value={address}
+                onChange={updateAddress}
+              />
+            </div>
+          </div>
+        </InputField>
+        <CheckboxInputField
+          label="Open Workspaces in a new tab"
+          checked={openInNewTab}
+          onChange={(checked) => setOpenInNewTab(checked)}
+        />
       </form>
+
+      {/* show error if set  */}
+      <div style={
+        error ? {
+          color: "red",
+          marginTop: "8px",
+          display: "inline"
+        } : {
+          display: "none"
+        }
+      }
+      >{error}
+      </div>
     </div>
   )
 }
