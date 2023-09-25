@@ -1,6 +1,6 @@
 import type { PlasmoCSConfig, PlasmoGetInlineAnchor } from "plasmo";
 import cssText from "data-text:../button/button.css"
-import { buttonContributions, type ButtonContributionParams, isSiteSuitable } from "../button/button-contributions";
+import { buttonContributions, type ButtonContributionParams, isSiteSuitable, isSiteGitpod } from "../button/button-contributions";
 import { GitpodButton } from "../button/button";
 import { type ReactElement } from "react";
 import React from "react";
@@ -30,6 +30,9 @@ class ButtonContributionManager {
       const isSuitable = isSiteSuitable();
       if (!isSuitable) {
         this._disabled = true;
+        if (isSiteGitpod()) {
+          localStorage.setItem("browser-extension-installed", "true");
+        }
       }
     }
 
