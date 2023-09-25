@@ -1,9 +1,21 @@
-name: "Submit to Web Store"
+name: "Submit to Web Stores"
 on:
   workflow_dispatch:
+    inputs:
+      channel:
+        description: 'Release channel to publish to'
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
+        default: staging
   push:
     branches:
-      - master
+      - main
+
+env:
+  CHANNEL: ${{ github.event.inputs.channel || 'staging' }}
 
 jobs:
   build:
@@ -21,17 +33,32 @@ jobs:
         with:
           version: latest
           run_install: true
-      - name: Use Node.js 16.x
+      - name: Use Node.js 18.x
         uses: actions/setup-node@v3.4.1
         with:
-          node-version: 16.x
+          node-version: 18.x
           cache: "pnpm"
-      - name: Build the extension
-        run: pnpm build
-      - name: Package the extension into a zip artifact
-        run: pnpm package
-      - name: Browser Platform Publish
+      - name: Build the extension (Chrome)
+        run: pnpm plasmo build --target=chrome-mv3
+      - name: Build the extension (Firefox)
+        run: pnpm plasmo build --target=firefox-mv2
+      - name: Package the extension into zip artifacts
+        run: | 
+          pnpm package --target=chrome-mv3
+          pnpm package --target=firefox-mv2
+      - name: Browser Platform Publish (staging)
         uses: PlasmoHQ/bpp@v3
+        if: env.CHANNEL == 'staging'
         with:
-          keys: ${{ secrets.SUBMIT_KEYS }}
-          artifact: build/chrome-mv3-prod.zip
+          keys: ${{ secrets.SUBMIT_KEYS_STAGING }}
+          verbose: true
+          chrome-file: build/chrome-mv3-prod.zip
+          firefox-file: build/firefox-mv2-prod.zip
+      - name: Browser Platform Publish (production)
+        uses: PlasmoHQ/bpp@v3
+        if: env.CHANNEL == 'production'
+        with:
+          keys: ${{ secrets.SUBMIT_KEYS_PRODUCTION }}
+          verbose: true
+          chrome-file: build/chrome-mv3-prod.zip
+          firefox-file: build/firefox-mv2-prod.zip
