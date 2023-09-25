@@ -34,15 +34,15 @@ class ButtonContributionManager {
       if (!isSuitable) {
         this._disabled = true;
         if (isSiteGitpod()) {
-          localStorage.setItem("browser-extension-installed", "true");
+          sessionStorage.setItem("browser-extension-installed", "true");
           (async () => {
             const gitpodEndpoint = await this._storage.getItem(STORAGE_KEY_ADDRESS);
             const host = new URL(gitpodEndpoint).host;
             const thisPageHost = window.location.host;
             if (host === thisPageHost) {
-              localStorage.setItem("browser-extension-active", "true");
+              sessionStorage.setItem("browser-extension-active", "true");
             } else {
-              localStorage.removeItem("browser-extension-active");
+              sessionStorage.removeItem("browser-extension-active");
             }
           })();
         }
