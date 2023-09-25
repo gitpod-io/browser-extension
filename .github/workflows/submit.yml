@@ -8,7 +8,7 @@ on:
         type: choice
         options:
           - staging
-          - stable
+          - production
         default: staging
   push:
     branches:
@@ -54,11 +54,11 @@ jobs:
           verbose: true
           chrome-file: build/chrome-mv3-prod.zip
           firefox-file: build/firefox-mv2-prod.zip
-      - name: Browser Platform Publish (stable)
+      - name: Browser Platform Publish (production)
         uses: PlasmoHQ/bpp@v3
-        if: env.CHANNEL == 'stable'
+        if: env.CHANNEL == 'production'
         with:
-          keys: ${{ secrets.SUBMIT_KEYS_STABLE }}
+          keys: ${{ secrets.SUBMIT_KEYS_PRODUCTION }}
           verbose: true
           chrome-file: build/chrome-mv3-prod.zip
           firefox-file: build/firefox-mv2-prod.zip
