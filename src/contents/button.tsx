@@ -1,11 +1,10 @@
 import type { PlasmoCSConfig, PlasmoGetInlineAnchor } from "plasmo";
 import { Storage } from "@plasmohq/storage"
 import cssText from "data-text:../button/button.css"
-import { buttonContributions, type ButtonContributionParams, isSiteSuitable, isSiteGitpod } from "../button/button-contributions";
+import { buttonContributions, type ButtonContributionParams, isSiteSuitable } from "../button/button-contributions";
 import { GitpodButton } from "../button/button";
 import { type ReactElement } from "react";
 import React from "react";
-import { STORAGE_KEY_ADDRESS } from "~storage";
 
 export const config: PlasmoCSConfig = {
   matches: ["<all_urls>"]
@@ -33,19 +32,6 @@ class ButtonContributionManager {
       const isSuitable = isSiteSuitable();
       if (!isSuitable) {
         this._disabled = true;
-        if (isSiteGitpod()) {
-          sessionStorage.setItem("browser-extension-installed", "true");
-          (async () => {
-            const gitpodEndpoint = await this._storage.getItem(STORAGE_KEY_ADDRESS);
-            const host = new URL(gitpodEndpoint).host;
-            const thisPageHost = window.location.host;
-            if (host === thisPageHost) {
-              sessionStorage.setItem("browser-extension-active", "true");
-            } else {
-              sessionStorage.removeItem("browser-extension-active");
-            }
-          })();
-        }
       }
     }
 
