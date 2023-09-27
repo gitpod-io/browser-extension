@@ -1,5 +1,11 @@
 import type { PlasmoCSConfig } from "plasmo";
-import { isSiteGitpod } from "../gitpod-dashboard/utils";
+
+/**
+ * Checks if the current site is a Gitpod instance.
+ */
+const isSiteGitpod = (): boolean => {
+  return !!document.head.querySelector("meta[name=Gitpod]");
+}
 
 export const config: PlasmoCSConfig = {
   matches: ["https://*/*"]
