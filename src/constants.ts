@@ -1,0 +1,1 @@
+export const DEFAULT_GITPOD_ENDPOINT = "https://gitpod.io";

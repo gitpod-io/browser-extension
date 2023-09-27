@@ -3,6 +3,7 @@ import Logo from "react:./logo-mark.svg"
 import type { SupportedApplication } from "./button-contributions";
 import classNames from "classnames";
 import { STORAGE_KEY_ADDRESS, STORAGE_KEY_NEW_TAB } from "~storage";
+import { DEFAULT_GITPOD_ENDPOINT } from "~constants";
 import { useStorage } from "@plasmohq/storage/hook";
 import React from "react";
 
@@ -12,7 +13,7 @@ export interface GitpodButtonProps {
 }
 
 export const GitpodButton = ({ application, additionalClassNames }: GitpodButtonProps) => {
-  const [address] = useStorage<string>(STORAGE_KEY_ADDRESS, "https://gitpod.io");
+  const [address] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_GITPOD_ENDPOINT);
   const [openInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, false);
 
   const [showDropdown, setShowDropdown] = useState(false);
