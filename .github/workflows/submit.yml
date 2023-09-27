@@ -10,9 +10,6 @@ on:
           - staging
           - production
         default: staging
-  push:
-    branches:
-      - main
 
 env:
   CHANNEL: ${{ github.event.inputs.channel || 'staging' }}
