@@ -1,6 +1,6 @@
 import { useStorage } from "@plasmohq/storage/hook";
 import { useCallback, useEffect, useState } from "react"
-import { STORAGE_KEY_ADDRESS, STORAGE_KEY_NEW_TAB } from "~storage";
+import { STORAGE_AUTOMATICALLY_DETECT_GITPOD, STORAGE_KEY_ADDRESS, STORAGE_KEY_NEW_TAB } from "~storage";
 import { parseEndpoint } from "~utils/parse-endpoint";
 import React from "react";
 
@@ -8,6 +8,7 @@ import "./popup.css"
 import { InputField } from "~components/forms/InputField";
 import { TextInput } from "~components/forms/TextInputField";
 import { CheckboxInputField } from "~components/forms/CheckboxInputField";
+import { DEFAULT_GITPOD_ENDPOINT } from "~constants";
 
 function IndexPopup() {
   const [error, setError] = useState<string>();
@@ -31,6 +32,7 @@ function IndexPopup() {
   }, [storedAddress])
 
   const [openInNewTab, setOpenInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, false);
+  const [automaticallyDetect, setAutomaticallyDetect] = useStorage<boolean>(STORAGE_AUTOMATICALLY_DETECT_GITPOD, true);
 
   return (
     <div
@@ -45,7 +47,7 @@ function IndexPopup() {
       <form className="w-full">
         <InputField
           label="Gitpod URL"
-          hint="Gitpod instance URL, e.g. https://gitpod.io."
+          hint={`Gitpod instance URL, e.g. ${DEFAULT_GITPOD_ENDPOINT}.`}
           topMargin={false}
         >
           <div className="flex space-x-2">
@@ -60,7 +62,13 @@ function IndexPopup() {
         <CheckboxInputField
           label="Open Workspaces in a new tab"
           checked={openInNewTab}
-          onChange={(checked) => setOpenInNewTab(checked)}
+          onChange={setOpenInNewTab}
+        />
+        <CheckboxInputField
+          label="Automatically switch to Gitpod Dedicated"
+          hint="Upon visiting a Gitpod Dedicated instance, switch to it"
+          checked={automaticallyDetect}
+          onChange={setAutomaticallyDetect}
         />
       </form>
 
