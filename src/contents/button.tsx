@@ -1,5 +1,4 @@
 import type { PlasmoCSConfig, PlasmoGetInlineAnchor } from "plasmo";
-import { Storage } from "@plasmohq/storage"
 import cssText from "data-text:../button/button.css"
 import { buttonContributions, type ButtonContributionParams, isSiteSuitable } from "../button/button-contributions";
 import { GitpodButton } from "../button/button";
@@ -25,7 +24,6 @@ class ButtonContributionManager {
   }
 
   _disabled = false;
-  _storage = new Storage();
 
   constructor(private contributions: ButtonContributionParams[]) {
     if (!this._disabled) {
