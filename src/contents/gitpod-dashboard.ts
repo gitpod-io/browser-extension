@@ -1,5 +1,5 @@
 import type { PlasmoCSConfig } from "plasmo";
-import { isSiteGitpod } from "../button/button-contributions";
+import { isSiteGitpod } from "../gitpod-dashboard/utils";
 
 export const config: PlasmoCSConfig = {
   matches: ["https://*/*"]

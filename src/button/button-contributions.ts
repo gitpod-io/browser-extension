@@ -31,13 +31,6 @@ export const isSiteSuitable = (): boolean => {
     return allowedApps.includes(appName);
 }
 
-/**
- * Checks if the current site is a Gitpod instance.
- */
-export const isSiteGitpod = (): boolean => {
-  return !!document.head.querySelector("meta[name=Gitpod]");
-}
-
 export interface ButtonContributionParams {
   /**
    * A unique id for the button contribution. Used to identify the button in the UI.
