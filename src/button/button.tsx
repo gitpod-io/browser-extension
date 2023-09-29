@@ -14,7 +14,7 @@ export interface GitpodButtonProps {
 
 export const GitpodButton = ({ application, additionalClassNames }: GitpodButtonProps) => {
   const [address] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_GITPOD_ENDPOINT);
-  const [openInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, false);
+  const [openInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, true);
 
   const [showDropdown, setShowDropdown] = useState(false);
   const actions = [
