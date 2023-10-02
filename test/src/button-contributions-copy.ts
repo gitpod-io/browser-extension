@@ -6,6 +6,31 @@
 
 export type SupportedApplication = "github" | "gitlab" | "bitbucket-server" | "bitbucket";
 
+const resolveMetaAppName = (head: HTMLHeadElement): string | undefined => {
+  const metaApplication = head.querySelector("meta[name=application-name]");
+  const ogApplication = head.querySelector("meta[property='og:site_name']");
+
+  if (metaApplication) {
+    return metaApplication.getAttribute("content") || undefined;
+  } else if (ogApplication) {
+    return ogApplication.getAttribute("content") || undefined;
+  }
+
+  return undefined;
+}
+
+/**
+ * Provides a fast check to see if the current URL is on a supported site.
+ */
+export const isSiteSuitable = (): boolean => {
+    const appName = resolveMetaAppName(document.head);
+    if (!appName) {
+      return false;
+    }
+    const allowedApps = ["GitHub", "GitLab", "Bitbucket"];
+    return allowedApps.includes(appName);
+}
+
 export interface ButtonContributionParams {
   /**
    * A unique id for the button contribution. Used to identify the button in the UI.

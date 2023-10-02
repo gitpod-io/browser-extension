@@ -1,6 +1,6 @@
 import type { PlasmoCSConfig, PlasmoGetInlineAnchor } from "plasmo";
 import cssText from "data-text:../button/button.css"
-import { buttonContributions, type ButtonContributionParams } from "../button/button-contributions";
+import { buttonContributions, type ButtonContributionParams, isSiteSuitable } from "../button/button-contributions";
 import { GitpodButton } from "../button/button";
 import { type ReactElement } from "react";
 import React from "react";
@@ -23,7 +23,16 @@ class ButtonContributionManager {
     anchor: HTMLElement,
   }
 
+  _disabled = false;
+
   constructor(private contributions: ButtonContributionParams[]) {
+    if (!this._disabled) {
+      const isSuitable = isSiteSuitable();
+      if (!isSuitable) {
+        this._disabled = true;
+      }
+    }
+
     for (const contribution of this.contributions) {
       const containerId = this.getContainerId(contribution);
       if (!this.buttons.has(containerId)) {
@@ -47,6 +56,10 @@ class ButtonContributionManager {
   }
 
   public getInlineAnchor(): HTMLElement | null {
+    if (this._disabled) {
+      return null;
+    }
+
     for (const contribution of this.contributions) {
       const isActive = this.isActive(contribution);
       if (isActive) {
@@ -84,7 +97,6 @@ class ButtonContributionManager {
     } else if (typeof contrib.match === "object" && !contrib.match.test(window.location.href)) {
       return false;
     }
-
     const parent = this.lookupElement(contrib.selector);
     if (parent === null) {
       return false;

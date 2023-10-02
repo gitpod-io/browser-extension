@@ -18,6 +18,61 @@ describe("Query Selector Tests", function () {
     await browser.close();
   });
 
+  async function testHost() {
+    const all = buttonContributions.flatMap((x) => x.exampleUrls);
+    for (const url of all) {
+      it(`should detect the platform for ${url}`, async function () {
+        await page.goto(url);
+
+        const foundMatch = await page.evaluate(() => {
+          const resolveMetaAppName = (head: HTMLHeadElement): string | undefined => {
+            const metaApplication = head.querySelector("meta[name=application-name]");
+            const ogApplication = head.querySelector("meta[property='og:site_name']");
+
+            if (metaApplication) {
+              return metaApplication.getAttribute("content") || undefined;
+            } else if (ogApplication) {
+              return ogApplication.getAttribute("content") || undefined;
+            }
+
+            return undefined;
+          }
+
+          const isSiteSuitable = (): boolean => {
+            const appName = resolveMetaAppName(document.head);
+            if (!appName) {
+              return false;
+            }
+            const allowedApps = ["GitHub", "GitLab", "Bitbucket"];
+            return allowedApps.includes(appName);
+          }
+
+          return isSiteSuitable();
+        });
+        expect(foundMatch, `Expected to find a match for '${url}'`).to.be.true;
+      }).timeout(30_000);
+
+    }
+  }
+
+  testHost();
+});
+
+describe("Query Selector Tests", function () {
+  let browser: Browser;
+  let page: Page;
+
+  before(async function () {
+    browser = await puppeteer.launch({
+      headless: "new",
+    });
+    page = await browser.newPage();
+  });
+
+  after(async function () {
+    await browser.close();
+  });
+
   async function resolveSelector(page: Page, selector: string) {
     if (selector.startsWith("xpath:")) {
       return (await page.$x(selector.slice(6)))[0] || null;
