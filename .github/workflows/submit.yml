@@ -38,7 +38,7 @@ jobs:
       - name: Change version (Staging)
         if: env.CHANNEL == 'staging'
         run: |
-          DATE=$(date +'%Y.%m.%d')
+          DATE=$(date +'%Y%m%d')
           BASE_VERSION=$(jq -r .version package.json | cut -d'-' -f1)
 
           NEW_VERSION="${BASE_VERSION}-${DATE}"
