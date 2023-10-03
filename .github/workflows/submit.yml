@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       channel:
-        description: 'Release channel to publish to'
+        description: "Release channel to publish to"
         required: true
         type: choice
         options:
@@ -35,12 +35,21 @@ jobs:
         with:
           node-version: 18.x
           cache: "pnpm"
+      - name: Change version (Staging)
+        if: env.CHANNEL == 'staging'
+        run: |
+          DATE=$(date +'%Y.%m.%d')
+          BASE_VERSION=$(jq -r .version package.json | cut -d'-' -f1)
+
+          NEW_VERSION="${BASE_VERSION}-${DATE}"
+          jq --arg version "$NEW_VERSION" '.version = $version' package.json > package_tmp.json && mv package_tmp.json package.json
+
       - name: Build the extension (Chrome)
         run: pnpm plasmo build --target=chrome-mv3
       - name: Build the extension (Firefox)
         run: pnpm plasmo build --target=firefox-mv2
       - name: Package the extension into zip artifacts
-        run: | 
+        run: |
           pnpm package --target=chrome-mv3
           pnpm package --target=firefox-mv2
       - name: Browser Platform Publish (staging)
