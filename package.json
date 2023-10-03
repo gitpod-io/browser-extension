@@ -42,7 +42,7 @@
     "eslint-plugin-react": "^7.33.2",
     "htmlnano": "2.0.3",
     "mocha": "^10.2.0",
-    "postcss": "^8.4.29",
+    "postcss": "^8.4.31",
     "prettier": "3.0.2",
     "puppeteer": "^21.1.1",
     "source-map-support": "^0.5.21",
