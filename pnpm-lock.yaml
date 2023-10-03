@@ -32,6 +32,30 @@ dependencies:
   validator:
     specifier: ^13.11.0
     version: 13.11.0
+  webext-additional-permissions:
+    specifier: ^2.4.0
+    version: 2.4.0
+  webext-content-scripts:
+    specifier: ^2.5.5
+    version: 2.5.5
+  webext-detect-page:
+    specifier: ^4.1.1
+    version: 4.1.1
+  webext-dynamic-content-scripts:
+    specifier: v9
+    version: 9.2.2
+  webext-patterns:
+    specifier: ^1.3.0
+    version: 1.3.0
+  webext-polyfill-kinda:
+    specifier: ^1.0.2
+    version: 1.0.2
+  webext-tools:
+    specifier: ^1.1.4
+    version: 1.1.4
+  webextension-polyfill-ts:
+    specifier: ^0.26.0
+    version: 0.26.0
 
 devDependencies:
   '@ianvs/prettier-plugin-sort-imports':
@@ -3318,6 +3342,14 @@ packages:
       no-case: 3.0.4
       tslib: 2.6.2
       upper-case: 2.0.2
+    dev: false
+
+  /content-scripts-register-polyfill@3.2.2:
+    resolution: {integrity: sha512-3v/PSOWU/1F4zkIhnv3mIJUEUFaN2tEW8BHUv85q3OophSqJDLwo2Tj5DzoGCQ5N5iVYTeGO0eeR/NHrDcCnvQ==}
+    dependencies:
+      webext-content-scripts: 1.0.3
+      webext-patterns: 1.3.0
+      webext-polyfill-kinda: 0.10.0
     dev: false
 
   /content-security-policy-parser@0.4.1:
@@ -6963,6 +6995,75 @@ packages:
 
   /weak-lru-cache@1.2.2:
     resolution: {integrity: sha512-DEAoo25RfSYMuTGc9vPJzZcZullwIqRDSI9LOy+fkCJPi6hykCnfKaXTuPBDuXAUcqHXyOgFtHNp/kB2FjYHbw==}
+    dev: false
+
+  /webext-additional-permissions@2.4.0:
+    resolution: {integrity: sha512-u4g2taAPJZiwVftQek6pd7LfV6zuhMRRpsy/6SyAn2KBylbXKpY8KVVX7tOpJuuS6DMTLL5Fr49+p5e3SIX9YA==}
+    dependencies:
+      webext-patterns: 1.3.0
+    dev: false
+
+  /webext-content-scripts@1.0.3:
+    resolution: {integrity: sha512-Kwd6V/Dbbfl136e30aXd319IZPy3TvgKqqF834vlkOp/ALzEE8caPEbbjGHSQjt/zJVr3vtlUQOWP7GUH8WJlA==}
+    dependencies:
+      webext-polyfill-kinda: 0.10.0
+    dev: false
+
+  /webext-content-scripts@2.5.5:
+    resolution: {integrity: sha512-CIq1LA/nHIXE43v8qlpqNPcbsSzGuQBkeykbqOWvKJ1Rx/q7zgdZsLgxwyoonWiQcJczslVmGWCfdBY04JwIyw==}
+    engines: {node: '>=16'}
+    dependencies:
+      webext-patterns: 1.3.0
+      webext-polyfill-kinda: 1.0.2
+    dev: false
+
+  /webext-detect-page@4.1.1:
+    resolution: {integrity: sha512-s8DIJESB8Hv1YRT7Yrv42C5P/NJrnD7V/Es0UopWmaww5Ugc8qqkYXh9SYdAbxiNmsXWaHwwvjYEJopQ3cMfcg==}
+    dev: false
+
+  /webext-dynamic-content-scripts@9.2.2:
+    resolution: {integrity: sha512-fUmN7I5SaNzSNXrvXMMgjMKe7QvYFQ7XcYDyqcWxMF9jHhHiotERN51MwuFacJeQTgFni9vaR3HfYDG8RddeeQ==}
+    dependencies:
+      content-scripts-register-polyfill: 3.2.2
+      webext-additional-permissions: 2.4.0
+      webext-content-scripts: 2.5.5
+      webext-detect-page: 4.1.1
+      webext-patterns: 1.3.0
+      webext-polyfill-kinda: 0.10.0
+    dev: false
+
+  /webext-patterns@1.3.0:
+    resolution: {integrity: sha512-X9HMnic9ZtvSFKi2cdh0l+sxyj7f9oLedaa2JfxjnyEqGBz8OJjaHQ40jmraX1DJLTHOpqr+rCz1r3MW2+doUg==}
+    dependencies:
+      escape-string-regexp: 5.0.0
+    dev: false
+
+  /webext-polyfill-kinda@0.10.0:
+    resolution: {integrity: sha512-Yz5WTwig5byFfMXgagtfaJkVU+RrnVqtL1hmvA+GIbpRaGKU1DIrFYHMUUFkeyFqxRSuhbOdLKzteXxCd6VNzA==}
+    dev: false
+
+  /webext-polyfill-kinda@1.0.2:
+    resolution: {integrity: sha512-rqQUKeBTOicej0tjDJWDQlOTnDcm9yYJTzgI+7rMdyYV4QHmYMRm+yjkcVgECkg/Wu9MboZ4lYeBPdp1Ep9WgQ==}
+    dev: false
+
+  /webext-tools@1.1.4:
+    resolution: {integrity: sha512-z2M8TiAhQijCWXC71zzw0tQCTK/GFAo0OHobuz04AMyvGClETsufj0vBblYiXfxUkx+MDjYYWD2dTSebBiwcqQ==}
+    engines: {node: '>=18'}
+    dependencies:
+      webext-content-scripts: 2.5.5
+      webext-detect-page: 4.1.1
+      webext-polyfill-kinda: 1.0.2
+    dev: false
+
+  /webextension-polyfill-ts@0.26.0:
+    resolution: {integrity: sha512-XEFL+aYVEsm/d4RajVwP75g56c/w2aSHnPwgtUv8/nCzbLNSzRQIix6aj1xqFkA5yr7OIDkk3OD/QTnPp8ThYA==}
+    deprecated: This project has moved to @types/webextension-polyfill
+    dependencies:
+      webextension-polyfill: 0.8.0
+    dev: false
+
+  /webextension-polyfill@0.8.0:
+    resolution: {integrity: sha512-a19+DzlT6Kp9/UI+mF9XQopeZ+n2ussjhxHJ4/pmIGge9ijCDz7Gn93mNnjpZAk95T4Tae8iHZ6sSf869txqiQ==}
     dev: false
 
   /webidl-conversions@3.0.1:

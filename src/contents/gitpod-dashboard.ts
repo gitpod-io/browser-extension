@@ -12,7 +12,7 @@ const isSiteGitpod = (): boolean => {
 }
 
 export const config: PlasmoCSConfig = {
-  matches: ["https://*/*"]
+  matches: ["https://gitpod.io/*"],
 }
 
 const storage = new Storage();

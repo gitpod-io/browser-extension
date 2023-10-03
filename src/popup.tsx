@@ -9,6 +9,7 @@ import { InputField } from "~components/forms/InputField";
 import { TextInput } from "~components/forms/TextInputField";
 import { CheckboxInputField } from "~components/forms/CheckboxInputField";
 import { DEFAULT_GITPOD_ENDPOINT } from "~constants";
+import { browser } from "webextension-polyfill-ts";
 
 function IndexPopup() {
   const [error, setError] = useState<string>();
@@ -33,6 +34,8 @@ function IndexPopup() {
 
   const [openInNewTab, setOpenInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, true);
   const [automaticallyDetect, setAutomaticallyDetect] = useStorage<boolean>(STORAGE_AUTOMATICALLY_DETECT_GITPOD, true);
+
+  const [allSites, setAllSites] = useState(false);
 
   return (
     <div
@@ -69,6 +72,16 @@ function IndexPopup() {
           hint="Upon visiting a Gitpod Dedicated instance, switch to it"
           checked={automaticallyDetect}
           onChange={setAutomaticallyDetect}
+        />
+        <CheckboxInputField
+          label="Run on all sites"
+          hint="Automatically add buttons for any detected self-hosted provider and Gitpod Dedicated"
+          checked={allSites}
+          onChange={(checked) => {
+            if (checked) {
+              browser.permissions.request({ origins: ["*://*/*"] })
+            }
+          }}
         />
       </form>
 
