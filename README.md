@@ -32,8 +32,8 @@ The build happens automatically when you start a workspace but if you want to bu
 
 ```
 pnpm install
-pnpm build
-pnpm package
+pnpm build --target=chrome-mv3 # or --target=firefox-mv2
+pnpm package --target=chrome-mv3 # or --target=firefox-mv2
 ```
 
 ### Testing
