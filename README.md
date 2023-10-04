@@ -76,7 +76,7 @@ To release a new version, follow these steps:
    Thanks to @{EXTERNAL_CONTRIBUTOR_USERNAME} for helping! 🍊
    ```
 
-For Firefox, our [GitHub Action](https://github.com/gitpod-io/browser-extension/blob/main/.github/workflows/submit.yml) should take care of publishing for us.
+For Firefox, our [GitHub Action](https://github.com/gitpod-io/browser-extension/blob/main/.github/workflows/submit.yml) should take care of publishing for us. You can trigger a release (either staging or production) from the [workflow's tab](https://github.com/gitpod-io/browser-extension/actions/workflows/submit.yml).
 
 For Chrome:
 
