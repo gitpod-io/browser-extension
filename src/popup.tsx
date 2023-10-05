@@ -8,8 +8,12 @@ import "./popup.css"
 import { InputField } from "~components/forms/InputField";
 import { TextInput } from "~components/forms/TextInputField";
 import { CheckboxInputField } from "~components/forms/CheckboxInputField";
-import { DEFAULT_GITPOD_ENDPOINT } from "~constants";
+import { ALL_ORIGINS_WILDCARD, DEFAULT_GITPOD_ENDPOINT } from "~constants";
 import { browser } from "webextension-polyfill-ts";
+
+const canAccessAllSites = async () => {
+  return await browser.permissions.contains({ origins: [ALL_ORIGINS_WILDCARD] });
+}
 
 function IndexPopup() {
   const [error, setError] = useState<string>();
@@ -36,6 +40,12 @@ function IndexPopup() {
   const [automaticallyDetect, setAutomaticallyDetect] = useStorage<boolean>(STORAGE_AUTOMATICALLY_DETECT_GITPOD, true);
 
   const [allSites, setAllSites] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      setAllSites(await canAccessAllSites());
+    })()
+  }, [])
 
   return (
     <div
@@ -77,9 +87,13 @@ function IndexPopup() {
           label="Run on all sites"
           hint="Automatically add buttons for any detected self-hosted provider and Gitpod Dedicated"
           checked={allSites}
-          onChange={(checked) => {
+          onChange={async (checked) => {
             if (checked) {
-              browser.permissions.request({ origins: ["*://*/*"] })
+              const granted = await browser.permissions.request({ origins: [ALL_ORIGINS_WILDCARD] });
+              setAllSites(granted);
+            } else {
+              const success = await browser.permissions.remove({ origins: [ALL_ORIGINS_WILDCARD] });
+              setAllSites(!success);
             }
           }}
         />

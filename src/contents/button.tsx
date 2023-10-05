@@ -6,10 +6,12 @@ import { type ReactElement } from "react";
 import React from "react";
 
 export const config: PlasmoCSConfig = {
-  matches: ["https://github.com/*",
+  matches: [
+    "https://github.com/*",
     "https://gitlab.com/*",
     "https://bitbucket.org/*",
-    "https://gitlab.cn/*",]
+    "https://gitlab.cn/*",
+  ]
 }
 
 export const getStyle = () => {
