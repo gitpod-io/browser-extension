@@ -58,7 +58,7 @@ export const GitpodButton = ({ application, additionalClassNames }: GitpodButton
     <div id="gitpod-btn-nav" title="Gitpod" className={classNames("gitpod-button", application, ...(additionalClassNames || []))}>
       <div className={classNames("button")}>
         <a
-          className={classNames("button-part", "action")}
+          className={classNames("button-part", disableAutostart ? "action-no-options" : "action")}
           href={actions[0].href}
           target={openInNewTab ? "_blank" : "_self"}
           rel="noreferrer"
@@ -68,14 +68,16 @@ export const GitpodButton = ({ application, additionalClassNames }: GitpodButton
             {actions[0].label}
           </span>
         </a>
-        <button className={classNames("button-part", "action-chevron")} onClick={(e) => {
-          e.stopPropagation();
-          toggleDropdown();
-        }}>
-          <svg width="18" viewBox="0 0 24 24" className={classNames("chevron-icon")}>
-            <path d="M7 10L12 15L17 10H7Z"></path>
-          </svg>
-        </button>
+        {!disableAutostart && (
+          <button className={classNames("button-part", "action-chevron")} onClick={(e) => {
+            e.stopPropagation();
+            toggleDropdown();
+          }}>
+            <svg width="18" viewBox="0 0 24 24" className={classNames("chevron-icon")}>
+              <path d="M7 10L12 15L17 10H7Z"></path>
+            </svg>
+          </button>
+        )}
       </div>
 
       {showDropdown && (
