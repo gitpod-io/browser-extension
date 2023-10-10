@@ -321,7 +321,7 @@ export const buttonContributions: ButtonContributionParams[] = [
     // Bitbucket Server
     {
       id: "bbs-repo",
-      match: /\/browse/,
+      match: /\/(browse|commits)/,
       exampleUrls: [
         "https://bitbucket.gitpod-dev.com/users/svenefftinge/repos/browser-extension-test/browse",
         "https://bitbucket.gitpod-dev.com/users/svenefftinge/repos/browser-extension-test/browse?at=refs%2Fheads%2Fmy-branch",
@@ -333,7 +333,6 @@ export const buttonContributions: ButtonContributionParams[] = [
       }),
       application: "bitbucket-server",
       additionalClassNames: ["secondary"],
-    
     },
     {
       id: "bbs-pull-request",
@@ -348,7 +347,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       }),
       application: "bitbucket-server",
     },
-    
+
     // bitbucket.org
     // we use xpath expressions, because the CSS selectors are not stable enough
     // tests are disabled because the URLs are not reachable without a session
