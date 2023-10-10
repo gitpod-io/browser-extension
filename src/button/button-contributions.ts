@@ -391,7 +391,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       id: "bb-commits",
       match: /\/commits\/(.+)?/,
       exampleUrls: [
-        // "https://bitbucket.org/efftinge/browser-extension-test/commits/"
+        "https://bitbucket.org/efftinge/browser-extension-test/commits/"
       ],
       selector: 'xpath://*[@id="root"]/div[2]/div[3]/div/div/div[1]/div/div/div[1]/div[1]/div[2]/div',
       containerElement: createElement("div", {

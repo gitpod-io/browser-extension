@@ -318,7 +318,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       ]
       
     },
-    // BitBucket Server
+    // Bitbucket Server
     {
       id: "bbs-repo",
       match: /\/browse/,
@@ -338,7 +338,7 @@ export const buttonContributions: ButtonContributionParams[] = [
     {
       id: "bbs-pull-request",
       exampleUrls: [
-        // disabled becaus it doesn't work anonymously
+        // disabled because it doesn't work anonymously
         // "https://bitbucket.gitpod-dev.com/users/svenefftinge/repos/browser-extension-test/pull-requests/1/overview",
       ],
       selector: "#pull-requests-container > header > div.pull-request-header-bar > div.pull-request-actions",
@@ -350,8 +350,8 @@ export const buttonContributions: ButtonContributionParams[] = [
     },
     
     // bitbucket.org
-    // we use xpath epressions, because the CSS selectors are not stable enough
-    // tests are disabled because the URLs are not rechable without a session
+    // we use xpath expressions, because the CSS selectors are not stable enough
+    // tests are disabled because the URLs are not reachable without a session
     {
       id: "bb-repo",
       exampleUrls: [
@@ -382,6 +382,18 @@ export const buttonContributions: ButtonContributionParams[] = [
         // "https://bitbucket.org/efftinge/browser-extension-test/branch/my-branch"
       ],
       selector: 'xpath://*[@id="root"]/div[2]/div[3]/div/div/div[1]/div/div/div[2]/div/div',
+      containerElement: createElement("div", {
+        marginLeft: "2px",
+      }),
+      application: "bitbucket",
+    },
+    {
+      id: "bb-commits",
+      match: /\/commits\/(.+)?/,
+      exampleUrls: [
+        "https://bitbucket.org/efftinge/browser-extension-test/commits/"
+      ],
+      selector: 'xpath://*[@id="root"]/div[2]/div[3]/div/div/div[1]/div/div/div[1]/div[1]/div[2]/div',
       containerElement: createElement("div", {
         marginLeft: "2px",
       }),
