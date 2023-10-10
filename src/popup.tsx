@@ -1,7 +1,7 @@
 import { useStorage } from "@plasmohq/storage/hook";
 import { useCallback, useEffect, useState } from "react"
-import { STORAGE_AUTOMATICALLY_DETECT_GITPOD, STORAGE_KEY_ADDRESS, STORAGE_KEY_NEW_TAB } from "~storage";
-import { parseEndpoint } from "~utils/parse-endpoint";
+import { STORAGE_KEY_ADDRESS, STORAGE_KEY_NEW_TAB } from "~storage";
+import { hostToOrigin, parseEndpoint } from "~utils/parse-endpoint";
 import React from "react";
 
 import "./popup.css"
@@ -10,9 +10,14 @@ import { TextInput } from "~components/forms/TextInputField";
 import { CheckboxInputField } from "~components/forms/CheckboxInputField";
 import { ALL_ORIGINS_WILDCARD, DEFAULT_GITPOD_ENDPOINT } from "~constants";
 import { browser } from "webextension-polyfill-ts";
+import { Button } from "~components/forms/Button";
 
 const canAccessAllSites = async () => {
   return await browser.permissions.contains({ origins: [ALL_ORIGINS_WILDCARD] });
+}
+
+const canAccessOrigin = async (origin: string) => {
+  return await browser.permissions.contains({ origins: [origin] });
 }
 
 function IndexPopup() {
@@ -20,16 +25,29 @@ function IndexPopup() {
 
   const [storedAddress, setStoredAddress] = useStorage<string>(STORAGE_KEY_ADDRESS, "https://gitpod.io");
   const [address, setAddress] = useState<string>(storedAddress);
-  const updateAddress = useCallback((address: string) => {
-    setAddress(address);
+  const updateAddress = useCallback(async () => {
     try {
       const parsed = parseEndpoint(address);
-      setStoredAddress(parsed);
       setError(undefined);
+
+      const origin = hostToOrigin(parsed);
+
+      const isPermittedOrigin = await canAccessOrigin(origin);
+      if (!isPermittedOrigin) {
+        const granted = await browser.permissions.request({ origins: [origin] });
+        if (!granted) {
+          setError("Permission to access this origin was not granted. Please try again.");
+          return;
+        } else {
+          setError(undefined);
+       }
+      }
+      setStoredAddress(parsed);
+
     } catch (e) {
       setError(e.message);
     }
-  }, [setStoredAddress, setError]);
+  }, [address, setError]);
 
   // Need to update address when storage changes. This also applies for the initial load.
   useEffect(() => {
@@ -37,8 +55,6 @@ function IndexPopup() {
   }, [storedAddress])
 
   const [openInNewTab, setOpenInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, true);
-  const [automaticallyDetect, setAutomaticallyDetect] = useStorage<boolean>(STORAGE_AUTOMATICALLY_DETECT_GITPOD, true);
-
   const [allSites, setAllSites] = useState(false);
 
   useEffect(() => {
@@ -57,31 +73,24 @@ function IndexPopup() {
       }}
     >
 
-      <form className="w-full">
+      <form className="w-full" onSubmit={updateAddress} action="#">
         <InputField
           label="Gitpod URL"
           hint={`Gitpod instance URL, e.g. ${DEFAULT_GITPOD_ENDPOINT}.`}
           topMargin={false}
         >
-          <div className="flex space-x-2">
-            <div className="flex-grow">
-              <TextInput
-                value={address}
-                onChange={updateAddress}
-              />
-            </div>
+          <div className="flex w-full max-w-sm items-center space-x-2">
+            <TextInput
+                  value={address}
+                  onChange={setAddress}
+                />
+            <Button onClick={updateAddress}>Save</Button>
           </div>
         </InputField>
         <CheckboxInputField
           label="Open Workspaces in a new tab"
           checked={openInNewTab}
           onChange={setOpenInNewTab}
-        />
-        <CheckboxInputField
-          label="Automatically switch to Gitpod Dedicated"
-          hint="Upon visiting a Gitpod Dedicated instance, switch to it"
-          checked={automaticallyDetect}
-          onChange={setAutomaticallyDetect}
         />
         <CheckboxInputField
           label="Run on all sites"

@@ -13,3 +13,9 @@ export const parseEndpoint = (input: string): string => {
 
   return `${url.protocol}//${url.host}`
 }
+
+export const hostToOrigin = (host: string): string => {
+  const url = new URL(host)
+
+  return url.origin + "/*";
+}
