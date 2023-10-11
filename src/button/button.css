@@ -92,6 +92,10 @@
     border-top-left-radius: var(--border-radius);
 }
 
+.action-no-options {
+    border-radius: var(--border-radius);
+}
+
 .action-logo {
     padding-right: 6px;
     fill: currentColor;

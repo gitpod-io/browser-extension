@@ -1,6 +1,6 @@
 import { useStorage } from "@plasmohq/storage/hook";
 import { useCallback, useEffect, useState } from "react"
-import { STORAGE_AUTOMATICALLY_DETECT_GITPOD, STORAGE_KEY_ADDRESS, STORAGE_KEY_NEW_TAB } from "~storage";
+import { STORAGE_AUTOMATICALLY_DETECT_GITPOD, STORAGE_KEY_ADDRESS, STORAGE_KEY_ALWAYS_OPTIONS, STORAGE_KEY_NEW_TAB } from "~storage";
 import { parseEndpoint } from "~utils/parse-endpoint";
 import React from "react";
 
@@ -33,6 +33,7 @@ function IndexPopup() {
 
   const [openInNewTab, setOpenInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, true);
   const [automaticallyDetect, setAutomaticallyDetect] = useStorage<boolean>(STORAGE_AUTOMATICALLY_DETECT_GITPOD, true);
+  const [disableAutostart, setDisableAutostart] = useStorage<boolean>(STORAGE_KEY_ALWAYS_OPTIONS, false);
 
   return (
     <div
@@ -69,6 +70,12 @@ function IndexPopup() {
           hint="Upon visiting a Gitpod Dedicated instance, switch to it"
           checked={automaticallyDetect}
           onChange={setAutomaticallyDetect}
+        />
+        <CheckboxInputField
+          label="Always start with options"
+          hint="Changes the primary button to always open with options"
+          checked={disableAutostart}
+          onChange={setDisableAutostart}
         />
       </form>
 

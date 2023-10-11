@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import Logo from "react:./logo-mark.svg"
 import type { SupportedApplication } from "./button-contributions";
 import classNames from "classnames";
-import { STORAGE_KEY_ADDRESS, STORAGE_KEY_NEW_TAB } from "~storage";
+import { STORAGE_KEY_ADDRESS, STORAGE_KEY_ALWAYS_OPTIONS, STORAGE_KEY_NEW_TAB } from "~storage";
 import { DEFAULT_GITPOD_ENDPOINT } from "~constants";
 import { useStorage } from "@plasmohq/storage/hook";
 import React from "react";
@@ -15,18 +15,19 @@ export interface GitpodButtonProps {
 export const GitpodButton = ({ application, additionalClassNames }: GitpodButtonProps) => {
   const [address] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_GITPOD_ENDPOINT);
   const [openInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, true);
-
+  const [disableAutostart] = useStorage<boolean>(STORAGE_KEY_ALWAYS_OPTIONS, false);
   const [showDropdown, setShowDropdown] = useState(false);
+
   const actions = [
     {
-      href: address + "/?autostart=true#" + window.location.toString(),
+      href: `${address}/?autostart=${!disableAutostart}#${window.location.toString()}`,
       label: "Open",
     },
     {
-      href: address + "/?autostart=false#" + window.location.toString(),
+      href: `${address}/?autostart=false#${window.location.toString()}`,
       label: "Open with options...",
     },
-  ]
+  ];
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const firstActionRef = useRef<HTMLAnchorElement | null>(null);
 
@@ -57,7 +58,7 @@ export const GitpodButton = ({ application, additionalClassNames }: GitpodButton
     <div id="gitpod-btn-nav" title="Gitpod" className={classNames("gitpod-button", application, ...(additionalClassNames || []))}>
       <div className={classNames("button")}>
         <a
-          className={classNames("button-part", "action")}
+          className={classNames("button-part", disableAutostart ? "action-no-options" : "action")}
           href={actions[0].href}
           target={openInNewTab ? "_blank" : "_self"}
           rel="noreferrer"
@@ -67,14 +68,16 @@ export const GitpodButton = ({ application, additionalClassNames }: GitpodButton
             {actions[0].label}
           </span>
         </a>
-        <button className={classNames("button-part", "action-chevron")} onClick={(e) => {
-          e.stopPropagation();
-          toggleDropdown();
-        }}>
-          <svg width="18" viewBox="0 0 24 24" className={classNames("chevron-icon")}>
-            <path d="M7 10L12 15L17 10H7Z"></path>
-          </svg>
-        </button>
+        {!disableAutostart && (
+          <button className={classNames("button-part", "action-chevron")} onClick={(e) => {
+            e.stopPropagation();
+            toggleDropdown();
+          }}>
+            <svg width="18" viewBox="0 0 24 24" className={classNames("chevron-icon")}>
+              <path d="M7 10L12 15L17 10H7Z"></path>
+            </svg>
+          </button>
+        )}
       </div>
 
       {showDropdown && (
