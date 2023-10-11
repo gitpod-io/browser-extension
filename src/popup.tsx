@@ -1,6 +1,6 @@
 import { useStorage } from "@plasmohq/storage/hook";
 import { useCallback, useEffect, useState } from "react"
-import { STORAGE_KEY_ADDRESS, STORAGE_KEY_NEW_TAB } from "~storage";
+import { STORAGE_KEY_ADDRESS, STORAGE_KEY_ALWAYS_OPTIONS, STORAGE_KEY_NEW_TAB } from "~storage";
 import { hostToOrigin, parseEndpoint } from "~utils/parse-endpoint";
 import React from "react";
 
@@ -62,6 +62,7 @@ function IndexPopup() {
       setAllSites(await canAccessAllSites());
     })()
   }, [])
+  const [disableAutostart, setDisableAutostart] = useStorage<boolean>(STORAGE_KEY_ALWAYS_OPTIONS, false);
 
   return (
     <div
@@ -105,6 +106,12 @@ function IndexPopup() {
               setAllSites(!success);
             }
           }}
+        />
+        <CheckboxInputField
+          label="Always start with options"
+          hint="Changes the primary button to always open with options"
+          checked={disableAutostart}
+          onChange={setDisableAutostart}
         />
       </form>
 
