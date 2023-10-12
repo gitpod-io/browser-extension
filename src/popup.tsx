@@ -1,17 +1,17 @@
-import "./popup.css"
 import React, { useCallback, useEffect, useState, type FormEvent } from "react";
 import { browser } from "webextension-polyfill-ts";
+import "./popup.css";
 
-import { useStorage } from "@plasmohq/storage/hook";
 import { Storage } from "@plasmohq/storage";
+import { useStorage } from "@plasmohq/storage/hook";
 
+import { ALL_ORIGINS_WILDCARD, DEFAULT_GITPOD_ENDPOINT } from "~constants";
 import {
   STORAGE_KEY_ADDRESS,
   STORAGE_KEY_ALWAYS_OPTIONS,
   STORAGE_KEY_NEW_TAB
 } from "~storage";
 import { hostToOrigin, parseEndpoint } from "~utils/parse-endpoint";
-import { ALL_ORIGINS_WILDCARD, DEFAULT_GITPOD_ENDPOINT } from "~constants";
 import { canAccessAllSites, canAccessOrigin } from "~utils/permissions";
 
 import { Button } from "~components/forms/Button";
