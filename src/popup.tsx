@@ -1,32 +1,41 @@
-import { useStorage } from "@plasmohq/storage/hook";
-import { useCallback, useEffect, useState } from "react"
-import { STORAGE_KEY_ADDRESS, STORAGE_KEY_ALWAYS_OPTIONS, STORAGE_KEY_NEW_TAB } from "~storage";
-import { hostToOrigin, parseEndpoint } from "~utils/parse-endpoint";
-import React from "react";
-
 import "./popup.css"
+import React, { useCallback, useEffect, useState, type FormEvent } from "react";
+import { browser } from "webextension-polyfill-ts";
+
+import { useStorage } from "@plasmohq/storage/hook";
+import { Storage } from "@plasmohq/storage";
+
+import {
+  STORAGE_KEY_ADDRESS,
+  STORAGE_KEY_ALWAYS_OPTIONS,
+  STORAGE_KEY_NEW_TAB
+} from "~storage";
+import { hostToOrigin, parseEndpoint } from "~utils/parse-endpoint";
+import { ALL_ORIGINS_WILDCARD, DEFAULT_GITPOD_ENDPOINT } from "~constants";
+import { canAccessAllSites, canAccessOrigin } from "~utils/permissions";
+
+import { Button } from "~components/forms/Button";
+import { CheckboxInputField } from "~components/forms/CheckboxInputField";
 import { InputField } from "~components/forms/InputField";
 import { TextInput } from "~components/forms/TextInputField";
-import { CheckboxInputField } from "~components/forms/CheckboxInputField";
-import { ALL_ORIGINS_WILDCARD, DEFAULT_GITPOD_ENDPOINT } from "~constants";
-import { browser } from "webextension-polyfill-ts";
-import { Button } from "~components/forms/Button";
 
-const canAccessAllSites = async () => {
-  return await browser.permissions.contains({ origins: [ALL_ORIGINS_WILDCARD] });
-}
 
-const canAccessOrigin = async (origin: string) => {
-  return await browser.permissions.contains({ origins: [origin] });
-}
+const storage = new Storage();
 
 function IndexPopup() {
   const [error, setError] = useState<string>();
 
-  const [storedAddress, setStoredAddress] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_GITPOD_ENDPOINT);
+  const [storedAddress] = useStorage<string>(
+    STORAGE_KEY_ADDRESS,
+    DEFAULT_GITPOD_ENDPOINT
+  );
+
   const [address, setAddress] = useState<string>(storedAddress);
-  const updateAddress = useCallback(async () => {
+  const updateAddress = useCallback(async (e: FormEvent) => {
     try {
+
+      e.preventDefault();
+
       const parsed = parseEndpoint(address);
       setError(undefined);
 
@@ -36,14 +45,17 @@ function IndexPopup() {
       if (!isPermittedOrigin) {
         const granted = await browser.permissions.request({ origins: [origin] });
         if (!granted) {
-          setError("Permission to access this origin was not granted. Please try again.");
+          setError(
+            "Permission to access this origin was not granted. Please try again."
+          );
           return;
         } else {
           setError(undefined);
-       }
+        }
       }
-      setStoredAddress(parsed);
 
+      // We set the address via the Storage API instead of the hook, because doing so with the hook after waiting for user interaction on the permission request causes the stored item to not update.
+      await storage.setItem(STORAGE_KEY_ADDRESS, parsed);
     } catch (e) {
       setError(e.message);
     }
@@ -51,18 +63,24 @@ function IndexPopup() {
 
   // Need to update address when storage changes. This also applies for the initial load.
   useEffect(() => {
-    setAddress(storedAddress);
-  }, [storedAddress])
+    setAddress(storedAddress)
+  }, [storedAddress]);
 
-  const [openInNewTab, setOpenInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, true);
+  const [openInNewTab, setOpenInNewTab] = useStorage<boolean>(
+    STORAGE_KEY_NEW_TAB,
+    true
+  );
   const [allSites, setAllSites] = useState(false);
 
   useEffect(() => {
     (async () => {
-      setAllSites(await canAccessAllSites());
+      setAllSites(await canAccessAllSites())
     })()
-  }, [])
-  const [disableAutostart, setDisableAutostart] = useStorage<boolean>(STORAGE_KEY_ALWAYS_OPTIONS, false);
+  }, []);
+  const [disableAutostart, setDisableAutostart] = useStorage<boolean>(
+    STORAGE_KEY_ALWAYS_OPTIONS,
+    false
+  );
 
   return (
     <div
@@ -70,21 +88,15 @@ function IndexPopup() {
         display: "flex",
         flexDirection: "column",
         minWidth: "360px",
-        padding: "16px",
-      }}
-    >
-
+        padding: "16px"
+      }}>
       <form className="w-full" onSubmit={updateAddress} action="#">
         <InputField
           label="Gitpod URL"
           hint={`Gitpod instance URL, e.g. ${DEFAULT_GITPOD_ENDPOINT}.`}
-          topMargin={false}
-        >
+          topMargin={false}>
           <div className="flex w-full max-w-sm items-center space-x-2">
-            <TextInput
-                  value={address}
-                  onChange={setAddress}
-                />
+            <TextInput value={address} onChange={setAddress} />
             <Button onClick={updateAddress}>Save</Button>
           </div>
         </InputField>
@@ -99,11 +111,15 @@ function IndexPopup() {
           checked={allSites}
           onChange={async (checked) => {
             if (checked) {
-              const granted = await browser.permissions.request({ origins: [ALL_ORIGINS_WILDCARD] });
-              setAllSites(granted);
+              const granted = await browser.permissions.request({
+                origins: [ALL_ORIGINS_WILDCARD]
+              })
+              setAllSites(granted)
             } else {
-              const success = await browser.permissions.remove({ origins: [ALL_ORIGINS_WILDCARD] });
-              setAllSites(!success);
+              const success = await browser.permissions.remove({
+                origins: [ALL_ORIGINS_WILDCARD]
+              })
+              setAllSites(!success)
             }
           }}
         />
@@ -116,16 +132,19 @@ function IndexPopup() {
       </form>
 
       {/* show error if set  */}
-      <div style={
-        error ? {
-          color: "red",
-          marginTop: "8px",
-          display: "inline"
-        } : {
-          display: "none"
-        }
-      }
-      >{error}
+      <div
+        style={
+          error
+            ? {
+                color: "red",
+                marginTop: "8px",
+                display: "inline"
+              }
+            : {
+                display: "none"
+              }
+        }>
+        {error}
       </div>
     </div>
   )
