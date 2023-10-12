@@ -107,7 +107,7 @@ function IndexPopup() {
         />
         <CheckboxInputField
           label="Run on all sites"
-          hint="Automatically add buttons for any detected self-hosted provider and Gitpod Dedicated"
+          hint="Automatically add buttons for any detected self-hosted SCM provider"
           checked={allSites}
           onChange={async (checked) => {
             if (checked) {
