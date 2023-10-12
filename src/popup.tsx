@@ -93,7 +93,7 @@ function IndexPopup() {
       <form className="w-full" onSubmit={updateAddress} action="#">
         <InputField
           label="Gitpod URL"
-          hint={`Gitpod instance URL, e.g. ${DEFAULT_GITPOD_ENDPOINT}.`}
+          hint={`Gitpod instance URL, e.g., ${DEFAULT_GITPOD_ENDPOINT}.`}
           topMargin={false}>
           <div className="flex w-full max-w-sm items-center space-x-2">
             <TextInput value={address} onChange={setAddress} />
