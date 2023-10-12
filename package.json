@@ -1,7 +1,7 @@
 {
   "name": "gitpod",
   "displayName": "Gitpod",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "description": "The developer platform for on-demand cloud development environments. Create software faster and more securely.",
   "author": "Gitpod <info@gitpod.io>",
   "homepage": "https://www.gitpod.io",
@@ -69,7 +69,7 @@
     ],
     "browser_specific_settings": {
       "gecko": {
-        "id": "$FIREFOX_EXT_ID"
+        "id": "{24229a4f-eecc-47dc-abad-e47674ea8169}"
       }
     }
   }
