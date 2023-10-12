@@ -23,7 +23,7 @@ const canAccessOrigin = async (origin: string) => {
 function IndexPopup() {
   const [error, setError] = useState<string>();
 
-  const [storedAddress, setStoredAddress] = useStorage<string>(STORAGE_KEY_ADDRESS, "https://gitpod.io");
+  const [storedAddress, setStoredAddress] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_GITPOD_ENDPOINT);
   const [address, setAddress] = useState<string>(storedAddress);
   const updateAddress = useCallback(async () => {
     try {
