@@ -1,9 +1,9 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import Logo from "react:./logo-mark.svg"
 import type { SupportedApplication } from "./button-contributions";
 import classNames from "classnames";
 import { STORAGE_KEY_ADDRESS, STORAGE_KEY_ALWAYS_OPTIONS, STORAGE_KEY_NEW_TAB } from "~storage";
-import { DEFAULT_GITPOD_ENDPOINT } from "~constants";
+import { DEFAULT_GITPOD_ENDPOINT, EVENT_CURRENT_URL_CHANGED } from "~constants";
 import { useStorage } from "@plasmohq/storage/hook";
 import React from "react";
 
@@ -17,17 +17,30 @@ export const GitpodButton = ({ application, additionalClassNames }: GitpodButton
   const [openInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, true);
   const [disableAutostart] = useStorage<boolean>(STORAGE_KEY_ALWAYS_OPTIONS, false);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [currentHref, setCurrentHref] = useState(window.location.href);
 
-  const actions = [
+  useEffect(() => {
+    const handleUrlChange = () => {
+      setCurrentHref(window.location.href)
+    };
+
+    document.addEventListener(EVENT_CURRENT_URL_CHANGED, handleUrlChange);
+
+    return () => {
+      document.removeEventListener(EVENT_CURRENT_URL_CHANGED, handleUrlChange);
+    };
+  }, []);
+
+  const actions = useMemo(() => [
     {
-      href: `${address}/?autostart=${!disableAutostart}#${window.location.toString()}`,
+      href: `${address}/?autostart=${!disableAutostart}#${currentHref}`,
       label: "Open",
     },
     {
-      href: `${address}/?autostart=false#${window.location.toString()}`,
+      href: `${address}/?autostart=false#${currentHref}`,
       label: "Open with options...",
     },
-  ];
+  ], [address, disableAutostart, currentHref]);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const firstActionRef = useRef<HTMLAnchorElement | null>(null);
 
