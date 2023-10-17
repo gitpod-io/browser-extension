@@ -7,6 +7,7 @@ import { useStorage } from "@plasmohq/storage/hook";
 
 import { ALL_ORIGINS_WILDCARD, DEFAULT_GITPOD_ENDPOINT } from "~constants";
 import {
+  STORAGE_AUTOMATICALLY_DETECT_GITPOD,
   STORAGE_KEY_ADDRESS,
   STORAGE_KEY_ALWAYS_OPTIONS,
   STORAGE_KEY_NEW_TAB
@@ -82,6 +83,11 @@ function IndexPopup() {
     false
   );
 
+  const [enableInstanceHopping, setEnableInstanceHopping] = useStorage<boolean>(
+    STORAGE_AUTOMATICALLY_DETECT_GITPOD,
+    true
+  );
+
   return (
     <div
       style={{
@@ -128,6 +134,12 @@ function IndexPopup() {
           hint="Changes the primary button to always open with options"
           checked={disableAutostart}
           onChange={setDisableAutostart}
+        />
+        <CheckboxInputField
+          label="Automatic instance hopping"
+          hint="Changes the Gitpod URL automatically when a Gitpod Dedicated instance is detected"
+          checked={enableInstanceHopping}
+          onChange={setEnableInstanceHopping}
         />
       </form>
 

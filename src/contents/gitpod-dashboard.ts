@@ -1,4 +1,8 @@
 import type { PlasmoCSConfig } from "plasmo";
+import { Storage } from "@plasmohq/storage";
+import { STORAGE_AUTOMATICALLY_DETECT_GITPOD, STORAGE_KEY_ADDRESS } from "~storage";
+import { parseEndpoint } from "~utils/parse-endpoint";
+import { DEFAULT_GITPOD_ENDPOINT } from "~constants";
 
 /**
  * Checks if the current site is a Gitpod instance.
@@ -15,6 +19,21 @@ export const config: PlasmoCSConfig = {
   ],
 }
 
+const storage = new Storage();
+
+const automaticallyUpdateEndpoint = async () => {
+  if (await storage.get<boolean>(STORAGE_AUTOMATICALLY_DETECT_GITPOD) === false) {
+    return;
+  }
+
+  const currentHost = window.location.host;
+  if (currentHost !== new URL(DEFAULT_GITPOD_ENDPOINT).host) {
+    console.log(`Gitpod extension: switching default endpoint to ${currentHost}.`)
+    await storage.set(STORAGE_KEY_ADDRESS, parseEndpoint(currentHost));
+  }
+}
+
 if (isSiteGitpod()) {
   sessionStorage.setItem("browser-extension-installed", "true");
+  automaticallyUpdateEndpoint();
 }
