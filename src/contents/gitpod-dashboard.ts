@@ -1,8 +1,8 @@
-import type { PlasmoCSConfig } from "plasmo";
 import { Storage } from "@plasmohq/storage";
+import type { PlasmoCSConfig } from "plasmo";
+import { DEFAULT_GITPOD_ENDPOINT } from "~constants";
 import { STORAGE_AUTOMATICALLY_DETECT_GITPOD, STORAGE_KEY_ADDRESS } from "~storage";
 import { parseEndpoint } from "~utils/parse-endpoint";
-import { DEFAULT_GITPOD_ENDPOINT } from "~constants";
 
 /**
  * Checks if the current site is a Gitpod instance.
