@@ -1,12 +1,15 @@
+import cssText from "data-text:../button/button.css";
 import type { PlasmoCSConfig, PlasmoGetInlineAnchor } from "plasmo";
-import cssText from "data-text:../button/button.css"
-import { buttonContributions, type ButtonContributionParams, isSiteSuitable } from "../button/button-contributions";
+import React, { type ReactElement } from "react";
 import { GitpodButton } from "../button/button";
-import { type ReactElement } from "react";
-import React from "react";
+import { buttonContributions, isSiteSuitable, type ButtonContributionParams } from "../button/button-contributions";
 
 export const config: PlasmoCSConfig = {
-  matches: ["<all_urls>"]
+  matches: [
+    "https://github.com/*",
+    "https://gitlab.com/*",
+    "https://bitbucket.org/*",
+  ]
 }
 
 export const getStyle = () => {
