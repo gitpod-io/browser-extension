@@ -1,7 +1,7 @@
 {
   "name": "gitpod",
   "displayName": "Gitpod",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "The developer platform for on-demand cloud development environments. Create software faster and more securely.",
   "author": "Gitpod <info@gitpod.io>",
   "homepage": "https://www.gitpod.io",
@@ -59,7 +59,7 @@
     "typescript": "5.1.6"
   },
   "manifest": {
-    "optional_host_permissions": [
+    "host_permissions": [
       "*://*/*"
     ],
     "permissions": [
