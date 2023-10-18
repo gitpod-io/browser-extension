@@ -3,6 +3,7 @@ import type { PlasmoCSConfig, PlasmoGetInlineAnchor } from "plasmo";
 import React, { type ReactElement } from "react";
 import { GitpodButton } from "../button/button";
 import { buttonContributions, isSiteSuitable, type ButtonContributionParams } from "../button/button-contributions";
+import { EVENT_CURRENT_URL_CHANGED } from "~constants";
 
 export const config: PlasmoCSConfig = {
   matches: [
@@ -26,6 +27,8 @@ class ButtonContributionManager {
     anchor: HTMLElement,
   }
 
+  private currentHref = window.location.href;
+
   _disabled = false;
 
   constructor(private contributions: ButtonContributionParams[]) {
@@ -45,7 +48,7 @@ class ButtonContributionManager {
   }
 
   private getContainerId(contribution: ButtonContributionParams) {
-    return "gp-btn-cnt-" + contribution.application + contribution.additionalClassNames?.map(c => "-" + c)?.join("");
+    return `gp-btn-cnt-${contribution.application}${contribution.additionalClassNames?.map(c => "-" + c)?.join("")}`;
   }
 
   private updateActive(active?: { contribution: ButtonContributionParams, anchor: HTMLElement }) {
@@ -61,6 +64,12 @@ class ButtonContributionManager {
   public getInlineAnchor(): HTMLElement | null {
     if (this._disabled) {
       return null;
+    }
+
+    if (this.currentHref !== window.location.href) {
+      this.currentHref = window.location.href;
+      const event = new CustomEvent(EVENT_CURRENT_URL_CHANGED);
+      document.dispatchEvent(event);
     }
 
     for (const contribution of this.contributions) {
