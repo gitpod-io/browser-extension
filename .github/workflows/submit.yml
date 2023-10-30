@@ -48,12 +48,12 @@ jobs:
         run: pnpm plasmo build --target=chrome-mv3
       - name: Build the extension (Firefox)
         run: |
-          jq '.manifest.host_permissions = .manifest.optional_host_permissions | del(.manifest.optional_host_permissions)' package.json > temp.json && mv temp.json package.json # fix incomatibility with Chrome's MV3. See https://bugzilla.mozilla.org/show_bug.cgi?id=1766026
-          pnpm plasmo build --target=firefox-mv3
+          ./scripts/firefox-mv2.sh
+          pnpm plasmo build --target=firefox-mv2
       - name: Package the extension into zip artifacts
         run: |
           pnpm package --target=chrome-mv3
-          pnpm package --target=firefox-mv3
+          pnpm package --target=firefox-mv2
       - name: Browser Platform Publish (staging)
         uses: PlasmoHQ/bpp@v3
         if: env.CHANNEL == 'staging'

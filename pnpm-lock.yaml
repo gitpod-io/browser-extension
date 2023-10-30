@@ -41,6 +41,9 @@ dependencies:
   webext-detect-page:
     specifier: ^4.1.1
     version: 4.1.1
+  webext-domain-permission-toggle:
+    specifier: ^4.0.1
+    version: 4.0.1
   webext-dynamic-content-scripts:
     specifier: v9
     version: 9.2.2
@@ -7051,6 +7054,17 @@ packages:
 
   /webext-detect-page@4.1.1:
     resolution: {integrity: sha512-s8DIJESB8Hv1YRT7Yrv42C5P/NJrnD7V/Es0UopWmaww5Ugc8qqkYXh9SYdAbxiNmsXWaHwwvjYEJopQ3cMfcg==}
+    dev: false
+
+  /webext-domain-permission-toggle@4.0.1:
+    resolution: {integrity: sha512-P9ECzrLWMbd6nfz4UTFqafHedKpS7x3zdRjQRUYDRVKAbZGZ0ivxG7qJBnx+Q2+2r5TuQBdcLFBNUhIaSDBc+w==}
+    dependencies:
+      webext-additional-permissions: 2.4.0
+      webext-content-scripts: 2.5.5
+      webext-detect-page: 4.1.1
+      webext-patterns: 1.3.0
+      webext-polyfill-kinda: 1.0.2
+      webext-tools: 1.1.4
     dev: false
 
   /webext-dynamic-content-scripts@9.2.2:
