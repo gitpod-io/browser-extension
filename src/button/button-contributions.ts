@@ -198,17 +198,9 @@ export const buttonContributions: ButtonContributionParams[] = [
         // "https://github.com/svenefftinge/browser-extension-test/tree/my-branch",
       ],
       selector: `xpath://*[@id="repo-content-pjax-container"]/div/div/div[2]/div[1]/react-partial/div/div/div[1]/div/div/div[2]/div[2]/div/div[3]/div[1]/div[2]`,
-      containerElement: createElement("div", {
-      }),
+      containerElement: createElement("div", {}),
+      additionalClassNames: ["medium"],
       application: "github",
-      manipulations: [
-        {
-          // make the code button secondary 
-          element: "#repository-details-container > ul > li > get-repo > details > summary",
-          remove: "Button--primary",
-          add: "Button--secondary"
-        }
-      ],
       match: () => {
         const regex = /^https?:\/\/([^/]+)\/([^/]+)\/([^/]+)(\/(tree\/.*)?)?$/;
         return document.querySelector("div.file-navigation") === null && regex.test(window.location.href);
