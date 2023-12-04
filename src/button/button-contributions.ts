@@ -197,8 +197,8 @@ export const buttonContributions: ButtonContributionParams[] = [
         // "https://github.com/svenefftinge/browser-extension-test",
         // "https://github.com/svenefftinge/browser-extension-test/tree/my-branch",
       ],
-      selector: "#repository-details-container > ul",
-      containerElement: createElement("li", {
+      selector: `xpath://*[@id="repo-content-pjax-container"]/div/div/div[2]/div[1]/react-partial/div/div/div[1]/div/div/div[2]/div[2]/div/div[3]/div[1]/div[2]`,
+      containerElement: createElement("div", {
       }),
       application: "github",
       manipulations: [
