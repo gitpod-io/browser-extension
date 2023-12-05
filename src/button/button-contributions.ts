@@ -380,7 +380,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       exampleUrls: [
         // "https://bitbucket.org/efftinge/browser-extension-test/branch/my-branch"
       ],
-      selector: 'xpath://*[@id="root"]/div[2]/div[3]/div/div/div[1]/div/div/div[2]/div/div',
+      selector: 'xpath://*[@id="root"]/div[3]/div[3]/div/div/div[1]/div/div/div[2]/div/div',
       containerElement: createElement("div", {
         marginLeft: "2px",
       }),
@@ -392,7 +392,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       exampleUrls: [
         "https://bitbucket.org/efftinge/browser-extension-test/commits/"
       ],
-      selector: 'xpath://*[@id="root"]/div[2]/div[3]/div/div/div[1]/div/div/div[1]/div[1]/div[2]/div',
+      selector: 'xpath://*[@id="root"]/div[3]/div[3]/div/div/div[1]/div/div/div[1]/div[1]/div[2]/div',
       containerElement: createElement("div", {
         marginLeft: "2px",
       }),
