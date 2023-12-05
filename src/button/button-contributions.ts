@@ -356,7 +356,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       exampleUrls: [
         // "https://bitbucket.org/svenefftinge/browser-extension-test/src/master/"
       ],
-      selector: 'xpath://*[@id="root"]/div[2]/div[3]/div/div/div[1]/div/header/div/div/div/div[2]/div',
+      selector: 'xpath://*[@id="root"]/div[3]/div[3]/div/div/div[1]/div/header/div/div/div/div[2]/div',
       insertBefore: "#root > div.css-kyhvoj > div.css-e48442 > div > div > div.css-8ypwyz.efo6slf1 > div > header > div > div > div > div.sc-kAzzGY.hKOvhL > div > div:nth-child(3)",
       containerElement: createElement("div", {
         marginLeft: "2px",
