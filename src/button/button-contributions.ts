@@ -191,7 +191,7 @@ export const buttonContributions: ButtonContributionParams[] = [
   
     // GitHub
     {
-      id: "new-repo",
+      id: "gh-new-repo",
       exampleUrls: [
         // disabled testing, because the new layout doesn't show as an anonymous user
         // "https://github.com/svenefftinge/browser-extension-test",
@@ -207,7 +207,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       }
     },
     {
-      id: "commit",
+      id: "gh-commit",
       exampleUrls: [
         "https://github.com/svenefftinge/browser-extension-test/commit/82d701a9ac26ea25da9b24c5b3722b7a89e43b16"
       ],
@@ -222,7 +222,7 @@ export const buttonContributions: ButtonContributionParams[] = [
     },
     
     {
-      id: "issues",
+      id: "gh-issues",
       exampleUrls: [
         "https://github.com/svenefftinge/browser-extension-test/issues/1"
       ],
@@ -242,7 +242,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       ],
     },
     {
-      id: "pulls",
+      id: "gh-pulls",
       exampleUrls: [
         "https://github.com/svenefftinge/browser-extension-test/pull/2",
       ],
@@ -254,7 +254,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       application: "github",
     },
     {
-      id: "repo",
+      id: "gh-repo",
       exampleUrls: [
         "https://github.com/svenefftinge/browser-extension-test",
         "https://github.com/svenefftinge/browser-extension-test/tree/my-branch",
@@ -275,7 +275,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       ],
     },
     {
-      id: "file",
+      id: "gh-file",
       exampleUrls: [
         "https://github.com/svenefftinge/browser-extension-test/blob/my-branch/README.md"
       ],
@@ -287,7 +287,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       additionalClassNames: ["medium"],
     },
     {
-      id: "empty-repo",
+      id: "gh-empty-repo",
       exampleUrls: [
         //TODO fixme "https://github.com/svenefftinge/empty-repo",
       ],
