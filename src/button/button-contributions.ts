@@ -173,7 +173,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         "https://gitlab.com/svenefftinge/browser-extension-test/-/issues/1",
       ],
       match: /\/issues\//,
-      selector: "#content-body > div.issue-details.issuable-details.js-issue-details > div.detail-page-description.content-block.js-detail-page-description.gl-pt-3.gl-pb-0.gl-border-none > div:nth-child(1) > div > div.gl-display-flex.gl-align-items-flex-start.gl-flex-direction-column.gl-sm-flex-direction-row.gl-gap-3.gl-pt-3 > div",
+      selector: "#content-body > div.issue-details.issuable-details.js-issue-details > div.detail-page-description.content-block.js-detail-page-description.gl-pt-3.gl-pb-0.gl-border-none > div:nth-child(1) > div > div.gl-display-flex > div",
       containerElement: createElement("div", {marginLeft: "0", marginRight: "0px"}),
       application: "gitlab",
       insertBefore: "#new-actions-header-dropdown",
