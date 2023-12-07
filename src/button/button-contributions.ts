@@ -253,6 +253,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       match: /\/pull\//,
       application: "github",
     },
+    // Look into removing since GitHub is shifting to the new repo layout (see gh-new-repo)
     {
       id: "gh-repo",
       exampleUrls: [
