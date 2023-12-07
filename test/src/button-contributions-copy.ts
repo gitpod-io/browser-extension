@@ -173,7 +173,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         "https://gitlab.com/svenefftinge/browser-extension-test/-/issues/1",
       ],
       match: /\/issues\//,
-      selector: "#content-body > div.issue-details.issuable-details.js-issue-details > div.detail-page-description.content-block.js-detail-page-description.gl-pt-3.gl-pb-0.gl-border-none > div:nth-child(1) > div > div.gl-display-flex.gl-align-items-flex-start.gl-flex-direction-column.gl-sm-flex-direction-row.gl-gap-3.gl-pt-3 > div",
+      selector: "#content-body > div.issue-details.issuable-details.js-issue-details > div.detail-page-description.content-block.js-detail-page-description.gl-pt-3.gl-pb-0.gl-border-none > div:nth-child(1) > div > div.gl-display-flex > div",
       containerElement: createElement("div", {marginLeft: "0", marginRight: "0px"}),
       application: "gitlab",
       insertBefore: "#new-actions-header-dropdown",
@@ -191,31 +191,23 @@ export const buttonContributions: ButtonContributionParams[] = [
   
     // GitHub
     {
-      id: "new-repo",
+      id: "gh-new-repo",
       exampleUrls: [
         // disabled testing, because the new layout doesn't show as an anonymous user
         // "https://github.com/svenefftinge/browser-extension-test",
         // "https://github.com/svenefftinge/browser-extension-test/tree/my-branch",
       ],
-      selector: "#repository-details-container > ul",
-      containerElement: createElement("li", {
-      }),
+      selector: `xpath://*[@id="repo-content-pjax-container"]/div/div/div[2]/div[1]/react-partial/div/div/div[1]/div/div/div[2]/div[2]/div/div[3]/div[1]/div[2]`,
+      containerElement: createElement("div", {}),
+      additionalClassNames: ["medium"],
       application: "github",
-      manipulations: [
-        {
-          // make the code button secondary 
-          element: "#repository-details-container > ul > li > get-repo > details > summary",
-          remove: "Button--primary",
-          add: "Button--secondary"
-        }
-      ],
       match: () => {
         const regex = /^https?:\/\/([^/]+)\/([^/]+)\/([^/]+)(\/(tree\/.*)?)?$/;
         return document.querySelector("div.file-navigation") === null && regex.test(window.location.href);
       }
     },
     {
-      id: "commit",
+      id: "gh-commit",
       exampleUrls: [
         "https://github.com/svenefftinge/browser-extension-test/commit/82d701a9ac26ea25da9b24c5b3722b7a89e43b16"
       ],
@@ -230,7 +222,7 @@ export const buttonContributions: ButtonContributionParams[] = [
     },
     
     {
-      id: "issues",
+      id: "gh-issues",
       exampleUrls: [
         "https://github.com/svenefftinge/browser-extension-test/issues/1"
       ],
@@ -250,7 +242,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       ],
     },
     {
-      id: "pulls",
+      id: "gh-pulls",
       exampleUrls: [
         "https://github.com/svenefftinge/browser-extension-test/pull/2",
       ],
@@ -261,8 +253,9 @@ export const buttonContributions: ButtonContributionParams[] = [
       match: /\/pull\//,
       application: "github",
     },
+    // Look into removing since GitHub is shifting to the new repo layout (see gh-new-repo)
     {
-      id: "repo",
+      id: "gh-repo",
       exampleUrls: [
         "https://github.com/svenefftinge/browser-extension-test",
         "https://github.com/svenefftinge/browser-extension-test/tree/my-branch",
@@ -283,7 +276,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       ],
     },
     {
-      id: "file",
+      id: "gh-file",
       exampleUrls: [
         "https://github.com/svenefftinge/browser-extension-test/blob/my-branch/README.md"
       ],
@@ -295,7 +288,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       additionalClassNames: ["medium"],
     },
     {
-      id: "empty-repo",
+      id: "gh-empty-repo",
       exampleUrls: [
         //TODO fixme "https://github.com/svenefftinge/empty-repo",
       ],
@@ -356,7 +349,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       exampleUrls: [
         // "https://bitbucket.org/svenefftinge/browser-extension-test/src/master/"
       ],
-      selector: 'xpath://*[@id="root"]/div[2]/div[3]/div/div/div[1]/div/header/div/div/div/div[2]/div',
+      selector: 'xpath://*[@id="root"]/div/div[3]/div/div/div[1]/div/header/div/div/div/div[2]/div',
       insertBefore: "#root > div.css-kyhvoj > div.css-e48442 > div > div > div.css-8ypwyz.efo6slf1 > div > header > div > div > div > div.sc-kAzzGY.hKOvhL > div > div:nth-child(3)",
       containerElement: createElement("div", {
         marginLeft: "2px",
@@ -380,7 +373,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       exampleUrls: [
         // "https://bitbucket.org/efftinge/browser-extension-test/branch/my-branch"
       ],
-      selector: 'xpath://*[@id="root"]/div[2]/div[3]/div/div/div[1]/div/div/div[2]/div/div',
+      selector: 'xpath://*[@id="root"]/div/div[3]/div/div/div[1]/div/div/div[2]/div/div',
       containerElement: createElement("div", {
         marginLeft: "2px",
       }),
@@ -392,7 +385,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       exampleUrls: [
         "https://bitbucket.org/efftinge/browser-extension-test/commits/"
       ],
-      selector: 'xpath://*[@id="root"]/div[2]/div[3]/div/div/div[1]/div/div/div[1]/div[1]/div[2]/div',
+      selector: 'xpath://*[@id="root"]/div/div[3]/div/div/div[1]/div/div/div[1]/div[1]/div[2]/div',
       containerElement: createElement("div", {
         marginLeft: "2px",
       }),
