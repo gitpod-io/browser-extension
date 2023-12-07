@@ -173,7 +173,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         "https://gitlab.com/svenefftinge/browser-extension-test/-/issues/1",
       ],
       match: /\/issues\//,
-      selector: "#content-body > div.issue-details.issuable-details.js-issue-details > div.detail-page-description.content-block.js-detail-page-description.gl-pt-3.gl-pb-0.gl-border-none > div:nth-child(1) > div > div.gl-display-flex.gl-align-items-flex-start.gl-flex-direction-column.gl-sm-flex-direction-row.gl-gap-3.gl-pt-3 > div",
+      selector: "#content-body > div.issue-details.issuable-details.js-issue-details > div.detail-page-description.content-block.js-detail-page-description.gl-pt-3.gl-pb-0.gl-border-none > div:nth-child(1) > div > div.gl-display-flex > div",
       containerElement: createElement("div", {marginLeft: "0", marginRight: "0px"}),
       application: "gitlab",
       insertBefore: "#new-actions-header-dropdown",
@@ -348,7 +348,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       exampleUrls: [
         // "https://bitbucket.org/svenefftinge/browser-extension-test/src/master/"
       ],
-      selector: 'xpath://*[@id="root"]/div[2]/div[3]/div/div/div[1]/div/header/div/div/div/div[2]/div',
+      selector: 'xpath://*[@id="root"]/div/div[3]/div/div/div[1]/div/header/div/div/div/div[2]/div',
       insertBefore: "#root > div.css-kyhvoj > div.css-e48442 > div > div > div.css-8ypwyz.efo6slf1 > div > header > div > div > div > div.sc-kAzzGY.hKOvhL > div > div:nth-child(3)",
       containerElement: createElement("div", {
         marginLeft: "2px",
@@ -372,7 +372,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       exampleUrls: [
         // "https://bitbucket.org/efftinge/browser-extension-test/branch/my-branch"
       ],
-      selector: 'xpath://*[@id="root"]/div[2]/div[3]/div/div/div[1]/div/div/div[2]/div/div',
+      selector: 'xpath://*[@id="root"]/div/div[3]/div/div/div[1]/div/div/div[2]/div/div',
       containerElement: createElement("div", {
         marginLeft: "2px",
       }),
@@ -384,7 +384,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       exampleUrls: [
         "https://bitbucket.org/efftinge/browser-extension-test/commits/"
       ],
-      selector: 'xpath://*[@id="root"]/div[2]/div[3]/div/div/div[1]/div/div/div[1]/div[1]/div[2]/div',
+      selector: 'xpath://*[@id="root"]/div/div[3]/div/div/div[1]/div/div/div[1]/div[1]/div[2]/div',
       containerElement: createElement("div", {
         marginLeft: "2px",
       }),
