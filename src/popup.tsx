@@ -41,17 +41,12 @@ function IndexPopup() {
 
     const origin = hostToOrigin(parsedAddress);
 
+    storage.setItem(STORAGE_KEY_ADDRESS, parsedAddress)
+      .catch(e => {
+        setError(e.message);
+      });
+
     browser.permissions.request({ origins: [origin] })
-      .then(granted => {
-        if (granted) {
-          storage.setItem(STORAGE_KEY_ADDRESS, parsedAddress)
-            .catch(e => {
-              setError(e.message);
-            });
-        } else {
-          setError("Permission to access this origin was not granted. Please try again.");
-        }
-      })
       .catch(e => {
         setError(e.message);
       });
