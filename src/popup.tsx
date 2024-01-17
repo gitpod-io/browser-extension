@@ -13,7 +13,7 @@ import {
   STORAGE_KEY_NEW_TAB
 } from "~storage";
 import { hostToOrigin, parseEndpoint } from "~utils/parse-endpoint";
-import { canAccessAllSites, canAccessOrigin } from "~utils/permissions";
+import { canAccessAllSites } from "~utils/permissions";
 
 import { Button } from "~components/forms/Button";
 import { CheckboxInputField } from "~components/forms/CheckboxInputField";
@@ -32,34 +32,24 @@ function IndexPopup() {
   );
 
   const [address, setAddress] = useState<string>(storedAddress);
-  const updateAddress = useCallback(async (e: FormEvent) => {
-    try {
 
-      e.preventDefault();
+  const updateAddress = useCallback((e: FormEvent) => {
+    e.preventDefault();
 
-      const parsed = parseEndpoint(address);
-      setError(undefined);
+    const parsedAddress = parseEndpoint(address);
+    setError(undefined);
 
-      const origin = hostToOrigin(parsed);
+    const origin = hostToOrigin(parsedAddress);
 
-      const isPermittedOrigin = await canAccessOrigin(origin);
-      if (!isPermittedOrigin) {
-        const granted = await browser.permissions.request({ origins: [origin] });
-        if (!granted) {
-          setError(
-            "Permission to access this origin was not granted. Please try again."
-          );
-          return;
-        } else {
-          setError(undefined);
-        }
-      }
+    storage.setItem(STORAGE_KEY_ADDRESS, parsedAddress)
+      .catch(e => {
+        setError(e.message);
+      });
 
-      // We set the address via the Storage API instead of the hook, because doing so with the hook after waiting for user interaction on the permission request causes the stored item to not update.
-      await storage.setItem(STORAGE_KEY_ADDRESS, parsed);
-    } catch (e) {
-      setError(e.message);
-    }
+    browser.permissions.request({ origins: [origin] })
+      .catch(e => {
+        setError(e.message);
+      });
   }, [address, setError]);
 
   // Need to update address when storage changes. This also applies for the initial load.
@@ -148,13 +138,13 @@ function IndexPopup() {
         style={
           error
             ? {
-                color: "red",
-                marginTop: "8px",
-                display: "inline"
-              }
+              color: "red",
+              marginTop: "8px",
+              display: "inline"
+            }
             : {
-                display: "none"
-              }
+              display: "none"
+            }
         }>
         {error}
       </div>
