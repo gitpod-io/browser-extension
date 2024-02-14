@@ -193,9 +193,8 @@ export const buttonContributions: ButtonContributionParams[] = [
     {
       id: "gh-repo",
       exampleUrls: [
-        // disabled testing, because the new layout doesn't show as an anonymous user
-        // "https://github.com/svenefftinge/browser-extension-test",
-        // "https://github.com/svenefftinge/browser-extension-test/tree/my-branch",
+        "https://github.com/svenefftinge/browser-extension-test",
+        "https://github.com/svenefftinge/browser-extension-test/tree/my-branch",
       ],
       selector: `xpath://html/body/div[1]/div[6]/div/main/turbo-frame/div/div/div/div[2]/div[1]/react-partial/div/div/div[2]/div[2]`,
       containerElement: createElement("div", {}),
