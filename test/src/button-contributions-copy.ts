@@ -38,24 +38,24 @@ export interface ButtonContributionParams {
   id: string,
 
   /**
-   * 
+   *
    */
   exampleUrls: string[],
 
   /**
    * A CSS selector that matches the parent element in which the button should be inserted.
-   * 
+   *
    * Use the developer tools -> right click on the element -> "copy JS path" to get the selector.
    */
   selector: string,
 
   /**
    * The element in which the button should be inserted.
-   * 
+   *
    * This element will be inserted into teh main document and allows for styling within the original page.
-   * 
+   *
    * The structure looks like this:
-   * 
+   *
    * <selector>
    *     <some other elements/> ....
    *    <containerElement>
@@ -94,7 +94,7 @@ export interface ButtonContributionParams {
 
   /**
    * A list of manipulations that should be applied to the document.
-   * 
+   *
    * Each manipulation contains a CSS selector (element) that is used to find the element to manipulate and optionally
    * the classnames to remove and add.
    */
@@ -126,7 +126,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       application: "gitlab",
       manipulations: [
         {
-          // make the clone button secondary 
+          // make the clone button secondary
           element: "#clone-dropdown",
           remove: "btn-confirm",
         }
@@ -143,7 +143,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       application: "gitlab",
       manipulations: [
         {
-          // make the clone button secondary 
+          // make the clone button secondary
           element: "#fileHolder > div.js-file-title.file-title-flex-parent > div.gl-display-flex.gl-flex-wrap.file-actions > div.gl-sm-ml-3.gl-mr-3 > div > button",
           remove: "btn-confirm",
         }
@@ -161,7 +161,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       insertBefore: "#content-body > div.merge-request > div.detail-page-header.border-bottom-0.gl-display-block.gl-pt-5.gl-md-display-flex\\!.is-merge-request > div.detail-page-header-actions.gl-align-self-start.is-merge-request.js-issuable-actions.gl-display-flex > div.gl-display-flex.gl-justify-content-end.gl-w-full.gl-relative",
       manipulations: [
         {
-          // make the clone button secondary 
+          // make the clone button secondary
           element: "#content-body > div.merge-request > div.detail-page-header.border-bottom-0.gl-display-block.gl-pt-5.gl-md-display-flex\\!.is-merge-request > div.detail-page-header-actions.gl-align-self-start.is-merge-request.js-issuable-actions.gl-display-flex > div.gl-md-ml-3.dropdown.gl-dropdown.gl-display-none\\!.gl-md-display-flex\\! > button",
           remove: "btn-confirm",
         }
@@ -188,16 +188,16 @@ export const buttonContributions: ButtonContributionParams[] = [
         },
       ],
     },
-  
+
     // GitHub
     {
-      id: "gh-new-repo",
+      id: "gh-repo",
       exampleUrls: [
         // disabled testing, because the new layout doesn't show as an anonymous user
-        // "https://github.com/svenefftinge/browser-extension-test",
-        // "https://github.com/svenefftinge/browser-extension-test/tree/my-branch",
+        "https://github.com/svenefftinge/browser-extension-test",
+        "https://github.com/svenefftinge/browser-extension-test/tree/my-branch",
       ],
-      selector: `xpath://*[@id="repo-content-pjax-container"]/div/div/div[2]/div[1]/react-partial/div/div/div[1]/div/div/div[2]/div[2]/div/div[3]/div[1]/div[2]`,
+      selector: `xpath://*[@id="repo-content-pjax-container"]/div/div/div[2]/div[1]/react-partial/div/div/div[2]/div[2]`,
       containerElement: createElement("div", {}),
       additionalClassNames: ["medium"],
       application: "github",
@@ -220,7 +220,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       application: "github",
       additionalClassNames: ["medium"],
     },
-    
+
     {
       id: "gh-issues",
       exampleUrls: [
@@ -234,7 +234,7 @@ export const buttonContributions: ButtonContributionParams[] = [
       application: "github",
       manipulations: [
         {
-          // make the code button secondary 
+          // make the code button secondary
           element: "#partial-discussion-header > div.gh-header-show > div > div > a",
           remove: "Button--primary",
           add: "Button--secondary"
@@ -252,28 +252,6 @@ export const buttonContributions: ButtonContributionParams[] = [
       }),
       match: /\/pull\//,
       application: "github",
-    },
-    // Look into removing since GitHub is shifting to the new repo layout (see gh-new-repo)
-    {
-      id: "gh-repo",
-      exampleUrls: [
-        "https://github.com/svenefftinge/browser-extension-test",
-        "https://github.com/svenefftinge/browser-extension-test/tree/my-branch",
-      ],
-      selector: "#repo-content-turbo-frame > div > div > div.Layout.Layout--flowRow-until-md.Layout--sidebarPosition-end.Layout--sidebarPosition-flowRow-end > div.Layout-main > div.file-navigation.mb-3.d-flex.flex-items-start,#repo-content-pjax-container > div > div > div.Layout.Layout--flowRow-until-md.Layout--sidebarPosition-end.Layout--sidebarPosition-flowRow-end > div.Layout-main > div.file-navigation.mb-3.d-flex.flex-items-start",
-      containerElement: createElement("div", {
-        marginLeft: "8px",
-      }),
-      application: "github",
-      additionalClassNames: ["medium"],
-      manipulations: [
-        {
-          // make the code button secondary 
-          element: "#repo-content-pjax-container > div > div > div.Layout.Layout--flowRow-until-md.Layout--sidebarPosition-end.Layout--sidebarPosition-flowRow-end > div.Layout-main > div.file-navigation.mb-3.d-flex.flex-items-start > span.d-none.d-md-flex.ml-2 > get-repo > details > summary",
-          remove: "Button--primary",
-          add: "Button--secondary"
-        }
-      ],
     },
     {
       id: "gh-file",
@@ -309,7 +287,7 @@ export const buttonContributions: ButtonContributionParams[] = [
           }
         }
       ]
-      
+
     },
     // Bitbucket Server
     {
