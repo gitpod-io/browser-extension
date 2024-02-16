@@ -1,14 +1,9 @@
 import { browser } from "webextension-polyfill-ts";
 import 'webext-dynamic-content-scripts';
-import addDomainPermissionToggleMv2 from "webext-domain-permission-toggle";
-import addDomainPermissionToggleMv3 from "~utils/domain-accept";
+import addDomainPermissionToggle from "webext-domain-permission-toggle";
 
 (async () => {
-    if (browser.runtime.getManifest().manifest_version === 2) {
-        addDomainPermissionToggleMv2();
-    } else {
-        addDomainPermissionToggleMv3();
-    }
+    addDomainPermissionToggle();
 })();
 
 browser.runtime.onInstalled.addListener((details) => {

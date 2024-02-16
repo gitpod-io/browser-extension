@@ -42,8 +42,8 @@ dependencies:
     specifier: ^4.1.1
     version: 4.1.1
   webext-domain-permission-toggle:
-    specifier: ^4.0.1
-    version: 4.0.1
+    specifier: ^4.1.0
+    version: 4.1.0
   webext-dynamic-content-scripts:
     specifier: v9
     version: 9.2.2
@@ -7295,8 +7295,8 @@ packages:
     resolution: {integrity: sha512-s8DIJESB8Hv1YRT7Yrv42C5P/NJrnD7V/Es0UopWmaww5Ugc8qqkYXh9SYdAbxiNmsXWaHwwvjYEJopQ3cMfcg==}
     dev: false
 
-  /webext-domain-permission-toggle@4.0.1:
-    resolution: {integrity: sha512-P9ECzrLWMbd6nfz4UTFqafHedKpS7x3zdRjQRUYDRVKAbZGZ0ivxG7qJBnx+Q2+2r5TuQBdcLFBNUhIaSDBc+w==}
+  /webext-domain-permission-toggle@4.1.0:
+    resolution: {integrity: sha512-Nq11rnyimUrPDcqroF719dFFCLeqmjuAVhv2TCFlK/4iTqfSVPrxEIUd0d6ywRIZarMwnbprMidPFQzG+PVDfA==}
     dependencies:
       webext-additional-permissions: 2.4.0
       webext-content-scripts: 2.5.5
