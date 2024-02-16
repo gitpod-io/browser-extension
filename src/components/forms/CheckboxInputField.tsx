@@ -1,5 +1,6 @@
 import classNames from "classnames";
-import React, { type FC, type ReactNode, useCallback, useId, type PropsWithChildren } from "react";
+import React, { useCallback, useId, type FC, type PropsWithChildren, type ReactNode } from "react";
+
 import { InputField } from "./InputField";
 import { InputFieldHint } from "./InputFieldHint";
 
@@ -11,7 +12,13 @@ type CheckboxListFieldProps = {
 };
 
 // CheckboxListField is a wrapper for a list of related CheckboxInputField components.
-export const CheckboxListField: FC<PropsWithChildren<CheckboxListFieldProps>> = ({ label, error, className, topMargin, children }) => {
+export const CheckboxListField: FC<PropsWithChildren<CheckboxListFieldProps>> = ({
+    label,
+    error,
+    className,
+    topMargin,
+    children,
+}) => {
     return (
         <InputField label={label} className={className} error={error} topMargin={topMargin}>
             <div className="space-y-2 ml-2">{children}</div>

@@ -1,18 +1,14 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "module": "ES2020",
-    "moduleResolution": "Node",
-    "allowSyntheticDefaultImports": true,
-    "outDir": "./dist",
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-  },
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "ES2020",
+        "moduleResolution": "Node",
+        "allowSyntheticDefaultImports": true,
+        "outDir": "./dist",
+        "strict": true,
+        "forceConsistentCasingInFileNames": true
+    },
 
-  "include": [
-    "src/**/*.ts",
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules"]
 }

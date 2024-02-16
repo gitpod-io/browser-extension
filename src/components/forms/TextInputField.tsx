@@ -5,7 +5,8 @@
  */
 
 import classNames from "classnames";
-import React, { memo, type ReactNode, useCallback, type PropsWithChildren, useId } from "react";
+import React, { memo, useCallback, useId, type PropsWithChildren, type ReactNode } from "react";
+
 import { InputField } from "./InputField";
 
 type TextInputFieldTypes = "text" | "password" | "email" | "url";
@@ -85,7 +86,17 @@ type TextInputProps = {
 
 // eslint-disable-next-line react/display-name
 export const TextInput = memo(
-    ({ type = "text", value, className, id, placeholder, disabled = false, required = false, onChange, onBlur }: PropsWithChildren<TextInputProps>) => {
+    ({
+        type = "text",
+        value,
+        className,
+        id,
+        placeholder,
+        disabled = false,
+        required = false,
+        onChange,
+        onBlur,
+    }: PropsWithChildren<TextInputProps>) => {
         const handleChange = useCallback(
             (e) => {
                 onChange && onChange(e.target.value);
@@ -104,7 +115,7 @@ export const TextInput = memo(
                     "py-2 px-3",
                     "placeholder:text-gray-400 dark:placeholder:text-gray-500",
                     "disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:border disabled:border-gray-200 dark:disabled:border-gray-600 disabled:text-gray-400 dark:disabled:text-gray-500",
-                    className
+                    className,
                 )}
                 value={value}
                 type={type}

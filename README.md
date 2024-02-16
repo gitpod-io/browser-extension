@@ -15,16 +15,16 @@ You can use the [`component: browser-extension`](https://github.com/gitpod-io/gi
 
 To make changes and test them using Gitpod itself:
 
-- add test cases to the [unit test](https://github.com/gitpod-io/browser-extension/blob/se/plasmo/test/src/button-contributions.spec.ts#L39)
-- try out changes like this:
-  1. run `pnpm build`
-  1. run `pnpm watch-prod` and download the built binary for your system (local machine)
-  1. run the binary anywhere on your local machine to sync the extension folder locally.
-  1. open Chrome and go to `chrome://extensions/`
-  1. enable `Developer mode` (top right)
-  1. click `Load unpacked` (top left) and select the folder you just downloaded
-  1. now you can test your changes
-  1. repeat step 1 and 2 and [reload the extension](chrome://extensions/) whenever you want to test new changes
+-   add test cases to the [unit test](https://github.com/gitpod-io/browser-extension/blob/se/plasmo/test/src/button-contributions.spec.ts#L39)
+-   try out changes like this:
+    1. run `pnpm build`
+    1. run `pnpm watch-prod` and download the built binary for your system (local machine)
+    1. run the binary anywhere on your local machine to sync the extension folder locally.
+    1. open Chrome and go to `chrome://extensions/`
+    1. enable `Developer mode` (top right)
+    1. click `Load unpacked` (top left) and select the folder you just downloaded
+    1. now you can test your changes
+    1. repeat step 1 and 2 and [reload the extension](chrome://extensions/) whenever you want to test new changes
 
 #### Build
 
@@ -64,17 +64,17 @@ To release a new version, follow these steps:
 1. Compose a list of changes using the list of commits that were pushed since last version
 1. [Create a new release](https://github.com/gitpod-io/browser-extension/releases/new), listing changes:
 
-   ```yaml
-   ### Changes
+    ```yaml
+    ### Changes
 
-   - Change/Fix A
-   - Change/Fix B
-   - Change/Fix C
+    - Change/Fix A
+    - Change/Fix B
+    - Change/Fix C
 
-   ### Credits
+    ### Credits
 
-   Thanks to @{EXTERNAL_CONTRIBUTOR_USERNAME} for helping! 🍊
-   ```
+    Thanks to @{EXTERNAL_CONTRIBUTOR_USERNAME} for helping! 🍊
+    ```
 
 For Firefox, our [GitHub Action](https://github.com/gitpod-io/browser-extension/blob/main/.github/workflows/submit.yml) should take care of publishing for us. You can trigger a release (either staging or production) from the [workflow's tab](https://github.com/gitpod-io/browser-extension/actions/workflows/submit.yml).
 

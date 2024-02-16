@@ -1,21 +1,21 @@
-import isUrl from "validator/es/lib/isURL"
+import isUrl from "validator/es/lib/isURL";
 
 export const parseEndpoint = (input: string): string => {
-  let url: URL
+    let url: URL;
 
-  if (isUrl(input, { require_protocol: true, protocols: ["https", "http"], host_whitelist: ["localhost"] })) {
-    url = new URL(input)
-  } else if (isUrl(input, { require_protocol: false, protocols: ["https"] })) {
-    url = new URL(`https://${input}`);
-  } else {
-    throw new TypeError(`Invalid URL: ${input}`)
-  }
+    if (isUrl(input, { require_protocol: true, protocols: ["https", "http"], host_whitelist: ["localhost"] })) {
+        url = new URL(input);
+    } else if (isUrl(input, { require_protocol: false, protocols: ["https"] })) {
+        url = new URL(`https://${input}`);
+    } else {
+        throw new TypeError(`Invalid URL: ${input}`);
+    }
 
-  return `${url.protocol}//${url.host}`
-}
+    return `${url.protocol}//${url.host}`;
+};
 
 export const hostToOrigin = (host: string): string => {
-  const url = new URL(host)
+    const url = new URL(host);
 
-  return url.origin + "/*";
-}
+    return url.origin + "/*";
+};

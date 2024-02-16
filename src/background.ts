@@ -1,5 +1,7 @@
 import browser from "webextension-polyfill";
-import 'webext-dynamic-content-scripts';
+
+import "webext-dynamic-content-scripts";
+
 import addDomainPermissionToggle from "webext-domain-permission-toggle";
 
 (async () => {
@@ -13,4 +15,4 @@ browser.runtime.onInstalled.addListener((details) => {
 });
 browser.runtime.setUninstallURL("https://www.gitpod.io/extension-uninstall?track=true");
 
-export { }
+export {};

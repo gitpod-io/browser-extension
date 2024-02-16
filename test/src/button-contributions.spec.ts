@@ -1,112 +1,110 @@
-import puppeteer, { Browser, Page } from "puppeteer";
 import { expect } from "chai";
-import { describe, it, before, after } from 'mocha';
+import { after, before, describe, it } from "mocha";
+import puppeteer, { Browser, Page } from "puppeteer";
+
 import { buttonContributions } from "./button-contributions-copy.js";
 
 describe("Query Selector Tests", function () {
-  let browser: Browser;
-  let page: Page;
+    let browser: Browser;
+    let page: Page;
 
-  before(async function () {
-    browser = await puppeteer.launch({
-      headless: "new",
-    });
-    page = await browser.newPage();
-  });
-
-  after(async function () {
-    await browser.close();
-  });
-
-  async function testHost() {
-    const all = buttonContributions.flatMap((x) => x.exampleUrls);
-    for (const url of all) {
-      it(`should detect the platform for ${url}`, async function () {
-        await page.goto(url);
-
-        const foundMatch = await page.evaluate(() => {
-          const resolveMetaAppName = (head: HTMLHeadElement): string | undefined => {
-            const metaApplication = head.querySelector("meta[name=application-name]");
-            const ogApplication = head.querySelector("meta[property='og:site_name']");
-
-            if (metaApplication) {
-              return metaApplication.getAttribute("content") || undefined;
-            } else if (ogApplication) {
-              return ogApplication.getAttribute("content") || undefined;
-            }
-
-            return undefined;
-          }
-
-          const isSiteSuitable = (): boolean => {
-            const appName = resolveMetaAppName(document.head);
-            if (!appName) {
-              return false;
-            }
-            const allowedApps = ["GitHub", "GitLab", "Bitbucket"];
-            return allowedApps.includes(appName);
-          }
-
-          return isSiteSuitable();
+    before(async function () {
+        browser = await puppeteer.launch({
+            headless: "new",
         });
-        expect(foundMatch, `Expected to find a match for '${url}'`).to.be.true;
-      }).timeout(30_000);
+        page = await browser.newPage();
+    });
 
+    after(async function () {
+        await browser.close();
+    });
+
+    async function testHost() {
+        const all = buttonContributions.flatMap((x) => x.exampleUrls);
+        for (const url of all) {
+            it(`should detect the platform for ${url}`, async function () {
+                await page.goto(url);
+
+                const foundMatch = await page.evaluate(() => {
+                    const resolveMetaAppName = (head: HTMLHeadElement): string | undefined => {
+                        const metaApplication = head.querySelector("meta[name=application-name]");
+                        const ogApplication = head.querySelector("meta[property='og:site_name']");
+
+                        if (metaApplication) {
+                            return metaApplication.getAttribute("content") || undefined;
+                        } else if (ogApplication) {
+                            return ogApplication.getAttribute("content") || undefined;
+                        }
+
+                        return undefined;
+                    };
+
+                    const isSiteSuitable = (): boolean => {
+                        const appName = resolveMetaAppName(document.head);
+                        if (!appName) {
+                            return false;
+                        }
+                        const allowedApps = ["GitHub", "GitLab", "Bitbucket"];
+                        return allowedApps.includes(appName);
+                    };
+
+                    return isSiteSuitable();
+                });
+                expect(foundMatch, `Expected to find a match for '${url}'`).to.be.true;
+            }).timeout(30_000);
+        }
     }
-  }
 
-  testHost();
+    testHost();
 });
 
 describe("Query Selector Tests", function () {
-  let browser: Browser;
-  let page: Page;
+    let browser: Browser;
+    let page: Page;
 
-  before(async function () {
-    browser = await puppeteer.launch({
-      headless: "new",
+    before(async function () {
+        browser = await puppeteer.launch({
+            headless: "new",
+        });
+        page = await browser.newPage();
     });
-    page = await browser.newPage();
-  });
 
-  after(async function () {
-    await browser.close();
-  });
+    after(async function () {
+        await browser.close();
+    });
 
-  async function resolveSelector(page: Page, selector: string) {
-    if (selector.startsWith("xpath:")) {
-      return (await page.$x(selector.slice(6)))[0] || null;
-    } else {
-      return page.$(selector);
+    async function resolveSelector(page: Page, selector: string) {
+        if (selector.startsWith("xpath:")) {
+            return (await page.$x(selector.slice(6)))[0] || null;
+        } else {
+            return page.$(selector);
+        }
     }
-  }
 
-  async function testContribution(url: string, id: string) {
-    await page.goto(url);
-    let foundMatch = false;
-    for (const contr of buttonContributions) {
-      if (typeof contr.match === "object" && !contr.match.test(url)) {
-        continue;
-      }
-      const element = await resolveSelector(page, contr.selector);
-      if (contr.id === id) {
-        expect(element, `Expected '${id}' to match on ${url}`).to.not.be.null;
-        foundMatch = true;
-      } else {
-        if (contr.exampleUrls.length === 0) return true;
-        expect(element, `Did not expect '${contr.id}' to match on ${url}`).to.be.null;
-      }
+    async function testContribution(url: string, id: string) {
+        await page.goto(url);
+        let foundMatch = false;
+        for (const contr of buttonContributions) {
+            if (typeof contr.match === "object" && !contr.match.test(url)) {
+                continue;
+            }
+            const element = await resolveSelector(page, contr.selector);
+            if (contr.id === id) {
+                expect(element, `Expected '${id}' to match on ${url}`).to.not.be.null;
+                foundMatch = true;
+            } else {
+                if (contr.exampleUrls.length === 0) return true;
+                expect(element, `Did not expect '${contr.id}' to match on ${url}`).to.be.null;
+            }
+        }
+        expect(foundMatch, `Expected to find a match for '${id}' on ${url}`).to.be.true;
     }
-    expect(foundMatch, `Expected to find a match for '${id}' on ${url}`).to.be.true;
-  }
 
-  for (const contribs of buttonContributions) {
-    for (const url of contribs.exampleUrls) {
-      it(`url (${url}) should only match '${contribs.id}'`, async function () {
-        await testContribution(url, contribs.id);
-      }).timeout(5000);
+    for (const contribs of buttonContributions) {
+        for (const url of contribs.exampleUrls) {
+            it(`url (${url}) should only match '${contribs.id}'`, async function () {
+                await testContribution(url, contribs.id);
+            }).timeout(5000);
+        }
     }
-  }
-
 });
-

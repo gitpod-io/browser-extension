@@ -1,5 +1,6 @@
 import classNames from "classnames";
-import React, { memo, type ReactNode, type PropsWithChildren } from "react";
+import React, { memo, type PropsWithChildren, type ReactNode } from "react";
+
 import { InputFieldHint } from "./InputFieldHint";
 
 type Props = {
@@ -21,11 +22,9 @@ export const InputField = memo(
                     <label
                         className={classNames(
                             "text-sm font-semibold",
-                            disabled
-                                ? "text-gray-400 dark:text-gray-400"
-                                : error
-                                    ? "text-red-600 dark:text-red-400"
-                                    : "text-gray-600 dark:text-gray-100",
+                            disabled ? "text-gray-400 dark:text-gray-400"
+                            : error ? "text-red-600 dark:text-red-400"
+                            : "text-gray-600 dark:text-gray-100",
                         )}
                         htmlFor={id}
                     >
