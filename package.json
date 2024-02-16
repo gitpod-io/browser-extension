@@ -32,7 +32,7 @@
     "webext-patterns": "^1.3.0",
     "webext-polyfill-kinda": "^1.0.2",
     "webext-tools": "^1.1.4",
-    "webextension-polyfill-ts": "^0.26.0"
+    "webextension-polyfill": "^0.10.0"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "4.1.0",
@@ -43,6 +43,7 @@
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
     "@types/validator": "^13.11.1",
+    "@types/webextension-polyfill": "^0.10.7",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
     "autoprefixer": "^10.4.15",

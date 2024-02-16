@@ -1,4 +1,4 @@
-import { browser } from "webextension-polyfill-ts";
+import browser from "webextension-polyfill";
 import 'webext-dynamic-content-scripts';
 import addDomainPermissionToggle from "webext-domain-permission-toggle";
 

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState, type FormEvent } from "react";
-import { browser } from "webextension-polyfill-ts";
+import browser from "webextension-polyfill";
 import "./popup.css";
 
 import { Storage } from "@plasmohq/storage";
