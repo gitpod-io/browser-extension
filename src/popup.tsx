@@ -11,6 +11,7 @@ import { CheckboxInputField } from "~components/forms/CheckboxInputField";
 import { InputField } from "~components/forms/InputField";
 import { TextInput } from "~components/forms/TextInputField";
 import { ALL_ORIGINS_WILDCARD, DEFAULT_GITPOD_ENDPOINT } from "~constants";
+import { useTemporaryState } from "~hooks/use-temporary-state";
 import {
     STORAGE_AUTOMATICALLY_DETECT_GITPOD,
     STORAGE_KEY_ADDRESS,
@@ -26,25 +27,32 @@ function IndexPopup() {
     const [error, setError] = useState<string>();
 
     const [storedAddress] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_GITPOD_ENDPOINT);
-
     const [address, setAddress] = useState<string>(storedAddress);
+    const [justSaved, setJustSaved] = useTemporaryState(false, 2000);
 
     const updateAddress = useCallback(
         (e: FormEvent) => {
             e.preventDefault();
 
-            const parsedAddress = parseEndpoint(address);
-            setError(undefined);
+            try {
+                const parsedAddress = parseEndpoint(address);
+                const origin = hostToOrigin(parsedAddress);
 
-            const origin = hostToOrigin(parsedAddress);
+                storage
+                    .setItem(STORAGE_KEY_ADDRESS, parsedAddress)
+                    .catch((e) => {
+                        setError(e.message);
+                    })
+                    .then(() => {
+                        setJustSaved(true);
+                    });
 
-            storage.setItem(STORAGE_KEY_ADDRESS, parsedAddress).catch((e) => {
+                browser.permissions.request({ origins: [origin] }).catch((e) => {
+                    setError(e.message);
+                });
+            } catch (e) {
                 setError(e.message);
-            });
-
-            browser.permissions.request({ origins: [origin] }).catch((e) => {
-                setError(e.message);
-            });
+            }
         },
         [address, setError],
     );
@@ -86,7 +94,9 @@ function IndexPopup() {
                 >
                     <div className="flex w-full max-w-sm items-center space-x-2">
                         <TextInput value={address} onChange={setAddress} />
-                        <Button onClick={updateAddress}>Save</Button>
+                        <Button onClick={updateAddress} className="w-20">
+                            {justSaved ? "✅" : "Save"}
+                        </Button>
                     </div>
                 </InputField>
                 <CheckboxInputField
