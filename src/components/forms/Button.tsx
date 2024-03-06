@@ -4,7 +4,6 @@ import React, { forwardRef, type FC, type ForwardedRef, type ReactNode } from "r
 export type ButtonProps = {
     type?: "primary" | "secondary" | "danger" | "danger.secondary" | "transparent";
     size?: "small" | "medium" | "block";
-    spacing?: "compact" | "default";
     disabled?: boolean;
     className?: string;
     autoFocus?: boolean;
@@ -27,7 +26,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             disabled = false,
             autoFocus = false,
             size,
-            spacing = "default",
             icon,
             children,
             onClick,
@@ -38,14 +36,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             <button
                 type={htmlType}
                 className={classNames(
-                    "cursor-pointer my-auto",
-                    "text-sm font-medium whitespace-nowrap",
-                    "rounded-xl focus:outline-none focus:ring transition ease-in-out",
-                    spacing === "compact" ? ["px-1 py-1"] : null,
-                    spacing === "default" ? ["px-4 py-2"] : null,
+                    "inline-flex items-center whitespace-nowrap rounded-lg text-sm justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2",
                     type === "primary" ?
                         [
-                            "bg-gray-900 hover:bg-gray-800 dark:bg-kumquat-base dark:hover:bg-kumquat-ripe",
+                            "bg-gray-900 hover:bg-gray-800 dark:bg-kumquat-base dark:hover:bg-kumquat-ripe text-gray-50 dark:text-gray-900",
                             "text-gray-50 dark:text-gray-900",
                         ]
                     :   null,
