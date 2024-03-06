@@ -20,8 +20,11 @@ export const parseEndpoint = (input: string): string => {
     return `${url.protocol}//${url.host}`;
 };
 
-export const hostToOrigin = (host: string): string => {
-    const url = new URL(host);
+export const hostToOrigin = (host: string): string | undefined => {
+    const { origin, protocol } = new URL(host);
+    if (origin === "null" || !["http:", "https:"].includes(protocol)) {
+        return undefined;
+    }
 
-    return url.origin + "/*";
+    return `${origin}/*`;
 };

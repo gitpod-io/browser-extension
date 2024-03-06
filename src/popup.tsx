@@ -47,9 +47,11 @@ function IndexPopup() {
                         setJustSaved(true);
                     });
 
-                browser.permissions.request({ origins: [origin] }).catch((e) => {
-                    setError(e.message);
-                });
+                if (origin) {
+                    browser.permissions.request({ origins: [origin] }).catch((e) => {
+                        setError(e.message);
+                    });
+                }
             } catch (e) {
                 setError(e.message);
             }
