@@ -77,7 +77,7 @@ export const GitpodButton = ({ application, additionalClassNames }: GitpodButton
 
     const target = openInNewTab ? "_blank" : "_self";
 
-    useHotkeys("alt+g", linkRef.current?.click, [linkRef.current]);
+    useHotkeys("alt+g", () => linkRef.current?.click(), [linkRef.current]);
 
     return (
         <div
