@@ -1,5 +1,6 @@
 import classNames from "classnames";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useHotkeys } from "react-hotkeys-hook";
 import Logo from "react:./logo-mark.svg";
 
 import { useStorage } from "@plasmohq/storage/hook";
@@ -20,6 +21,8 @@ export const GitpodButton = ({ application, additionalClassNames }: GitpodButton
     const [disableAutostart] = useStorage<boolean>(STORAGE_KEY_ALWAYS_OPTIONS, false);
     const [showDropdown, setShowDropdown] = useState(false);
     const [currentHref, setCurrentHref] = useState(window.location.href);
+
+    const linkRef = useRef<HTMLAnchorElement | null>(null);
 
     useEffect(() => {
         const handleUrlChange = () => {
@@ -72,6 +75,10 @@ export const GitpodButton = ({ application, additionalClassNames }: GitpodButton
         }
     }, [showDropdown]);
 
+    const target = openInNewTab ? "_blank" : "_self";
+
+    useHotkeys("alt+g", () => linkRef.current?.click(), [linkRef.current]);
+
     return (
         <div
             id="gitpod-btn-nav"
@@ -82,8 +89,9 @@ export const GitpodButton = ({ application, additionalClassNames }: GitpodButton
                 <a
                     className={classNames("button-part", disableAutostart ? "action-no-options" : "action")}
                     href={actions[0].href}
-                    target={openInNewTab ? "_blank" : "_self"}
+                    target={target}
                     rel="noreferrer"
+                    ref={linkRef}
                 >
                     <span className={classNames("action-label")}>
                         <Logo className={classNames("action-logo")} width={14} height={14} />
@@ -121,7 +129,7 @@ export const GitpodButton = ({ application, additionalClassNames }: GitpodButton
                             ref={action === actions[1] ? firstActionRef : null}
                             className={classNames("drop-down-action", "button-part")}
                             href={action.href}
-                            target={openInNewTab ? "_blank" : "_self"}
+                            target={target}
                             rel="noreferrer"
                         >
                             <span className={classNames("drop-down-label")}>{action.label}</span>
