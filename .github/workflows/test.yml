@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 20.x
           cache: "pnpm"
-      - run: pnpm rebuild sharp
+      - run: pnpm i --platform=linux --arch=x64 sharp
       - name: Build the extension
         run: pnpm build
       - name: Run tests
