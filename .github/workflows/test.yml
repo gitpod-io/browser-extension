@@ -13,6 +13,8 @@ jobs:
         with:
           version: latest
           run_install: true
+      - name: Install native dependencies
+        run: brew install vips
       - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
