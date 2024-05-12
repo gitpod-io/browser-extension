@@ -108,7 +108,7 @@ function IndexPopup() {
                         <TextInput className="h-full" value={address} onChange={setAddress} />
                         <Button onClick={updateAddress} className="w-20 h-full">
                             <Animate on={justSaved ? "check" : "save"}>
-                                <span key={justSaved ? "check" : "save"}>
+                                <span>
                                     {justSaved ?
                                         <CheckIcon size={16} />
                                     :   "Save"}
