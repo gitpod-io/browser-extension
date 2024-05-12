@@ -111,7 +111,7 @@ export const TextInput = memo(
                 id={id}
                 className={classNames(
                     "w-full text-base",
-                    "block text-gray-600 dark:text-gray-400 dark:bg-gray-800 bg-white rounded-md border border-gray-300 dark:border-gray-500 focus:border-gray-400 dark:focus:border-gray-400 focus:ring-0",
+                    "block text-gray-600 dark:text-gray-400 dark:bg-gray-800 bg-white rounded-lg border border-gray-300 dark:border-gray-500 focus:border-gray-400 dark:focus:border-gray-400 focus:ring-0",
                     "py-2 px-3",
                     "placeholder:text-gray-400 dark:placeholder:text-gray-500",
                     "disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:border disabled:border-gray-200 dark:disabled:border-gray-600 disabled:text-gray-400 dark:disabled:text-gray-500",

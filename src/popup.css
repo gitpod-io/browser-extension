@@ -28,3 +28,16 @@
         @apply text-sm text-gray-400 dark:text-gray-600;
     }
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 220ms ease-in-out;
+}
