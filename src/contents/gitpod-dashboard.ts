@@ -32,7 +32,7 @@ const automaticallyUpdateEndpoint = async () => {
 };
 
 if (isSiteGitpod()) {
-    sessionStorage.setItem("browser-extension-installed", "true");
+    sessionStorage.setItem("browser-extension-installed", "true"); // todo(ft): delete after migration is complete
     localStorage.setItem("extension-last-seen-active", new Date().toISOString());
     automaticallyUpdateEndpoint();
 }
