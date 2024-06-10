@@ -1,7 +1,7 @@
 {
     "name": "gitpod",
     "displayName": "Gitpod",
-    "version": "2.1.9",
+    "version": "2.2.0",
     "description": "The developer platform for on-demand cloud development environments. Create software faster and more securely.",
     "author": "Gitpod <info@gitpod.io>",
     "homepage": "https://www.gitpod.io",
@@ -16,23 +16,17 @@
         "build-dev-tools": "sh dev/build.sh"
     },
     "dependencies": {
-        "@plasmohq/storage": "^1.9.0",
+        "@plasmohq/storage": "^1.10.0",
         "@tailwindcss/forms": "^0.5.6",
-        "chrome-extension-hot-reload": "^0.2.2",
         "classnames": "^2.3.2",
-        "crx-hotreload": "^1.0.6",
-        "plasmo": "^0.84.2",
+        "lucide-react": "^0.378.0",
+        "plasmo": "^0.87.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-hotkeys-hook": "^4.5.0",
         "validator": "^13.11.0",
-        "webext-additional-permissions": "^2.4.0",
-        "webext-content-scripts": "^2.5.5",
-        "webext-detect-page": "^4.1.1",
         "webext-domain-permission-toggle": "^4.1.0",
-        "webext-dynamic-content-scripts": "v9",
-        "webext-patterns": "^1.3.0",
-        "webext-polyfill-kinda": "^1.0.2",
-        "webext-tools": "^1.1.4",
+        "webext-dynamic-content-scripts": "^9.2.2",
         "webextension-polyfill": "^0.10.0"
     },
     "devDependencies": {

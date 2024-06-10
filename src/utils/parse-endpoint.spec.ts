@@ -14,6 +14,7 @@ describe("parseEndpoint", () => {
     it("does not parse invalid hosts", () => {
         expect(() => parseEndpoint("gitpod")).to.throw(TypeError);
         expect(() => parseEndpoint("ftp://gitpod.io")).to.throw(TypeError);
+        expect(() => parseEndpoint("https://")).to.throw(TypeError);
     });
 });
 

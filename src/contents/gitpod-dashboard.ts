@@ -14,7 +14,7 @@ const isSiteGitpod = (): boolean => {
 };
 
 export const config: PlasmoCSConfig = {
-    matches: ["https://gitpod.io/*", "https://*.gitpod.cloud/*", "https://*.gitpod.dev/*"],
+    matches: ["https://gitpod.io/*", "https://*.gitpod.cloud/*"],
 };
 
 const storage = new Storage();
@@ -26,12 +26,24 @@ const automaticallyUpdateEndpoint = async () => {
 
     const currentHost = window.location.host;
     if (currentHost !== new URL(DEFAULT_GITPOD_ENDPOINT).host) {
-        console.log(`Gitpod extension: switching default endpoint to ${currentHost}.`);
-        await storage.set(STORAGE_KEY_ADDRESS, parseEndpoint(currentHost));
+        const currentlyStoredEndpoint = await storage.get<string>(STORAGE_KEY_ADDRESS);
+        if (
+            (currentlyStoredEndpoint && new URL(currentlyStoredEndpoint).host !== currentHost) ||
+            !currentlyStoredEndpoint
+        ) {
+            console.log(`Gitpod extension: switching default endpoint to ${currentHost}.`);
+            await storage.set(STORAGE_KEY_ADDRESS, parseEndpoint(currentHost));
+        }
     }
 };
 
 if (isSiteGitpod()) {
-    sessionStorage.setItem("browser-extension-installed", "true");
+    sessionStorage.setItem("browser-extension-installed", "true"); // todo(ft): delete after migration is complete
+    localStorage.setItem("extension-last-seen-active", new Date().toISOString());
+    const targetElement = document.querySelector(`meta[name="extension-active"]`);
+    if (targetElement) {
+        targetElement.setAttribute("content", "true");
+    }
+
     automaticallyUpdateEndpoint();
 }

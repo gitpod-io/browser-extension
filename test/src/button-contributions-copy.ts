@@ -157,16 +157,16 @@ export const buttonContributions: ButtonContributionParams[] = [
         exampleUrls: ["https://gitlab.com/svenefftinge/browser-extension-test/-/merge_requests/1"],
         match: /\/merge_requests\//,
         selector:
-            "#content-body > div.merge-request > div.detail-page-header.border-bottom-0.gl-display-block.gl-pt-5.gl-md-display-flex\\!.is-merge-request > div.detail-page-header-actions.gl-align-self-start.is-merge-request.js-issuable-actions.gl-display-flex",
-        containerElement: createElement("div", { marginLeft: "8px" }),
+            "#content-body > div.merge-request > div.detail-page-header.border-bottom-0.gl-display-block.gl-pt-5.gl-sm-display-flex\\!.is-merge-request > div.detail-page-header-actions.gl-align-self-start.is-merge-request.js-issuable-actions.gl-display-flex > div",
+        containerElement: createElement("div", { marginLeft: "8px", marginRight: "-8px" }),
         application: "gitlab",
         insertBefore:
-            "#content-body > div.merge-request > div.detail-page-header.border-bottom-0.gl-display-block.gl-pt-5.gl-md-display-flex\\!.is-merge-request > div.detail-page-header-actions.gl-align-self-start.is-merge-request.js-issuable-actions.gl-display-flex > div.gl-display-flex.gl-justify-content-end.gl-w-full.gl-relative",
+            "#content-body > div.merge-request > div.detail-page-header.border-bottom-0.gl-display-block.gl-pt-5.gl-sm-display-flex\\!.is-merge-request > div.detail-page-header-actions.gl-align-self-start.is-merge-request.js-issuable-actions.gl-display-flex > div > div",
         manipulations: [
             {
                 // make the clone button secondary
                 element:
-                    "#content-body > div.merge-request > div.detail-page-header.border-bottom-0.gl-display-block.gl-pt-5.gl-md-display-flex\\!.is-merge-request > div.detail-page-header-actions.gl-align-self-start.is-merge-request.js-issuable-actions.gl-display-flex > div.gl-md-ml-3.dropdown.gl-dropdown.gl-display-none\\!.gl-md-display-flex\\! > button",
+                    "#content-body > div.merge-request > div.detail-page-header.border-bottom-0.gl-display-block.gl-pt-5.gl-sm-display-flex\\!.is-merge-request > div.detail-page-header-actions.gl-align-self-start.is-merge-request.js-issuable-actions.gl-display-flex > div > div.gl-sm-ml-3.dropdown.gl-dropdown > button",
                 remove: "btn-confirm",
             },
         ],
