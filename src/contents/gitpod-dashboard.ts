@@ -33,5 +33,6 @@ const automaticallyUpdateEndpoint = async () => {
 
 if (isSiteGitpod()) {
     sessionStorage.setItem("browser-extension-installed", "true");
+    localStorage.setItem("extension-last-seen-active", new Date().toISOString());
     automaticallyUpdateEndpoint();
 }
