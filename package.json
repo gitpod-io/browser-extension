@@ -45,7 +45,7 @@
         "chai": "^4.3.8",
         "eslint": "^8.49.0",
         "eslint-plugin-react": "^7.33.2",
-        "htmlnano": "2.0.3",
+        "htmlnano": "2.1.1",
         "mocha": "^10.2.0",
         "postcss": "^8.4.31",
         "prettier": "3.2.5",
