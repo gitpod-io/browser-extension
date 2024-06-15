@@ -56,18 +56,20 @@
         "typescript": "5.3.3"
     },
     "manifest": {
-        "optional_host_permissions": [
-            "*://*/*"
-        ],
-        "permissions": [
-            "scripting",
-            "contextMenus",
-            "activeTab"
-        ],
+        "optional_host_permissions": ["*://*/*"],
+        "permissions": ["scripting", "contextMenus", "activeTab"],
         "browser_specific_settings": {
             "gecko": {
                 "id": "{dbcc42f9-c979-4f53-8a95-a102fbff3bbe}"
             }
+        }
+    },
+    "pnpm": {
+        "supportedArchitectures": {
+            "libc": ["musl"]
+        },
+        "overrides": {
+            "sharp": "0.33.4"
         }
     }
 }
