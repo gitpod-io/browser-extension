@@ -157,11 +157,11 @@ export const buttonContributions: ButtonContributionParams[] = [
         exampleUrls: ["https://gitlab.com/svenefftinge/browser-extension-test/-/merge_requests/1"],
         match: /\/merge_requests\//,
         selector:
-            "#content-body > div.merge-request > div.detail-page-header.border-bottom-0.gl-display-block.gl-pt-5.gl-sm-display-flex\\!.is-merge-request > div.detail-page-header-actions.gl-align-self-start.is-merge-request.js-issuable-actions.gl-display-flex > div",
+            "#content-body > div.merge-request > div.detail-page-header.border-bottom-0.gl-block.gl-pt-5.sm\\:\\!gl-flex.is-merge-request > div.detail-page-header-actions.gl-self-start.is-merge-request.js-issuable-actions.gl-flex.gl-mt-1 > div",
         containerElement: createElement("div", { marginLeft: "8px", marginRight: "-8px" }),
         application: "gitlab",
         insertBefore:
-            "#content-body > div.merge-request > div.detail-page-header.border-bottom-0.gl-display-block.gl-pt-5.gl-sm-display-flex\\!.is-merge-request > div.detail-page-header-actions.gl-align-self-start.is-merge-request.js-issuable-actions.gl-display-flex > div > div",
+            "#content-body > div.merge-request > div.detail-page-header.border-bottom-0.gl-block.gl-pt-5.sm\\:\\!gl-flex.is-merge-request > div.detail-page-header-actions.gl-self-start.is-merge-request.js-issuable-actions.gl-flex.gl-mt-1 > div > div",
         manipulations: [
             {
                 // make the clone button secondary
@@ -176,7 +176,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         exampleUrls: ["https://gitlab.com/svenefftinge/browser-extension-test/-/issues/1"],
         match: /\/issues\//,
         selector:
-            "#content-body > div.issue-details.issuable-details.js-issue-details > div.detail-page-description.content-block.js-detail-page-description.gl-pt-3.gl-pb-0.gl-border-none > div:nth-child(1) > div > div.gl-display-flex > div",
+            "#content-body > div.issue-details.issuable-details.js-issue-details > div.detail-page-description.content-block.js-detail-page-description.gl-pt-3.gl-pb-0.gl-border-none > div:nth-child(1) > div > div.gl-flex.gl-items-start.gl-flex-col.md\\:gl-flex-row.gl-gap-3.gl-pt-3 > div",
         containerElement: createElement("div", { marginLeft: "0", marginRight: "0px" }),
         application: "gitlab",
         insertBefore: "#new-actions-header-dropdown",
