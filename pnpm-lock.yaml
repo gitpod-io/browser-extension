@@ -10,7 +10,7 @@ overrides:
 dependencies:
   '@plasmohq/storage':
     specifier: ^1.10.0
-    version: 1.10.0(react@18.2.0)
+    version: 1.10.0(react@18.3.1)
   '@tailwindcss/forms':
     specifier: ^0.5.6
     version: 0.5.6(tailwindcss@3.3.3)
@@ -19,19 +19,19 @@ dependencies:
     version: 2.3.2
   lucide-react:
     specifier: ^0.378.0
-    version: 0.378.0(react@18.2.0)
+    version: 0.378.0(react@18.3.1)
   plasmo:
     specifier: ^0.87.2
-    version: 0.87.2(postcss@8.4.31)(react-dom@18.2.0)(react@18.2.0)(ts-node@10.9.1)
+    version: 0.87.2(postcss@8.4.31)(react-dom@18.2.0)(react@18.3.1)(ts-node@10.9.1)
   react:
-    specifier: ^18.2.0
-    version: 18.2.0
+    specifier: ^18.3.1
+    version: 18.3.1
   react-dom:
     specifier: ^18.2.0
-    version: 18.2.0(react@18.2.0)
+    version: 18.2.0(react@18.3.1)
   react-hotkeys-hook:
     specifier: ^4.5.0
-    version: 4.5.0(react-dom@18.2.0)(react@18.2.0)
+    version: 4.5.0(react-dom@18.2.0)(react@18.3.1)
   validator:
     specifier: ^13.12.0
     version: 13.12.0
@@ -62,8 +62,8 @@ devDependencies:
     specifier: 20.5.0
     version: 20.5.0
   '@types/react':
-    specifier: 18.2.20
-    version: 18.2.20
+    specifier: 18.3.3
+    version: 18.3.3
   '@types/react-dom':
     specifier: 18.2.7
     version: 18.2.7
@@ -2051,7 +2051,7 @@ packages:
       nullthrows: 1.1.1
     dev: false
 
-  /@plasmohq/consolidate@0.17.0(react-dom@18.2.0)(react@18.2.0):
+  /@plasmohq/consolidate@0.17.0(react-dom@18.2.0)(react@18.3.1):
     resolution: {integrity: sha512-Na8imBnvzYPtzkK+9Uv9hPZ/oJti/0jgiQWD222SHxHw2QCVuR4KzslxXCy/rS8gGluSiTs1BGVvc3d2O6aJCA==}
     engines: {node: '>= 0.10.0'}
     peerDependencies:
@@ -2196,8 +2196,8 @@ packages:
         optional: true
     dependencies:
       bluebird: 3.7.2
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
+      react: 18.3.1
+      react-dom: 18.2.0(react@18.3.1)
     dev: false
 
   /@plasmohq/init@0.7.0:
@@ -2226,7 +2226,7 @@ packages:
       - '@parcel/core'
     dev: false
 
-  /@plasmohq/parcel-config@0.40.11(postcss@8.4.31)(react-dom@18.2.0)(react@18.2.0)(ts-node@10.9.1):
+  /@plasmohq/parcel-config@0.40.11(postcss@8.4.31)(react-dom@18.2.0)(react@18.3.1)(ts-node@10.9.1):
     resolution: {integrity: sha512-QmdIrbC3xqusPKD0wNvozejhO01YvQ6qEKLZIxmEDjCUFF7xv1DwkqwmoCyd0BAwgflOZbZQ9f0aBTtLKnvkag==}
     dependencies:
       '@parcel/compressor-raw': 2.9.3(@parcel/core@2.9.3)
@@ -2263,7 +2263,7 @@ packages:
       '@plasmohq/parcel-transformer-inline-css': 0.3.11
       '@plasmohq/parcel-transformer-manifest': 0.19.0
       '@plasmohq/parcel-transformer-svelte': 0.6.0
-      '@plasmohq/parcel-transformer-vue': 0.5.0(react-dom@18.2.0)(react@18.2.0)
+      '@plasmohq/parcel-transformer-vue': 0.5.0(react-dom@18.2.0)(react@18.3.1)
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/helpers'
@@ -2481,7 +2481,7 @@ packages:
       svelte: 4.2.2
     dev: false
 
-  /@plasmohq/parcel-transformer-vue@0.5.0(react-dom@18.2.0)(react@18.2.0):
+  /@plasmohq/parcel-transformer-vue@0.5.0(react-dom@18.2.0)(react@18.3.1):
     resolution: {integrity: sha512-/3oVbajt+DRqtbM0RkKFtfyZR8DVjcsYpj1jHqPParGVBiXwgP0D/8Bj5p5/5Iqihs08gzasTcjKcwQKKdj0og==}
     engines: {parcel: '>= 2.7.0'}
     dependencies:
@@ -2491,7 +2491,7 @@ packages:
       '@parcel/source-map': 2.1.1
       '@parcel/types': 2.9.3(@parcel/core@2.9.3)
       '@parcel/utils': 2.9.3
-      '@plasmohq/consolidate': 0.17.0(react-dom@18.2.0)(react@18.2.0)
+      '@plasmohq/consolidate': 0.17.0(react-dom@18.2.0)(react@18.3.1)
       '@vue/compiler-sfc': 3.3.4
       nullthrows: 1.1.1
       semver: 7.5.4
@@ -2545,7 +2545,7 @@ packages:
       - whiskers
     dev: false
 
-  /@plasmohq/storage@1.10.0(react@18.2.0):
+  /@plasmohq/storage@1.10.0(react@18.3.1):
     resolution: {integrity: sha512-qvxD7M/k5BNcluyFHyabm21500tRJs1itUkO4bFad0SeaSFtSmAFtNzYCpQ9ormqJAk2j9xkd5DfWHcuCSQmog==}
     peerDependencies:
       react: ^16.8.6 || ^17 || ^18
@@ -2554,7 +2554,7 @@ packages:
         optional: true
     dependencies:
       pify: 6.1.0
-      react: 18.2.0
+      react: 18.3.1
     dev: false
 
   /@pnpm/config.env-replace@1.1.0:
@@ -2949,19 +2949,14 @@ packages:
   /@types/react-dom@18.2.7:
     resolution: {integrity: sha512-GRaAEriuT4zp9N4p1i8BDBYmEyfo+xQ3yHjJU4eiK5NDa1RmUZG+unZABUTK4/Ox/M+GaHwb6Ow8rUITrtjszA==}
     dependencies:
-      '@types/react': 18.2.20
+      '@types/react': 18.3.3
     dev: true
 
-  /@types/react@18.2.20:
-    resolution: {integrity: sha512-WKNtmsLWJM/3D5mG4U84cysVY31ivmyw85dE84fOCk5Hx78wezB/XEjVPWl2JTZ5FkEeaTJf+VgUAUn3PE7Isw==}
+  /@types/react@18.3.3:
+    resolution: {integrity: sha512-hti/R0pS0q1/xx+TsI73XIqk26eBsISZ2R0wUijXIngRK9R/e7Xw/cXVxQK7R5JjW+SV4zGcn5hXjudkN/pLIw==}
     dependencies:
       '@types/prop-types': 15.7.5
-      '@types/scheduler': 0.16.3
       csstype: 3.1.2
-    dev: true
-
-  /@types/scheduler@0.16.3:
-    resolution: {integrity: sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==}
     dev: true
 
   /@types/semver@7.5.2:
@@ -5560,12 +5555,12 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /lucide-react@0.378.0(react@18.2.0):
+  /lucide-react@0.378.0(react@18.3.1):
     resolution: {integrity: sha512-u6EPU8juLUk9ytRcyapkWI18epAv3RU+6+TC23ivjR0e+glWKBobFeSgRwOIJihzktILQuy6E0E80P2jVTDR5g==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
-      react: 18.2.0
+      react: 18.3.1
     dev: false
 
   /magic-string@0.30.10:
@@ -6108,7 +6103,7 @@ packages:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
 
-  /plasmo@0.87.2(postcss@8.4.31)(react-dom@18.2.0)(react@18.2.0)(ts-node@10.9.1):
+  /plasmo@0.87.2(postcss@8.4.31)(react-dom@18.2.0)(react@18.3.1)(ts-node@10.9.1):
     resolution: {integrity: sha512-a+8OIhuU13Zg+iyBkPPqk88uai+Ji4aiE4d75cww7h1aar9PL5IHH666V3NhX9x+F1tbOwdioBY59pv+CRHzJQ==}
     hasBin: true
     dependencies:
@@ -6118,7 +6113,7 @@ packages:
       '@parcel/package-manager': 2.9.3(@parcel/core@2.9.3)
       '@parcel/watcher': 2.2.0
       '@plasmohq/init': 0.7.0
-      '@plasmohq/parcel-config': 0.40.11(postcss@8.4.31)(react-dom@18.2.0)(react@18.2.0)(ts-node@10.9.1)
+      '@plasmohq/parcel-config': 0.40.11(postcss@8.4.31)(react-dom@18.2.0)(react@18.3.1)(ts-node@10.9.1)
       '@plasmohq/parcel-core': 0.1.8
       buffer: 6.0.3
       chalk: 5.3.0
@@ -6422,13 +6417,13 @@ packages:
       strip-json-comments: 2.0.1
     dev: false
 
-  /react-dom@18.2.0(react@18.2.0):
+  /react-dom@18.2.0(react@18.3.1):
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
     peerDependencies:
       react: ^18.2.0
     dependencies:
       loose-envify: 1.4.0
-      react: 18.2.0
+      react: 18.3.1
       scheduler: 0.23.0
     dev: false
 
@@ -6436,14 +6431,14 @@ packages:
     resolution: {integrity: sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==}
     dev: false
 
-  /react-hotkeys-hook@4.5.0(react-dom@18.2.0)(react@18.2.0):
+  /react-hotkeys-hook@4.5.0(react-dom@18.2.0)(react@18.3.1):
     resolution: {integrity: sha512-Samb85GSgAWFQNvVt3PS90LPPGSf9mkH/r4au81ZP1yOIFayLC3QAvqTgGtJ8YEDMXtPmaVBs6NgipHO6h4Mug==}
     peerDependencies:
       react: '>=16.8.1'
       react-dom: '>=16.8.1'
     dependencies:
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
+      react: 18.3.1
+      react-dom: 18.2.0(react@18.3.1)
     dev: false
 
   /react-is@16.13.1:
@@ -6460,8 +6455,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /react@18.2.0:
-    resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
+  /react@18.3.1:
+    resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
     engines: {node: '>=0.10.0'}
     dependencies:
       loose-envify: 1.4.0
