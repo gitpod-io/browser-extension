@@ -48,13 +48,13 @@ To generate a proper `manifest.json` file for Firefox, execute the following scr
 
 You can test the extension without publishing to the store. Before uploading the bundle to the browser, make sure to [build](#build) the code, then follow these steps:
 
-For Chrome:
+#### For Chrome
 
 1. Open Chrome
 2. Click Settings -> Extensions -> Load unpacked
 3. Select the `chrome-mv3-prod` folder inside of `build/`
 
-For Firefox
+#### For Firefox
 
 1. Open Firefox
 1. Go to `about:debugging#/runtime/this-firefox`
@@ -66,8 +66,8 @@ We currently publish the extension for **Chrome** and **Firefox**.
 
 To release a new version, follow these steps:
 
-1. Bump up the version value inside `manifest.json`
-1. Push your changes to `master`
+1. Bump up the version value inside `package.json`
+1. Push your changes to `main`
 1. Create a tag `vX.Y.Z`
 1. Compose a list of changes using the list of commits that were pushed since last version
 1. [Create a new release](https://github.com/gitpod-io/browser-extension/releases/new), listing changes:
