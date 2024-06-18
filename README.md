@@ -36,6 +36,14 @@ pnpm build --target=chrome-mv3 # or --target=firefox-mv2
 pnpm package --target=chrome-mv3 # or --target=firefox-mv2
 ```
 
+#### Note about `--target=firefox-mv2`
+
+To generate a proper `manifest.json` file for Firefox, execute the following script first. It ensures that the manifest file is generated with MV2-compatible fields.
+
+```
+./scripts/firefox-mv2.sh
+```
+
 ### Testing
 
 You can test the extension without publishing to the store. Before uploading the bundle to the browser, make sure to [build](#build) the code, then follow these steps:
