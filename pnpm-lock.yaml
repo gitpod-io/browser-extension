@@ -22,7 +22,7 @@ dependencies:
     version: 0.378.0(react@18.3.1)
   plasmo:
     specifier: ^0.87.2
-    version: 0.87.2(postcss@8.4.31)(react-dom@18.2.0)(react@18.3.1)(ts-node@10.9.1)
+    version: 0.87.2(postcss@8.4.31)(react-dom@18.2.0)(react@18.3.1)(ts-node@10.9.2)
   react:
     specifier: ^18.3.1
     version: 18.3.1
@@ -111,10 +111,10 @@ devDependencies:
     version: 0.5.21
   tailwindcss:
     specifier: ^3.3.3
-    version: 3.3.3(ts-node@10.9.1)
+    version: 3.3.3(ts-node@10.9.2)
   ts-node:
-    specifier: ^10.9.1
-    version: 10.9.1(@types/node@20.5.0)(typescript@5.4.5)
+    specifier: ^10.9.2
+    version: 10.9.2(@types/node@20.5.0)(typescript@5.4.5)
   typescript:
     specifier: 5.4.5
     version: 5.4.5
@@ -2226,7 +2226,7 @@ packages:
       - '@parcel/core'
     dev: false
 
-  /@plasmohq/parcel-config@0.40.11(postcss@8.4.31)(react-dom@18.2.0)(react@18.3.1)(ts-node@10.9.1):
+  /@plasmohq/parcel-config@0.40.11(postcss@8.4.31)(react-dom@18.2.0)(react@18.3.1)(ts-node@10.9.2):
     resolution: {integrity: sha512-QmdIrbC3xqusPKD0wNvozejhO01YvQ6qEKLZIxmEDjCUFF7xv1DwkqwmoCyd0BAwgflOZbZQ9f0aBTtLKnvkag==}
     dependencies:
       '@parcel/compressor-raw': 2.9.3(@parcel/core@2.9.3)
@@ -2257,7 +2257,7 @@ packages:
       '@plasmohq/parcel-optimizer-es': 0.4.0
       '@plasmohq/parcel-packager': 0.6.14
       '@plasmohq/parcel-resolver': 0.14.0
-      '@plasmohq/parcel-resolver-post': 0.4.4(postcss@8.4.31)(ts-node@10.9.1)
+      '@plasmohq/parcel-resolver-post': 0.4.4(postcss@8.4.31)(ts-node@10.9.2)
       '@plasmohq/parcel-runtime': 0.24.2
       '@plasmohq/parcel-transformer-inject-env': 0.2.11
       '@plasmohq/parcel-transformer-inline-css': 0.3.11
@@ -2392,7 +2392,7 @@ packages:
       nullthrows: 1.1.1
     dev: false
 
-  /@plasmohq/parcel-resolver-post@0.4.4(postcss@8.4.31)(ts-node@10.9.1):
+  /@plasmohq/parcel-resolver-post@0.4.4(postcss@8.4.31)(ts-node@10.9.2):
     resolution: {integrity: sha512-n39U5z2aGAfCDFydpvEDXx0MWtqYwh0+aX4QS49/IsmZMM1Ra+GnHs/gfeJz0jtN83EytlbwSoDcXRkORx9rIQ==}
     engines: {parcel: '>= 2.7.0'}
     dependencies:
@@ -2401,7 +2401,7 @@ packages:
       '@parcel/plugin': 2.9.3(@parcel/core@2.9.3)
       '@parcel/types': 2.9.3(@parcel/core@2.9.3)
       '@parcel/utils': 2.9.3
-      tsup: 7.2.0(postcss@8.4.31)(ts-node@10.9.1)(typescript@5.2.2)
+      tsup: 7.2.0(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.2.2)
       typescript: 5.2.2
     transitivePeerDependencies:
       - '@swc/core'
@@ -2874,7 +2874,7 @@ packages:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.3.3(ts-node@10.9.1)
+      tailwindcss: 3.3.3(ts-node@10.9.2)
     dev: false
 
   /@tootallnate/quickjs-emscripten@0.23.0:
@@ -6143,7 +6143,7 @@ packages:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
 
-  /plasmo@0.87.2(postcss@8.4.31)(react-dom@18.2.0)(react@18.3.1)(ts-node@10.9.1):
+  /plasmo@0.87.2(postcss@8.4.31)(react-dom@18.2.0)(react@18.3.1)(ts-node@10.9.2):
     resolution: {integrity: sha512-a+8OIhuU13Zg+iyBkPPqk88uai+Ji4aiE4d75cww7h1aar9PL5IHH666V3NhX9x+F1tbOwdioBY59pv+CRHzJQ==}
     hasBin: true
     dependencies:
@@ -6153,7 +6153,7 @@ packages:
       '@parcel/package-manager': 2.9.3(@parcel/core@2.9.3)
       '@parcel/watcher': 2.2.0
       '@plasmohq/init': 0.7.0
-      '@plasmohq/parcel-config': 0.40.11(postcss@8.4.31)(react-dom@18.2.0)(react@18.3.1)(ts-node@10.9.1)
+      '@plasmohq/parcel-config': 0.40.11(postcss@8.4.31)(react-dom@18.2.0)(react@18.3.1)(ts-node@10.9.2)
       '@plasmohq/parcel-core': 0.1.8
       buffer: 6.0.3
       chalk: 5.3.0
@@ -6257,7 +6257,7 @@ packages:
       camelcase-css: 2.0.1
       postcss: 8.4.31
 
-  /postcss-load-config@4.0.1(postcss@8.4.31)(ts-node@10.9.1):
+  /postcss-load-config@4.0.1(postcss@8.4.31)(ts-node@10.9.2):
     resolution: {integrity: sha512-vEJIc8RdiBRu3oRAI0ymerOn+7rPuMvRXslTvZUKZonDHFIczxztIyJ1urxM1x9JXEikvpWWTUUqal5j/8QgvA==}
     engines: {node: '>= 14'}
     peerDependencies:
@@ -6271,7 +6271,7 @@ packages:
     dependencies:
       lilconfig: 2.1.0
       postcss: 8.4.31
-      ts-node: 10.9.1(@types/node@20.5.0)(typescript@5.4.5)
+      ts-node: 10.9.2(@types/node@20.5.0)(typescript@5.4.5)
       yaml: 2.3.2
 
   /postcss-nested@6.0.1(postcss@8.4.31):
@@ -7023,7 +7023,7 @@ packages:
       picocolors: 1.0.0
       stable: 0.1.8
 
-  /tailwindcss@3.3.3(ts-node@10.9.1):
+  /tailwindcss@3.3.3(ts-node@10.9.2):
     resolution: {integrity: sha512-A0KgSkef7eE4Mf+nKJ83i75TMyq8HqY3qmFIJSWy8bNt0v1lG7jUcpGpoTFxAwYcWOphcTBLPPJg+bDfhDf52w==}
     engines: {node: '>=14.0.0'}
     hasBin: true
@@ -7045,7 +7045,7 @@ packages:
       postcss: 8.4.31
       postcss-import: 15.1.0(postcss@8.4.31)
       postcss-js: 4.0.1(postcss@8.4.31)
-      postcss-load-config: 4.0.1(postcss@8.4.31)(ts-node@10.9.1)
+      postcss-load-config: 4.0.1(postcss@8.4.31)(ts-node@10.9.2)
       postcss-nested: 6.0.1(postcss@8.4.31)
       postcss-selector-parser: 6.0.13
       resolve: 1.22.6
@@ -7160,8 +7160,8 @@ packages:
   /ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
 
-  /ts-node@10.9.1(@types/node@20.5.0)(typescript@5.4.5):
-    resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
+  /ts-node@10.9.2(@types/node@20.5.0)(typescript@5.4.5):
+    resolution: {integrity: sha512-f0FFpIdcHgn8zcPSbf1dRevwt047YMnaiJM3u2w2RewrB+fob/zePZcrOyQoLMMO7aBIddLcQIEK5dYjkLnGrQ==}
     hasBin: true
     peerDependencies:
       '@swc/core': '>=1.2.50'
@@ -7193,7 +7193,7 @@ packages:
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
-  /tsup@7.2.0(postcss@8.4.31)(ts-node@10.9.1)(typescript@5.2.2):
+  /tsup@7.2.0(postcss@8.4.31)(ts-node@10.9.2)(typescript@5.2.2):
     resolution: {integrity: sha512-vDHlczXbgUvY3rWvqFEbSqmC1L7woozbzngMqTtL2PGBODTtWlRwGDDawhvWzr5c1QjKe4OAKqJGfE1xeXUvtQ==}
     engines: {node: '>=16.14'}
     hasBin: true
@@ -7218,7 +7218,7 @@ packages:
       globby: 11.1.0
       joycon: 3.1.1
       postcss: 8.4.31
-      postcss-load-config: 4.0.1(postcss@8.4.31)(ts-node@10.9.1)
+      postcss-load-config: 4.0.1(postcss@8.4.31)(ts-node@10.9.2)
       resolve-from: 5.0.0
       rollup: 3.28.1
       source-map: 0.8.0-beta.0
