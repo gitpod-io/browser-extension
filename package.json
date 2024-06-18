@@ -26,7 +26,7 @@
         "react-hotkeys-hook": "^4.5.0",
         "validator": "^13.12.0",
         "webext-domain-permission-toggle": "^4.1.0",
-        "webext-dynamic-content-scripts": "^9.2.2",
+        "webext-dynamic-content-scripts": "^10.0.2",
         "webextension-polyfill": "^0.10.0"
     },
     "devDependencies": {
