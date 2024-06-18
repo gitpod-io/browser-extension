@@ -68,8 +68,8 @@ devDependencies:
     specifier: 18.2.7
     version: 18.2.7
   '@types/validator':
-    specifier: ^13.11.10
-    version: 13.11.10
+    specifier: ^13.12.0
+    version: 13.12.0
   '@types/webextension-polyfill':
     specifier: ^0.10.7
     version: 0.10.7
@@ -2967,8 +2967,8 @@ packages:
     resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
     dev: false
 
-  /@types/validator@13.11.10:
-    resolution: {integrity: sha512-e2PNXoXLr6Z+dbfx5zSh9TRlXJrELycxiaXznp4S5+D2M3b9bqJEitNHA5923jhnB2zzFiZHa2f0SI1HoIahpg==}
+  /@types/validator@13.12.0:
+    resolution: {integrity: sha512-nH45Lk7oPIJ1RVOF6JgFI6Dy0QpHEzq4QecZhvguxYPDwT8c93prCMqAtiIttm39voZ+DDR+qkNnMpJmMBRqag==}
     dev: true
 
   /@types/webextension-polyfill@0.10.7:
