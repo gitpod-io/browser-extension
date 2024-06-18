@@ -38,7 +38,6 @@ const automaticallyUpdateEndpoint = async () => {
 };
 
 if (isSiteGitpod()) {
-    sessionStorage.setItem("browser-extension-installed", "true"); // todo(ft): delete after migration is complete
     localStorage.setItem("extension-last-seen-active", new Date().toISOString());
     const targetElement = document.querySelector(`meta[name="extension-active"]`);
     if (targetElement) {
