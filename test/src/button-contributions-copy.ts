@@ -343,10 +343,17 @@ export const buttonContributions: ButtonContributionParams[] = [
         exampleUrls: [
             // "https://bitbucket.org/efftinge/browser-extension-test/pull-requests/1"
         ],
-        selector: 'xpath://*[@id="pull-request-details"]/header/div/div/div[2]/div/div[2]/div/div/div',
-        containerElement: createElement("div", {
-            marginLeft: "2px",
-        }),
+        selector: 'xpath://*[@id="root"]/div[3]/div[3]/div/div/div[1]/div/div/div[1]/div/div[2]/div/div[2]/div[1]',
+        containerElement: createElement("div", {}),
+        manipulations: [
+            {
+                element: 'xpath://*[@id="root"]/div[3]/div[3]/div/div/div[1]/div/div/div[1]/div/div[2]/div/div[2]/div',
+                style: {
+                    display: "flex",
+                    gap: "0.25rem",
+                },
+            },
+        ],
         application: "bitbucket",
     },
     {
