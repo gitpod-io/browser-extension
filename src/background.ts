@@ -2,7 +2,7 @@ import browser from "webextension-polyfill";
 
 import "webext-dynamic-content-scripts";
 
-import addDomainPermissionToggle from "webext-domain-permission-toggle";
+import addDomainPermissionToggle from "webext-permission-toggle";
 
 (async () => {
     addDomainPermissionToggle();
