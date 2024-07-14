@@ -19,7 +19,7 @@ const GitHubCaret = () => {
         <svg
             aria-hidden="true"
             focusable="false"
-            className="octicon octicon-triangle-down"
+            className="octicon octicon-triangle-down chevron-icon"
             viewBox="0 0 16 16"
             width="16"
             height="16"
