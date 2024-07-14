@@ -9,13 +9,13 @@ import { DEFAULT_GITPOD_ENDPOINT, EVENT_CURRENT_URL_CHANGED } from "~constants";
 import { STORAGE_KEY_ADDRESS, STORAGE_KEY_ALWAYS_OPTIONS, STORAGE_KEY_NEW_TAB } from "~storage";
 
 import type { SupportedApplication } from "./button-contributions";
+import { BitbucketCaret, CaretForProvider, GitHubCaret } from "./CaretForProvider";
 
-export interface GitpodButtonProps {
+type Props = {
     application: SupportedApplication;
     additionalClassNames?: string[];
-}
-
-export const GitpodButton = ({ application, additionalClassNames }: GitpodButtonProps) => {
+};
+export const GitpodButton = ({ application, additionalClassNames }: Props) => {
     const [address] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_GITPOD_ENDPOINT);
     const [openInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, true);
     const [disableAutostart] = useStorage<boolean>(STORAGE_KEY_ALWAYS_OPTIONS, false);
@@ -83,7 +83,7 @@ export const GitpodButton = ({ application, additionalClassNames }: GitpodButton
         <div
             id="gitpod-btn-nav"
             title="Gitpod"
-            className={classNames("gitpod-button", application, ...(additionalClassNames || []))}
+            className={classNames("gitpod-button", application, ...(additionalClassNames ?? []))}
         >
             <div className={classNames("button")}>
                 <a
@@ -106,9 +106,7 @@ export const GitpodButton = ({ application, additionalClassNames }: GitpodButton
                             toggleDropdown();
                         }}
                     >
-                        <svg width="18" viewBox="0 0 24 24" className={classNames("chevron-icon")}>
-                            <path d="M7 10L12 15L17 10H7Z"></path>
-                        </svg>
+                        <CaretForProvider provider={application} />
                     </button>
                 )}
             </div>
