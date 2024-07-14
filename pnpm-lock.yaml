@@ -45,8 +45,8 @@ importers:
         specifier: ^5.0.2
         version: 5.1.0
       webextension-polyfill:
-        specifier: ^0.10.0
-        version: 0.10.0
+        specifier: ^0.12.0
+        version: 0.12.0
     devDependencies:
       '@ianvs/prettier-plugin-sort-imports':
         specifier: 4.1.0
@@ -3983,8 +3983,8 @@ packages:
     resolution: {integrity: sha512-pk+lgvnTRMtzn1MvLeBien1nB15V5kIhung3w9ZFLyPXRzmZi5dHtr6BJJcNwJ8yzK+OeIsUk5qIDMEjEwgQKQ==}
     engines: {node: '>=18'}
 
-  webextension-polyfill@0.10.0:
-    resolution: {integrity: sha512-c5s35LgVa5tFaHhrZDnr3FpQpjj1BB+RXhLTYUxGqBVN460HkbM8TBtEqdXWbpTKfzwCcjAZVF7zXCYSKtcp9g==}
+  webextension-polyfill@0.12.0:
+    resolution: {integrity: sha512-97TBmpoWJEE+3nFBQ4VocyCdLKfw54rFaJ6EVQYLBCXqCIpLSZkwGgASpv4oPt9gdKCJ80RJlcmNzNn008Ag6Q==}
 
   webidl-conversions@4.0.2:
     resolution: {integrity: sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==}
@@ -8644,7 +8644,7 @@ snapshots:
       webext-detect: 5.0.2
       webext-polyfill-kinda: 1.0.2
 
-  webextension-polyfill@0.10.0: {}
+  webextension-polyfill@0.12.0: {}
 
   webidl-conversions@4.0.2: {}
 
