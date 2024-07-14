@@ -19,7 +19,7 @@
         "@plasmohq/storage": "^1.10.0",
         "@tailwindcss/forms": "^0.5.7",
         "classnames": "^2.5.1",
-        "lucide-react": "^0.378.0",
+        "lucide-react": "^0.408.0",
         "plasmo": "^0.88.0",
         "react": "^18.3.1",
         "react-dom": "^18.2.0",
