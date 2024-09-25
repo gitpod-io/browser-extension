@@ -3,7 +3,7 @@
  * Happy about anyone who's able to make this work with imports (i.e. run the tests in this project), but I couldn't figure it out and gave up.
  */
 
-export type SupportedApplication = "github" | "gitlab" | "bitbucket-server" | "bitbucket";
+export type SupportedApplication = "github" | "gitlab" | "bitbucket-server" | "bitbucket" | "azure-devops";
 
 const resolveMetaAppName = (head: HTMLHeadElement): string | undefined => {
     const metaApplication = head.querySelector("meta[name=application-name]");
@@ -18,16 +18,24 @@ const resolveMetaAppName = (head: HTMLHeadElement): string | undefined => {
     return undefined;
 };
 
+export const DEFAULT_HOSTS = ["github.com", "gitlab.com", "bitbucket.org", "dev.azure.com"];
+
 /**
  * Provides a fast check to see if the current URL is on a supported site.
  */
 export const isSiteSuitable = (): boolean => {
+    const isWhitelistedHost = DEFAULT_HOSTS.some((host) => location.host === host);
+    if (isWhitelistedHost) {
+        return true;
+    }
+
     const appName = resolveMetaAppName(document.head);
     if (!appName) {
         return false;
     }
     const allowedApps = ["GitHub", "GitLab", "Bitbucket"];
-    return allowedApps.includes(appName);
+
+    return allowedApps.some((allowedApp) => appName.includes(allowedApp));
 };
 
 export interface ButtonContributionParams {
@@ -51,7 +59,7 @@ export interface ButtonContributionParams {
     /**
      * The element in which the button should be inserted.
      *
-     * This element will be inserted into teh main document and allows for styling within the original page.
+     * This element will be inserted into the main document and allows for styling within the original page.
      *
      * The structure looks like this:
      *
@@ -113,6 +121,41 @@ function createElement(
 }
 
 export const buttonContributions: ButtonContributionParams[] = [
+    // Azure DevOps
+    {
+        id: "ado-repo",
+        exampleUrls: [
+            // "https://dev.azure.com/services-azure/_git/project2"
+        ],
+        selector: "div.repos-files-header-commandbar:nth-child(1)",
+        containerElement: createElement("div", {}),
+        application: "azure-devops",
+        insertBefore: `div.bolt-header-command-item-button:has(button[id^="__bolt-header-command-bar-menu-button"])`,
+        manipulations: [
+            {
+                element: "div.repos-files-header-commandbar.scroll-hidden",
+                remove: "scroll-hidden",
+            },
+        ],
+    },
+    {
+        id: "ado-pr",
+        exampleUrls: [
+            // "https://dev.azure.com/services-azure/test-project/_git/repo2/pullrequest/1"
+        ],
+        selector: ".repos-pr-header > div:nth-child(2) > div:nth-child(1)",
+        containerElement: createElement("div", {}),
+        application: "azure-devops",
+        insertBefore: `div.bolt-header-command-item-button:has(button[id^="__bolt-menu-button-"])`,
+    },
+    {
+        id: "ado-repo-empty",
+        exampleUrls: [],
+        selector: "div.clone-with-application",
+        application: "azure-devops",
+        containerElement: createElement("div", { marginLeft: "4px", marginRight: "4px" }),
+    },
+
     // GitLab
     {
         id: "gl-repo", // also taking care of branches

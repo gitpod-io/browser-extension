@@ -124,7 +124,9 @@ export const buttonContributions: ButtonContributionParams[] = [
     // Azure DevOps
     {
         id: "ado-repo",
-        exampleUrls: ["https://dev.azure.com/services-azure/_git/project2"],
+        exampleUrls: [
+            // "https://dev.azure.com/services-azure/_git/project2"
+        ],
         selector: "div.repos-files-header-commandbar:nth-child(1)",
         containerElement: createElement("div", {}),
         application: "azure-devops",
@@ -138,7 +140,9 @@ export const buttonContributions: ButtonContributionParams[] = [
     },
     {
         id: "ado-pr",
-        exampleUrls: ["https://dev.azure.com/services-azure/test-project/_git/repo2/pullrequest/1"],
+        exampleUrls: [
+            // "https://dev.azure.com/services-azure/test-project/_git/repo2/pullrequest/1"
+        ],
         selector: ".repos-pr-header > div:nth-child(2) > div:nth-child(1)",
         containerElement: createElement("div", {}),
         application: "azure-devops",
@@ -146,10 +150,10 @@ export const buttonContributions: ButtonContributionParams[] = [
     },
     {
         id: "ado-repo-empty",
+        exampleUrls: [],
         selector: "div.clone-with-application",
         application: "azure-devops",
         containerElement: createElement("div", { marginLeft: "4px", marginRight: "4px" }),
-        exampleUrls: [],
     },
 
     // GitLab
