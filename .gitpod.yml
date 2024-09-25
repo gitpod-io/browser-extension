@@ -2,14 +2,26 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - init: |
+  - name: install node version
+    init: |
+      nvm install 20
+      nvm use 20
+      nvm uninstall 16
+      npm install -g pnpm
+      gp sync-done node
+
+  # Without nodeJS 20 installed, the "sharp" package won't bundle properly,
+  # so wait until the node update is finished in the prebuild.
+  - name: build package
+    init: |
+      gp sync-await node
       pnpm install
       pnpm build 
       pnpm build-dev-tools 
       pnpm test
     command: |
       pnpm build
-      
+
 ports:
   - name: sync
     port: 8080
