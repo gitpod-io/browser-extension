@@ -7,8 +7,9 @@ import { EVENT_CURRENT_URL_CHANGED } from "~constants";
 import { GitpodButton } from "../button/button";
 import { buttonContributions, isSiteSuitable, type ButtonContributionParams } from "../button/button-contributions";
 
+// keep in sync with DEFAULT_HOSTS in src/button/button-contributions.ts
 export const config: PlasmoCSConfig = {
-    matches: ["https://github.com/*", "https://gitlab.com/*", "https://bitbucket.org/*"],
+    matches: ["https://github.com/*", "https://gitlab.com/*", "https://bitbucket.org/*", "https://dev.azure.com/*"],
 };
 
 export const getStyle = () => {

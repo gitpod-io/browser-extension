@@ -9,7 +9,7 @@ import { DEFAULT_GITPOD_ENDPOINT, EVENT_CURRENT_URL_CHANGED } from "~constants";
 import { STORAGE_KEY_ADDRESS, STORAGE_KEY_ALWAYS_OPTIONS, STORAGE_KEY_NEW_TAB } from "~storage";
 
 import type { SupportedApplication } from "./button-contributions";
-import { BitbucketCaret, CaretForProvider, GitHubCaret } from "./CaretForProvider";
+import { CaretForProvider } from "./CaretForProvider";
 
 type Props = {
     application: SupportedApplication;

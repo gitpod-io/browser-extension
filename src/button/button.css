@@ -315,3 +315,26 @@
         0 0 1px rgba(9, 30, 66, 0.31)
     );
 }
+
+.azure-devops {
+    --font-family: "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
+        sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --primary-bg-color: var(--communication-background, rgba(0, 120, 212, 1));
+    --primary-hover-bg-color: rgba(var(--palette-primary-darkened-6, 0, 103, 181), 1);
+    --primary-color: var(--text-on-communication-background, rgba(255, 255, 255, 1));
+    --primary-hover-color: var(--text-on-communication-background, rgba(255, 255, 255, 1));
+    --primary-separator-color: rgba(var(--palette-primary-darkened-10, 0, 91, 161), 1);
+    --font-weight: 600;
+    --primary-height: 32px;
+
+    --dropdown-color: var(--text-primary-color, rgba(0, 0, 0, 0.9));
+    --dropdown-bg-color: var(--callout-background-color, rgba(255, 255, 255, 1));
+    --dropdown-hover-bg-color: var(--palette-black-alpha-4, rgba(0, 0, 0, 0.04));
+    --dropdown-box-shadow: 0 3.2px 7.2px 0 var(--callout-shadow-color, rgba(0, 0, 0, 0.132)),
+        0 0.6px 1.8px 0 var(--callout-shadow-secondary-color, rgba(0, 0, 0, 0.108));
+    --dropdown-border-width: 0;
+    --dropdown-border-radius: 4px;
+
+    --border-radius: 2px;
+    --border-width: 0px;
+}
