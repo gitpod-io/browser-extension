@@ -14,8 +14,9 @@ import { CaretForProvider } from "./CaretForProvider";
 type Props = {
     application: SupportedApplication;
     additionalClassNames?: string[];
+    contextParser?: (url: string) => string;
 };
-export const GitpodButton = ({ application, additionalClassNames }: Props) => {
+export const GitpodButton = ({ application, additionalClassNames, contextParser }: Props) => {
     const [address] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_GITPOD_ENDPOINT);
     const [openInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, true);
     const [disableAutostart] = useStorage<boolean>(STORAGE_KEY_ALWAYS_OPTIONS, false);
@@ -37,17 +38,20 @@ export const GitpodButton = ({ application, additionalClassNames }: Props) => {
     }, []);
 
     const actions = useMemo(
-        () => [
-            {
-                href: `${address}/?autostart=${!disableAutostart}#${currentHref}`,
-                label: "Open",
-            },
-            {
-                href: `${address}/?autostart=false#${currentHref}`,
-                label: "Open with options...",
-            },
-        ],
-        [address, disableAutostart, currentHref],
+        () => {
+            const parsedHref = !contextParser ? currentHref : contextParser(currentHref);
+            return [
+                {
+                    href: `${address}/?autostart=${!disableAutostart}#${parsedHref}`,
+                    label: "Open",
+                },
+                {
+                    href: `${address}/?autostart=false#${parsedHref}`,
+                    label: "Open with options...",
+                },
+            ];
+        },
+        [address, disableAutostart, currentHref, contextParser],
     );
     const dropdownRef = useRef<HTMLDivElement | null>(null);
     const firstActionRef = useRef<HTMLAnchorElement | null>(null);

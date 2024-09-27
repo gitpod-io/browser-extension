@@ -106,6 +106,8 @@ export interface ButtonContributionParams {
      * the classnames to remove and add.
      */
     manipulations?: { element: string; remove?: string; add?: string; style?: Partial<CSSStyleDeclaration> }[];
+
+    additionalParser?: (lookupElement: (path: string) => HTMLElement) => (originalUrl: string) => string;
 }
 
 function createElement(
@@ -137,6 +139,20 @@ export const buttonContributions: ButtonContributionParams[] = [
                 remove: "scroll-hidden",
             },
         ],
+        additionalParser(lookupElement) {
+            return (originalUrl) => {
+                if (originalUrl.includes("version=GB")) {
+                    return originalUrl;
+                }
+                const url = new URL(originalUrl);
+                // version=GBdevelop
+                const branch = lookupElement("xpath://div[contains(@class, 'version-dropdown')]//span[contains(@class, 'text-ellipsis')]/text()")?.textContent;
+                if (branch) {
+                    url.searchParams.set("version", `GB${branch}`);
+                }
+                return url.toString();
+            };
+        },
     },
     {
         id: "ado-pr",
