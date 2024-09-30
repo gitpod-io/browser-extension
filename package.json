@@ -1,7 +1,7 @@
 {
     "name": "gitpod",
     "displayName": "Gitpod",
-    "version": "2.2.2",
+    "version": "2.2.3",
     "description": "The developer platform for on-demand cloud development environments. Create software faster and more securely.",
     "author": "Gitpod <info@gitpod.io>",
     "homepage": "https://www.gitpod.io",
@@ -19,8 +19,8 @@
         "@plasmohq/storage": "^1.10.0",
         "@tailwindcss/forms": "^0.5.7",
         "classnames": "^2.5.1",
-        "lucide-react": "^0.378.0",
-        "plasmo": "^0.88.0",
+        "lucide-react": "^0.437.0",
+        "plasmo": "^0.89.2",
         "react": "^18.3.1",
         "react-dom": "^18.2.0",
         "react-hotkeys-hook": "^4.5.0",
@@ -51,9 +51,9 @@
         "prettier": "3.2.5",
         "puppeteer": "^22.12.1",
         "source-map-support": "^0.5.21",
-        "tailwindcss": "^3.3.3",
+        "tailwindcss": "^3.4.13",
         "ts-node": "^10.9.2",
-        "typescript": "5.4.5"
+        "typescript": "5.5.4"
     },
     "manifest": {
         "optional_host_permissions": [
