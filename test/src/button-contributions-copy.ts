@@ -107,7 +107,11 @@ export interface ButtonContributionParams {
      */
     manipulations?: { element: string; remove?: string; add?: string; style?: Partial<CSSStyleDeclaration> }[];
 
-    additionalParser?: (lookupElement: (path: string) => HTMLElement) => (originalUrl: string) => string;
+    /**
+     * A function that can be used to transform the URL that should be opened when the Gitpod button is clicked.
+     * @returns The transformed URL.
+     */
+    urlTransformer?: (originalURL: string) => string;
 }
 
 function createElement(
@@ -139,19 +143,25 @@ export const buttonContributions: ButtonContributionParams[] = [
                 remove: "scroll-hidden",
             },
         ],
-        additionalParser(lookupElement) {
-            return (originalUrl) => {
-                if (originalUrl.includes("version=GB")) {
-                    return originalUrl;
-                }
-                const url = new URL(originalUrl);
-                // version=GBdevelop
-                const branch = lookupElement("xpath://div[contains(@class, 'version-dropdown')]//span[contains(@class, 'text-ellipsis')]/text()")?.textContent;
-                if (branch) {
-                    url.searchParams.set("version", `GB${branch}`);
-                }
-                return url.toString();
-            };
+        urlTransformer(originalUrl) {
+            const url = new URL(originalUrl);
+            if (url.pathname.includes("version=GB")) {
+                return originalUrl;
+            }
+            // version=GBdevelop
+            const branchElement = document.evaluate(
+                "//div[contains(@class, 'version-dropdown')]//span[contains(@class, 'text-ellipsis')]",
+                document,
+                null,
+                XPathResult.FIRST_ORDERED_NODE_TYPE,
+                null,
+            ).singleNodeValue;
+            if (branchElement) {
+                const branch = branchElement.textContent?.trim();
+                url.searchParams.set("version", `GB${branch}`);
+            }
+
+            return url.toString();
         },
     },
     {

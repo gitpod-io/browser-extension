@@ -14,9 +14,9 @@ import { CaretForProvider } from "./CaretForProvider";
 type Props = {
     application: SupportedApplication;
     additionalClassNames?: string[];
-    contextParser?: (url: string) => string;
+    urlTransformer?: (url: string) => string;
 };
-export const GitpodButton = ({ application, additionalClassNames, contextParser }: Props) => {
+export const GitpodButton = ({ application, additionalClassNames, urlTransformer }: Props) => {
     const [address] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_GITPOD_ENDPOINT);
     const [openInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, true);
     const [disableAutostart] = useStorage<boolean>(STORAGE_KEY_ALWAYS_OPTIONS, false);
@@ -37,22 +37,19 @@ export const GitpodButton = ({ application, additionalClassNames, contextParser 
         };
     }, []);
 
-    const actions = useMemo(
-        () => {
-            const parsedHref = !contextParser ? currentHref : contextParser(currentHref);
-            return [
-                {
-                    href: `${address}/?autostart=${!disableAutostart}#${parsedHref}`,
-                    label: "Open",
-                },
-                {
-                    href: `${address}/?autostart=false#${parsedHref}`,
-                    label: "Open with options...",
-                },
-            ];
-        },
-        [address, disableAutostart, currentHref, contextParser],
-    );
+    const actions = useMemo(() => {
+        const parsedHref = !urlTransformer ? currentHref : urlTransformer(currentHref);
+        return [
+            {
+                href: `${address}/?autostart=${!disableAutostart}#${parsedHref}`,
+                label: "Open",
+            },
+            {
+                href: `${address}/?autostart=false#${parsedHref}`,
+                label: "Open with options...",
+            },
+        ];
+    }, [address, disableAutostart, currentHref, urlTransformer]);
     const dropdownRef = useRef<HTMLDivElement | null>(null);
     const firstActionRef = useRef<HTMLAnchorElement | null>(null);
 

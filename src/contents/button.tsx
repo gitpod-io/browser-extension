@@ -46,7 +46,7 @@ class ButtonContributionManager {
                         key={containerId}
                         application={contribution.application}
                         additionalClassNames={contribution.additionalClassNames}
-                        contextParser={(url) => contribution.additionalParser ? contribution.additionalParser((path) => this.lookupElement(path), url) : url}
+                        urlTransformer={contribution.urlTransformer}
                     />,
                 );
             }
