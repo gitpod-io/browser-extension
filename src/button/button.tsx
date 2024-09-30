@@ -9,13 +9,14 @@ import { DEFAULT_GITPOD_ENDPOINT, EVENT_CURRENT_URL_CHANGED } from "~constants";
 import { STORAGE_KEY_ADDRESS, STORAGE_KEY_ALWAYS_OPTIONS, STORAGE_KEY_NEW_TAB } from "~storage";
 
 import type { SupportedApplication } from "./button-contributions";
-import { BitbucketCaret, CaretForProvider, GitHubCaret } from "./CaretForProvider";
+import { CaretForProvider } from "./CaretForProvider";
 
 type Props = {
     application: SupportedApplication;
     additionalClassNames?: string[];
+    urlTransformer?: (url: string) => string;
 };
-export const GitpodButton = ({ application, additionalClassNames }: Props) => {
+export const GitpodButton = ({ application, additionalClassNames, urlTransformer }: Props) => {
     const [address] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_GITPOD_ENDPOINT);
     const [openInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, true);
     const [disableAutostart] = useStorage<boolean>(STORAGE_KEY_ALWAYS_OPTIONS, false);
@@ -36,19 +37,19 @@ export const GitpodButton = ({ application, additionalClassNames }: Props) => {
         };
     }, []);
 
-    const actions = useMemo(
-        () => [
+    const actions = useMemo(() => {
+        const parsedHref = !urlTransformer ? currentHref : urlTransformer(currentHref);
+        return [
             {
-                href: `${address}/?autostart=${!disableAutostart}#${currentHref}`,
+                href: `${address}/?autostart=${!disableAutostart}#${parsedHref}`,
                 label: "Open",
             },
             {
-                href: `${address}/?autostart=false#${currentHref}`,
+                href: `${address}/?autostart=false#${parsedHref}`,
                 label: "Open with options...",
             },
-        ],
-        [address, disableAutostart, currentHref],
-    );
+        ];
+    }, [address, disableAutostart, currentHref, urlTransformer]);
     const dropdownRef = useRef<HTMLDivElement | null>(null);
     const firstActionRef = useRef<HTMLAnchorElement | null>(null);
 
