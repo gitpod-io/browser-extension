@@ -25,16 +25,16 @@ importers:
         version: 0.437.0(react@18.3.1)
       plasmo:
         specifier: ^0.89.2
-        version: 0.89.2(@swc/core@1.3.96(@swc/helpers@0.5.1))(@swc/helpers@0.5.1)(lodash@4.17.21)(postcss@8.4.31)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(srcset@4.0.0)(ts-node@10.9.2(@swc/core@1.3.96(@swc/helpers@0.5.1))(@types/node@20.14.5)(typescript@5.5.4))
+        version: 0.89.2(@swc/core@1.3.96(@swc/helpers@0.5.1))(@swc/helpers@0.5.1)(lodash@4.17.21)(postcss@8.4.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(srcset@4.0.0)(ts-node@10.9.2(@swc/core@1.3.96(@swc/helpers@0.5.1))(@types/node@20.14.5)(typescript@5.5.4))
       react:
         specifier: ^18.3.1
         version: 18.3.1
       react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.3.1)
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
       react-hotkeys-hook:
         specifier: ^4.5.0
-        version: 4.5.0(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
+        version: 4.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       validator:
         specifier: ^13.12.0
         version: 13.12.0
@@ -67,8 +67,8 @@ importers:
         specifier: 18.3.3
         version: 18.3.3
       '@types/react-dom':
-        specifier: 18.2.7
-        version: 18.2.7
+        specifier: 18.3.0
+        version: 18.3.0
       '@types/validator':
         specifier: ^13.12.0
         version: 13.12.0
@@ -1649,8 +1649,8 @@ packages:
   '@types/prop-types@15.7.5':
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
 
-  '@types/react-dom@18.2.7':
-    resolution: {integrity: sha512-GRaAEriuT4zp9N4p1i8BDBYmEyfo+xQ3yHjJU4eiK5NDa1RmUZG+unZABUTK4/Ox/M+GaHwb6Ow8rUITrtjszA==}
+  '@types/react-dom@18.3.0':
+    resolution: {integrity: sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==}
 
   '@types/react@18.3.3':
     resolution: {integrity: sha512-hti/R0pS0q1/xx+TsI73XIqk26eBsISZ2R0wUijXIngRK9R/e7Xw/cXVxQK7R5JjW+SV4zGcn5hXjudkN/pLIw==}
@@ -3564,10 +3564,10 @@ packages:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
     hasBin: true
 
-  react-dom@18.2.0:
-    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
+  react-dom@18.3.1:
+    resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
     peerDependencies:
-      react: ^18.2.0
+      react: ^18.3.1
 
   react-error-overlay@6.0.9:
     resolution: {integrity: sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==}
@@ -3702,8 +3702,8 @@ packages:
   sax@1.2.4:
     resolution: {integrity: sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==}
 
-  scheduler@0.23.0:
-    resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
+  scheduler@0.23.2:
+    resolution: {integrity: sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==}
 
   semver@5.7.2:
     resolution: {integrity: sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==}
@@ -5510,13 +5510,13 @@ snapshots:
       '@parcel/utils': 2.9.3
       nullthrows: 1.1.1
 
-  '@plasmohq/consolidate@0.17.0(lodash@4.17.21)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)':
+  '@plasmohq/consolidate@0.17.0(lodash@4.17.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       bluebird: 3.7.2
     optionalDependencies:
       lodash: 4.17.21
       react: 18.3.1
-      react-dom: 18.2.0(react@18.3.1)
+      react-dom: 18.3.1(react@18.3.1)
 
   '@plasmohq/init@0.7.0': {}
 
@@ -5536,7 +5536,7 @@ snapshots:
     transitivePeerDependencies:
       - '@parcel/core'
 
-  '@plasmohq/parcel-config@0.41.1(@swc/core@1.3.96(@swc/helpers@0.5.1))(@swc/helpers@0.5.1)(lodash@4.17.21)(postcss@8.4.31)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(srcset@4.0.0)(ts-node@10.9.2(@swc/core@1.3.96(@swc/helpers@0.5.1))(@types/node@20.14.5)(typescript@5.5.4))':
+  '@plasmohq/parcel-config@0.41.1(@swc/core@1.3.96(@swc/helpers@0.5.1))(@swc/helpers@0.5.1)(lodash@4.17.21)(postcss@8.4.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(srcset@4.0.0)(ts-node@10.9.2(@swc/core@1.3.96(@swc/helpers@0.5.1))(@types/node@20.14.5)(typescript@5.5.4))':
     dependencies:
       '@parcel/compressor-raw': 2.9.3(@parcel/core@2.9.3)
       '@parcel/config-default': 2.9.3(@parcel/core@2.9.3)(@swc/helpers@0.5.1)(postcss@8.4.31)(srcset@4.0.0)
@@ -5572,7 +5572,7 @@ snapshots:
       '@plasmohq/parcel-transformer-inline-css': 0.3.11
       '@plasmohq/parcel-transformer-manifest': 0.20.1
       '@plasmohq/parcel-transformer-svelte': 0.6.0
-      '@plasmohq/parcel-transformer-vue': 0.5.0(lodash@4.17.21)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
+      '@plasmohq/parcel-transformer-vue': 0.5.0(lodash@4.17.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/helpers'
@@ -5753,7 +5753,7 @@ snapshots:
       '@parcel/utils': 2.9.3
       svelte: 4.2.2
 
-  '@plasmohq/parcel-transformer-vue@0.5.0(lodash@4.17.21)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)':
+  '@plasmohq/parcel-transformer-vue@0.5.0(lodash@4.17.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@parcel/core': 2.9.3
       '@parcel/diagnostic': 2.9.3
@@ -5761,7 +5761,7 @@ snapshots:
       '@parcel/source-map': 2.1.1
       '@parcel/types': 2.9.3(@parcel/core@2.9.3)
       '@parcel/utils': 2.9.3
-      '@plasmohq/consolidate': 0.17.0(lodash@4.17.21)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
+      '@plasmohq/consolidate': 0.17.0(lodash@4.17.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@vue/compiler-sfc': 3.3.4
       nullthrows: 1.1.1
       semver: 7.5.4
@@ -6080,7 +6080,7 @@ snapshots:
 
   '@types/prop-types@15.7.5': {}
 
-  '@types/react-dom@18.2.7':
+  '@types/react-dom@18.3.0':
     dependencies:
       '@types/react': 18.3.3
 
@@ -8055,7 +8055,7 @@ snapshots:
 
   pirates@4.0.6: {}
 
-  plasmo@0.89.2(@swc/core@1.3.96(@swc/helpers@0.5.1))(@swc/helpers@0.5.1)(lodash@4.17.21)(postcss@8.4.31)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(srcset@4.0.0)(ts-node@10.9.2(@swc/core@1.3.96(@swc/helpers@0.5.1))(@types/node@20.14.5)(typescript@5.5.4)):
+  plasmo@0.89.2(@swc/core@1.3.96(@swc/helpers@0.5.1))(@swc/helpers@0.5.1)(lodash@4.17.21)(postcss@8.4.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(srcset@4.0.0)(ts-node@10.9.2(@swc/core@1.3.96(@swc/helpers@0.5.1))(@types/node@20.14.5)(typescript@5.5.4)):
     dependencies:
       '@expo/spawn-async': 1.7.2
       '@parcel/core': 2.9.3
@@ -8063,7 +8063,7 @@ snapshots:
       '@parcel/package-manager': 2.9.3(@parcel/core@2.9.3)
       '@parcel/watcher': 2.2.0
       '@plasmohq/init': 0.7.0
-      '@plasmohq/parcel-config': 0.41.1(@swc/core@1.3.96(@swc/helpers@0.5.1))(@swc/helpers@0.5.1)(lodash@4.17.21)(postcss@8.4.31)(react-dom@18.2.0(react@18.3.1))(react@18.3.1)(srcset@4.0.0)(ts-node@10.9.2(@swc/core@1.3.96(@swc/helpers@0.5.1))(@types/node@20.14.5)(typescript@5.5.4))
+      '@plasmohq/parcel-config': 0.41.1(@swc/core@1.3.96(@swc/helpers@0.5.1))(@swc/helpers@0.5.1)(lodash@4.17.21)(postcss@8.4.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(srcset@4.0.0)(ts-node@10.9.2(@swc/core@1.3.96(@swc/helpers@0.5.1))(@types/node@20.14.5)(typescript@5.5.4))
       '@plasmohq/parcel-core': 0.1.9
       buffer: 6.0.3
       chalk: 5.3.0
@@ -8283,18 +8283,18 @@ snapshots:
       minimist: 1.2.8
       strip-json-comments: 2.0.1
 
-  react-dom@18.2.0(react@18.3.1):
+  react-dom@18.3.1(react@18.3.1):
     dependencies:
       loose-envify: 1.4.0
       react: 18.3.1
-      scheduler: 0.23.0
+      scheduler: 0.23.2
 
   react-error-overlay@6.0.9: {}
 
-  react-hotkeys-hook@4.5.0(react-dom@18.2.0(react@18.3.1))(react@18.3.1):
+  react-hotkeys-hook@4.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       react: 18.3.1
-      react-dom: 18.2.0(react@18.3.1)
+      react-dom: 18.3.1(react@18.3.1)
 
   react-is@16.13.1: {}
 
@@ -8422,7 +8422,7 @@ snapshots:
   sax@1.2.4:
     optional: true
 
-  scheduler@0.23.0:
+  scheduler@0.23.2:
     dependencies:
       loose-envify: 1.4.0
 
