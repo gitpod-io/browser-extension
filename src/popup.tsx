@@ -148,13 +148,13 @@ function IndexPopup() {
                 />
                 <CheckboxInputField
                     label="Automatic instance hopping"
-                    hint="Changes the Gitpod URL automatically when a Gitpod Dedicated instance is detected"
+                    hint="Changes the Gitpod URL automatically when a Gitpod Enterprise/Flex instance is detected"
                     checked={enableInstanceHopping}
                     onChange={setEnableInstanceHopping}
                 />
             </form>
 
-            {/* show error if set  */}
+            {/* show error if set */}
             <div
                 style={
                     error ?
