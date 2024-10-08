@@ -225,12 +225,10 @@ export const buttonContributions: ButtonContributionParams[] = [
         id: "gl-merge-request",
         exampleUrls: ["https://gitlab.com/svenefftinge/browser-extension-test/-/merge_requests/1"],
         match: /\/merge_requests\//,
-        selector:
-            "body[data-project-id] div.detail-page-header-actions.is-merge-request > div",
+        selector: "body[data-project-id] div.detail-page-header-actions.is-merge-request > div",
         containerElement: createElement("div", { marginLeft: "8px", marginRight: "-8px" }),
         application: "gitlab",
-        insertBefore:
-            "body[data-project-id] div.detail-page-header-actions.is-merge-request > div > div",
+        insertBefore: "body[data-project-id] div.detail-page-header-actions.is-merge-request > div > div",
         manipulations: [
             {
                 // make the clone button secondary
