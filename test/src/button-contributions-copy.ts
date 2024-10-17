@@ -225,12 +225,10 @@ export const buttonContributions: ButtonContributionParams[] = [
         id: "gl-merge-request",
         exampleUrls: ["https://gitlab.com/svenefftinge/browser-extension-test/-/merge_requests/1"],
         match: /\/merge_requests\//,
-        selector:
-            "#content-body > div.merge-request > div.detail-page-header.border-bottom-0.gl-block.gl-pt-5.sm\\:\\!gl-flex.is-merge-request > div.detail-page-header-actions.gl-self-start.is-merge-request.js-issuable-actions.gl-flex.gl-mt-1 > div",
+        selector: "body[data-project-id] div.detail-page-header-actions.is-merge-request > div",
         containerElement: createElement("div", { marginLeft: "8px", marginRight: "-8px" }),
         application: "gitlab",
-        insertBefore:
-            "#content-body > div.merge-request > div.detail-page-header.border-bottom-0.gl-block.gl-pt-5.sm\\:\\!gl-flex.is-merge-request > div.detail-page-header-actions.gl-self-start.is-merge-request.js-issuable-actions.gl-flex.gl-mt-1 > div > div",
+        insertBefore: "body[data-project-id] div.detail-page-header-actions.is-merge-request > div > div",
         manipulations: [
             {
                 // make the clone button secondary
@@ -271,7 +269,7 @@ export const buttonContributions: ButtonContributionParams[] = [
             "https://github.com/svenefftinge/browser-extension-test",
             "https://github.com/svenefftinge/browser-extension-test/tree/my-branch",
         ],
-        selector: `xpath://*[contains(@id, 'repo-content-')]/div/div/div[2]/div[1]/react-partial/div/div/div[2]/div[2]`,
+        selector: `xpath://*[contains(@id, 'repo-content-')]/div/div/div/div[1]/react-partial/div/div/div[2]/div[2]`,
         containerElement: createElement("div", {}),
         additionalClassNames: ["medium"],
         application: "github",
