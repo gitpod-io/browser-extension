@@ -11,6 +11,7 @@ describe("Query Selector Tests", function () {
     before(async function () {
         browser = await puppeteer.launch({
             headless: "new",
+            product: "chrome",
         });
         page = await browser.newPage();
     });
