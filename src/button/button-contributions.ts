@@ -397,9 +397,9 @@ export const buttonContributions: ButtonContributionParams[] = [
         exampleUrls: [
             // "https://bitbucket.org/svenefftinge/browser-extension-test/src/master/"
         ],
-        selector: 'xpath://*[@id="root"]/div/div[3]/div/div/div[1]/div/header/div/div/div/div[2]/div',
+        selector: 'xpath://*[@id="main"]/div/div/div[1]/div/header/div/div/div/div[2]/div',
         insertBefore:
-            "#root > div.css-kyhvoj > div.css-e48442 > div > div > div.css-8ypwyz.efo6slf1 > div > header > div > div > div > div.sc-kAzzGY.hKOvhL > div > div:nth-child(3)",
+            "#main > div > div > div.css-1m2ufqk.efo6slf1 > div > header > div > div > div > div.css-1ianfu6 > div > div:nth-child(2)",
         containerElement: createElement("div", {
             marginLeft: "2px",
         }),
@@ -410,17 +410,8 @@ export const buttonContributions: ButtonContributionParams[] = [
         exampleUrls: [
             // "https://bitbucket.org/efftinge/browser-extension-test/pull-requests/1"
         ],
-        selector: 'xpath://*[@id="root"]/div[3]/div[3]/div/div/div[1]/div/div/div[1]/div/div[2]/div/div[2]/div[1]',
+        selector: 'xpath://*[@id="main"]/div/div/div[1]/div/div/div[1]/div/div[2]/div/div[2]/div/div/div[1]/div', // section with the "Request changes" and "Approve" buttons
         containerElement: createElement("div", {}),
-        manipulations: [
-            {
-                element: 'xpath://*[@id="root"]/div[3]/div[3]/div/div/div[1]/div/div/div[1]/div/div[2]/div/div[2]/div',
-                style: {
-                    display: "flex",
-                    gap: "0.25rem",
-                },
-            },
-        ],
         application: "bitbucket",
     },
     {
@@ -429,7 +420,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         exampleUrls: [
             // "https://bitbucket.org/efftinge/browser-extension-test/branch/my-branch"
         ],
-        selector: 'xpath://*[@id="root"]/div/div[3]/div/div/div[1]/div/div/div[2]/div/div',
+        selector: 'xpath://*[@id="main"]/div/div/div[1]/div/div/div[2]/div/div', // action bar section with the last action of "Settings"
         containerElement: createElement("div", {
             marginLeft: "2px",
         }),
@@ -439,7 +430,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         id: "bb-commits",
         match: /\/commits\/(.+)?/,
         exampleUrls: ["https://bitbucket.org/efftinge/browser-extension-test/commits/"],
-        selector: 'xpath://*[@id="root"]/div/div[3]/div/div/div[1]/div/div/div[1]/div[1]/div[2]/div',
+        selector: 'xpath://*[@id="main"]/div/div/div[1]/div/div/div[1]/div[1]/div[2]/div',
         containerElement: createElement("div", {
             marginLeft: "2px",
         }),
