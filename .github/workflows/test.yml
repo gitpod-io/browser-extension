@@ -20,6 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           pnpm install
+          npx puppeteer browsers install chrome
           cd test && pnpm install
       - name: Build the extension
         run: pnpm build
