@@ -23,7 +23,7 @@
         "plasmo": "^0.89.2",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
-        "react-hotkeys-hook": "^4.5.0",
+        "react-hotkeys-hook": "^4.6.1",
         "validator": "^13.12.0",
         "webext-dynamic-content-scripts": "^10.0.2",
         "webext-permission-toggle": "^5.0.2",
