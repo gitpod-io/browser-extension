@@ -17,7 +17,7 @@
     },
     "dependencies": {
         "@plasmohq/storage": "^1.10.0",
-        "@tailwindcss/forms": "^0.5.7",
+        "@tailwindcss/forms": "^0.5.9",
         "classnames": "^2.5.1",
         "lucide-react": "^0.454.0",
         "plasmo": "^0.89.2",
