@@ -4,7 +4,7 @@ import puppeteer, { Browser, Page } from "puppeteer";
 
 import { buttonContributions } from "./button-contributions-copy.js";
 
-describe("Query Selector Tests", function () {
+describe("Platform match tests", function () {
     let browser: Browser;
     let page: Page;
 
@@ -46,7 +46,8 @@ describe("Query Selector Tests", function () {
                             return false;
                         }
                         const allowedApps = ["GitHub", "GitLab", "Bitbucket"];
-                        return allowedApps.includes(appName);
+
+                        return allowedApps.some((app) => appName.includes(app));
                     };
 
                     return isSiteSuitable();
@@ -66,6 +67,7 @@ describe("Query Selector Tests", function () {
     before(async function () {
         browser = await puppeteer.launch({
             headless: "new",
+            product: "chrome",
         });
         page = await browser.newPage();
     });

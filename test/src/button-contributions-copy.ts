@@ -203,6 +203,13 @@ export const buttonContributions: ButtonContributionParams[] = [
         ],
     },
     {
+        id: "gl-repo-empty",
+        exampleUrls: ["https://gitlab.com/filiptronicek/empty"],
+        selector: `xpath://*[@id="js-project-show-empty-page"]/div[1]/div[1]/div[2]`,
+        containerElement: { type: "div", props: { marginLeft: "8px" } },
+        application: "gitlab",
+    },
+    {
         id: "gl-file",
         exampleUrls: [
             //TODO fix me "https://gitlab.com/svenefftinge/browser-extension-test/-/blob/my-branch/README.md",
@@ -410,9 +417,10 @@ export const buttonContributions: ButtonContributionParams[] = [
         exampleUrls: [
             // "https://bitbucket.org/efftinge/browser-extension-test/pull-requests/1"
         ],
-        selector: 'xpath://*[@id="main"]/div/div/div[1]/div/div/div[1]/div/div[2]/div/div[2]/div/div', // grandparent div of the "Request changes" and "Approve" buttons
+        selector: 'xpath://*[@id="main"]/div/div/div[1]/div/div/div/div[1]/div/div[2]/div/div[2]/div/div', // grandparent div of the "Request changes" and "Approve" buttons
         containerElement: createElement("div", {}),
-        insertBefore: 'xpath:(//*[@id="main"]/div/div/div[1]/div/div/div[1]/div/div[2]/div/div[2]/div/div/div)[last()]', // note the [last()] to insert before the last child (the kebab menu)
+        insertBefore:
+            'xpath:(//*[@id="main"]/div/div/div[1]/div/div/div/div[1]/div/div[2]/div/div[2]/div/div/div)[last()]', // note the [last()] to insert before the last child (the kebab menu)
         application: "bitbucket",
     },
     {
