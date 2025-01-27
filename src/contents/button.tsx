@@ -108,6 +108,9 @@ class ButtonContributionManager {
         return this.buttons.get(this.getContainerId(this.active.contribution));
     }
 
+    /**
+     * Checks if the contribution applies to the current page.
+     */
     private isActive(contrib: ButtonContributionParams) {
         if (typeof contrib.match === "function" && !contrib.match()) {
             return false;
