@@ -191,7 +191,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         ],
         // must not match /blob/ because that is a file
         match: /^(?!.*\/blob\/).*$/,
-        selector: "#tree-holder > div > div.tree-controls > div:first-child",
+        selector: "#tree-holder > section > div > div.tree-controls",
         containerElement: { type: "div", props: { marginLeft: "8px" } },
         application: "gitlab",
         manipulations: [
