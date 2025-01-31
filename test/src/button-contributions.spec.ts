@@ -10,8 +10,8 @@ describe("Platform match tests", function () {
 
     before(async function () {
         browser = await puppeteer.launch({
-            headless: "new",
-            product: "chrome",
+            headless: true,
+            browser: "chrome",
         });
         page = await browser.newPage();
     });
@@ -66,8 +66,8 @@ describe("Query Selector Tests", function () {
 
     before(async function () {
         browser = await puppeteer.launch({
-            headless: "new",
-            product: "chrome",
+            headless: true,
+            browser: "chrome",
         });
         page = await browser.newPage();
     });
@@ -78,7 +78,7 @@ describe("Query Selector Tests", function () {
 
     async function resolveSelector(page: Page, selector: string) {
         if (selector.startsWith("xpath:")) {
-            return (await page.$x(selector.slice(6)))[0] || null;
+            return (await (page as any).$x(selector.slice(6)))[0] || null;
         } else {
             return page.$(selector);
         }
