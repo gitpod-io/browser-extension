@@ -4,6 +4,8 @@ image:
 tasks:
   - name: install node version
     init: |
+      sudo apt update
+      sudo apt install -y nodejs
       nvm install 20
       nvm use 20
       nvm uninstall 16
