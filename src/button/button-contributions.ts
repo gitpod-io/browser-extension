@@ -92,7 +92,7 @@ export interface ButtonContributionParams {
     /**
      * Additional class names that should be added to the elements.
      */
-    additionalClassNames?: ("secondary" | "medium" | "left-align-menu")[];
+    additionalClassNames?: ("secondary" | "medium" | "left-align-menu" | "tall")[];
 
     /**
      * A selector that is used to insert the button before a specific element.
@@ -301,7 +301,7 @@ export const buttonContributions: ButtonContributionParams[] = [
     },
 
     {
-        id: "gh-issues",
+        id: "gh-issue",
         exampleUrls: ["https://github.com/svenefftinge/browser-extension-test/issues/1"],
         selector: "#partial-discussion-header > div.gh-header-show > div > div",
         containerElement: createElement("div", {
@@ -319,7 +319,17 @@ export const buttonContributions: ButtonContributionParams[] = [
         ],
     },
     {
-        id: "gh-pulls",
+        id: "gh-issue-new", // this isn't referring to "new issue", but to new "issue"
+        exampleUrls: ["https://github.com/svenefftinge/browser-extension-test/issues/1"],
+        selector: `xpath://*[@id="js-repo-pjax-container"]/react-app/div/div/div/div/div[1]/div/div/div[3]/div`,
+        containerElement: createElement("div", {}),
+        insertBefore: `xpath://*[@id="js-repo-pjax-container"]/react-app/div/div/div/div/div[1]/div/div/div[3]/div/div`,
+        application: "github",
+        // we need to make the button higher: the buttons here use 2rem instead of 1.75rem
+        additionalClassNames: ["tall"],
+    },
+    {
+        id: "gh-pull",
         exampleUrls: ["https://github.com/svenefftinge/browser-extension-test/pull/2"],
         selector: "#partial-discussion-header > div.gh-header-show > div > div",
         containerElement: createElement("div", {

@@ -10,8 +10,7 @@ describe("Platform match tests", function () {
 
     before(async function () {
         browser = await puppeteer.launch({
-            headless: true,
-            browser: "chrome",
+            headless: "new",
         });
         page = await browser.newPage();
     });
@@ -66,8 +65,7 @@ describe("Query Selector Tests", function () {
 
     before(async function () {
         browser = await puppeteer.launch({
-            headless: true,
-            browser: "chrome",
+            headless: "new",
         });
         page = await browser.newPage();
     });

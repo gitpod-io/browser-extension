@@ -209,6 +209,10 @@
     --dropdown-box-shadow: var(--shadow-floating-large, var(--color-shadow-large));
 }
 
+.github.tall {
+    --primary-height: var(--control-medium-size, 2rem);
+}
+
 .github .chevron-icon {
     padding: 3px;
 }
