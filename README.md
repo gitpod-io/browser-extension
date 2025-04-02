@@ -26,6 +26,14 @@ To make changes and test them using Gitpod itself:
     1. now you can test your changes
     1. repeat step 1 and 2 and [reload the extension](chrome://extensions/) whenever you want to test new changes
 
+Or, when developing locally, you can execute the following to enable hot reloading with the extension in Chrome:
+
+```
+pnpm dev
+```
+
+Then, `Load unpacked` the `build/chrome-mv3-dev` folder in Chrome and after making changes, pages will reload automatically and the changes will be reflected immediately.
+
 #### Build
 
 The build happens automatically when you start a workspace but if you want to build explicitly, use these commands:
