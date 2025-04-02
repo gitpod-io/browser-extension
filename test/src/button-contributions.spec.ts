@@ -76,7 +76,7 @@ describe("Query Selector Tests", function () {
 
     async function resolveSelector(page: Page, selector: string) {
         if (selector.startsWith("xpath:")) {
-            return (await (page as any).$x(selector.slice(6)))[0] || null;
+            return (await page.$x(selector.slice(6)))[0] || null;
         } else {
             return page.$(selector);
         }
