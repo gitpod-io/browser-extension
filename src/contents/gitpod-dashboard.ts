@@ -14,7 +14,7 @@ const isSiteGitpod = (): boolean => {
 };
 
 export const config: PlasmoCSConfig = {
-    matches: ["https://gitpod.io/*", "https://*.gitpod.cloud/*"],
+    matches: ["https://gitpod.io/*", "https://app.gitpod.io/*", "https://*.gitpod.cloud/*"],
 };
 
 const storage = new Storage();
@@ -32,7 +32,7 @@ const automaticallyUpdateEndpoint = async () => {
             !currentlyStoredEndpoint
         ) {
             console.log(`Gitpod extension: switching default endpoint to ${currentHost}.`);
-            await storage.set(STORAGE_KEY_ADDRESS, parseEndpoint(currentHost));
+            await storage.set(STORAGE_KEY_ADDRESS, parseEndpoint(window.location.origin));
         }
     }
 };
