@@ -32,7 +32,7 @@ const automaticallyUpdateEndpoint = async () => {
             !currentlyStoredEndpoint
         ) {
             console.log(`Gitpod extension: switching default endpoint to ${currentHost}.`);
-            await storage.set(STORAGE_KEY_ADDRESS, parseEndpoint(window.location.href));
+            await storage.set(STORAGE_KEY_ADDRESS, parseEndpoint(window.location.origin));
         }
     }
 };
