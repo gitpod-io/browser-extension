@@ -58,7 +58,7 @@ We currently publish the extension for **Chrome** and **Firefox**.
 
 To release a new version, follow these steps:
 
-1. Bump up the version value inside `package.json` (`yarn version --patch` or `yarn version--minor`)
+1. Bump up the version value inside `package.json` (`yarn version --patch` or `yarn version --minor`)
 1. Push your changes to `main`
 1. Compose a list of changes using the list of commits that were pushed since last version
 1. [Create a new release](https://github.com/gitpod-io/browser-extension/releases/new), listing changes:
