@@ -32,16 +32,8 @@ The build happens automatically when you start a workspace but if you want to bu
 
 ```
 pnpm install
-pnpm build --target=chrome-mv3 # or --target=firefox-mv2
-pnpm package --target=chrome-mv3 # or --target=firefox-mv2
-```
-
-#### Note about `--target=firefox-mv2`
-
-To generate a proper `manifest.json` file for Firefox, execute the following script first. It ensures that the manifest file is generated with MV2-compatible fields.
-
-```
-./scripts/firefox-mv2.sh
+pnpm build --target=chrome-mv3 # or --target=firefox-mv3
+pnpm package --target=chrome-mv3 # or --target=firefox-mv3
 ```
 
 ### Testing
@@ -58,7 +50,7 @@ You can test the extension without publishing to the store. Before uploading the
 
 1. Open Firefox
 1. Go to `about:debugging#/runtime/this-firefox`
-1. Click Load Temporary Add-on -> Select the `firefox-mv2-prod.zip` file. Please note, that some features (like extension settings) will not work.
+1. Click Load Temporary Add-on -> Select the `firefox-mv3-prod.zip` file. Please note, that some features (like extension settings) will not work.
 
 ## Release
 
@@ -66,9 +58,8 @@ We currently publish the extension for **Chrome** and **Firefox**.
 
 To release a new version, follow these steps:
 
-1. Bump up the version value inside `package.json`
+1. Bump up the version value inside `package.json` (`yarn version --patch` or `yarn version--minor`)
 1. Push your changes to `main`
-1. Create a tag `vX.Y.Z`
 1. Compose a list of changes using the list of commits that were pushed since last version
 1. [Create a new release](https://github.com/gitpod-io/browser-extension/releases/new), listing changes:
 
@@ -84,12 +75,17 @@ To release a new version, follow these steps:
     Thanks to @{EXTERNAL_CONTRIBUTOR_USERNAME} for helping! 🍊
     ```
 
-For Firefox, our [GitHub Action](https://github.com/gitpod-io/browser-extension/blob/main/.github/workflows/submit.yml) should take care of publishing for us. You can trigger a release (either staging or production) from the [workflow's tab](https://github.com/gitpod-io/browser-extension/actions/workflows/submit.yml).
+For Firefox:
+
+1. Sign in to https://addons.mozilla.org/en-US/developers/addon/gitpod/edit with the credentials from 1Password
+2. Click <kbd>Upload new version</kbd>
+3. Upload the zip file (`firefox-mv3-prod.zip`)
+4. Go through the steps and submit
 
 For Chrome:
 
 1. Using your Google account, open the [`gitpod-browser-extension Google Group`](https://groups.google.com/g/gitpod-browser-extension)
-2. If you don't have access, reach out for [help in Slack](https://gitpod.slack.com/archives/C020VCB0U5A)
+2. If you don't have access, reach out for [help in Slack](https://gitpod.slack.com/archives/C04QC1ZMPV4)
 3. Once you are in the Google Group, make sure to "Switch to Gitpod" in the top navbar
 4. Click "Upload new package"
 5. Upload the zip file (`chrome-mv3-prod.zip`) and submit
