@@ -12,6 +12,7 @@
         "build": "plasmo build --source-maps --no-minify",
         "test": "cd test && pnpm test",
         "package": "plasmo package",
+        "package:all": "pnpm build --target=chrome-mv3 && pnpm build --target=firefox-mv3 && pnpm package --target=chrome-mv3 && pnpm package --target=firefox-mv3",
         "format": "prettier --experimental-ternaries --write .",
         "build-dev-tools": "sh dev/build.sh"
     },
@@ -81,5 +82,6 @@
         "overrides": {
             "sharp": "0.33.4"
         }
-    }
+    },
+    "packageManager": "pnpm@9.14.2"
 }
