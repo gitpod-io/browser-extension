@@ -48,12 +48,11 @@ jobs:
         run: pnpm plasmo build --target=chrome-mv3
       - name: Build the extension (Firefox)
         run: |
-          ./scripts/firefox-mv2.sh
-          pnpm plasmo build --target=firefox-mv2
+          pnpm plasmo build --target=firefox-mv3
       - name: Package the extension into zip artifacts
         run: |
           pnpm package --target=chrome-mv3
-          pnpm package --target=firefox-mv2
+          pnpm package --target=firefox-mv3
       - name: Browser Platform Publish (staging)
         uses: PlasmoHQ/bpp@v3
         if: env.CHANNEL == 'staging'
@@ -69,4 +68,4 @@ jobs:
           keys: ${{ secrets.SUBMIT_KEYS_PRODUCTION }}
           verbose: true
           chrome-file: build/chrome-mv3-prod.zip
-          firefox-file: build/firefox-mv2-prod.zip
+          firefox-file: build/firefox-mv3-prod.zip
