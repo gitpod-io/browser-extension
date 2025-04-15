@@ -17,7 +17,7 @@ type Props = {
     urlTransformer?: (url: string) => string;
 };
 export const GitpodButton = ({ application, additionalClassNames, urlTransformer }: Props) => {
-    const [address] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_GITPOD_ENDPOINT);
+    const [address, setAddress] = useStorage<string>(STORAGE_KEY_ADDRESS);
     const [openInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, true);
     const [disableAutostart] = useStorage<boolean>(STORAGE_KEY_ALWAYS_OPTIONS, false);
     const [showDropdown, setShowDropdown] = useState(false);
@@ -36,6 +36,13 @@ export const GitpodButton = ({ application, additionalClassNames, urlTransformer
             document.removeEventListener(EVENT_CURRENT_URL_CHANGED, handleUrlChange);
         };
     }, []);
+
+    // if the user has no address configured, set it to the default endpoint
+    useEffect(() => {
+        if (!address) {
+            setAddress(DEFAULT_GITPOD_ENDPOINT);
+        }
+    }, [address]);
 
     const actions = useMemo(() => {
         const parsedHref = !urlTransformer ? currentHref : urlTransformer(currentHref);
