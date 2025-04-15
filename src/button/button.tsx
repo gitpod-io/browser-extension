@@ -4,6 +4,7 @@ import { useHotkeys } from "react-hotkeys-hook";
 import Logo from "react:./logo-mark.svg";
 
 import { useStorage } from "@plasmohq/storage/hook";
+import { Storage } from "@plasmohq/storage";
 
 import { DEFAULT_GITPOD_ENDPOINT, EVENT_CURRENT_URL_CHANGED } from "~constants";
 import { STORAGE_KEY_ADDRESS, STORAGE_KEY_ALWAYS_OPTIONS, STORAGE_KEY_NEW_TAB } from "~storage";
@@ -17,7 +18,7 @@ type Props = {
     urlTransformer?: (url: string) => string;
 };
 export const GitpodButton = ({ application, additionalClassNames, urlTransformer }: Props) => {
-    const [address, setAddress] = useStorage<string>(STORAGE_KEY_ADDRESS);
+    const [address] = useStorage<string>(STORAGE_KEY_ADDRESS);
     const [openInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, true);
     const [disableAutostart] = useStorage<boolean>(STORAGE_KEY_ALWAYS_OPTIONS, false);
     const [showDropdown, setShowDropdown] = useState(false);
@@ -39,9 +40,14 @@ export const GitpodButton = ({ application, additionalClassNames, urlTransformer
 
     // if the user has no address configured, set it to the default endpoint
     useEffect(() => {
-        if (!address) {
-            setAddress(DEFAULT_GITPOD_ENDPOINT);
-        }
+        (async () => {
+            // we don't use the useStorage hook because it does not offer a way see if the value is set (it could just be loading), meaning we could end up setting the default endpoint even if it's already set
+            const storage = new Storage();
+            const persistedAddress = await storage.get(STORAGE_KEY_ADDRESS);
+            if (!persistedAddress) {
+                await storage.set(STORAGE_KEY_ADDRESS, DEFAULT_GITPOD_ENDPOINT);
+            }
+        })();
     }, [address]);
 
     const actions = useMemo(() => {
