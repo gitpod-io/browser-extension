@@ -48,7 +48,7 @@ export const GitpodButton = ({ application, additionalClassNames, urlTransformer
                 await storage.set(STORAGE_KEY_ADDRESS, DEFAULT_GITPOD_ENDPOINT);
             }
         })();
-    }, [address]);
+    }, []);
 
     const actions = useMemo(() => {
         const parsedHref = !urlTransformer ? currentHref : urlTransformer(currentHref);
