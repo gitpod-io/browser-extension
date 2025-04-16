@@ -82,6 +82,5 @@
         "overrides": {
             "sharp": "0.33.4"
         }
-    },
-    "packageManager": "pnpm@9.14.2"
+    }
 }
