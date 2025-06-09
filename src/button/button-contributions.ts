@@ -232,15 +232,15 @@ export const buttonContributions: ButtonContributionParams[] = [
         id: "gl-merge-request",
         exampleUrls: ["https://gitlab.com/svenefftinge/browser-extension-test/-/merge_requests/1"],
         match: /\/merge_requests\//,
-        selector: "body[data-project-id] div.detail-page-header-actions.is-merge-request > div",
-        containerElement: createElement("div", { marginLeft: "8px", marginRight: "-8px" }),
+        selector: "#content-body > div.merge-request .js-issuable-actions",
+        containerElement: createElement("div", {}),
         application: "gitlab",
-        insertBefore: "body[data-project-id] div.detail-page-header-actions.is-merge-request > div > div",
+        insertBefore: "#content-body > div.merge-request .js-issuable-actions > div.dropdown.gl-dropdown",
         manipulations: [
             {
                 // make the clone button secondary
                 element:
-                    "#content-body > div.merge-request > div.detail-page-header.border-bottom-0.gl-display-block.gl-pt-5.gl-sm-display-flex\\!.is-merge-request > div.detail-page-header-actions.gl-align-self-start.is-merge-request.js-issuable-actions.gl-display-flex > div > div.gl-sm-ml-3.dropdown.gl-dropdown > button",
+                    "#content-body > div.merge-request .js-issuable-actions > div.dropdown.gl-dropdown > button",
                 remove: "btn-confirm",
             },
         ],
@@ -249,23 +249,10 @@ export const buttonContributions: ButtonContributionParams[] = [
         id: "gl-issue",
         exampleUrls: ["https://gitlab.com/svenefftinge/browser-extension-test/-/issues/1"],
         match: /\/issues\//,
-        selector:
-            "#content-body > div.issue-details.issuable-details.js-issue-details > div.detail-page-description.content-block.js-detail-page-description.gl-pt-3.gl-pb-0.gl-border-none > div:nth-child(1) > div > div.gl-flex.gl-items-start.gl-flex-col.md\\:gl-flex-row.gl-gap-3.gl-pt-3 > div",
+        selector: "xpath://*[@id='content-body']/div[2]/div/section/section/div[2]/div[1]/div[2]",
         containerElement: createElement("div", { marginLeft: "0", marginRight: "0px" }),
         application: "gitlab",
-        insertBefore: "#new-actions-header-dropdown",
-        manipulations: [
-            {
-                element:
-                    "#content-body > div.issue-details.issuable-details.js-issue-details > div.detail-page-description.content-block.js-detail-page-description.gl-pt-3.gl-pb-0.gl-border-none > div.js-issue-widgets > div > div > div.new-branch-col.gl-font-size-0.gl-my-2 > div > div.btn-group.available > button.gl-button.btn.btn-md.btn-confirm.js-create-merge-request",
-                remove: "btn-confirm",
-            },
-            {
-                element:
-                    "#content-body > div.issue-details.issuable-details.js-issue-details > div.detail-page-description.content-block.js-detail-page-description.gl-pt-3.gl-pb-0.gl-border-none > div.js-issue-widgets > div > div > div.new-branch-col.gl-font-size-0.gl-my-2 > div > div.btn-group.available > button.gl-button.btn.btn-icon.btn-md.btn-confirm.js-dropdown-toggle.dropdown-toggle.create-merge-request-dropdown-toggle",
-                remove: "btn-confirm",
-            },
-        ],
+        insertBefore: "xpath://*[@id='content-body']/div[2]/div/section/section/div[2]/div[1]/div[2]/div",
     },
 
     // GitHub

@@ -252,6 +252,21 @@
     --dropdown-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+@media (prefers-color-scheme: dark) {
+    .gitlab {
+        --primary-bg-color: #63a6e9;
+        --primary-hover-bg-color: #9ec7f1;
+        --primary-color: #18171d;
+        --primary-hover-color: #18171d;
+        --primary-separator-color: #18171e;
+
+        --dropdown-color: #ececef;
+        --dropdown-bg-color: #28272e;
+        --dropdown-hover-bg-color: #4f4e53;
+        --dropdown-border-color: #4c4b51;
+    }
+}
+
 .bitbucket-server {
     --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Fira Sans, Droid Sans,
         Helvetica Neue, sans-serif;
