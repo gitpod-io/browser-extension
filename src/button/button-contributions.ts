@@ -248,11 +248,11 @@ export const buttonContributions: ButtonContributionParams[] = [
     {
         id: "gl-issue",
         exampleUrls: ["https://gitlab.com/svenefftinge/browser-extension-test/-/issues/1"],
-        match: /\/issues\//,
-        selector: "xpath://*[@id='content-body']/div[2]/div/section/section/div[2]/div[1]/div[2]",
+        match: /\/issues(?:\/\d+|\?)/,
+        selector: "#content-body [data-testid='detail-wrapper'] > div > div:has(div > [data-testid='work-item-actions-dropdown'])",
         containerElement: createElement("div", { marginLeft: "0", marginRight: "0px" }),
         application: "gitlab",
-        insertBefore: "xpath://*[@id='content-body']/div[2]/div/section/section/div[2]/div[1]/div[2]/div",
+        insertBefore: "#content-body [data-testid='detail-wrapper'] > div > div:has(div > [data-testid='work-item-actions-dropdown']) > div",
     },
 
     // GitHub
