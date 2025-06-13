@@ -1,0 +1,11 @@
+tasks:
+  setup-claude-code-key:
+    name: Key for Claude Code
+    command: |
+      [ -f /opt/.anthropic_key.sh ] && {
+        install -D -m 755 /opt/.anthropic_key.sh ~/.claude/.anthropic_key.sh
+        result=$(cat ~/.claude/settings.json 2>/dev/null || echo "{}" | jq '.apiKeyHelper = "~/.claude/.anthropic_key.sh"') && echo "$result" > ~/.claude/settings.json || true
+      } || true
+    triggeredBy:
+    - postEnvironmentStart
+
