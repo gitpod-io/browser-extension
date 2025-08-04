@@ -326,6 +326,19 @@ export const buttonContributions: ButtonContributionParams[] = [
         application: "github",
     },
     {
+        // `prx_files` is the new PR review experience on GitHub
+        id: "gh-pull-prx_files",
+        exampleUrls: [
+            // "https://github.com/svenefftinge/browser-extension-test/pull/2/files" // this is an experiment for now, and we can't test against GitHub's feature flags yet
+        ],
+        selector: "div[data-component='PH_Actions']",
+        containerElement: createElement("div", {
+            order: "2",
+        }),
+        match: /\/pull\//,
+        application: "github",
+    },
+    {
         id: "gh-file",
         exampleUrls: ["https://github.com/svenefftinge/browser-extension-test/blob/my-branch/README.md"],
         selector: "#StickyHeader > div > div > div.Box-sc-g0xbh4-0.gtBUEp",
