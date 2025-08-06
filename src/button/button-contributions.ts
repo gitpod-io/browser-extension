@@ -318,7 +318,7 @@ export const buttonContributions: ButtonContributionParams[] = [
     {
         id: "gh-pull",
         exampleUrls: ["https://github.com/svenefftinge/browser-extension-test/pull/2"],
-        selector: "#partial-discussion-header > div.gh-header-show > div > div",
+        selector: "#partial-discussion-header div.gh-header-show > div > div",
         containerElement: createElement("div", {
             order: "2",
         }),
