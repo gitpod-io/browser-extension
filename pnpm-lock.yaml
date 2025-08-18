@@ -20,6 +20,12 @@ importers:
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
+      configcat-js:
+        specifier: ^9.6.0
+        version: 9.6.0
+      configcat-react:
+        specifier: ^4.9.0
+        version: 4.9.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       lucide-react:
         specifier: ^0.474.0
         version: 0.474.0(react@18.3.1)
@@ -2142,6 +2148,18 @@ packages:
 
   config-chain@1.1.13:
     resolution: {integrity: sha512-qj+f8APARXHrM0hraqXYb2/bOVSV4PvJQlNZ/DVj0QrmNM2q2euizkeuVckQ57J+W0mRH6Hvi+k50M4Jul2VRQ==}
+
+  configcat-common@9.4.0:
+    resolution: {integrity: sha512-rKFawlrEXY1NQ1jxX5sYXN4fhT4MhfllC1ELd+3k2tY+z1DQju+PoopNra1wyfegLn3Aa0X8l3JpXFFO/gyo0g==}
+
+  configcat-js@9.6.0:
+    resolution: {integrity: sha512-/8hgkhynCFK/r7zzWcGR/YyBEZx4hHlihu0wz22Pn3QBCNYlCHWLiWQUxEVOLvOv6ZErorieGU1vsuG/11BUtA==}
+
+  configcat-react@4.9.0:
+    resolution: {integrity: sha512-bJWvVXFlKHDyc+H09oRAL3vZtFI8SE5Ce4Vp7AIEzM8XwamqzfdMAhdHR0nBY+osVXbJX1Iw6UHvzsmzvZVkqg==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
 
   content-scripts-register-polyfill@4.0.2:
     resolution: {integrity: sha512-8hDm+tu3BkxHZP7EUIIIo/495F6QNXF7cI9Lwr4PQaiohw2wWmi9k2SE4W4kNrAaLnFw6RZ2ev8EmrQb+sCoGQ==}
@@ -6832,6 +6850,22 @@ snapshots:
     dependencies:
       ini: 1.3.8
       proto-list: 1.2.4
+
+  configcat-common@9.4.0:
+    dependencies:
+      tslib: 2.6.2
+
+  configcat-js@9.6.0:
+    dependencies:
+      configcat-common: 9.4.0
+      tslib: 2.6.2
+
+  configcat-react@4.9.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      configcat-common: 9.4.0
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      tslib: 2.6.2
 
   content-scripts-register-polyfill@4.0.2:
     dependencies:

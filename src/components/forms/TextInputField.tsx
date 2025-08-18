@@ -6,7 +6,7 @@
 
 import classNames from "classnames";
 import React, { memo, useCallback, useId, type PropsWithChildren, type ReactNode } from "react";
-
+import { FeatureFlags, useFlag } from "~hooks/use-configcat";
 import { InputField } from "./InputField";
 
 type TextInputFieldTypes = "text" | "password" | "email" | "url";
@@ -97,8 +97,10 @@ export const TextInput = memo(
         onChange,
         onBlur,
     }: PropsWithChildren<TextInputProps>) => {
+        const { value: isOnaEnabled } = useFlag(FeatureFlags.ONA_ENABLED, false);
+
         const handleChange = useCallback(
-            (e) => {
+            (e: React.ChangeEvent<HTMLInputElement>) => {
                 onChange && onChange(e.target.value);
             },
             [onChange],
@@ -115,6 +117,7 @@ export const TextInput = memo(
                     "py-2 px-3",
                     "placeholder:text-gray-400 dark:placeholder:text-gray-500",
                     "disabled:bg-gray-100 dark:disabled:bg-gray-700 disabled:border disabled:border-gray-200 dark:disabled:border-gray-600 disabled:text-gray-400 dark:disabled:text-gray-500",
+                    { "bg-white focus-visible:ring-2 focus-visible:ring-gray-400 dark:bg-[#262626]": isOnaEnabled },
                     className,
                 )}
                 value={value}
