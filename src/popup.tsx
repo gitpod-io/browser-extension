@@ -7,7 +7,7 @@ import { Button } from "~components/forms/Button";
 import { CheckboxInputField } from "~components/forms/CheckboxInputField";
 import { InputField } from "~components/forms/InputField";
 import { TextInput } from "~components/forms/TextInputField";
-import { ALL_ORIGINS_WILDCARD, DEFAULT_GITPOD_ENDPOINT } from "~constants";
+import { ALL_ORIGINS_WILDCARD, DEFAULT_GITPOD_ENDPOINT, DEFAULT_ONA_ENDPOINT } from "~constants";
 import { ConfigCatProvider, configCatProviderConfig, FeatureFlags, useFlag } from "~hooks/use-configcat";
 import { useTemporaryState } from "~hooks/use-temporary-state";
 import {
@@ -33,13 +33,12 @@ const Animate = ({ children, on }: PropsWithChildren<{ on?: string }>) => {
 
 function PopupContent() {
     const [error, setError] = useState<string>();
-
+    
     const [storedAddress] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_GITPOD_ENDPOINT);
     const [address, setAddress] = useState<string>(storedAddress);
     const [justSaved, setJustSaved] = useTemporaryState(false, 2000);
-
+    
     const { value: isOnaEnabled } = useFlag(FeatureFlags.ONA_ENABLED, false);
-    // const isOnaEnabled = true;
 
     const updateAddress = useCallback(
         (e: FormEvent) => {
@@ -103,7 +102,7 @@ function PopupContent() {
             <form className="w-full" onSubmit={updateAddress} action="#">
                 <InputField
                     label={`${isOnaEnabled ? "Ona" : "Gitpod"} URL`}
-                    hint={`${isOnaEnabled ? "Ona" : "Gitpod"} instance URL, e.g., ${DEFAULT_GITPOD_ENDPOINT}.`}
+                    hint={`${isOnaEnabled ? "Ona" : "Gitpod"} instance URL, e.g., ${isOnaEnabled ? DEFAULT_ONA_ENDPOINT : DEFAULT_GITPOD_ENDPOINT}.`}
                     topMargin={false}
                 >
                     <div className="flex w-full h-10 max-w-sm items-center space-x-2">
@@ -150,7 +149,7 @@ function PopupContent() {
                 />
                 <CheckboxInputField
                     label="Automatic instance hopping"
-                    hint={`Changes the ${isOnaEnabled ? "Ona" : "Gitpod"} URL automatically when a${isOnaEnabled ? "n Ona" : "Gitpod"} instance is detected`}
+                    hint={`Changes the ${isOnaEnabled ? "Ona" : "Gitpod"} URL automatically when a${isOnaEnabled ? "n Ona" : " Gitpod"} instance is detected`}
                     checked={enableInstanceHopping}
                     onChange={setEnableInstanceHopping}
                 />
