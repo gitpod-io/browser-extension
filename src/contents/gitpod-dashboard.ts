@@ -17,7 +17,7 @@ export const config: PlasmoCSConfig = {
 const storage = new Storage();
 
 const automaticallyUpdateEndpoint = async () => {
-    if ((await storage.get<boolean>(STORAGE_AUTOMATICALLY_DETECT_GITPOD)) === false) {
+    if ((await storage.get<boolean>(STORAGE_AUTOMATICALLY_DETECT_GITPOD)) !== true) {
         return;
     }
 

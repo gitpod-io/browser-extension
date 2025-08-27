@@ -87,7 +87,7 @@ function PopupContent() {
 
     const [enableInstanceHopping, setEnableInstanceHopping] = useStorage<boolean>(
         STORAGE_AUTOMATICALLY_DETECT_GITPOD,
-        true,
+        false,
     );
 
     return (
