@@ -1,13 +1,13 @@
-import { Storage } from "@plasmohq/storage";
 import { useStorage } from "@plasmohq/storage/hook";
 import classNames from "classnames";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import Logo from "react:./logo-mark.svg";
-import { DEFAULT_GITPOD_ENDPOINT, EVENT_CURRENT_URL_CHANGED } from "~constants";
+import { EVENT_CURRENT_URL_CHANGED } from "~constants";
 import { FeatureFlags, useFlag } from "~hooks/use-configcat";
 import { OnaLettermark } from "~icons/OnaLettermark";
 import { STORAGE_KEY_ADDRESS, STORAGE_KEY_ALWAYS_OPTIONS, STORAGE_KEY_NEW_TAB } from "~storage";
+import { isOnaEndpoint } from "~utils/parse-endpoint";
 import type { SupportedApplication } from "./button-contributions";
 import { CaretForProvider } from "./CaretForProvider";
 
@@ -38,18 +38,6 @@ export const GitpodButton = ({ application, additionalClassNames, urlTransformer
         };
     }, []);
 
-    // if the user has no address configured, set it to the default endpoint
-    useEffect(() => {
-        (async () => {
-            // we don't use the useStorage hook because it does not offer a way see if the value is set (it could just be loading), meaning we could end up setting the default endpoint even if it's already set
-            const storage = new Storage();
-            const persistedAddress = await storage.get(STORAGE_KEY_ADDRESS);
-            if (!persistedAddress) {
-                await storage.set(STORAGE_KEY_ADDRESS, DEFAULT_GITPOD_ENDPOINT);
-            }
-        })();
-    }, []);
-
     const actions = useMemo(() => {
         const parsedHref = !urlTransformer ? currentHref : urlTransformer(currentHref);
         return [
@@ -65,6 +53,10 @@ export const GitpodButton = ({ application, additionalClassNames, urlTransformer
     }, [address, disableAutostart, currentHref, urlTransformer]);
     const dropdownRef = useRef<HTMLDivElement | null>(null);
     const firstActionRef = useRef<HTMLAnchorElement | null>(null);
+
+    const target = openInNewTab ? "_blank" : "_self";
+    const isOna = useMemo(() => address && isOnaEndpoint(address), [address]);
+    const effectiveDisableAutostart = isOna ? true : disableAutostart;
 
     const toggleDropdown = () => {
         setShowDropdown(!showDropdown);
@@ -89,8 +81,6 @@ export const GitpodButton = ({ application, additionalClassNames, urlTransformer
         }
     }, [showDropdown]);
 
-    const target = openInNewTab ? "_blank" : "_self";
-
     useHotkeys("alt+g", () => linkRef.current?.click(), [linkRef.current]);
 
     return (
@@ -101,7 +91,7 @@ export const GitpodButton = ({ application, additionalClassNames, urlTransformer
         >
             <div className={classNames("button")}>
                 <a
-                    className={classNames("button-part", disableAutostart ? "action-no-options" : "action")}
+                    className={classNames("button-part", effectiveDisableAutostart ? "action-no-options" : "action")}
                     href={actions[0].href}
                     target={target}
                     rel="noreferrer"
@@ -115,7 +105,7 @@ export const GitpodButton = ({ application, additionalClassNames, urlTransformer
                         {actions[0].label}
                     </span>
                 </a>
-                {!disableAutostart && (
+                {!effectiveDisableAutostart && (
                     <button
                         className={classNames("button-part", "action-chevron")}
                         onClick={(e) => {

@@ -120,7 +120,7 @@ function PopupContent() {
                     </div>
                 </InputField>
                 <CheckboxInputField
-                    label="Open Workspaces in a new tab"
+                    label={`Open ${isOnaEnabled ? "Environments" : "Workspaces"} in a new tab`}
                     checked={openInNewTab}
                     onChange={setOpenInNewTab}
                 />
