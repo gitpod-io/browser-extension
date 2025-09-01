@@ -1,8 +1,8 @@
-# Gitpod Browser extension
+# Ona Browser extension
 
 [![Setup Automated](https://img.shields.io/badge/setup-automated-blue?logo=gitpod)](https://app.ona.com/#https://github.com/gitpod-io/browser-extension)
 
-This is the browser extension for Gitpod. It supports Chrome (see [Chrome Web Store](https://chrome.google.com/webstore/detail/dodmmooeoklaejobgleioelladacbeki/)), Firefox (see [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/gitpod/)) and Edge (see [how to install Chrome extensions](https://support.microsoft.com/help/4538971/microsoft-edge-add-or-remove-extensions)), and adds a **Gitpod** button to the configured GitLab, GitHub and Bitbucket installations (defaults to `gitlab.com`, `github.com` and `bitbucket.org`) which immediately creates a Gitpod workspace for the current git context:
+This is the browser extension for Ona. It supports Chrome (see [Chrome Web Store](https://chrome.google.com/webstore/detail/dodmmooeoklaejobgleioelladacbeki/)), Firefox (see [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/gitpod/)) and Edge (see [how to install Chrome extensions](https://support.microsoft.com/help/4538971/microsoft-edge-add-or-remove-extensions)), and adds an **Ona** button to the configured GitLab, GitHub, Bitbucket and Azure DevOps installations (defaults to `gitlab.com`, `github.com`, `bitbucket.org` and `dev.azure.com`) which immediately creates an Ona environment for the current git context:
 
 ![Gitpodify](./docs/github-injected.png "Gitpodify")
 
@@ -13,7 +13,7 @@ You can use the [`component: browser-extension`](https://github.com/gitpod-io/gi
 
 ### Development
 
-To make changes and test them using Gitpod itself:
+To make changes and test them using Ona itself:
 
 -   add test cases to the [unit test](https://github.com/gitpod-io/browser-extension/blob/se/plasmo/test/src/button-contributions.spec.ts#L39)
 -   try out changes like this:
