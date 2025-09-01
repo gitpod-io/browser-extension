@@ -105,7 +105,7 @@ export interface ButtonContributionParams {
      * Each manipulation contains a CSS selector (element) that is used to find the element to manipulate and optionally
      * the classnames to remove and add.
      */
-    manipulations?: { element: string; remove?: string; add?: string; style?: Partial<CSSStyleDeclaration> }[];
+    manipulations?: { element: string; removeClassName?: string; addClassName?: string; style?: Partial<CSSStyleDeclaration>, setAttribute?: { name: string, value: string }[] }[];
 
     /**
      * A function that can be used to transform the URL that should be opened when the Gitpod button is clicked.
@@ -140,7 +140,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         manipulations: [
             {
                 element: "div.repos-files-header-commandbar.scroll-hidden",
-                remove: "scroll-hidden",
+                removeClassName: "scroll-hidden",
             },
         ],
         urlTransformer(originalUrl) {
@@ -198,7 +198,7 @@ export const buttonContributions: ButtonContributionParams[] = [
             {
                 // make the clone button secondary
                 element: "#clone-dropdown",
-                remove: "btn-confirm",
+                removeClassName: "btn-confirm",
             },
         ],
     },
@@ -224,7 +224,7 @@ export const buttonContributions: ButtonContributionParams[] = [
                 // make the clone button secondary
                 element:
                     "#fileHolder > div.js-file-title.file-title-flex-parent > div.gl-display-flex.gl-flex-wrap.file-actions > div.gl-sm-ml-3.gl-mr-3 > div > button",
-                remove: "btn-confirm",
+                removeClassName: "btn-confirm",
             },
         ],
     },
@@ -241,7 +241,7 @@ export const buttonContributions: ButtonContributionParams[] = [
                 // make the clone button secondary
                 element:
                     "#content-body > div.merge-request .js-issuable-actions > div.dropdown.gl-dropdown > button",
-                remove: "btn-confirm",
+                removeClassName: "btn-confirm",
             },
         ],
     },
@@ -267,6 +267,16 @@ export const buttonContributions: ButtonContributionParams[] = [
         containerElement: createElement("div", {}),
         additionalClassNames: ["medium"],
         application: "github",
+        manipulations: [
+            {
+                // make the clone button secondary
+                element:
+                    "xpath://button[contains(., 'Code')]",
+                setAttribute: [
+                    { name: "data-variant", value: "default" },
+                ],
+            },
+        ],
         match: () => {
             const regex = /^https?:\/\/([^/]+)\/([^/]+)\/([^/]+)(\/(tree\/.*)?)?$/;
             return document.querySelector("div.file-navigation") === null && regex.test(window.location.href);
@@ -290,20 +300,12 @@ export const buttonContributions: ButtonContributionParams[] = [
     {
         id: "gh-issue",
         exampleUrls: ["https://github.com/svenefftinge/browser-extension-test/issues/1"],
-        selector: "#partial-discussion-header > div.gh-header-show > div > div",
-        containerElement: createElement("div", {
-            order: "2",
-        }),
+        selector: "[data-component='PH_Actions'] > div", //
+        insertBefore: "[data-component='PH_Actions'] > div > button",
+        containerElement: createElement("div", {}),
         match: /\/issues\//,
         application: "github",
-        manipulations: [
-            {
-                // make the code button secondary
-                element: "#partial-discussion-header > div.gh-header-show > div > div > a",
-                remove: "Button--primary",
-                add: "Button--secondary",
-            },
-        ],
+        additionalClassNames: ["tall"],
     },
     {
         id: "gh-issue-new", // this isn't referring to "new issue", but to new "issue"

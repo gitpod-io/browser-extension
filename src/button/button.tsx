@@ -16,7 +16,7 @@ type Props = {
     additionalClassNames?: string[];
     urlTransformer?: (url: string) => string;
 };
-export const GitpodButton = ({ application, additionalClassNames, urlTransformer }: Props) => {
+export const OnaButton = ({ application, additionalClassNames, urlTransformer }: Props) => {
     const [address] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_ONA_ENDPOINT);
     const [openInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, true);
     const [disableAutostart] = useStorage<boolean>(STORAGE_KEY_ALWAYS_OPTIONS, false);

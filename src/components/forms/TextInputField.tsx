@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 2023 Gitpod GmbH. All rights reserved.
- * Licensed under the GNU Affero General Public License (AGPL).
- * See License.AGPL.txt in the project root for license information.
- */
-
 import classNames from "classnames";
 import React, { memo, useCallback, useId, type PropsWithChildren, type ReactNode } from "react";
 import { FeatureFlags, useFlag } from "~hooks/use-configcat";

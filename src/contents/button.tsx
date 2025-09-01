@@ -3,8 +3,7 @@ import type { PlasmoCSConfig, PlasmoGetInlineAnchor } from "plasmo";
 import React, { type ReactElement } from "react";
 import { EVENT_CURRENT_URL_CHANGED } from "~constants";
 import { ConfigCatProvider, configCatProviderConfig } from "~hooks/use-configcat";
-
-import { GitpodButton } from "../button/button";
+import { OnaButton } from "../button/button";
 import { buttonContributions, isSiteSuitable, type ButtonContributionParams } from "../button/button-contributions";
 
 // keep in sync with DEFAULT_HOSTS in src/button/button-contributions.ts
@@ -43,7 +42,7 @@ class ButtonContributionManager {
                 this.buttons.set(
                     containerId,
                     <ConfigCatProvider {...configCatProviderConfig}>
-                        <GitpodButton
+                        <OnaButton
                             key={containerId}
                             application={contribution.application}
                             additionalClassNames={contribution.additionalClassNames}
@@ -158,11 +157,16 @@ class ButtonContributionManager {
             for (const manipulation of contrib.manipulations) {
                 const element = this.lookupElement(manipulation.element);
                 if (element) {
-                    if (manipulation.remove) {
-                        element.classList.remove(manipulation.remove);
+                    if (manipulation.removeClassName) {
+                        element.classList.remove(manipulation.removeClassName);
                     }
-                    if (manipulation.add) {
-                        element.classList.add(manipulation.add);
+                    if (manipulation.addClassName) {
+                        element.classList.add(manipulation.addClassName);
+                    }
+                    if (manipulation.setAttribute) {
+                        for (const attribute of manipulation.setAttribute) {
+                            element.setAttribute(attribute.name, attribute.value);
+                        }
                     }
                     if (element instanceof HTMLElement && manipulation.style) {
                         for (const key in manipulation.style) {
