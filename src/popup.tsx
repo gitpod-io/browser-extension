@@ -1,13 +1,13 @@
 import { Storage } from "@plasmohq/storage";
 import { useStorage } from "@plasmohq/storage/hook";
 import { CheckIcon } from "lucide-react";
-import React, { useCallback, useEffect, useState, type FormEvent, type PropsWithChildren } from "react";
+import { useCallback, useEffect, useState, type FormEvent, type PropsWithChildren } from "react";
 import browser from "webextension-polyfill";
 import { Button } from "~components/forms/Button";
 import { CheckboxInputField } from "~components/forms/CheckboxInputField";
 import { InputField } from "~components/forms/InputField";
 import { TextInput } from "~components/forms/TextInputField";
-import { ALL_ORIGINS_WILDCARD, DEFAULT_GITPOD_ENDPOINT, DEFAULT_ONA_ENDPOINT } from "~constants";
+import { ALL_ORIGINS_WILDCARD, DEFAULT_ONA_ENDPOINT } from "~constants";
 import { ConfigCatProvider, configCatProviderConfig, FeatureFlags, useFlag } from "~hooks/use-configcat";
 import { useTemporaryState } from "~hooks/use-temporary-state";
 import {
@@ -34,7 +34,7 @@ const Animate = ({ children, on }: PropsWithChildren<{ on?: string }>) => {
 function PopupContent() {
     const [error, setError] = useState<string>();
     
-    const [storedAddress] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_GITPOD_ENDPOINT);
+    const [storedAddress] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_ONA_ENDPOINT);
     const [address, setAddress] = useState<string>(storedAddress);
     const [justSaved, setJustSaved] = useTemporaryState(false, 2000);
     
@@ -102,7 +102,7 @@ function PopupContent() {
             <form className="w-full" onSubmit={updateAddress} action="#">
                 <InputField
                     label={`${isOnaEnabled ? "Ona" : "Gitpod"} URL`}
-                    hint={`${isOnaEnabled ? "Ona" : "Gitpod"} instance URL, e.g., ${isOnaEnabled ? DEFAULT_ONA_ENDPOINT : DEFAULT_GITPOD_ENDPOINT}.`}
+                    hint={`${isOnaEnabled ? "Ona" : "Gitpod"} instance URL, e.g. ${DEFAULT_ONA_ENDPOINT}.`}
                     topMargin={false}
                 >
                     <div className="flex w-full h-10 max-w-sm items-center space-x-2">
@@ -144,8 +144,9 @@ function PopupContent() {
                 <CheckboxInputField
                     label="Always start with options"
                     hint="Changes the primary button to always open with options"
-                    checked={disableAutostart}
+                    checked={isOnaEnabled ? true : disableAutostart}
                     onChange={setDisableAutostart}
+                    disabled={isOnaEnabled}
                 />
                 <CheckboxInputField
                     label="Automatic instance hopping"

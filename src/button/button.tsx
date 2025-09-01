@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import Logo from "react:./logo-mark.svg";
-import { EVENT_CURRENT_URL_CHANGED } from "~constants";
+import { DEFAULT_ONA_ENDPOINT, EVENT_CURRENT_URL_CHANGED } from "~constants";
 import { FeatureFlags, useFlag } from "~hooks/use-configcat";
 import { OnaLettermark } from "~icons/OnaLettermark";
 import { STORAGE_KEY_ADDRESS, STORAGE_KEY_ALWAYS_OPTIONS, STORAGE_KEY_NEW_TAB } from "~storage";
@@ -17,7 +17,7 @@ type Props = {
     urlTransformer?: (url: string) => string;
 };
 export const GitpodButton = ({ application, additionalClassNames, urlTransformer }: Props) => {
-    const [address] = useStorage<string>(STORAGE_KEY_ADDRESS);
+    const [address] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_ONA_ENDPOINT);
     const [openInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, true);
     const [disableAutostart] = useStorage<boolean>(STORAGE_KEY_ALWAYS_OPTIONS, false);
     const [showDropdown, setShowDropdown] = useState(false);
@@ -38,11 +38,15 @@ export const GitpodButton = ({ application, additionalClassNames, urlTransformer
         };
     }, []);
 
+    const isOna = useMemo(() => address && isOnaEndpoint(address), [address]);
     const actions = useMemo(() => {
         const parsedHref = !urlTransformer ? currentHref : urlTransformer(currentHref);
+
+        const autoStartParam = isOna ? "" : "?autostart=true";
+
         return [
             {
-                href: `${address}/?autostart=${!disableAutostart}#${parsedHref}`,
+                href: `${address}/${autoStartParam}#${parsedHref}`,
                 label: "Open",
             },
             {
@@ -55,7 +59,6 @@ export const GitpodButton = ({ application, additionalClassNames, urlTransformer
     const firstActionRef = useRef<HTMLAnchorElement | null>(null);
 
     const target = openInNewTab ? "_blank" : "_self";
-    const isOna = useMemo(() => address && isOnaEndpoint(address), [address]);
     const effectiveDisableAutostart = isOna ? true : disableAutostart;
 
     const toggleDropdown = () => {

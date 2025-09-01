@@ -31,7 +31,6 @@ export const hostToOrigin = (host: string): string | undefined => {
 
 export const isOnaEndpoint = (url: string): boolean => {
     const parsedUrl = new URL(url);
-    
 
     return parsedUrl.hostname === "app.ona.com" || parsedUrl.hostname === "app.gitpod.io";
 };
