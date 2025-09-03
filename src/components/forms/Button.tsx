@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import React, { forwardRef, type FC, type ForwardedRef, type ReactNode } from "react";
-import { FeatureFlags, useFlag } from "~hooks/use-configcat";
 
 export type ButtonProps = {
     type?: "primary" | "secondary" | "danger" | "danger.secondary" | "transparent";

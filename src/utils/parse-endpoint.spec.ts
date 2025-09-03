@@ -1,5 +1,4 @@
 import { expect } from "chai";
-
 import { hostToOrigin, parseEndpoint } from "./parse-endpoint";
 
 describe("parseEndpoint", () => {

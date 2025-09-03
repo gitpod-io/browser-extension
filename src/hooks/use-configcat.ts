@@ -1,5 +1,5 @@
-import { useConfigCatClient, useFeatureFlag, ConfigCatProvider } from 'configcat-react';
-import { PollingMode, createConsoleLogger, LogLevel, User } from 'configcat-js';
+import { createConsoleLogger, LogLevel, PollingMode, User } from 'configcat-js';
+import { ConfigCatProvider, useConfigCatClient, useFeatureFlag } from 'configcat-react';
 
 const CONFIGCAT_SDK_KEY_PRODUCTION = 'configcat-sdk-1/ykHcCKiz4EKB7k23mNcvBw/ut0FmOIkA0a-Ife7zHC-qg';
 const CONFIGCAT_SDK_KEY_DEV = 'configcat-sdk-1/ykHcCKiz4EKB7k23mNcvBw/4zALdAjwI0iIB4y4eWr-bQ';
@@ -31,4 +31,4 @@ export function useFlag(
 }
 
 // Re-export commonly used hooks and components from configcat-react
-export { useConfigCatClient, useFeatureFlag, ConfigCatProvider };
+export { ConfigCatProvider, useConfigCatClient, useFeatureFlag };

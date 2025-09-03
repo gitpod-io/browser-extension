@@ -1,5 +1,4 @@
 import browser from "webextension-polyfill";
-
 import { ALL_ORIGINS_WILDCARD } from "~constants";
 
 export const canAccessAllSites = async () => {

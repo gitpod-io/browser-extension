@@ -1,8 +1,6 @@
-import browser from "webextension-polyfill";
-
 import "webext-dynamic-content-scripts";
-
 import addDomainPermissionToggle from "webext-permission-toggle";
+import browser from "webextension-polyfill";
 
 (async () => {
     addDomainPermissionToggle();
@@ -15,4 +13,4 @@ browser.runtime.onInstalled.addListener((details) => {
 });
 // browser.runtime.setUninstallURL("https://ona.com");
 
-export {};
+export { };
