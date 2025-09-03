@@ -33,8 +33,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         },
         ref: ForwardedRef<HTMLButtonElement>,
     ) => {
-        const { value: isOnaEnabled } = useFlag(FeatureFlags.ONA_ENABLED, false);
-
         return (
             <button
                 type={htmlType}
@@ -42,9 +40,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                     "inline-flex items-center whitespace-nowrap rounded-lg text-sm justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2",
                     type === "primary" ?
                         [
-                            "bg-gray-900 hover:bg-gray-800",
-                            "text-gray-50 dark:text-gray-900",
-                            { "bg-[#1F1F1F] hover:bg-[#737373] dark:bg-[#FAFAFA] dark:hover:bg-[#A3A3A3]": isOnaEnabled },
+                            "text-gray-50 dark:text-gray-900 bg-[#1F1F1F] hover:bg-[#737373] dark:bg-[#FAFAFA] dark:hover:bg-[#A3A3A3]",
                         ]
                     :   null,
                     type === "secondary" ?

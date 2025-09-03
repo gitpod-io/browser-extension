@@ -2,9 +2,7 @@ import { useStorage } from "@plasmohq/storage/hook";
 import classNames from "classnames";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import Logo from "react:./logo-mark.svg";
 import { DEFAULT_ONA_ENDPOINT, EVENT_CURRENT_URL_CHANGED } from "~constants";
-import { FeatureFlags, useFlag } from "~hooks/use-configcat";
 import { OnaLettermark } from "~icons/OnaLettermark";
 import { STORAGE_KEY_ADDRESS, STORAGE_KEY_ALWAYS_OPTIONS, STORAGE_KEY_NEW_TAB } from "~storage";
 import { isOnaEndpoint } from "~utils/parse-endpoint";
@@ -22,7 +20,6 @@ export const OnaButton = ({ application, additionalClassNames, urlTransformer }:
     const [disableAutostart] = useStorage<boolean>(STORAGE_KEY_ALWAYS_OPTIONS, false);
     const [showDropdown, setShowDropdown] = useState(false);
     const [currentHref, setCurrentHref] = useState(window.location.href);
-    const { value: isOnaEnabled } = useFlag(FeatureFlags.ONA_ENABLED, false);
 
     const linkRef = useRef<HTMLAnchorElement | null>(null);
 
@@ -88,9 +85,9 @@ export const OnaButton = ({ application, additionalClassNames, urlTransformer }:
 
     return (
         <div
-            id="gitpod-btn-nav"
-            title={`Open with ${isOnaEnabled ? "Ona" : "Gitpod"}`}
-            className={classNames("gitpod-button", application, ...(additionalClassNames ?? []))}
+            id="ona-btn-nav"
+            title={`Open with "Ona"`}
+            className={classNames("ona-button", application, ...(additionalClassNames ?? []))}
         >
             <div className={classNames("button")}>
                 <a
@@ -101,10 +98,7 @@ export const OnaButton = ({ application, additionalClassNames, urlTransformer }:
                     ref={linkRef}
                 >
                     <span className={classNames("action-label")}>
-                        {isOnaEnabled ?
-                            <OnaLettermark className={classNames("action-logo")} width={14} height={14} /> :
-                            <Logo className={classNames("action-logo")} width={14} height={14} />
-                        }
+                        <OnaLettermark className={classNames("action-logo")} width={14} height={14} />
                         {actions[0].label}
                     </span>
                 </a>

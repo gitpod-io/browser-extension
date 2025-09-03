@@ -8,7 +8,7 @@ import { CheckboxInputField } from "~components/forms/CheckboxInputField";
 import { InputField } from "~components/forms/InputField";
 import { TextInput } from "~components/forms/TextInputField";
 import { ALL_ORIGINS_WILDCARD, DEFAULT_ONA_ENDPOINT } from "~constants";
-import { ConfigCatProvider, configCatProviderConfig, FeatureFlags, useFlag } from "~hooks/use-configcat";
+import { ConfigCatProvider, configCatProviderConfig } from "~hooks/use-configcat";
 import { useTemporaryState } from "~hooks/use-temporary-state";
 import {
     STORAGE_AUTOMATICALLY_DETECT_GITPOD,
@@ -16,7 +16,7 @@ import {
     STORAGE_KEY_ALWAYS_OPTIONS,
     STORAGE_KEY_NEW_TAB,
 } from "~storage";
-import { hostToOrigin, parseEndpoint } from "~utils/parse-endpoint";
+import { hostToOrigin, isOnaEndpoint, parseEndpoint } from "~utils/parse-endpoint";
 import { canAccessAllSites } from "~utils/permissions";
 import "./popup.css";
 
@@ -35,11 +35,10 @@ function PopupContent() {
     const [error, setError] = useState<string>();
     
     const [storedAddress] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_ONA_ENDPOINT);
+    const isStoredAddressOna = isOnaEndpoint(storedAddress);
     const [address, setAddress] = useState<string>(storedAddress);
     const [justSaved, setJustSaved] = useTemporaryState(false, 2000);
     
-    const { value: isOnaEnabled } = useFlag(FeatureFlags.ONA_ENABLED, false);
-
     const updateAddress = useCallback(
         (e: FormEvent) => {
             e.preventDefault();
@@ -97,12 +96,12 @@ function PopupContent() {
                 minWidth: "360px",
                 padding: "16px",
             }}
-            className={`${isOnaEnabled && "ona"}`}
+            className="ona"
         >
             <form className="w-full" onSubmit={updateAddress} action="#">
                 <InputField
-                    label={`${isOnaEnabled ? "Ona" : "Gitpod"} URL`}
-                    hint={`${isOnaEnabled ? "Ona" : "Gitpod"} instance URL, e.g. ${DEFAULT_ONA_ENDPOINT}.`}
+                    label={`Ona URL`}
+                    hint={`Ona instance URL, e.g. ${DEFAULT_ONA_ENDPOINT}.`}
                     topMargin={false}
                 >
                     <div className="flex w-full h-10 max-w-sm items-center space-x-2">
@@ -119,7 +118,7 @@ function PopupContent() {
                     </div>
                 </InputField>
                 <CheckboxInputField
-                    label={`Open ${isOnaEnabled ? "Environments" : "Workspaces"} in a new tab`}
+                    label={`Open Environments in a new tab`}
                     checked={openInNewTab}
                     onChange={setOpenInNewTab}
                 />
@@ -144,13 +143,13 @@ function PopupContent() {
                 <CheckboxInputField
                     label="Always start with options"
                     hint="Changes the primary button to always open with options"
-                    checked={isOnaEnabled ? true : disableAutostart}
+                    checked={isStoredAddressOna ? true : disableAutostart}
                     onChange={setDisableAutostart}
-                    disabled={isOnaEnabled}
+                    disabled={isStoredAddressOna}
                 />
                 <CheckboxInputField
                     label="Automatic instance hopping"
-                    hint={`Changes the ${isOnaEnabled ? "Ona" : "Gitpod"} URL automatically when a${isOnaEnabled ? "n Ona" : " Gitpod"} instance is detected`}
+                    hint={`Changes the Ona URL automatically when an Ona instance is detected`}
                     checked={enableInstanceHopping}
                     onChange={setEnableInstanceHopping}
                 />

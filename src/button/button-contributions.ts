@@ -108,7 +108,7 @@ export interface ButtonContributionParams {
     manipulations?: { element: string; removeClassName?: string; addClassName?: string; style?: Partial<CSSStyleDeclaration>, setAttribute?: { name: string, value: string }[] }[];
 
     /**
-     * A function that can be used to transform the URL that should be opened when the Gitpod button is clicked.
+     * A function that can be used to transform the URL that should be opened when the Ona button is clicked.
      * @returns The transformed URL.
      */
     urlTransformer?: (originalURL: string) => string;
