@@ -51,7 +51,7 @@ You can test the extension without publishing to the store. Before uploading the
 #### For Chrome
 
 1. Open Chrome
-2. Click Settings -> Extensions -> Load unpacked
+2. Click Settings -> Extensions -> Load unpacked (if you don't see this option, ensure you have <kbd>Developer mode</kbd> toggled on)
 3. Select the `chrome-mv3-prod` folder inside of `build/`
 
 #### For Firefox
@@ -85,7 +85,7 @@ To release a new version, follow these steps:
 
 For Firefox:
 
-1. Sign in to https://addons.mozilla.org/en-US/developers/addon/gitpod/edit with the credentials from 1Password
+1. Sign in to our [Mozilla Add-On management page](https://addons.mozilla.org/en-US/developers/addon/onahq/edit) with the credentials from 1Password
 2. Click <kbd>Upload new version</kbd>
 3. Upload the zip file (`firefox-mv3-prod.zip`)
 4. Go through the steps and submit
