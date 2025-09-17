@@ -11,6 +11,16 @@ describe("Platform match tests", function () {
     before(async function () {
         browser = await puppeteer.launch({
             headless: "new",
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-accelerated-2d-canvas',
+                '--no-first-run',
+                '--no-zygote',
+                '--single-process',
+                '--disable-gpu'
+            ]
         });
         page = await browser.newPage();
     });
@@ -66,6 +76,16 @@ describe("Query Selector Tests", function () {
     before(async function () {
         browser = await puppeteer.launch({
             headless: "new",
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-accelerated-2d-canvas',
+                '--no-first-run',
+                '--no-zygote',
+                '--single-process',
+                '--disable-gpu'
+            ]
         });
         page = await browser.newPage();
     });
