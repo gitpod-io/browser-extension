@@ -1,10 +1,29 @@
 import cssText from "data-text:../button/button.css";
 import type { PlasmoCSConfig, PlasmoGetInlineAnchor } from "plasmo";
-import React, { type ReactElement } from "react";
+import React, { type ReactElement, useEffect, useState } from "react";
 import { EVENT_CURRENT_URL_CHANGED } from "~constants";
-import { ConfigCatProvider, configCatProviderConfig } from "~hooks/use-configcat";
+import { ConfigCatProvider, createConfigCatProviderConfig } from "~hooks/use-configcat";
 import { OnaButton } from "../button/button";
 import { buttonContributions, isSiteSuitable, type ButtonContributionParams } from "../button/button-contributions";
+
+// Wrapper component to handle async ConfigCat configuration
+const ConfigCatWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const [config, setConfig] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        createConfigCatProviderConfig().then((config) => {
+            setConfig(config);
+            setLoading(false);
+        });
+    }, []);
+
+    if (loading || !config) {
+        return null; // Don't render anything while loading
+    }
+
+    return <ConfigCatProvider {...config}>{children}</ConfigCatProvider>;
+};
 
 // keep in sync with DEFAULT_HOSTS in src/button/button-contributions.ts
 export const config: PlasmoCSConfig = {
@@ -41,14 +60,14 @@ class ButtonContributionManager {
             if (!this.buttons.has(containerId)) {
                 this.buttons.set(
                     containerId,
-                    <ConfigCatProvider {...configCatProviderConfig}>
+                    <ConfigCatWrapper>
                         <OnaButton
                             key={containerId}
                             application={contribution.application}
                             additionalClassNames={contribution.additionalClassNames}
                             urlTransformer={contribution.urlTransformer}
                         />
-                    </ConfigCatProvider>,
+                    </ConfigCatWrapper>,
                 );
             }
         }

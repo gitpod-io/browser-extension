@@ -8,7 +8,7 @@ import { CheckboxInputField } from "~components/forms/CheckboxInputField";
 import { InputField } from "~components/forms/InputField";
 import { TextInput } from "~components/forms/TextInputField";
 import { ALL_ORIGINS_WILDCARD, DEFAULT_ONA_ENDPOINT } from "~constants";
-import { ConfigCatProvider, configCatProviderConfig } from "~hooks/use-configcat";
+import { ConfigCatProvider, useConfigCatConfig } from "~hooks/use-configcat";
 import { useTemporaryState } from "~hooks/use-temporary-state";
 import {
     STORAGE_AUTOMATICALLY_DETECT_GITPOD,
@@ -176,8 +176,26 @@ function PopupContent() {
 }
 
 function IndexPopup() {
+    const { config, loading } = useConfigCatConfig();
+
+    if (loading || !config) {
+        return (
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    minWidth: "360px",
+                    padding: "16px",
+                }}
+                className="ona"
+            >
+                Loading...
+            </div>
+        );
+    }
+
     return (
-        <ConfigCatProvider {...configCatProviderConfig}>
+        <ConfigCatProvider {...config}>
             <PopupContent />
         </ConfigCatProvider>
     );
