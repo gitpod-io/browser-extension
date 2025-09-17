@@ -8,7 +8,7 @@ import { CheckboxInputField } from "~components/forms/CheckboxInputField";
 import { InputField } from "~components/forms/InputField";
 import { TextInput } from "~components/forms/TextInputField";
 import { ALL_ORIGINS_WILDCARD, DEFAULT_ONA_ENDPOINT } from "~constants";
-import { ConfigCatProvider, configCatProviderConfig } from "~hooks/use-configcat";
+
 import { useTemporaryState } from "~hooks/use-temporary-state";
 import {
     STORAGE_AUTOMATICALLY_DETECT_GITPOD,
@@ -176,11 +176,7 @@ function PopupContent() {
 }
 
 function IndexPopup() {
-    return (
-        <ConfigCatProvider {...configCatProviderConfig}>
-            <PopupContent />
-        </ConfigCatProvider>
-    );
+    return <PopupContent />;
 }
 
 export default IndexPopup;
