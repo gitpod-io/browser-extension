@@ -20,7 +20,8 @@
         "@plasmohq/storage": "^1.10.0",
         "@tailwindcss/forms": "^0.5.10",
         "classnames": "^2.5.1",
-
+        "configcat-js": "^9.6.0",
+        "configcat-react": "^4.9.0",
         "lucide-react": "^0.474.0",
         "plasmo": "^0.90.5",
         "react": "^18.3.1",

@@ -9,14 +9,22 @@ describe("Platform match tests", function () {
     let page: Page;
 
     before(async function () {
-        browser = await puppeteer.launch({
-            headless: true,
-        });
-        page = await browser.newPage();
+        try {
+            browser = await puppeteer.launch({
+                headless: true,
+                args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            });
+            page = await browser.newPage();
+        } catch (error) {
+            console.error('Failed to launch browser:', error);
+            throw error;
+        }
     });
 
     after(async function () {
-        await browser.close();
+        if (browser) {
+            await browser.close();
+        }
     });
 
     async function testHost() {
@@ -64,14 +72,22 @@ describe("Query Selector Tests", function () {
     let page: Page;
 
     before(async function () {
-        browser = await puppeteer.launch({
-            headless: true,
-        });
-        page = await browser.newPage();
+        try {
+            browser = await puppeteer.launch({
+                headless: true,
+                args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            });
+            page = await browser.newPage();
+        } catch (error) {
+            console.error('Failed to launch browser:', error);
+            throw error;
+        }
     });
 
     after(async function () {
-        await browser.close();
+        if (browser) {
+            await browser.close();
+        }
     });
 
     async function resolveSelector(page: Page, selector: string): Promise<ElementHandle<Element> | null> {

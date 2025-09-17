@@ -4,6 +4,7 @@
     "type": "module",
     "version": "2.0.0",
     "scripts": {
+        "pretest": "npx puppeteer browsers install chrome",
         "test": "cp ../src/button/button-contributions.ts ./src/button-contributions-copy.ts && tsc && mocha dist/**/*.spec.js"
     },
     "devDependencies": {
