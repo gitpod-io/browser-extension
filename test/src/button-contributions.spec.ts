@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { after, before, describe, it } from "mocha";
-import puppeteer, { Browser, Page } from "puppeteer";
+import puppeteer, { Browser, Page, ElementHandle } from "puppeteer";
 
 import { buttonContributions } from "./button-contributions-copy.js";
 
@@ -10,7 +10,7 @@ describe("Platform match tests", function () {
 
     before(async function () {
         browser = await puppeteer.launch({
-            headless: "new",
+            headless: true,
         });
         page = await browser.newPage();
     });
@@ -65,7 +65,7 @@ describe("Query Selector Tests", function () {
 
     before(async function () {
         browser = await puppeteer.launch({
-            headless: "new",
+            headless: true,
         });
         page = await browser.newPage();
     });
@@ -74,9 +74,10 @@ describe("Query Selector Tests", function () {
         await browser.close();
     });
 
-    async function resolveSelector(page: Page, selector: string) {
+    async function resolveSelector(page: Page, selector: string): Promise<ElementHandle<Element> | null> {
         if (selector.startsWith("xpath:")) {
-            return (await page.$x(selector.slice(6)))[0] || null;
+            const elements = await (page as any).$x(selector.slice(6));
+            return elements[0] || null;
         } else {
             return page.$(selector);
         }
