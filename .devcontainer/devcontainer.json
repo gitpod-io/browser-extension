@@ -10,8 +10,7 @@
         "context": ".",
         "dockerfile": "Dockerfile"
     },
-	// Features add additional features to your environment. See https://containers.dev/features
-	// Beware: features are not supported on all platforms and may have unintended side-effects.
+
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {
 			"nodeGypDependencies": true,
