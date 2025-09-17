@@ -1,8 +1,10 @@
-import { Storage } from "@plasmohq/storage";
-import { useStorage } from "@plasmohq/storage/hook";
 import { CheckIcon } from "lucide-react";
 import { useCallback, useEffect, useState, type FormEvent, type PropsWithChildren } from "react";
 import browser from "webextension-polyfill";
+
+import { Storage } from "@plasmohq/storage";
+import { useStorage } from "@plasmohq/storage/hook";
+
 import { Button } from "~components/forms/Button";
 import { CheckboxInputField } from "~components/forms/CheckboxInputField";
 import { InputField } from "~components/forms/InputField";
@@ -18,27 +20,30 @@ import {
 } from "~storage";
 import { hostToOrigin, isOnaEndpoint, parseEndpoint } from "~utils/parse-endpoint";
 import { canAccessAllSites } from "~utils/permissions";
+
 import "./popup.css";
 
 const storage = new Storage();
 
 const Animate = ({ children, on }: PropsWithChildren<{ on?: string }>) => {
-    return on === undefined ?
+    return on === undefined ? (
         <div>{children}</div>
+    ) : (
         // see popup.css for transition styles
-        : <div className="fade-in" key={on}>
+        <div className="fade-in" key={on}>
             {children}
-        </div>;
+        </div>
+    );
 };
 
 function PopupContent() {
     const [error, setError] = useState<string>();
-    
+
     const [storedAddress] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_ONA_ENDPOINT);
     const isStoredAddressOna = isOnaEndpoint(storedAddress);
     const [address, setAddress] = useState<string>(storedAddress);
     const [justSaved, setJustSaved] = useTemporaryState(false, 2000);
-    
+
     const updateAddress = useCallback(
         (e: FormEvent) => {
             e.preventDefault();
@@ -108,11 +113,7 @@ function PopupContent() {
                         <TextInput className="h-full" value={address} onChange={setAddress} />
                         <Button type="primary" onClick={updateAddress} className="w-20 h-full">
                             <Animate on={justSaved ? "check" : "save"}>
-                                <span>
-                                    {justSaved ?
-                                        <CheckIcon size={16} />
-                                        : "Save"}
-                                </span>
+                                <span>{justSaved ? <CheckIcon size={16} /> : "Save"}</span>
                             </Animate>
                         </Button>
                     </div>
@@ -158,15 +159,15 @@ function PopupContent() {
             {/* show error if set */}
             <div
                 style={
-                    error ?
-                        {
-                            color: "red",
-                            marginTop: "8px",
-                            display: "inline",
-                        }
+                    error
+                        ? {
+                              color: "red",
+                              marginTop: "8px",
+                              display: "inline",
+                          }
                         : {
-                            display: "none",
-                        }
+                              display: "none",
+                          }
                 }
             >
                 {error}

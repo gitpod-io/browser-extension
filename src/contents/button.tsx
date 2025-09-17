@@ -1,14 +1,16 @@
 import cssText from "data-text:../button/button.css";
 import type { PlasmoCSConfig, PlasmoGetInlineAnchor } from "plasmo";
-import React, { type ReactElement, useEffect, useState } from "react";
+import React, { useEffect, useState, type ReactElement } from "react";
+
 import { EVENT_CURRENT_URL_CHANGED } from "~constants";
 import { ConfigCatProvider, createConfigCatProviderConfig } from "~hooks/use-configcat";
+
 import { OnaButton } from "../button/button";
 import { buttonContributions, isSiteSuitable, type ButtonContributionParams } from "../button/button-contributions";
 
 // Wrapper component to handle async ConfigCat configuration
 const ConfigCatWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [config, setConfig] = useState<any>(null);
+    const [config, setConfig] = useState<Awaited<ReturnType<typeof createConfigCatProviderConfig>> | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
