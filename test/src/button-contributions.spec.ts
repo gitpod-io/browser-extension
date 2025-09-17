@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { after, before, describe, it } from "mocha";
-import puppeteer, { Browser, Page, ElementHandle } from "puppeteer";
+import puppeteer, { Browser, Page } from "puppeteer";
 
 import { buttonContributions } from "./button-contributions-copy.js";
 
@@ -9,22 +9,14 @@ describe("Platform match tests", function () {
     let page: Page;
 
     before(async function () {
-        try {
-            browser = await puppeteer.launch({
-                headless: true,
-                args: ['--no-sandbox', '--disable-setuid-sandbox'],
-            });
-            page = await browser.newPage();
-        } catch (error) {
-            console.error('Failed to launch browser:', error);
-            throw error;
-        }
+        browser = await puppeteer.launch({
+            headless: "new",
+        });
+        page = await browser.newPage();
     });
 
     after(async function () {
-        if (browser) {
-            await browser.close();
-        }
+        await browser.close();
     });
 
     async function testHost() {
@@ -72,28 +64,19 @@ describe("Query Selector Tests", function () {
     let page: Page;
 
     before(async function () {
-        try {
-            browser = await puppeteer.launch({
-                headless: true,
-                args: ['--no-sandbox', '--disable-setuid-sandbox'],
-            });
-            page = await browser.newPage();
-        } catch (error) {
-            console.error('Failed to launch browser:', error);
-            throw error;
-        }
+        browser = await puppeteer.launch({
+            headless: "new",
+        });
+        page = await browser.newPage();
     });
 
     after(async function () {
-        if (browser) {
-            await browser.close();
-        }
+        await browser.close();
     });
 
-    async function resolveSelector(page: Page, selector: string): Promise<ElementHandle<Element> | null> {
+    async function resolveSelector(page: Page, selector: string) {
         if (selector.startsWith("xpath:")) {
-            const elements = await (page as any).$x(selector.slice(6));
-            return elements[0] || null;
+            return (await page.$x(selector.slice(6)))[0] || null;
         } else {
             return page.$(selector);
         }
