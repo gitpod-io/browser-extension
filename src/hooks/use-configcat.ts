@@ -22,7 +22,6 @@ export const createConfigCatProviderConfig = async () => {
         pollingMode: PollingMode.AutoPoll,
         options: {
             baseUrl,
-            pollIntervalSeconds: 60,
             logger: logger,
             requestTimeoutMs: 30000,
         },
