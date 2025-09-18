@@ -93,8 +93,9 @@ For Firefox:
 For Chrome:
 
 1. Using your Google account, open the [`gitpod-browser-extension Google Group`](https://groups.google.com/g/gitpod-browser-extension)
-2. If you don't have access, reach out for [help in Slack](https://gitpod.slack.com/archives/C04QC1ZMPV4)
-3. Once you are in the Google Group, make sure to "Switch to Gitpod" in the top navbar
-4. Click "Upload new package"
-5. Upload the zip file (`chrome-mv3-prod.zip`) and submit
-6. Wait a few hours for the review to happen!
+1. If you don't have access, reach out for [help in Slack](https://gitpod.slack.com/archives/C04QC1ZMPV4)
+   * An existing member of the group, who is also Verified (paid the $5 for verification) on the Chrome Webstore needs to [sync the group members in the webstore](https://chrome.google.com/webstore/devconsole/11ad35cc-5b54-416a-a789-f091e1007648/settings)
+1. Navigate to the [Chrome Webstore console](https://chrome.google.com/webstore/devconsole/11ad35cc-5b54-416a-a789-f091e1007648), make sure you switch the `publisher` to `Gitpod`
+1. Click "Upload new package"
+1. Upload the zip file (`chrome-mv3-prod.zip`) and submit
+1. Wait a few hours for the review to happen!
