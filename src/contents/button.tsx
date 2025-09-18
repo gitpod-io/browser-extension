@@ -2,7 +2,7 @@ import cssText from "data-text:../button/button.css";
 import type { PlasmoCSConfig, PlasmoGetInlineAnchor } from "plasmo";
 import React, { type ReactElement } from "react";
 import { EVENT_CURRENT_URL_CHANGED } from "~constants";
-import { ConfigCatProvider, configCatProviderConfig } from "~hooks/use-configcat";
+
 import { OnaButton } from "../button/button";
 import { buttonContributions, isSiteSuitable, type ButtonContributionParams } from "../button/button-contributions";
 
@@ -41,14 +41,12 @@ class ButtonContributionManager {
             if (!this.buttons.has(containerId)) {
                 this.buttons.set(
                     containerId,
-                    <ConfigCatProvider {...configCatProviderConfig}>
-                        <OnaButton
-                            key={containerId}
-                            application={contribution.application}
-                            additionalClassNames={contribution.additionalClassNames}
-                            urlTransformer={contribution.urlTransformer}
-                        />
-                    </ConfigCatProvider>,
+                    <OnaButton
+                        key={containerId}
+                        application={contribution.application}
+                        additionalClassNames={contribution.additionalClassNames}
+                        urlTransformer={contribution.urlTransformer}
+                    />,
                 );
             }
         }

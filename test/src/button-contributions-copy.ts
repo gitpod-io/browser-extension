@@ -114,7 +114,7 @@ export interface ButtonContributionParams {
     urlTransformer?: (originalURL: string) => string;
 }
 
-function createElement(
+function createContainerElement(
     type: "div" | "li",
     props: {
         [key: string]: string;
@@ -134,7 +134,7 @@ export const buttonContributions: ButtonContributionParams[] = [
             // "https://dev.azure.com/services-azure/_git/project2"
         ],
         selector: "div.repos-files-header-commandbar:nth-child(1)",
-        containerElement: createElement("div", {}),
+        containerElement: createContainerElement("div", {}),
         application: "azure-devops",
         insertBefore: `div.bolt-header-command-item-button:has(button[id^="__bolt-header-command-bar-menu-button"])`,
         manipulations: [
@@ -170,7 +170,7 @@ export const buttonContributions: ButtonContributionParams[] = [
             // "https://dev.azure.com/services-azure/test-project/_git/repo2/pullrequest/1"
         ],
         selector: ".repos-pr-header > div:nth-child(2) > div:nth-child(1)",
-        containerElement: createElement("div", {}),
+        containerElement: createContainerElement("div", {}),
         application: "azure-devops",
         insertBefore: `div.bolt-header-command-item-button:has(button[id^="__bolt-menu-button-"])`,
     },
@@ -179,7 +179,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         exampleUrls: [],
         selector: "div.clone-with-application",
         application: "azure-devops",
-        containerElement: createElement("div", { marginLeft: "4px", marginRight: "4px" }),
+        containerElement: createContainerElement("div", { marginLeft: "4px", marginRight: "4px" }),
     },
 
     // GitLab
@@ -217,7 +217,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         match: /\/blob\//,
         selector:
             "#fileHolder > div.js-file-title.file-title-flex-parent > div.gl-display-flex.gl-flex-wrap.file-actions",
-        containerElement: createElement("div", { display: "inline-flex", marginLeft: "8px" }),
+        containerElement: createContainerElement("div", { display: "inline-flex", marginLeft: "8px" }),
         application: "gitlab",
         manipulations: [
             {
@@ -233,7 +233,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         exampleUrls: ["https://gitlab.com/svenefftinge/browser-extension-test/-/merge_requests/1"],
         match: /\/merge_requests\//,
         selector: "#content-body > div.merge-request .js-issuable-actions",
-        containerElement: createElement("div", {}),
+        containerElement: createContainerElement("div", {}),
         application: "gitlab",
         insertBefore: "#content-body > div.merge-request .js-issuable-actions > div.dropdown.gl-dropdown",
         manipulations: [
@@ -250,7 +250,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         exampleUrls: ["https://gitlab.com/svenefftinge/browser-extension-test/-/issues/1"],
         match: /\/issues(?:\/\d+|\?)/,
         selector: "#content-body [data-testid='detail-wrapper'] > div > div:has(div > [data-testid='work-item-actions-dropdown'])",
-        containerElement: createElement("div", { marginLeft: "0", marginRight: "0px" }),
+        containerElement: createContainerElement("div", { marginLeft: "0", marginRight: "0px" }),
         application: "gitlab",
         insertBefore: "#content-body [data-testid='detail-wrapper'] > div > div:has(div > [data-testid='work-item-actions-dropdown']) > div",
     },
@@ -264,7 +264,7 @@ export const buttonContributions: ButtonContributionParams[] = [
             "https://github.com/svenefftinge/browser-extension-test/tree/my-branch",
         ],
         selector: `xpath://*[contains(@id, 'repo-content-')]/div/div/div/div[1]/react-partial/div/div/div[2]/div[2]`,
-        containerElement: createElement("div", {}),
+        containerElement: createContainerElement("div", {}),
         additionalClassNames: ["medium"],
         application: "github",
         manipulations: [
@@ -289,7 +289,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         ],
         selector: "#repo-content-pjax-container > div > div.commit.full-commit.mt-0.px-2.pt-2",
         insertBefore: "#browse-at-time-link",
-        containerElement: createElement("div", {
+        containerElement: createContainerElement("div", {
             float: "right",
             marginLeft: "8px",
         }),
@@ -302,7 +302,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         exampleUrls: ["https://github.com/svenefftinge/browser-extension-test/issues/1"],
         selector: "[data-component='PH_Actions'] > div", //
         insertBefore: "[data-component='PH_Actions'] > div > button",
-        containerElement: createElement("div", {}),
+        containerElement: createContainerElement("div", {}),
         match: /\/issues\//,
         application: "github",
         additionalClassNames: ["tall"],
@@ -311,7 +311,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         id: "gh-issue-new", // this isn't referring to "new issue", but to new "issue"
         exampleUrls: ["https://github.com/svenefftinge/browser-extension-test/issues/1"],
         selector: `xpath://*[@id="js-repo-pjax-container"]/react-app/div/div/div/div/div[1]/div/div/div[3]/div`,
-        containerElement: createElement("div", {}),
+        containerElement: createContainerElement("div", {}),
         insertBefore: `xpath://*[@id="js-repo-pjax-container"]/react-app/div/div/div/div/div[1]/div/div/div[3]/div/div`,
         application: "github",
         // we need to make the button higher: the buttons here use 2rem instead of 1.75rem
@@ -321,7 +321,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         id: "gh-pull",
         exampleUrls: ["https://github.com/svenefftinge/browser-extension-test/pull/2"],
         selector: "#partial-discussion-header div.gh-header-show > div > div",
-        containerElement: createElement("div", {
+        containerElement: createContainerElement("div", {
             order: "2",
         }),
         match: /\/pull\//,
@@ -334,7 +334,7 @@ export const buttonContributions: ButtonContributionParams[] = [
             // "https://github.com/svenefftinge/browser-extension-test/pull/2/files" // this is an experiment for now, and we can't test against GitHub's feature flags yet
         ],
         selector: "div[data-component='PH_Actions']",
-        containerElement: createElement("div", {
+        containerElement: createContainerElement("div", {
             order: "2",
         }),
         match: /\/pull\//,
@@ -344,7 +344,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         id: "gh-file",
         exampleUrls: ["https://github.com/svenefftinge/browser-extension-test/blob/my-branch/README.md"],
         selector: "#StickyHeader > div > div > div.Box-sc-g0xbh4-0.gtBUEp",
-        containerElement: createElement("div", {
+        containerElement: createContainerElement("div", {
             marginLeft: "8px",
         }),
         application: "github",
@@ -357,7 +357,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         ],
         selector:
             "#repo-content-pjax-container > div > div.d-md-flex.flex-items-stretch.gutter-md.mb-4 > div.col-md-6.mb-4.mb-md-0 > div,#repo-content-turbo-frame > div > div.d-md-flex.flex-items-stretch.gutter-md.mb-4 > div.col-md-6.mb-4.mb-md-0 > div",
-        containerElement: createElement("div", {}),
+        containerElement: createContainerElement("div", {}),
         application: "github",
         manipulations: [
             {
@@ -387,7 +387,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         selector:
             "#main > div.aui-toolbar2.branch-selector-toolbar > div > div.aui-toolbar2-primary > div > div:nth-child(1) > div",
         insertBefore: "#branch-actions",
-        containerElement: createElement("div", {
+        containerElement: createContainerElement("div", {
             marginLeft: "2px",
         }),
         application: "bitbucket-server",
@@ -402,7 +402,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         selector: "#pull-requests-container > header > div.pull-request-header-bar > div.pull-request-actions",
         insertBefore:
             "#pull-requests-container > header > div.pull-request-header-bar > div.pull-request-actions > div.pull-request-more-actions",
-        containerElement: createElement("div", {
+        containerElement: createContainerElement("div", {
             marginLeft: "2px",
         }),
         application: "bitbucket-server",
@@ -419,7 +419,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         selector: 'xpath://*[@id="main"]/div/div/div[1]/div/header/div/div/div/div[2]/div',
         insertBefore:
             "#main > div > div > div.css-1m2ufqk.efo6slf1 > div > header > div > div > div > div.css-1ianfu6 > div > div:nth-child(2)",
-        containerElement: createElement("div", {
+        containerElement: createContainerElement("div", {
             marginLeft: "2px",
         }),
         application: "bitbucket",
@@ -430,7 +430,7 @@ export const buttonContributions: ButtonContributionParams[] = [
             // "https://bitbucket.org/efftinge/browser-extension-test/pull-requests/1"
         ],
         selector: 'xpath://*[@id="main"]/div/div/div[1]/div/div/div/div[1]/div/div[2]/div/div[2]/div/div', // grandparent div of the "Request changes" and "Approve" buttons
-        containerElement: createElement("div", {}),
+        containerElement: createContainerElement("div", {}),
         insertBefore:
             'xpath:(//*[@id="main"]/div/div/div[1]/div/div/div/div[1]/div/div[2]/div/div[2]/div/div/div)[last()]', // note the [last()] to insert before the last child (the kebab menu)
         application: "bitbucket",
@@ -442,7 +442,7 @@ export const buttonContributions: ButtonContributionParams[] = [
             // "https://bitbucket.org/efftinge/browser-extension-test/branch/my-branch"
         ],
         selector: 'xpath://*[@id="main"]/div/div/div[1]/div/div/div[2]/div/div', // action bar section with the last action of "Settings"
-        containerElement: createElement("div", {
+        containerElement: createContainerElement("div", {
             marginLeft: "2px",
         }),
         application: "bitbucket",
@@ -452,7 +452,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         match: /\/commits\/(.+)?/,
         exampleUrls: ["https://bitbucket.org/efftinge/browser-extension-test/commits/"],
         selector: 'xpath://*[@id="main"]/div/div/div[1]/div/div/div[1]/div[1]/div[2]/div',
-        containerElement: createElement("div", {
+        containerElement: createContainerElement("div", {
             marginLeft: "2px",
         }),
         application: "bitbucket",
