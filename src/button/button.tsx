@@ -5,7 +5,6 @@ import { useHotkeys } from "react-hotkeys-hook";
 import { DEFAULT_ONA_ENDPOINT, EVENT_CURRENT_URL_CHANGED } from "~constants";
 import { OnaLettermark } from "~icons/OnaLettermark";
 import { STORAGE_KEY_ADDRESS, STORAGE_KEY_ALWAYS_OPTIONS, STORAGE_KEY_NEW_TAB } from "~storage";
-import { isOnaEndpoint } from "~utils/parse-endpoint";
 import type { SupportedApplication } from "./button-contributions";
 import { CaretForProvider } from "./CaretForProvider";
 
@@ -35,15 +34,12 @@ export const OnaButton = ({ application, additionalClassNames, urlTransformer }:
         };
     }, []);
 
-    const isOna = useMemo(() => address && isOnaEndpoint(address), [address]);
     const actions = useMemo(() => {
         const parsedHref = !urlTransformer ? currentHref : urlTransformer(currentHref);
 
-        const autoStartParam = isOna ? "" : "?autostart=true";
-
         return [
             {
-                href: `${address}/${autoStartParam}#${parsedHref}`,
+                href: `${address}/?autostart=${disableAutostart ? "false" : "true"}#${parsedHref}`,
                 label: "Open",
             },
             {
@@ -56,7 +52,6 @@ export const OnaButton = ({ application, additionalClassNames, urlTransformer }:
     const firstActionRef = useRef<HTMLAnchorElement | null>(null);
 
     const target = openInNewTab ? "_blank" : "_self";
-    const effectiveDisableAutostart = isOna ? true : disableAutostart;
 
     const toggleDropdown = () => {
         setShowDropdown(!showDropdown);
@@ -91,7 +86,7 @@ export const OnaButton = ({ application, additionalClassNames, urlTransformer }:
         >
             <div className={classNames("button")}>
                 <a
-                    className={classNames("button-part", effectiveDisableAutostart ? "action-no-options" : "action")}
+                    className={classNames("button-part", disableAutostart ? "action-no-options" : "action")}
                     href={actions[0].href}
                     target={target}
                     rel="noreferrer"
@@ -102,7 +97,7 @@ export const OnaButton = ({ application, additionalClassNames, urlTransformer }:
                         {actions[0].label}
                     </span>
                 </a>
-                {!effectiveDisableAutostart && (
+                {!disableAutostart && (
                     <button
                         className={classNames("button-part", "action-chevron")}
                         onClick={(e) => {

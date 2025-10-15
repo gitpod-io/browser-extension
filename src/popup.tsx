@@ -16,7 +16,7 @@ import {
     STORAGE_KEY_ALWAYS_OPTIONS,
     STORAGE_KEY_NEW_TAB,
 } from "~storage";
-import { hostToOrigin, isOnaEndpoint, parseEndpoint } from "~utils/parse-endpoint";
+import { hostToOrigin, parseEndpoint } from "~utils/parse-endpoint";
 import { canAccessAllSites } from "~utils/permissions";
 import "./popup.css";
 
@@ -35,7 +35,6 @@ function PopupContent() {
     const [error, setError] = useState<string>();
     
     const [storedAddress] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_ONA_ENDPOINT);
-    const isStoredAddressOna = isOnaEndpoint(storedAddress);
     const [address, setAddress] = useState<string>(storedAddress);
     const [justSaved, setJustSaved] = useTemporaryState(false, 2000);
     
@@ -143,9 +142,8 @@ function PopupContent() {
                 <CheckboxInputField
                     label="Always start with options"
                     hint="Changes the primary button to always open with options"
-                    checked={isStoredAddressOna ? true : disableAutostart}
+                    checked={disableAutostart}
                     onChange={setDisableAutostart}
-                    disabled={isStoredAddressOna}
                 />
                 <CheckboxInputField
                     label="Automatic instance hopping"
