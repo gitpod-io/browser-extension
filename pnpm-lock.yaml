@@ -45,8 +45,8 @@ importers:
         specifier: ^13.12.0
         version: 13.12.0
       webext-dynamic-content-scripts:
-        specifier: ^10.0.2
-        version: 10.0.2
+        specifier: ^10.0.4
+        version: 10.0.4
       webext-permission-toggle:
         specifier: ^5.0.2
         version: 5.1.0
@@ -446,72 +446,84 @@ packages:
     engines: {glibc: '>=2.26', npm: '>=9.6.5', pnpm: '>=7.1.0', yarn: '>=3.2.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-libvips-linux-arm@1.0.2':
     resolution: {integrity: sha512-iLWCvrKgeFoglQxdEwzu1eQV04o8YeYGFXtfWU26Zr2wWT3q3MTzC+QTCO3ZQfWd3doKHT4Pm2kRmLbupT+sZw==}
     engines: {glibc: '>=2.28', npm: '>=9.6.5', pnpm: '>=7.1.0', yarn: '>=3.2.0'}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-libvips-linux-s390x@1.0.2':
     resolution: {integrity: sha512-cmhQ1J4qVhfmS6szYW7RT+gLJq9dH2i4maq+qyXayUSn9/3iY2ZeWpbAgSpSVbV2E1JUL2Gg7pwnYQ1h8rQIog==}
     engines: {glibc: '>=2.28', npm: '>=9.6.5', pnpm: '>=7.1.0', yarn: '>=3.2.0'}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-libvips-linux-x64@1.0.2':
     resolution: {integrity: sha512-E441q4Qdb+7yuyiADVi5J+44x8ctlrqn8XgkDTwr4qPJzWkaHwD489iZ4nGDgcuya4iMN3ULV6NwbhRZJ9Z7SQ==}
     engines: {glibc: '>=2.26', npm: '>=9.6.5', pnpm: '>=7.1.0', yarn: '>=3.2.0'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-libvips-linuxmusl-arm64@1.0.2':
     resolution: {integrity: sha512-3CAkndNpYUrlDqkCM5qhksfE+qSIREVpyoeHIU6jd48SJZViAmznoQQLAv4hVXF7xyUB9zf+G++e2v1ABjCbEQ==}
     engines: {musl: '>=1.2.2', npm: '>=9.6.5', pnpm: '>=7.1.0', yarn: '>=3.2.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@img/sharp-libvips-linuxmusl-x64@1.0.2':
     resolution: {integrity: sha512-VI94Q6khIHqHWNOh6LLdm9s2Ry4zdjWJwH56WoiJU7NTeDwyApdZZ8c+SADC8OH98KWNQXnE01UdJ9CSfZvwZw==}
     engines: {musl: '>=1.2.2', npm: '>=9.6.5', pnpm: '>=7.1.0', yarn: '>=3.2.0'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@img/sharp-linux-arm64@0.33.4':
     resolution: {integrity: sha512-2800clwVg1ZQtxwSoTlHvtm9ObgAax7V6MTAB/hDT945Tfyy3hVkmiHpeLPCKYqYR1Gcmv1uDZ3a4OFwkdBL7Q==}
     engines: {glibc: '>=2.26', node: ^18.17.0 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0', yarn: '>=3.2.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-linux-arm@0.33.4':
     resolution: {integrity: sha512-RUgBD1c0+gCYZGCCe6mMdTiOFS0Zc/XrN0fYd6hISIKcDUbAW5NtSQW9g/powkrXYm6Vzwd6y+fqmExDuCdHNQ==}
     engines: {glibc: '>=2.28', node: ^18.17.0 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0', yarn: '>=3.2.0'}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-linux-s390x@0.33.4':
     resolution: {integrity: sha512-h3RAL3siQoyzSoH36tUeS0PDmb5wINKGYzcLB5C6DIiAn2F3udeFAum+gj8IbA/82+8RGCTn7XW8WTFnqag4tQ==}
     engines: {glibc: '>=2.31', node: ^18.17.0 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0', yarn: '>=3.2.0'}
     cpu: [s390x]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-linux-x64@0.33.4':
     resolution: {integrity: sha512-GoR++s0XW9DGVi8SUGQ/U4AeIzLdNjHka6jidVwapQ/JebGVQIpi52OdyxCNVRE++n1FCLzjDovJNozif7w/Aw==}
     engines: {glibc: '>=2.26', node: ^18.17.0 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0', yarn: '>=3.2.0'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@img/sharp-linuxmusl-arm64@0.33.4':
     resolution: {integrity: sha512-nhr1yC3BlVrKDTl6cO12gTpXMl4ITBUZieehFvMntlCXFzH2bvKG76tBL2Y/OqhupZt81pR7R+Q5YhJxW0rGgQ==}
     engines: {musl: '>=1.2.2', node: ^18.17.0 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0', yarn: '>=3.2.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@img/sharp-linuxmusl-x64@0.33.4':
     resolution: {integrity: sha512-uCPTku0zwqDmZEOi4ILyGdmW76tH7dm8kKlOIV1XC5cLyJ71ENAAqarOHQh0RLfpIpbV5KOpXzdU6XkJtS0daw==}
     engines: {musl: '>=1.2.2', node: ^18.17.0 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0', yarn: '>=3.2.0'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@img/sharp-wasm32@0.33.4':
     resolution: {integrity: sha512-Bmmauh4sXUsUqkleQahpdNXKvo+wa1V9KhT2pDA4VJGKwnKMJXiSTGphn0gnJrlooda0QxCtXc6RX1XAU6hMnQ==}
@@ -1138,6 +1150,7 @@ packages:
     engines: {node: '>= 10.0.0'}
     cpu: [arm]
     os: [linux]
+    libc: [glibc]
 
   '@parcel/watcher-linux-arm-musl@2.5.1':
     resolution: {integrity: sha512-6E+m/Mm1t1yhB8X412stiKFG3XykmgdIOqhjWj+VL8oHkKABfu/gjFj8DvLrYVHSBNC+/u5PeNrujiSQ1zwd1Q==}
@@ -1151,24 +1164,28 @@ packages:
     engines: {node: '>= 10.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@parcel/watcher-linux-arm64-musl@2.5.1':
     resolution: {integrity: sha512-cFOjABi92pMYRXS7AcQv9/M1YuKRw8SZniCDw0ssQb/noPkRzA+HBDkwmyOJYp5wXcsTrhxO0zq1U11cK9jsFg==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@parcel/watcher-linux-x64-glibc@2.5.1':
     resolution: {integrity: sha512-GcESn8NZySmfwlTsIur+49yDqSny2IhPeZfXunQi48DMugKeZ7uy1FX83pO0X22sHntJ4Ub+9k34XQCX+oHt2A==}
     engines: {node: '>= 10.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@parcel/watcher-linux-x64-musl@2.5.1':
     resolution: {integrity: sha512-n0E2EQbatQ3bXhcH2D1XIAANAcTZkQICBPVaxMeaCVBtOpBZpWJuf7LwyWPSBDITb7In8mqQgJ7gH8CILCURXg==}
     engines: {node: '>= 10.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@parcel/watcher-win32-arm64@2.5.1':
     resolution: {integrity: sha512-RFzklRvmc3PkjKjry3hLF9wD7ppR4AKcWNzH7kXR7GUe0Igb3Nz8fyPwtZCSquGrhU5HhUNDr/mKBqj7tqA2Vw==}
@@ -1556,24 +1573,28 @@ packages:
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@swc/core-linux-arm64-musl@1.3.96':
     resolution: {integrity: sha512-i5/UTUwmJLri7zhtF6SAo/4QDQJDH2fhYJaBIUhrICmIkRO/ltURmpejqxsM/ye9Jqv5zG7VszMC0v/GYn/7BQ==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@swc/core-linux-x64-gnu@1.3.96':
     resolution: {integrity: sha512-USdaZu8lTIkm4Yf9cogct/j5eqtdZqTgcTib4I+NloUW0E/hySou3eSyp3V2UAA1qyuC72ld1otXuyKBna0YKQ==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   '@swc/core-linux-x64-musl@1.3.96':
     resolution: {integrity: sha512-QYErutd+G2SNaCinUVobfL7jWWjGTI0QEoQ6hqTp7PxCJS/dmKmj3C5ZkvxRYcq7XcZt7ovrYCTwPTHzt6lZBg==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@swc/core-win32-arm64-msvc@1.3.96':
     resolution: {integrity: sha512-hjGvvAduA3Un2cZ9iNP4xvTXOO4jL3G9iakhFsgVhpkU73SGmK7+LN8ZVBEu4oq2SUcHO6caWvnZ881cxGuSpg==}
@@ -3121,24 +3142,28 @@ packages:
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   lightningcss-linux-arm64-musl@1.21.8:
     resolution: {integrity: sha512-01gWShXrgoIb8urzShpn1RWtZuaSyKSzF2hfO+flzlTPoACqcO3rgcu/3af4Cw54e8vKzL5hPRo4kROmgaOMLg==}
     engines: {node: '>= 12.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   lightningcss-linux-x64-gnu@1.21.8:
     resolution: {integrity: sha512-yVB5vYJjJb/Aku0V9QaGYIntvK/1TJOlNB9GmkNpXX5bSSP2pYW4lWW97jxFMHO908M0zjEt1qyOLMyqojHL+Q==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
 
   lightningcss-linux-x64-musl@1.21.8:
     resolution: {integrity: sha512-TYi+KNtBVK0+FZvxTX/d5XJb+tw3Jq+2Rr9hW359wp1afsi1Vkg+uVGgbn+m2dipa5XwpCseQq81ylMlXuyfPw==}
     engines: {node: '>= 12.0.0'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   lightningcss-win32-x64-msvc@1.21.8:
     resolution: {integrity: sha512-mww+kqbPx0/C44l2LEloECtRUuOFDjq9ftp+EHTPiCp2t+avy0sh8MaFwGsrKkj2XfZhaRhi4CPVKBoqF1Qlwg==}
@@ -3680,6 +3705,7 @@ packages:
   puppeteer@23.6.0:
     resolution: {integrity: sha512-l+Fgo8SVFSd51STtq2crz8t1Y3VXowsuR4zfR64qDOn6oggz7YIZauWiNR4IJjczQ6nvFs3S4cgng55/nesxTQ==}
     engines: {node: '>=18'}
+    deprecated: < 24.15.0 is no longer supported
     hasBin: true
 
   queue-microtask@1.2.3:
@@ -4238,31 +4264,31 @@ packages:
     resolution: {integrity: sha512-dyVZn6w3A5b8Bi/SDX5NSQOpjeAtT5YZksWV1GdvftaHlvK+WBAGPtbrYjR47vEqrpyxgSsyWtBbatmykPtjLw==}
     engines: {node: '>=20'}
 
-  webext-content-scripts@2.6.1:
-    resolution: {integrity: sha512-418gnJGVzKBLMyF/+9fX9pMrp/p7yFKfX9bhe8Qe2oHDjaLqUJNP2WF9kVZ9E/p7lmiBC+f96dkEgwK/yu0QRA==}
-    engines: {node: '>=16'}
-
   webext-content-scripts@2.7.0:
     resolution: {integrity: sha512-onSnVe+VfKwx9adkUsRt4uCcahpNLt36ab16dqdzml3IWG/LUYp2Udhy/PJ24p2bvBYmKQ2Rq7gc2oT2h5nX1w==}
     engines: {node: '>=16'}
 
-  webext-detect-page@5.0.1:
-    resolution: {integrity: sha512-HizogkTmviA5qA1yODwewzz4ETSc+N9bYrK6pEVIAP2kAG139Sg+3DOJixRnFYl2gFVZn4PBReDZhgmFOEVbeg==}
-    engines: {node: '>=18'}
+  webext-content-scripts@2.7.2:
+    resolution: {integrity: sha512-7e6ZHha2jUww3RXWBkqBkSNa/qVPp8bHHY4BNDPfFIOkCebR+mjDq67BgWxnO51OUJU5skntRndjGmEGVcgvpQ==}
+    engines: {node: '>=16'}
 
   webext-detect@5.0.2:
     resolution: {integrity: sha512-R/Jfape0ML8rxWxIlOk8qODkD9G7L6+HijSNktsAKY6ZWZwGGO0Mfxa5C3BcJkNwLBR5/44cGhpbGSf5dne3vQ==}
     engines: {node: '>=18'}
 
-  webext-dynamic-content-scripts@10.0.2:
-    resolution: {integrity: sha512-Mj+Q53bE3i5fKGDEqkiVdV87JOwgdwe6VywK6KDSti9S9D85fER+oZQRpw5MOtA6G0vZISeITyCkC8tbyzIxmg==}
-
-  webext-events@3.0.1:
-    resolution: {integrity: sha512-GbIR9VuO0RWFLTJmvJSOCfdkM83olWg6e0vEr4QglcyBuHedZlBitIrzSfLUSV5hHoh6sr6ah9Osl5xoHFQNiA==}
+  webext-detect@5.3.2:
+    resolution: {integrity: sha512-RU/e8OLiPwU0efWs/cHp3sRCY+vakaTnbOS/x8VM/FkTtv6cfW/Ofed0i7WnkAKw2jbp4gki3WcpAdii+2QVMw==}
     engines: {node: '>=18'}
 
-  webext-patterns@1.4.0:
-    resolution: {integrity: sha512-ntzTWnsRuus0hZdHlbjNUFSA9mZz+sYU37KxkU5Et5TggkxqMienQBeGP2At4TMzeXpUvC3fafCr2Oiy7YDsBw==}
+  webext-dynamic-content-scripts@10.0.4:
+    resolution: {integrity: sha512-41n7/H7MIV7QpWrFjwhEQKhaj4xdicD8+2tZyKETcIw2Vzo29481VbBsRZWdHxhegshflC6RfFZs0LM5q0pqSw==}
+
+  webext-events@3.1.1:
+    resolution: {integrity: sha512-/QlXfa8LHcPOwLIycLglnHbXLqBOGetNn4pOyVJhV5UA6RifcP1tfkp8DYj3R6CjnHbjpSqFWXyc6dD4aTUcXw==}
+    engines: {node: '>=18'}
+
+  webext-patterns@1.5.1:
+    resolution: {integrity: sha512-N0r4U1vhsa+7zgIt4qsf6j6X7vRf10/nG7ycwRXIjg0+45v5/fFmjpSrFSe0RKW9bB3Lo5RqYJXEFb6syRFxpQ==}
     engines: {node: '>=18'}
 
   webext-permission-toggle@5.1.0:
@@ -4271,6 +4297,10 @@ packages:
 
   webext-permissions@3.1.3:
     resolution: {integrity: sha512-ahNhlsPBVXiKA1jkNp2QzT5PSb8DoEWb+/eu6lBGWrSBj0T2dok05rnrdXw5cQn+oLjaiHW+wnzSYmb5LK7HhA==}
+    engines: {node: '>=18'}
+
+  webext-permissions@3.1.4:
+    resolution: {integrity: sha512-/20ihnr67KzVUdI+NJFia3VM04UILM00xLpG2MbmWSaZK7P7ZYPyMxfT0wKhA5SyfXAPQV7bLscX4arN2IIHcQ==}
     engines: {node: '>=18'}
 
   webext-polyfill-kinda@1.0.2:
@@ -6815,8 +6845,8 @@ snapshots:
 
   content-scripts-register-polyfill@4.0.2:
     dependencies:
-      webext-content-scripts: 2.6.1
-      webext-patterns: 1.4.0
+      webext-content-scripts: 2.7.2
+      webext-patterns: 1.5.1
       webext-polyfill-kinda: 1.0.2
 
   content-security-policy-parser@0.4.1: {}
@@ -9178,36 +9208,37 @@ snapshots:
   webext-alert@1.0.2:
     dependencies:
       webext-detect: 5.0.2
-      webext-events: 3.0.1
-
-  webext-content-scripts@2.6.1:
-    dependencies:
-      webext-patterns: 1.4.0
-      webext-polyfill-kinda: 1.0.2
+      webext-events: 3.1.1
 
   webext-content-scripts@2.7.0:
     dependencies:
-      webext-patterns: 1.4.0
+      webext-patterns: 1.5.1
       webext-polyfill-kinda: 1.0.2
 
-  webext-detect-page@5.0.1: {}
+  webext-content-scripts@2.7.2:
+    dependencies:
+      webext-patterns: 1.5.1
+      webext-polyfill-kinda: 1.0.2
 
   webext-detect@5.0.2: {}
 
-  webext-dynamic-content-scripts@10.0.2:
+  webext-detect@5.3.2: {}
+
+  webext-dynamic-content-scripts@10.0.4:
     dependencies:
       content-scripts-register-polyfill: 4.0.2
-      webext-content-scripts: 2.6.1
-      webext-detect-page: 5.0.1
-      webext-patterns: 1.4.0
-      webext-permissions: 3.1.3
+      webext-content-scripts: 2.7.2
+      webext-detect: 5.3.2
+      webext-events: 3.1.1
+      webext-patterns: 1.5.1
+      webext-permissions: 3.1.4
       webext-polyfill-kinda: 1.0.2
 
-  webext-events@3.0.1:
+  webext-events@3.1.1:
     dependencies:
-      webext-detect: 5.0.2
+      webext-detect: 5.3.2
 
-  webext-patterns@1.4.0:
+  webext-patterns@1.5.1:
     dependencies:
       escape-string-regexp: 5.0.0
 
@@ -9222,7 +9253,11 @@ snapshots:
 
   webext-permissions@3.1.3:
     dependencies:
-      webext-patterns: 1.4.0
+      webext-patterns: 1.5.1
+
+  webext-permissions@3.1.4:
+    dependencies:
+      webext-patterns: 1.5.1
 
   webext-polyfill-kinda@1.0.2: {}
 
