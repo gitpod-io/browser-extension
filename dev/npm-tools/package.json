@@ -1,0 +1,9 @@
+{
+  "name": "gitpod-npm-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Global npm tools with locked dependencies for Gitpod builds",
+  "dependencies": {
+    "@anthropic-ai/claude-code": "2.0.53"
+  }
+}
