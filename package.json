@@ -14,7 +14,8 @@
         "package": "plasmo package",
         "package:all": "pnpm build --target=chrome-mv3 && pnpm build --target=firefox-mv3 && pnpm package --target=chrome-mv3 && pnpm package --target=firefox-mv3",
         "format": "prettier --experimental-ternaries --write .",
-        "build-dev-tools": "sh dev/build.sh"
+        "build-dev-tools": "sh dev/build.sh",
+        "puppeteer-install": "puppeteer browsers install"
     },
     "dependencies": {
         "@plasmohq/storage": "^1.10.0",
