@@ -18,20 +18,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # pin@v5
       - name: Cache pnpm modules
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # pin@v4
         with:
           path: ~/.pnpm-store
           key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@c5ba7f7862a0f64c1b1a05fbac13e0b8e86ba08c # pin@v4
         with:
           version: latest
           run_install: true
       - name: Use Node.js 20.x
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # pin@v5
         with:
           node-version: 20.x
           cache: "pnpm"
@@ -54,7 +54,7 @@ jobs:
           pnpm package --target=chrome-mv3
           pnpm package --target=firefox-mv3
       - name: Browser Platform Publish (staging)
-        uses: PlasmoHQ/bpp@v3
+        uses: PlasmoHQ/bpp@c15984c0a74f452851c605cab46f34d9fd6cb158 # pin@v3
         if: env.CHANNEL == 'staging'
         with:
           keys: ${{ secrets.SUBMIT_KEYS_STAGING }}
@@ -62,7 +62,7 @@ jobs:
           chrome-file: build/chrome-mv3-prod.zip
           firefox-file: build/firefox-mv3-prod.zip
       - name: Browser Platform Publish (production)
-        uses: PlasmoHQ/bpp@v3
+        uses: PlasmoHQ/bpp@c15984c0a74f452851c605cab46f34d9fd6cb158 # pin@v3
         if: env.CHANNEL == 'production'
         with:
           keys: ${{ secrets.SUBMIT_KEYS_PRODUCTION }}
