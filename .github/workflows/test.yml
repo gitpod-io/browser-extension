@@ -13,7 +13,7 @@ jobs:
         with:
           version: latest
       - name: Use Node.js 20.x
-        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # pin@v5
+        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # pin@v5
         with:
           node-version: 20.x
           cache: "pnpm"
