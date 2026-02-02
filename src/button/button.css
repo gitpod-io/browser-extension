@@ -311,8 +311,8 @@
     --border-radius: 3px;
     --border-width: 0;
 
-    --primary-bg-color: rgb(0, 82, 204);
-    --primary-hover-bg-color: rgba(0, 82, 204, 0.9);
+    --primary-bg-color: var(--ds-background-brand-bold,#0052cc);
+    --primary-hover-bg-color: var(--ds-background-brand-bold-hovered,#0065ff);
     --primary-border-color: var(--aui-button-default-border-color, transparent);
     --primary-hover-border-color: var(--aui-button-default-border-color, transparent);
     --primary-color: var(--ds-text-inverse, #ffffff) !important;
