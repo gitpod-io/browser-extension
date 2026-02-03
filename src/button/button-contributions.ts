@@ -429,9 +429,9 @@ export const buttonContributions: ButtonContributionParams[] = [
         exampleUrls: [
             // "https://bitbucket.org/svenefftinge/browser-extension-test/src/master/"
         ],
-        selector: 'xpath://*[@id="uid25"]/div/div[1]/div/header/div/div/div/div[2]/div',
-        insertBefore:
-            'xpath:/html/body/div[1]/div[2]/div[2]/div/div/div[1]/div/div/div/div[1]/div/div[2]/div/div[2]/div',
+        selector: `header[data-qa="page-header-wrapper"] div[role="group"]:has(> button)`,
+        // this is here, but does not work – there is some DOM updating that happens to the last child we're selecting here that just causes everything to shift around after we insert our button. This is ok, but ideally, our button is to the immediate left of the ellipses menu.
+        insertBefore: `header[data-qa="page-header-wrapper"] div[role="group"]:has(> button) > div:last-child`,
         containerElement: createContainerElement("div", {
             marginLeft: "2px",
         }),
@@ -442,7 +442,7 @@ export const buttonContributions: ButtonContributionParams[] = [
         exampleUrls: [
             // "https://bitbucket.org/efftinge/browser-extension-test/pull-requests/1"
         ],
-        selector: `[data-testid="pr-header"] div[role="group"] div[role="group"]`,
+        selector: `[data-testid="pr-header"] div[role="group"] div[role="group"]:has(button[data-testid="mergeButton-primary"])`,
         containerElement: createContainerElement("div", {}),
         application: "bitbucket",
     },
