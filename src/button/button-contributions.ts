@@ -412,7 +412,7 @@ export const buttonContributions: ButtonContributionParams[] = [
     // we use xpath expressions, because the CSS selectors are not stable enough
     // tests are disabled because the URLs are not reachable without a session
     {
-        id: "bb-repo",
+        id: "bb-repo-old",
         exampleUrls: [
             // "https://bitbucket.org/svenefftinge/browser-extension-test/src/master/"
         ],
@@ -425,7 +425,29 @@ export const buttonContributions: ButtonContributionParams[] = [
         application: "bitbucket",
     },
     {
+        id: "bb-repo",
+        exampleUrls: [
+            // "https://bitbucket.org/svenefftinge/browser-extension-test/src/master/"
+        ],
+        selector: 'xpath://*[@id="uid25"]/div/div[1]/div/header/div/div/div/div[2]/div',
+        insertBefore:
+            'xpath:/html/body/div[1]/div[2]/div[2]/div/div/div[1]/div/div/div/div[1]/div/div[2]/div/div[2]/div',
+        containerElement: createContainerElement("div", {
+            marginLeft: "2px",
+        }),
+        application: "bitbucket",
+    },
+    {
         id: "bb-pull-request",
+        exampleUrls: [
+            // "https://bitbucket.org/efftinge/browser-extension-test/pull-requests/1"
+        ],
+        selector: `[data-testid="pr-header"] div[role="group"] div[role="group"]`,
+        containerElement: createContainerElement("div", {}),
+        application: "bitbucket",
+    },
+    {
+        id: "bb-pull-request-old",
         exampleUrls: [
             // "https://bitbucket.org/efftinge/browser-extension-test/pull-requests/1"
         ],
