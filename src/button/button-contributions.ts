@@ -263,7 +263,12 @@ export const buttonContributions: ButtonContributionParams[] = [
             "https://github.com/svenefftinge/browser-extension-test",
             "https://github.com/svenefftinge/browser-extension-test/tree/my-branch",
         ],
-        selector: `xpath://*[contains(@id, 'repo-content-')]/div/div/div/div[1]/react-partial/div/div/div[2]/div[2]`,
+        // The parent of the "Code" button (matched by text or icon)
+        selector: `xpath:(
+          //div[contains(@class,'repository-content')]//button[.//span[normalize-space()='Code']]
+          | 
+          //div[contains(@class,'repository-content')]//button[.//*[contains(concat(' ', normalize-space(@class), ' '), ' octicon-code ')]]
+        )/parent::div`,
         containerElement: createContainerElement("div", {}),
         additionalClassNames: ["medium"],
         application: "github",
