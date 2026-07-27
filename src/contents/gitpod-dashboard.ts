@@ -7,7 +7,7 @@ import { parseEndpoint } from "~utils/parse-endpoint";
  * Checks if the current site is a Gitpod instance.
  */
 const isSiteGitpod = (): boolean => {
-    return !!document.head.querySelector("meta[name=Gitpod]");
+    return !!document.head.querySelector("meta[name=Gitpod], meta[name=Ona]");
 };
 
 export const config: PlasmoCSConfig = {
