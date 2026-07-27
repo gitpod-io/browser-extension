@@ -5,10 +5,11 @@ import puppeteer, { Browser, Page } from "puppeteer";
 import { buttonContributions } from "./button-contributions-copy.js";
 
 describe("Platform match tests", function () {
-    let browser: Browser;
+    let browser: Browser | undefined;
     let page: Page;
 
     before(async function () {
+        this.timeout(30_000);
         browser = await puppeteer.launch({
             headless: "new",
             args: [
@@ -26,7 +27,8 @@ describe("Platform match tests", function () {
     });
 
     after(async function () {
-        await browser.close();
+        this.timeout(30_000);
+        await browser?.close();
     });
 
     async function testHost() {
@@ -70,10 +72,11 @@ describe("Platform match tests", function () {
 });
 
 describe("Query Selector Tests", function () {
-    let browser: Browser;
+    let browser: Browser | undefined;
     let page: Page;
 
     before(async function () {
+        this.timeout(30_000);
         browser = await puppeteer.launch({
             headless: "new",
             args: [
@@ -91,7 +94,8 @@ describe("Query Selector Tests", function () {
     });
 
     after(async function () {
-        await browser.close();
+        this.timeout(30_000);
+        await browser?.close();
     });
 
     async function resolveSelector(page: Page, selector: string) {
@@ -144,6 +148,7 @@ describe("GitHub repository anchor selector", function () {
     });
 
     after(async function () {
+        this.timeout(30_000);
         await browser?.close();
     });
 
