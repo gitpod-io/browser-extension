@@ -129,3 +129,46 @@ describe("Query Selector Tests", function () {
         }
     }
 });
+
+describe("GitHub repository anchor selector", function () {
+    let browser: Browser | undefined;
+    let page: Page;
+
+    before(async function () {
+        this.timeout(30_000);
+        browser = await puppeteer.launch({
+            headless: "new",
+            args: ["--no-sandbox", "--disable-setuid-sandbox"],
+        });
+        page = await browser.newPage();
+    });
+
+    after(async function () {
+        await browser?.close();
+    });
+
+    async function expectRepositoryAnchor(markup: string) {
+        await page.setContent(markup);
+        const contribution = buttonContributions.find(({ id }) => id === "gh-repo");
+        expect(contribution).to.not.be.undefined;
+
+        const matches = await page.$x(contribution!.selector.slice("xpath:".length));
+        expect(matches).to.have.length(1);
+    }
+
+    it("matches the server-rendered repository page", async function () {
+        await expectRepositoryAnchor(`
+            <div class="repository-content">
+                <div><button><svg class="octicon octicon-code"></svg><span>Code</span></button></div>
+            </div>
+        `);
+    });
+
+    it("matches the client-rendered repository page without the repository-content wrapper", async function () {
+        await expectRepositoryAnchor(`
+            <main>
+                <div><button><svg class="octicon octicon-code"></svg><span>Code</span></button></div>
+            </main>
+        `);
+    });
+});

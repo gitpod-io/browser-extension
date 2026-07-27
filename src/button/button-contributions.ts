@@ -265,9 +265,9 @@ export const buttonContributions: ButtonContributionParams[] = [
         ],
         // The parent of the "Code" button (matched by text or icon)
         selector: `xpath:(
-          //div[contains(@class,'repository-content')]//button[.//span[normalize-space()='Code']]
+          //button[.//span[normalize-space()='Code']]
           | 
-          //div[contains(@class,'repository-content')]//button[.//*[contains(concat(' ', normalize-space(@class), ' '), ' octicon-code ')]]
+          //button[.//*[contains(concat(' ', normalize-space(@class), ' '), ' octicon-code ')]]
         )/parent::div`,
         containerElement: createContainerElement("div", {}),
         additionalClassNames: ["medium"],
