@@ -42,8 +42,8 @@ importers:
         specifier: ^13.12.0
         version: 13.12.0
       webext-dynamic-content-scripts:
-        specifier: ^10.0.2
-        version: 10.0.2
+        specifier: ^10.0.4
+        version: 10.0.4
       webext-permission-toggle:
         specifier: ^5.0.2
         version: 5.1.0
@@ -4409,31 +4409,31 @@ packages:
     resolution: {integrity: sha512-dyVZn6w3A5b8Bi/SDX5NSQOpjeAtT5YZksWV1GdvftaHlvK+WBAGPtbrYjR47vEqrpyxgSsyWtBbatmykPtjLw==}
     engines: {node: '>=20'}
 
-  webext-content-scripts@2.6.1:
-    resolution: {integrity: sha512-418gnJGVzKBLMyF/+9fX9pMrp/p7yFKfX9bhe8Qe2oHDjaLqUJNP2WF9kVZ9E/p7lmiBC+f96dkEgwK/yu0QRA==}
-    engines: {node: '>=16'}
-
   webext-content-scripts@2.7.0:
     resolution: {integrity: sha512-onSnVe+VfKwx9adkUsRt4uCcahpNLt36ab16dqdzml3IWG/LUYp2Udhy/PJ24p2bvBYmKQ2Rq7gc2oT2h5nX1w==}
     engines: {node: '>=16'}
 
-  webext-detect-page@5.0.1:
-    resolution: {integrity: sha512-HizogkTmviA5qA1yODwewzz4ETSc+N9bYrK6pEVIAP2kAG139Sg+3DOJixRnFYl2gFVZn4PBReDZhgmFOEVbeg==}
-    engines: {node: '>=18'}
+  webext-content-scripts@2.7.2:
+    resolution: {integrity: sha512-7e6ZHha2jUww3RXWBkqBkSNa/qVPp8bHHY4BNDPfFIOkCebR+mjDq67BgWxnO51OUJU5skntRndjGmEGVcgvpQ==}
+    engines: {node: '>=16'}
 
   webext-detect@5.0.2:
     resolution: {integrity: sha512-R/Jfape0ML8rxWxIlOk8qODkD9G7L6+HijSNktsAKY6ZWZwGGO0Mfxa5C3BcJkNwLBR5/44cGhpbGSf5dne3vQ==}
     engines: {node: '>=18'}
 
-  webext-dynamic-content-scripts@10.0.2:
-    resolution: {integrity: sha512-Mj+Q53bE3i5fKGDEqkiVdV87JOwgdwe6VywK6KDSti9S9D85fER+oZQRpw5MOtA6G0vZISeITyCkC8tbyzIxmg==}
-
-  webext-events@3.0.1:
-    resolution: {integrity: sha512-GbIR9VuO0RWFLTJmvJSOCfdkM83olWg6e0vEr4QglcyBuHedZlBitIrzSfLUSV5hHoh6sr6ah9Osl5xoHFQNiA==}
+  webext-detect@5.3.2:
+    resolution: {integrity: sha512-RU/e8OLiPwU0efWs/cHp3sRCY+vakaTnbOS/x8VM/FkTtv6cfW/Ofed0i7WnkAKw2jbp4gki3WcpAdii+2QVMw==}
     engines: {node: '>=18'}
 
-  webext-patterns@1.4.0:
-    resolution: {integrity: sha512-ntzTWnsRuus0hZdHlbjNUFSA9mZz+sYU37KxkU5Et5TggkxqMienQBeGP2At4TMzeXpUvC3fafCr2Oiy7YDsBw==}
+  webext-dynamic-content-scripts@10.0.4:
+    resolution: {integrity: sha512-41n7/H7MIV7QpWrFjwhEQKhaj4xdicD8+2tZyKETcIw2Vzo29481VbBsRZWdHxhegshflC6RfFZs0LM5q0pqSw==}
+
+  webext-events@3.1.1:
+    resolution: {integrity: sha512-/QlXfa8LHcPOwLIycLglnHbXLqBOGetNn4pOyVJhV5UA6RifcP1tfkp8DYj3R6CjnHbjpSqFWXyc6dD4aTUcXw==}
+    engines: {node: '>=18'}
+
+  webext-patterns@1.5.1:
+    resolution: {integrity: sha512-N0r4U1vhsa+7zgIt4qsf6j6X7vRf10/nG7ycwRXIjg0+45v5/fFmjpSrFSe0RKW9bB3Lo5RqYJXEFb6syRFxpQ==}
     engines: {node: '>=18'}
 
   webext-permission-toggle@5.1.0:
@@ -4442,6 +4442,10 @@ packages:
 
   webext-permissions@3.1.3:
     resolution: {integrity: sha512-ahNhlsPBVXiKA1jkNp2QzT5PSb8DoEWb+/eu6lBGWrSBj0T2dok05rnrdXw5cQn+oLjaiHW+wnzSYmb5LK7HhA==}
+    engines: {node: '>=18'}
+
+  webext-permissions@3.1.4:
+    resolution: {integrity: sha512-/20ihnr67KzVUdI+NJFia3VM04UILM00xLpG2MbmWSaZK7P7ZYPyMxfT0wKhA5SyfXAPQV7bLscX4arN2IIHcQ==}
     engines: {node: '>=18'}
 
   webext-polyfill-kinda@1.0.2:
@@ -7050,8 +7054,8 @@ snapshots:
 
   content-scripts-register-polyfill@4.0.2:
     dependencies:
-      webext-content-scripts: 2.6.1
-      webext-patterns: 1.4.0
+      webext-content-scripts: 2.7.2
+      webext-patterns: 1.5.1
       webext-polyfill-kinda: 1.0.2
 
   content-security-policy-parser@0.4.1: {}
@@ -9553,36 +9557,37 @@ snapshots:
   webext-alert@1.0.2:
     dependencies:
       webext-detect: 5.0.2
-      webext-events: 3.0.1
-
-  webext-content-scripts@2.6.1:
-    dependencies:
-      webext-patterns: 1.4.0
-      webext-polyfill-kinda: 1.0.2
+      webext-events: 3.1.1
 
   webext-content-scripts@2.7.0:
     dependencies:
-      webext-patterns: 1.4.0
+      webext-patterns: 1.5.1
       webext-polyfill-kinda: 1.0.2
 
-  webext-detect-page@5.0.1: {}
+  webext-content-scripts@2.7.2:
+    dependencies:
+      webext-patterns: 1.5.1
+      webext-polyfill-kinda: 1.0.2
 
   webext-detect@5.0.2: {}
 
-  webext-dynamic-content-scripts@10.0.2:
+  webext-detect@5.3.2: {}
+
+  webext-dynamic-content-scripts@10.0.4:
     dependencies:
       content-scripts-register-polyfill: 4.0.2
-      webext-content-scripts: 2.6.1
-      webext-detect-page: 5.0.1
-      webext-patterns: 1.4.0
-      webext-permissions: 3.1.3
+      webext-content-scripts: 2.7.2
+      webext-detect: 5.3.2
+      webext-events: 3.1.1
+      webext-patterns: 1.5.1
+      webext-permissions: 3.1.4
       webext-polyfill-kinda: 1.0.2
 
-  webext-events@3.0.1:
+  webext-events@3.1.1:
     dependencies:
-      webext-detect: 5.0.2
+      webext-detect: 5.3.2
 
-  webext-patterns@1.4.0:
+  webext-patterns@1.5.1:
     dependencies:
       escape-string-regexp: 5.0.0
 
@@ -9597,7 +9602,11 @@ snapshots:
 
   webext-permissions@3.1.3:
     dependencies:
-      webext-patterns: 1.4.0
+      webext-patterns: 1.5.1
+
+  webext-permissions@3.1.4:
+    dependencies:
+      webext-patterns: 1.5.1
 
   webext-polyfill-kinda@1.0.2: {}
 
