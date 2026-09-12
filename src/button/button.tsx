@@ -1,10 +1,14 @@
-import { useStorage } from "@plasmohq/storage/hook";
 import classNames from "classnames";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import { DEFAULT_ONA_ENDPOINT, EVENT_CURRENT_URL_CHANGED } from "~constants";
+
+import { useStorage } from "@plasmohq/storage/hook";
+
+import { EVENT_CURRENT_URL_CHANGED } from "~constants";
+import { useInstanceUrl } from "~hooks/use-instance-url";
 import { OnaLettermark } from "~icons/OnaLettermark";
-import { STORAGE_KEY_ADDRESS, STORAGE_KEY_ALWAYS_OPTIONS, STORAGE_KEY_NEW_TAB } from "~storage";
+import { STORAGE_KEY_ALWAYS_OPTIONS, STORAGE_KEY_NEW_TAB } from "~storage";
+
 import type { SupportedApplication } from "./button-contributions";
 import { CaretForProvider } from "./CaretForProvider";
 
@@ -14,7 +18,7 @@ type Props = {
     urlTransformer?: (url: string) => string;
 };
 export const OnaButton = ({ application, additionalClassNames, urlTransformer }: Props) => {
-    const [address] = useStorage<string>(STORAGE_KEY_ADDRESS, DEFAULT_ONA_ENDPOINT);
+    const { address, ready } = useInstanceUrl();
     const [openInNewTab] = useStorage<boolean>(STORAGE_KEY_NEW_TAB, true);
     const [disableAutostart] = useStorage<boolean>(STORAGE_KEY_ALWAYS_OPTIONS, false);
     const [showDropdown, setShowDropdown] = useState(false);
@@ -77,6 +81,9 @@ export const OnaButton = ({ application, additionalClassNames, urlTransformer }:
     }, [showDropdown]);
 
     useHotkeys("alt+g", () => linkRef.current?.click(), [linkRef.current]);
+
+    // Avoid offering a default/user launch URL before policy has loaded.
+    if (!ready) return null;
 
     return (
         <div

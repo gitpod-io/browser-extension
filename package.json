@@ -10,7 +10,9 @@
         "watch-dev": "pnpm build-dev-tools && .bin/watch-sync serve ./build/chrome-mv3-dev",
         "watch-prod": "pnpm build-dev-tools && .bin/watch-sync serve ./build/chrome-mv3-prod",
         "build": "plasmo build --source-maps --no-minify",
-        "test": "cd test && pnpm test",
+        "test": "pnpm run test:unit && cd test && pnpm test",
+        "test:unit": "tsc -p test/tsconfig.unit.json && node --test dist/unit/test/unit/*.test.js",
+        "test:policy-ui": "node --test test/policy-ui.mjs",
         "package": "plasmo package",
         "package:all": "pnpm build --target=chrome-mv3 && pnpm build --target=firefox-mv3 && pnpm package --target=chrome-mv3 && pnpm package --target=firefox-mv3",
         "format": "prettier --experimental-ternaries --write .",
@@ -62,13 +64,17 @@
         "typescript": "5.5.4"
     },
     "manifest": {
+        "storage": {
+            "managed_schema": "../assets/managed-schema.json"
+        },
         "optional_host_permissions": [
             "*://*/*"
         ],
         "permissions": [
             "scripting",
             "contextMenus",
-            "activeTab"
+            "activeTab",
+            "storage"
         ],
         "browser_specific_settings": {
             "gecko": {

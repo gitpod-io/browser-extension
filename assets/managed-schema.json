@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+        "OnaInstanceUrl": {
+            "title": "Ona URL",
+            "description": "HTTP(S) origin of the Ona instance, for example https://ona.example.com. No credentials, path, query, or fragment. Overrides the user setting and disables automatic instance hopping; does not grant host permissions.",
+            "type": "string"
+        }
+    }
+}
