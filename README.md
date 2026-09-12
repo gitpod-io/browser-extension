@@ -11,6 +11,10 @@ This is the browser extension for Ona. It supports Chrome (see [Chrome Web Store
 We are currently tracking all issues related to the browser extension in the [`gitpod-io/gitpod`](https://github.com/gitpod-io/gitpod) repository.
 You can use the [`component: browser-extension`](https://github.com/gitpod-io/gitpod/issues?q=is%3Aissue+is%3Aopen+extension+label%3A%22component%3A+browser-extension%22) label to search for relevant issues including feature proposals and bug reports.
 
+### Enterprise configuration
+
+Chrome administrators can set the optional `OnaInstanceUrl` policy to centrally control **Ona URL**. See [enterprise policy setup, verification, and host-permission requirements](docs/enterprise-policy.md).
+
 ### Development
 
 To make changes and test them using Ona itself:
@@ -94,7 +98,7 @@ For Chrome:
 
 1. Using your Google account, open the [`gitpod-browser-extension Google Group`](https://groups.google.com/g/gitpod-browser-extension)
 1. If you don't have access, reach out for [help in Slack](https://gitpod.slack.com/archives/C04QC1ZMPV4)
-   * An existing member of the group, who is also Verified (paid the $5 for verification) on the Chrome Webstore needs to [sync the group members in the webstore](https://chrome.google.com/webstore/devconsole/11ad35cc-5b54-416a-a789-f091e1007648/settings)
+    - An existing member of the group, who is also Verified (paid the $5 for verification) on the Chrome Webstore needs to [sync the group members in the webstore](https://chrome.google.com/webstore/devconsole/11ad35cc-5b54-416a-a789-f091e1007648/settings)
 1. Navigate to the [Chrome Webstore console](https://chrome.google.com/webstore/devconsole/11ad35cc-5b54-416a-a789-f091e1007648), make sure you switch the `publisher` to `Gitpod`
 1. Click "Upload new package"
 1. Upload the zip file (`chrome-mv3-prod.zip`) and submit

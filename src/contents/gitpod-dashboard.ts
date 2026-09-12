@@ -1,11 +1,10 @@
-import { Storage } from "@plasmohq/storage";
 import type { PlasmoCSConfig } from "plasmo";
-import { STORAGE_AUTOMATICALLY_DETECT_GITPOD, STORAGE_KEY_ADDRESS } from "~storage";
-import { parseEndpoint } from "~utils/parse-endpoint";
+import browser from "webextension-polyfill";
 
-/**
- * Checks if the current site is a Gitpod instance.
- */
+import { Storage } from "@plasmohq/storage";
+
+import { automaticallyUpdateEndpoint } from "~instance-hopping";
+
 const isSiteGitpod = (): boolean => {
     return !!document.head.querySelector("meta[name=Gitpod], meta[name=Ona]");
 };
@@ -16,19 +15,6 @@ export const config: PlasmoCSConfig = {
 
 const storage = new Storage();
 
-const automaticallyUpdateEndpoint = async () => {
-    if ((await storage.get<boolean>(STORAGE_AUTOMATICALLY_DETECT_GITPOD)) !== true) {
-        return;
-    }
-
-    const currentHost = window.location.host;
-    const currentlyStoredEndpoint = await storage.get<string>(STORAGE_KEY_ADDRESS);
-    if (!currentlyStoredEndpoint || new URL(currentlyStoredEndpoint).host !== currentHost) {
-        console.log(`Gitpod extension: switching default endpoint to ${currentHost}.`);
-        await storage.set(STORAGE_KEY_ADDRESS, parseEndpoint(window.location.origin));
-    }
-};
-
 if (isSiteGitpod()) {
     localStorage.setItem("extension-last-seen-active", new Date().toISOString());
     const targetElement = document.querySelector(`meta[name="extension-active"]`);
@@ -36,5 +22,5 @@ if (isSiteGitpod()) {
         targetElement.setAttribute("content", "true");
     }
 
-    automaticallyUpdateEndpoint();
+    void automaticallyUpdateEndpoint(storage, browser.storage, window.location.origin);
 }

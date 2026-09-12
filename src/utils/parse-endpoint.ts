@@ -1,4 +1,4 @@
-import isUrl from "validator/es/lib/isURL";
+import isUrl from "validator/lib/isURL";
 
 const allowedProtocols = ["http:", "https:", "gitpod:"];
 

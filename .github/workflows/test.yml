@@ -25,4 +25,6 @@ jobs:
       - name: Build the extension
         run: pnpm build
       - name: Run tests
-        run: cd test && pnpm test
+        run: |
+          pnpm test
+          pnpm run test:policy-ui
